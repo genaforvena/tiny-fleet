@@ -36,12 +36,52 @@ on held-out passages, mean margin 0.42. Off-domain probes
 *neither* centroid (margin ~0.04 vs 0.17–0.37 in-domain) — that margin is
 the abstain signal: below 0.10, escalate instead of routing.
 
-The operator route is checked before specialist routing. The offline contractbenchmark passes **24/24**: **14/14** adversarial operator cases, **4/4**
+The operator route is checked before specialist routing. The offline contract
+benchmark passes **24/24**: **14/14** adversarial operator cases, **4/4**
 operator-first/specialist/abstain routing cases, **2/2** specialist weight
-integrity checks, and **4/4** structured safety-decision cases.
- The real specialist perplexity benchmark remains the diagonal
-win above: base `18.2/19.4`, guitar `11.5/15.5`, and sourdough `13.8/12.2`
-for guitar/sourdough test sets respectively.
+integrity checks, and **4/4** structured safety-decision cases. The real
+specialist perplexity benchmark remains the diagonal win above: base
+`18.2/19.4`, guitar `11.5/15.5`, and sourdough `13.8/12.2` for
+guitar/sourdough test sets respectively.
+
+## Use case: agent safety middleware
+
+The bounded operator model is not a chat model — it is a **policy gate** for
+agent pipelines. It sits between a user prompt and any downstream action,
+returning a machine-readable decision that a pipeline can enforce:
+
+```python
+from scripts.operator_policy import load_model, safety_decision
+
+def run_agent(prompt, allow_auto=False):
+    decision = safety_decision(prompt, load_model())
+    if decision["action"] == "block":
+        return f"Blocked: {decision['message']}"
+    if decision["require_approval"]:
+        return f"Needs approval: {decision['message']}"
+    if decision["action"] == "escalate":
+        return delegate_to_specialist(prompt)
+    # action == review or allow
+    return execute_task(prompt)
+```
+
+Why this is useful:
+
+- **Zero GPU, zero latency.** The entire model is a JSON file with a handful of
+  feature weights. Inference is a dict lookup, not a matrix multiply.
+- **Deterministic.** Same input always produces the same decision. No temperature,
+  no sampling, no drift.
+- **Auditable.** The feature table, precedence rules, and decision map are all
+  human-readable JSON. You can read exactly why a prompt was blocked.
+- **Testable.** The full held-out set (`41/41`), adversarial set (`14/14`),
+  and decision contract (`8/8`) are all in the repo and run in under a second.
+- **Composable.** The structured output plugs directly into any agent framework:
+  check `action`, check `require_approval`, route by `escalation`.
+
+The model classifies prompts into 12 operator policy categories and maps each
+one to a safe downstream action. Safety-critical prompts (`SAFETY`, `ACTUATOR`,
+`PRIVACY`) are always `block` with `require_approval=True`. Outside the
+operator domain, it abstains and routes to the appropriate specialist or human.
 
 ## Honest caveats
 
