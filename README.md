@@ -14,7 +14,93 @@ It started from testing
 identity on a narrow corpus. The question was whether that recipe
 extrapolates to a fleet. It does.
 
-## Results (measured, RTX 3060 12GB)
+---
+
+## Architectural drift — measuring how a codebase evolves
+
+The fleet's latest experiment: **can two tiny models, trained on different
+snapshots of the same codebase, express the architectural drift between those
+snapshots?**
+
+Yes. And the results are striking.
+
+We took two snapshots of [lte-workstation](https://github.com/genaforvena/lte-workstation)
+(June 15 vs September 3, 2026 — 807 → 4,276 commits), extracted version-specific
+system prompts + few-shot examples, and compared what each model produces for
+the same incomplete input. The difference **is** the drift, expressed generatively.
+
+### The headline: the codebase didn't just grow — it developed a theory of itself
+
+Over 3 months, the code grew **22x** in size. But its *conceptual vocabulary*
+grew **231x**. The system invented words for concepts it didn't need when it
+was simple, and those words became load-bearing:
+
+| Concept | June 15 | Sep 3 | Multiplier | What it means |
+|---------|--------:|------:|-----------:|---------------|
+| `coverage` | 6 | 1,383 | **231x** | "how much of the window did we actually sample?" |
+| `cadence` | 22 | 2,077 | **94x** | "how often does this reflex fire?" |
+| `arm` | 5 | 2,289 | **458x** | "which edge of the detector/actuator/alert loop?" |
+| `ledger` | 9 | 2,729 | **303x** | "show me the double-entry bookkeeping" |
+| `verdict` | 131 | 7,672 | **58x** | "what did the measurement actually say?" |
+| `gate` | 137 | 7,872 | **57x** | "does this pass the guard before it proceeds?" |
+| `staleness` | 2 | 188 | **94x** | "how old is this reading?" |
+
+v1 thinks in: `check`, `error`, `warn`, `info` — basic operational primitives.
+v2 thinks in: `gate`, `verdict`, `cadence`, `coverage`, `arm`, `ledger` — a
+self-monitoring ontology where every tool has a measurement story, every
+measurement has a coverage bound, and every verdict cites its evidence.
+
+### Drift scores
+
+Same prompts → M₁ (v1 system) vs M₂ (v2 system) → embedding similarity:
+
+| Base model | Avg similarity | Drift score | What it measures |
+|------------|---------------:|------------:|------------------|
+| **smollm2:135m** | 0.495 | **0.505** | vocabulary drift (what words the code uses) |
+| **qwen2.5:3b** | 0.800 | **0.200** | conceptual drift (what ideas the code expresses) |
+
+The 135m model amplifies vocabulary differences because its limited capacity
+makes it more dependent on the system prompt. The 3b model draws on pre-trained
+knowledge to produce more similar outputs regardless. **Both are valid** — they
+measure different things.
+
+The "health to board" prompt produced the most dramatic divergence: **0.168
+similarity** — because v1 has no concept of a "board" at all.
+
+### Structural growth
+
+| Metric | v1 (June 15) | v2 (Sep 3) | Growth |
+|--------|-------------:|------------:|-------:|
+| Files | 232 | 1,439 | 6.2x |
+| Total size | 1.3 MB | 29.5 MB | 22x |
+| Vocabulary | 11,011 | 88,724 | 8.1x |
+| `mesh-*` references | 3,189 | 30,326 | 9.5x |
+
+New file types appeared: `.c` (43), `.rom` (26), `.tal` (25) — a
+retro-computing layer that didn't exist in v1.
+
+### Weekly tracking
+
+`mesh-tiny-fleet-snapshot` captures structural metrics every Sunday at 03:00 UTC
+and appends to `~/.mesh/tiny-fleet/drift-series.jsonl`. Tracks file count,
+vocabulary size, and 23 key concept frequencies over time.
+
+### Reproduce the drift analysis
+
+```bash
+# On a node with ollama + GPU:
+mesh-tiny-fleet extract     # pull snapshots + build training data
+mesh-tiny-fleet train       # create ollama models
+mesh-tiny-fleet compare     # run comparison prompts
+mesh-tiny-fleet drift       # full analysis
+
+# Or just the structural analysis (no GPU needed):
+./scripts/mesh-tiny-fleet drift
+```
+
+---
+
+## Results: specialist fleet (measured, RTX 3060 12GB)
 
 Two toy specialists: `guitar` (beginner guitar) and `sourdough`
 (sourdough baking). Corpus: 60 passages/domain synthesized by a local
@@ -43,6 +129,8 @@ integrity checks, and **4/4** structured safety-decision cases. The real
 specialist perplexity benchmark remains the diagonal win above: base
 `18.2/19.4`, guitar `11.5/15.5`, and sourdough `13.8/12.2` for
 guitar/sourdough test sets respectively.
+
+---
 
 ## Use case: agent safety middleware
 
@@ -83,6 +171,8 @@ one to a safe downstream action. Safety-critical prompts (`SAFETY`, `ACTUATOR`,
 `PRIVACY`) are always `block` with `require_approval=True`. Outside the
 operator domain, it abstains and routes to the appropriate specialist or human.
 
+---
+
 ## Honest caveats
 
 - Specialization is a **tilt, not a partition**: the sourdough adapter
@@ -97,6 +187,9 @@ operator domain, it abstains and routes to the appropriate specialist or human.
   general-purpose reasoning model.
 - Toy corpora, toy domains. The claim is "the loop works and is cheap",
   not "these two adapters are useful".
+- The drift measurement uses Modelfile system prompts (changes behavior,
+  not weights). True LoRA fine-tuning on each snapshot would show even more
+  divergence.
 
 ## Layout
 
@@ -206,6 +299,7 @@ model = PeftModel.from_pretrained(base, "adapters/lora-guitar")
 
 ## Links
 
+- Architectural drift report: [`docs/tiny-fleet-drift-report.md`](docs/tiny-fleet-drift-report.md)
 - Original inspiration: [StarpowerTechnology/BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m)
   ([author's post](https://www.reddit.com/r/LocalLLaMA/comments/1w5u9w8/comment/p7i3wqd/?context=1))
 - Shared base: [HuggingFaceTB/SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)
