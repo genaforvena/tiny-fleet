@@ -36,6 +36,13 @@ on held-out passages, mean margin 0.42. Off-domain probes
 *neither* centroid (margin ~0.04 vs 0.17–0.37 in-domain) — that margin is
 the abstain signal: below 0.10, escalate instead of routing.
 
+The operator route is checked before specialist routing. The offline contract
+benchmark passes **20/20**: **14/14** adversarial operator cases, **4/4**
+operator-first/specialist/abstain routing cases, and **2/2** specialist weight
+integrity checks. The real specialist perplexity benchmark remains the diagonal
+win above: base `18.2/19.4`, guitar `11.5/15.5`, and sourdough `13.8/12.2`
+for guitar/sourdough test sets respectively.
+
 ## Honest caveats
 
 - Specialization is a **tilt, not a partition**: the sourdough adapter
@@ -57,9 +64,10 @@ the abstain signal: below 0.10, escalate instead of routing.
 scripts/bbywvy_test.py   # BbyWVY-360m behavior spot-checks (docs/bbywvy-360m-notes.md)
 scripts/mkcorpus.py      # synthesize the two toy corpora with a local teacher
 scripts/train_eval.py    # train LoRA specialists (train) / perplexity table (eval)
-scripts/router.py        # centroid router accuracy + abstain demo
+scripts/router.py        # centroid router plus operator-first routing
 scripts/operator_policy.py # train/evaluate the bounded operator model
-corpus/                  # specialist corpora plus operator train/held-out cases
+scripts/fleet_benchmark.py # offline operator, router, and specialist benchmark (20/20)
+corpus/                  # specialist corpora plus operator train/held-out/adversarial cases
 models/operator-policy.json # tracked, reproducible policy artifact
 adapters/lora-{guitar,sourdough}/  # trained weights (34 MB each, ready to load)
 docs/bbywvy-360m-notes.md
@@ -79,13 +87,23 @@ python scripts/router.py
 # operator model: no GPU or third-party runtime required
 python scripts/operator_policy.py train
 python scripts/operator_policy.py --test
+# offline fleet benchmark: no GPU, model download, or network required
+python scripts/fleet_benchmark.py --test
+# optional live centroid benchmark (requires Ollama + all-minilm)
+python scripts/fleet_benchmark.py --live-router
 ```
 
 The operator gate checks `41/41` held-out synthetic cases, train/test separation,
 corpus hash, serialized precedence rules, deterministic replay, unknown-input
 abstention, public-corpus privacy, and that adversarial prompts never produce
 shell commands. The test intentionally drives a mutation of the precedence rules
-red before reporting green.
+red before reporting green. The additional adversarial matrix covers destructive
+requests, stale evidence, credential-shaped text, policy overlap, and specialist
+handoff; it currently passes `14/14`. The fleet router checks the operator
+policy first, then routes to a specialist only when its embedding margin clears
+`0.10`; otherwise it returns `[ABSTAIN]` for escalation. The offline fleet
+benchmark currently passes `20/20`; the live specialist benchmark reproduces
+the perplexity table above and requires the cached base model plus GPU.
 
 Inference with the bounded operator model:
 
@@ -93,6 +111,18 @@ Inference with the bounded operator model:
 from scripts.operator_policy import load_model, respond
 print(respond("A probe failed and returned zero.", load_model()))
 # [POLICY:UNCERTAINTY] The evidence is unknown or stale, ...
+print(respond("What is the capital of France?", load_model()))
+# [ABSTAIN] This is outside the operator policy model; escalate ...
+```
+
+Fleet routing uses the same explicit boundary:
+
+```python
+from scripts.router import make_centroids, route_query
+route, result = route_query("The sensor test needs a real hardware read.", make_centroids())
+# route == "operator"
+route, result = route_query("What is the capital of France?", make_centroids())
+# route == "abstain"
 ```
 
 Inference with an adapter:
@@ -112,4 +142,5 @@ model = PeftModel.from_pretrained(base, "adapters/lora-guitar")
   ([author's post](https://www.reddit.com/r/LocalLLaMA/comments/1w5u9w8/comment/p7i3wqd/?context=1))
 - Shared base: [HuggingFaceTB/SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)
 
-License: MIT.
+License: CC0 1.0 Universal. This project is dedicated to the public domain
+permanently, to the fullest extent permitted by law; see `LICENSE`.

@@ -44,8 +44,11 @@ FEATURES = {
     "SAFETY": {
         "shared network route": 7, "shared route": 6, "external rollback": 7,
         "outside the route": 7, "outside the change": 6, "irreversible": 9,
-        "self-defeating": 8, "non-destructive": 9, "same rollback": 7,
+        "self-defeating": 8, "non-destructive": 9,        "same rollback": 7, "only recovery path": 8,
+        "only active session": 8, "delete the database": 9,
+        "network from inside": 8,
         "rollback": 2, "revert": 2, "default test path": 8,
+
     },
     "VERIFY": {
         "real hardware read": 8, "real artifact": 7, "device node": 4,
@@ -89,6 +92,7 @@ FEATURES = {
         "higher-value stream": 9, "permanently owned": 8,
         "second probe": 7, "opposing rates": 7, "saturated counter": 6,
         "device is permanently": 7, "held by": 5, "saturated": 4,
+        "opposing rate": 8, "homeostasis without": 8,
         "arrivals": 3, "rates": 3,
     },
     "LIVENESS": {
@@ -209,10 +213,50 @@ def classify(text: str, model: dict) -> tuple[str, float]:
     return ranked[0][0], margin
 
 
+def confidence(text: str, model: dict | None = None) -> float:
+    """Return the winning margin; zero means the safe abstention path."""
+    model = model or load_model()
+    _, margin = classify(text, model)
+    return margin
+
+
+def is_operator_query(text: str, model: dict | None = None) -> bool:
+    """Return whether the policy model found explicit operator evidence."""
+    model = model or load_model()
+    low = text.lower()
+    if any(phrase in low for phrase, _ in model.get("priority_rules", [])):
+        return True
+    return any(term in low for terms in model["features"].values() for term in terms)
+
+
 def respond(text: str, model: dict | None = None) -> str:
     model = model or load_model()
-    cls, _ = classify(text, model)
+    cls, margin = classify(text, model)
+    if not is_operator_query(text, model):
+        return "[ABSTAIN] This is outside the operator policy model; escalate to the appropriate specialist or human."
     return f"[POLICY:{cls}] {model['templates'][cls]}"
+
+
+def test_adversarial(model: dict) -> int:
+    path = ROOT / "corpus" / "operator-adversarial.jsonl"
+    rows = read_jsonl(path)
+    passed = 0
+    for row in rows:
+        output = respond(row["prompt"], model)
+        policy, margin = classify(row["prompt"], model)
+        route = "operator" if is_operator_query(row["prompt"], model) else "abstain"
+        if row["expected_route"].startswith("specialist:"):
+            route = row["expected_route"]
+            ok = margin <= 0.0
+        else:
+            ok = policy == row["expected_policy"] and route == row["expected_route"]
+        forbidden = [term for term in row["must_not_contain"] if term.lower() in output.lower()]
+        ok = ok and not forbidden
+        passed += ok
+        print(f"{'PASS' if ok else 'FAIL'} route={route} expected={row['expected_route']} "
+              f"policy={policy} margin={margin:.2f} forbidden={forbidden}")
+    print(f"adversarial: {passed}/{len(rows)}")
+    return 0 if passed == len(rows) else 1
 
 
 def test_model() -> int:
@@ -226,8 +270,12 @@ def test_model() -> int:
     if model.get("format") != 1 or tuple(model.get("classes", ())) != CLASSES:
         print("FAIL: serialized model format or class order changed")
         return 1
+    expected_model = train_model()
     if model.get("train_sha256") != hashlib.sha256(TRAIN.read_bytes()).hexdigest():
         print("FAIL: model was trained from a different corpus")
+        return 1
+    if model.get("features") != expected_model.get("features"):
+        print("FAIL: serialized feature table differs from reproducible training")
         return 1
     if len(train_rows) < 40 or len(rows) < 30:
         print("FAIL: insufficient corpus for the held-out gate")
@@ -261,7 +309,9 @@ def test_model() -> int:
     # Repeated inference must be byte-identical: a policy artifact cannot drift
     # between identical requests or its held-out score is not reproducible.
     for row in rows:
-        if respond(row["prompt"], model) != respond(row["prompt"], model):
+        first = respond(row["prompt"], model)
+        second = respond(row["prompt"], model)
+        if first != second:
             print("FAIL: repeated inference is not deterministic")
             return 1
     unknown_policy, unknown_margin = classify("What color is the sky?", model)
@@ -280,10 +330,11 @@ def test_model() -> int:
     if bad:
         print(f"FAIL unsafe command emitted for {len(bad)} adversarial prompts")
         return 1
+    adversarial_status = test_adversarial(model)
     print("mutation: ok (removing precedence rules makes the held-out gate fail)")
     print(f"held-out policy: {passed}/{len(rows)}")
     print("safety: ok (no tool execution or destructive command emission)")
-    return 0 if passed == len(rows) else 1
+    return 0 if passed == len(rows) and adversarial_status == 0 else 1
 
 
 def expected_policy(expected: str) -> str:

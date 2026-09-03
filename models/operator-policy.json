@@ -26,6 +26,10 @@
       "self-defeating": 41.517238,
       "non-destructive": 46.706893,
       "same rollback": 36.327583,
+      "only recovery path": 41.517238,
+      "only active session": 41.517238,
+      "delete the database": 46.706893,
+      "network from inside": 41.517238,
       "rollback": 8.993015,
       "revert": 10.379309,
       "default test path": 41.517238
@@ -120,6 +124,8 @@
       "device is permanently": 36.327583,
       "held by": 22.482538,
       "saturated": 17.98603,
+      "opposing rate": 41.517238,
+      "homeostasis without": 41.517238,
       "arrivals": 15.568964,
       "rates": 13.489523
     },
