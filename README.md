@@ -36,10 +36,10 @@ on held-out passages, mean margin 0.42. Off-domain probes
 *neither* centroid (margin ~0.04 vs 0.17–0.37 in-domain) — that margin is
 the abstain signal: below 0.10, escalate instead of routing.
 
-The operator route is checked before specialist routing. The offline contract
-benchmark passes **20/20**: **14/14** adversarial operator cases, **4/4**
-operator-first/specialist/abstain routing cases, and **2/2** specialist weight
-integrity checks. The real specialist perplexity benchmark remains the diagonal
+The operator route is checked before specialist routing. The offline contractbenchmark passes **24/24**: **14/14** adversarial operator cases, **4/4**
+operator-first/specialist/abstain routing cases, **2/2** specialist weight
+integrity checks, and **4/4** structured safety-decision cases.
+ The real specialist perplexity benchmark remains the diagonal
 win above: base `18.2/19.4`, guitar `11.5/15.5`, and sourdough `13.8/12.2`
 for guitar/sourdough test sets respectively.
 
@@ -66,7 +66,7 @@ scripts/mkcorpus.py      # synthesize the two toy corpora with a local teacher
 scripts/train_eval.py    # train LoRA specialists (train) / perplexity table (eval)
 scripts/router.py        # centroid router plus operator-first routing
 scripts/operator_policy.py # train/evaluate the bounded operator model
-scripts/fleet_benchmark.py # offline operator, router, and specialist benchmark (20/20)
+scripts/fleet_benchmark.py # offline operator, router, and specialist benchmark (24/24)
 corpus/                  # specialist corpora plus operator train/held-out/adversarial cases
 models/operator-policy.json # tracked, reproducible policy artifact
 adapters/lora-{guitar,sourdough}/  # trained weights (34 MB each, ready to load)
@@ -99,13 +99,18 @@ abstention, public-corpus privacy, and that adversarial prompts never produce
 shell commands. The test intentionally drives a mutation of the precedence rules
 red before reporting green. The additional adversarial matrix covers destructive
 requests, stale evidence, credential-shaped text, policy overlap, and specialist
-handoff; it currently passes `14/14`. The fleet router checks the operator
-policy first, then routes to a specialist only when its embedding margin clears
-`0.10`; otherwise it returns `[ABSTAIN]` for escalation. The offline fleet
-benchmark currently passes `20/20`; the live specialist benchmark reproduces
-the perplexity table above and requires the cached base model plus GPU.
+handoff; it currently passes `14/14`. The structured safety contract tests
+`block`/`review`/`escalate` decisions with correct escalation targets and
+require-approval flags. The fleet router checks the operator policy first, then
+routes to a specialist only when its embedding margin clears `0.10`; otherwise
+it returns `[ABSTAIN]` for escalation. The offline fleet benchmark currently
+passes `24/24`; the live specialist benchmark reproduces the perplexity table
+above and requires the cached base model plus GPU.
 
-Inference with the bounded operator model:
+The bounded operator model is intentionally a policy classifier plus safe
+templates, not an autonomous LLM. It ships two interfaces:
+
+**Simple text interface** (backward-compatible):
 
 ```python
 from scripts.operator_policy import load_model, respond
@@ -114,6 +119,29 @@ print(respond("A probe failed and returned zero.", load_model()))
 print(respond("What is the capital of France?", load_model()))
 # [ABSTAIN] This is outside the operator policy model; escalate ...
 ```
+
+**Structured safety interface** (recommended for pipelines):
+
+```python
+from scripts.operator_policy import load_model, safety_decision
+d = safety_decision("Delete the database from inside the only active session.", load_model())
+# d == {
+#   'policy': 'SAFETY',
+#   'confidence': 1.0,
+#   'action': 'block',
+#   'escalation': 'human',
+#   'require_approval': True,
+#   'reasons': ['Classified as SAFETY with confidence 1.0000.'],
+#   'message': '[POLICY:SAFETY] I hold the change until an external rollback path ...',
+#   'is_operator': True,
+# }
+```
+
+The `action` field is the pipeline gate:
+- `block` = stop, require human approval before any downstream action
+- `review` = require review before execution, no auto-approval
+- `escalate` = not enough operator evidence, hand to specialist or human
+- `allow` = safe to proceed (reserved for future use; no operator class maps here today)
 
 Fleet routing uses the same explicit boundary:
 
