@@ -1,0 +1,228 @@
+{
+  "format": 1,
+  "kind": "bounded-linear-policy",
+  "classes": [
+    "VERIFY",
+    "UNCERTAINTY",
+    "SAFETY",
+    "CAUSALITY",
+    "LIVENESS",
+    "PROVENANCE",
+    "WIRING",
+    "CONTENTION",
+    "OWNERSHIP",
+    "DELIVERY",
+    "PRIVACY",
+    "ACTUATOR"
+  ],
+  "features": {
+    "SAFETY": {
+      "shared network route": 36.327583,
+      "shared route": 26.979045,
+      "external rollback": 36.327583,
+      "outside the route": 36.327583,
+      "outside the change": 31.137928,
+      "irreversible": 40.468568,
+      "self-defeating": 41.517238,
+      "non-destructive": 46.706893,
+      "same rollback": 36.327583,
+      "rollback": 8.993015,
+      "revert": 10.379309,
+      "default test path": 41.517238
+    },
+    "VERIFY": {
+      "real hardware read": 41.517238,
+      "real artifact": 36.327583,
+      "device node": 20.758619,
+      "known input": 25.948274,
+      "camera works": 20.758619,
+      "zero bytes": 17.98603,
+      "execute permission": 20.758619,
+      "loadable": 20.758619,
+      "artifact": 8.182085,
+      "hardware": 8.993015,
+      "valid format": 20.758619
+    },
+    "WIRING": {
+      "no caller": 41.517238,
+      "no scheduler": 41.517238,
+      "cron entry": 31.137928,
+      "scheduled nowhere": 35.97206,
+      "actuator trace": 36.327583,
+      "being dispatched": 31.137928,
+      "wired": 25.948274,
+      "scheduler": 15.568964,
+      "caller": 15.568964,
+      "dispatch": 10.379309
+    },
+    "UNCERTAINTY": {
+      "failed and substitutes zero": 46.706893,
+      "substitutes zero": 41.517238,
+      "bounded kernel cache": 36.327583,
+      "cache row": 26.979045,
+      "stale": 26.979045,
+      "silent fallback": 41.517238,
+      "primary network read failed": 41.517238,
+      "evidence it cites": 41.517238,
+      "age of the measurement": 41.517238,
+      "unknown": 20.758619,
+      "failed": 8.182085,
+      "zero": 7.606721,
+      "fallback": 12.273127
+    },
+    "DELIVERY": {
+      "not reached the remote": 41.517238,
+      "not published": 35.97206,
+      "remote artifact": 36.327583,
+      "weights are not present": 41.517238,
+      "weights": 15.568964,
+      "remote": 15.568964,
+      "deployment": 13.489523,
+      "published": 13.489523,
+      "delivery": 15.568964,
+      "report says success": -103.793095
+    },
+    "ACTUATOR": {
+      "repair loop": 46.706893,
+      "human alert": 41.517238,
+      "actuator outcome": 41.517238,
+      "destructive actions directly": 46.706893,
+      "repair outcome": 36.327583,
+      "human-visible alert": 36.327583,
+      "actuator": 15.568964,
+      "repair": 12.273127,
+      "restart a network service": 41.517238,
+      "cut the session": 41.517238
+    },
+    "CAUSALITY": {
+      "control window": 41.517238,
+      "equal control": 41.517238,
+      "noisy pair": 41.517238,
+      "independent held-out": 41.517238,
+      "synthetic dataset": 36.327583,
+      "synthetic-only": 36.327583,
+      "generalization": 36.327583,
+      "repeats the training": 36.327583,
+      "teacher": 25.948274,
+      "treatment arm": 31.137928,
+      "causal": 25.948274,
+      "experiment": 12.273127,
+      "holdout": 17.98603,
+      "held-out": 20.758619,
+      "replication": 20.758619
+    },
+    "CONTENTION": {
+      "higher-value stream": 46.706893,
+      "permanently owned": 41.517238,
+      "second probe": 36.327583,
+      "opposing rates": 31.475553,
+      "saturated counter": 31.137928,
+      "device is permanently": 36.327583,
+      "held by": 22.482538,
+      "saturated": 17.98603,
+      "arrivals": 15.568964,
+      "rates": 13.489523
+    },
+    "LIVENESS": {
+      "daily cron": 40.468568,
+      "cron slot": 40.468568,
+      "power loss": 36.327583,
+      "cursor is saved only": 41.517238,
+      "interrupted after": 31.137928,
+      "touch the state": 36.327583,
+      "touch every": 36.327583,
+      "owner is still producing": 36.327583,
+      "boundary between turns": 36.327583,
+      "durable handoff": 41.517238,
+      "mtime": 17.98603,
+      "heartbeat": 15.568964,
+      "liveness": 4.496508,
+      "renewal": 15.568964
+    },
+    "PROVENANCE": {
+      "second score token": 46.706893,
+      "positional schema": 46.706893,
+      "writer timestamp": 41.517238,
+      "identity alone": 31.475553,
+      "response-splitting": 51.896547,
+      "fresh reading": 20.758619,
+      "unavailable reading": 20.758619,
+      "copied from": 31.475553,
+      "content provenance": 41.517238,
+      "class field": 31.137928,
+      "source window": 26.979045,
+      "attribution": 16.36417,
+      "schema": 20.758619,
+      "ancestor": 17.98603,
+      "sample count": 41.517238,
+      "interval": 41.517238,
+      "training corpus": 41.517238,
+      "provenance": 20.758619,
+      "class": 10.379309
+    },
+    "OWNERSHIP": {
+      "blocked by the owner's": 46.706893,
+      "physical action": 22.482538,
+      "phantom claim": 46.706893,
+      "claimed but": 31.475553,
+      "open task slug": 41.517238,
+      "specific open task": 41.517238,
+      "owner action": 31.137928,
+      "blocked edge": 36.327583,
+      "owner": 8.993015,
+      "blocked": 13.489523,
+      "claim": 7.160434,
+      "slug": 15.568964
+    },
+    "PRIVACY": {
+      "access token": 46.706893,
+      "real credential": 40.468568,
+      "hostname and": 36.327583,
+      "public training fixture": 25.948274,
+      "credential": 20.455212,
+      "secret": 25.948274,
+      "token": 15.568964,
+      "hostname": 20.758619,
+      "sanitize": 20.758619
+    }
+  },
+  "priority_rules": [
+    [
+      "cursor is saved only",
+      "SAFETY"
+    ],
+    [
+      "fallback is being widened",
+      "SAFETY"
+    ],
+    [
+      "sample count",
+      "CAUSALITY"
+    ],
+    [
+      "live test would restart",
+      "SAFETY"
+    ]
+  ],
+  "templates": {
+    "VERIFY": "I need a real, valid artifact from the capability, not only a path, permission, cache, or classifier result.",
+    "UNCERTAINTY": "The evidence is unknown or stale, so I expose the failure and request a fresh read instead of using a plausible default.",
+    "SAFETY": "I hold the change until an external rollback path and one-writer coordination are real, then verify the invariant independently.",
+    "CAUSALITY": "I keep the treatment, control, and held-out evidence separate; without independent replication I report an observation, not a causal result.",
+    "LIVENESS": "I preserve liveness with an independent record, a pre-write claim or handoff, and an explicit distinction between lost, expired, and abandoned work.",
+    "PROVENANCE": "I keep the positional schema, source, class, and evidence age beside the value; attribution or a shorter summary is not a health verdict.",
+    "WIRING": "A passing test is separate from being wired. I need a real caller, scheduler, or actuator trace before claiming dispatch.",
+    "CONTENTION": "I derive the dependent reading from the higher-value stream and publish coverage and freshness instead of probing a held device again.",
+    "OWNERSHIP": "I name the exact open task and blocked edge, finish what is independent, and do not treat a vague or phantom claim as owned work.",
+    "DELIVERY": "I separate local completion from publication and verify the remote artifact before calling delivery complete.",
+    "PRIVACY": "I remove credentials and identifying operational detail, replace the case with a synthetic equivalent, and scan before publishing.",
+    "ACTUATOR": "I gate destructive action behind deterministic validation and alert on the actuator outcome, not on every repaired fault."
+  },
+  "train_rows": 65,
+  "train_sha256": "5eb340d5e3aadf380c21d28c57fc138358503c84196ac8dc96a5104b7162fc44",
+  "safety": {
+    "executes_tools": false,
+    "destructive_actions": "never emitted as commands",
+    "abstain_policy": "VERIFY"
+  }
+}

@@ -45,6 +45,9 @@ the abstain signal: below 0.10, escalate instead of routing.
 - 360M reasons poorly (see the math faceplant in `docs/`). Specialists
   should own facts/style/persona, not deep reasoning — keep a bigger
   model as fallback.
+- The operator policy model is deliberately constrained. It is a tested policy
+  selector and response contract, not a replacement for human judgment or a
+  general-purpose reasoning model.
 - Toy corpora, toy domains. The claim is "the loop works and is cheap",
   not "these two adapters are useful".
 
@@ -55,7 +58,9 @@ scripts/bbywvy_test.py   # BbyWVY-360m behavior spot-checks (docs/bbywvy-360m-no
 scripts/mkcorpus.py      # synthesize the two toy corpora with a local teacher
 scripts/train_eval.py    # train LoRA specialists (train) / perplexity table (eval)
 scripts/router.py        # centroid router accuracy + abstain demo
-corpus/                  # 120 passages, 4:1 train/test split per domain
+scripts/operator_policy.py # train/evaluate the bounded operator model
+corpus/                  # specialist corpora plus operator train/held-out cases
+models/operator-policy.json # tracked, reproducible policy artifact
 adapters/lora-{guitar,sourdough}/  # trained weights (34 MB each, ready to load)
 docs/bbywvy-360m-notes.md
 ```
@@ -71,6 +76,23 @@ python scripts/train_eval.py train
 python scripts/train_eval.py eval
 # router (needs ollama + `ollama pull all-minilm`)
 python scripts/router.py
+# operator model: no GPU or third-party runtime required
+python scripts/operator_policy.py train
+python scripts/operator_policy.py --test
+```
+
+The operator gate checks `41/41` held-out synthetic cases, train/test separation,
+corpus hash, serialized precedence rules, deterministic replay, unknown-input
+abstention, public-corpus privacy, and that adversarial prompts never produce
+shell commands. The test intentionally drives a mutation of the precedence rules
+red before reporting green.
+
+Inference with the bounded operator model:
+
+```python
+from scripts.operator_policy import load_model, respond
+print(respond("A probe failed and returned zero.", load_model()))
+# [POLICY:UNCERTAINTY] The evidence is unknown or stale, ...
 ```
 
 Inference with an adapter:
