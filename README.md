@@ -98,6 +98,34 @@ mesh-tiny-fleet drift       # full analysis
 ./scripts/mesh-tiny-fleet drift
 ```
 
+### Reproduce the offline contract benchmark
+
+The benchmark has a small dependency floor and should run in an isolated environment on Debian/Ubuntu
+systems whose system Python is PEP 668 managed:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-eval.txt
+.venv/bin/python scripts/fleet_benchmark.py --test
+```
+
+The expected fixture result is `fleet benchmark: 24/24`; this exercises operator-first policy,
+specialist routing, abstention, adversarial decisions, and adapter inventory.
+
+### Validate a deep-evaluation run
+
+The dependency-free contract validator checks a frozen run manifest, dataset hashes and counts,
+split/leakage boundaries, required report artifacts, and prediction cardinality before any score is
+treated as publishable:
+
+```bash
+.venv/bin/python scripts/test_deep_evaluation.py
+.venv/bin/python scripts/deep_evaluation.py --run-dir runs/<run-id>
+```
+
+The test harness accepts one complete fixture and deliberately rejects case/source leakage,
+cutoff violations, missing artifacts, hash/count mismatches, and orphan or incomplete predictions.
+
 ---
 
 ## Results: specialist fleet (measured, RTX 3060 12GB)

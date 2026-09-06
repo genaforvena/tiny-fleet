@@ -1,0 +1,2 @@
+# Dependency floor for the offline fleet contract benchmark.
+numpy>=1.26
