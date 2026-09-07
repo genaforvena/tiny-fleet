@@ -1,0 +1,10 @@
+check	command_or_binding	observed	status
+manifest-hash	sha256sum ../02-external-sample/sample-manifest.json	c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7	PASS
+pinned-old	git cat-file -e 2dc867eed5d128beeb69ca2e818f291ab76ea895^{commit}	object exists	PASS
+pinned-new	git cat-file -e 82c096be8bffc04aa56867c12d6292134f338662^{commit}	object exists	PASS
+blob-records	manifest entries versus pinned Git objects	10 manifest rows: 8 blob/size/SHA-256 records match; 2 old absences intentional	PASS
+structural-input	03-analysis/structural.tsv	3->5 files; 274906->284322 bytes; +2 additions; +2 modifications	PASS-descriptive
+lexical-coverage	03-analysis/lexical.tsv	blocked: no tokenizer/dictionary binding	BLOCKED
+behavioral-coverage	03-analysis/behavioral.tsv	blocked: no runtime/paired execution capture	BLOCKED
+generative-coverage	03-analysis/generative.tsv	blocked: no prompts/seeds/model/scorer/raw outputs	BLOCKED
+moving-revision-guard	analysis README and decision	frozen manifest required; moving HEAD rejected	PASS

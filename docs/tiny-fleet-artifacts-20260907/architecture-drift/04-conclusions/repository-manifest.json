@@ -1,0 +1,20 @@
+{
+  "schema": "cross-repo-drift.bundle/v1",
+  "status": "preliminary-structural-only",
+  "source_repository": "github.com/genaforvena/lte-workstation",
+  "sample_manifest": {
+    "path": "../02-external-sample/sample-manifest.json",
+    "sha256": "c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7"
+  },
+  "snapshots": {
+    "old": "2dc867eed5d128beeb69ca2e818f291ab76ea895",
+    "new": "82c096be8bffc04aa56867c12d6292134f338662"
+  },
+  "arms": {
+    "structural": {"status": "pass-descriptive-only", "files_old": 3, "files_new": 5, "bytes_old": 274906, "bytes_new": 284322, "added": 2, "modified": 2},
+    "lexical": {"status": "blocked"},
+    "behavioral": {"status": "blocked"},
+    "generative": {"status": "blocked"}
+  },
+  "verdict": "no semantic, behavioral, architectural, or generative drift finding"
+}
