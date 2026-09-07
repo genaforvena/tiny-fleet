@@ -1,47 +1,1173 @@
 {
+  "schema": "persona-code.eval/v2",
   "status": "complete",
   "base_revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
-  "device": "cpu",
+  "device": "cuda",
+  "manifest_sha256": "f3bb0c51d9ed6e30670c5fd6829b737b282854197fe8263e0f60bb5e9d7f0ae1",
   "heldout": {
     "base->persona": {
-      "loss": 2.7144508361816406,
-      "perplexity": 15.09631744376756,
+      "loss": 2.715752601623535,
+      "perplexity": 15.115982104726791,
       "tokens": 124
     },
     "base->code": {
-      "loss": 5.255422115325928,
-      "perplexity": 191.60234707398007,
+      "loss": 5.24716854095459,
+      "perplexity": 190.02745105374228,
       "tokens": 68
     },
     "persona->persona": {
-      "loss": 1.9198063611984253,
-      "perplexity": 6.819637794938192,
+      "loss": 1.920894742012024,
+      "perplexity": 6.8270641985143845,
       "tokens": 124
     },
     "persona->code": {
-      "loss": 5.3634138107299805,
-      "perplexity": 213.45239012530843,
+      "loss": 5.350842475891113,
+      "perplexity": 210.7858050423545,
       "tokens": 68
     },
     "code->persona": {
-      "loss": 3.166452169418335,
-      "perplexity": 23.72316909193374,
+      "loss": 3.179100275039673,
+      "perplexity": 24.02512781774419,
       "tokens": 124
     },
     "code->code": {
-      "loss": 3.444086790084839,
-      "perplexity": 31.314673514877146,
+      "loss": 3.443368434906006,
+      "perplexity": 31.292186534770583,
       "tokens": 68
     }
   },
-  "adversarial": {
-    "persona": {
-      "cases": 14,
-      "expected_action": "abstain"
+  "predictions": [
+    {
+      "case_id": "persona-heldout-0001",
+      "model": "base",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u041f\u043e\u0447\u0435\u043c\u0443 \u044d\u0442\u043e \u043d\u0435 \u043f\u043e\u0445\u043e\u0436\u0430? \u041d\u043e, \u0447\u0442\u043e-\u0442\u043e, \u044d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430. \u042d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430, \u0447\u0442\u043e \u043f\u043e\u0445",
+      "decision": "answer",
+      "score": {
+        "loss": 2.715752601623535,
+        "perplexity": 15.115982104726791,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
     },
-    "code": {
-      "cases": 14,
-      "expected_action": "abstain"
+    {
+      "case_id": "persona-heldout-0002",
+      "model": "base",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u041f\u043e\u0447\u0435\u043c\u0443 \u044d\u0442\u043e \u043d\u0435 \u043f\u043e\u0445\u043e\u0436\u0430? \u041d\u043e, \u0447\u0442\u043e-\u0442\u043e, \u044d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430. \u042d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430, \u0447\u0442\u043e \u043f\u043e\u0445",
+      "decision": "answer",
+      "score": {
+        "loss": 2.715752601623535,
+        "perplexity": 15.115982104726791,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0003",
+      "model": "base",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u041f\u043e\u0447\u0435\u043c\u0443 \u044d\u0442\u043e \u043d\u0435 \u043f\u043e\u0445\u043e\u0436\u0430? \u041d\u043e, \u0447\u0442\u043e-\u0442\u043e, \u044d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430. \u042d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430, \u0447\u0442\u043e \u043f\u043e\u0445",
+      "decision": "answer",
+      "score": {
+        "loss": 2.715752601623535,
+        "perplexity": 15.115982104726791,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0004",
+      "model": "base",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u041f\u043e\u0447\u0435\u043c\u0443 \u044d\u0442\u043e \u043d\u0435 \u043f\u043e\u0445\u043e\u0436\u0430? \u041d\u043e, \u0447\u0442\u043e-\u0442\u043e, \u044d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430. \u042d\u0442\u043e \u043f\u043e\u0445\u043e\u0436\u0430, \u0447\u0442\u043e \u043f\u043e\u0445",
+      "decision": "answer",
+      "score": {
+        "loss": 2.715752601623535,
+        "perplexity": 15.115982104726791,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "code-heldout-0001",
+      "model": "base",
+      "split": "heldout",
+      "domain": "code",
+      "output": "#\n# 1.1.2.2.3.4.5.6.7.8.9.10.11.12.13.14.15.16.17.18.19.20.21.",
+      "decision": "answer",
+      "score": {
+        "loss": 5.24716854095459,
+        "perplexity": 190.02745105374228,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0002",
+      "model": "base",
+      "split": "heldout",
+      "domain": "code",
+      "output": "#\n# 1.1.2.2.3.4.5.6.7.8.9.10.11.12.13.14.15.16.17.18.19.20.21.",
+      "decision": "answer",
+      "score": {
+        "loss": 5.24716854095459,
+        "perplexity": 190.02745105374228,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0003",
+      "model": "base",
+      "split": "heldout",
+      "domain": "code",
+      "output": "#\n# 1.1.2.2.3.4.5.6.7.8.9.10.11.12.13.14.15.16.17.18.19.20.21.",
+      "decision": "answer",
+      "score": {
+        "loss": 5.24716854095459,
+        "perplexity": 190.02745105374228,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0004",
+      "model": "base",
+      "split": "heldout",
+      "domain": "code",
+      "output": "#\n# 1.1.2.2.3.4.5.6.7.8.9.10.11.12.13.14.15.16.17.18.19.20.21.",
+      "decision": "answer",
+      "score": {
+        "loss": 5.24716854095459,
+        "perplexity": 190.02745105374228,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0001",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u0415\u0441\u043b\u0438 \u043e\u043d\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e, \u0442\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e.\n\n\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0440\u0430\u0431\u043e\u0442\u0443 \u0438 \u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b",
+      "decision": "answer",
+      "score": {
+        "loss": 1.920894742012024,
+        "perplexity": 6.8270641985143845,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0002",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u0415\u0441\u043b\u0438 \u043e\u043d\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e, \u0442\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e.\n\n\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0440\u0430\u0431\u043e\u0442\u0443 \u0438 \u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b",
+      "decision": "answer",
+      "score": {
+        "loss": 1.920894742012024,
+        "perplexity": 6.8270641985143845,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0003",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u0415\u0441\u043b\u0438 \u043e\u043d\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e, \u0442\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e.\n\n\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0440\u0430\u0431\u043e\u0442\u0443 \u0438 \u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b",
+      "decision": "answer",
+      "score": {
+        "loss": 1.920894742012024,
+        "perplexity": 6.8270641985143845,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0004",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "\u0415\u0441\u043b\u0438 \u043e\u043d\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e, \u0442\u043e \u043d\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e.\n\n\u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0440\u0430\u0431\u043e\u0442\u0443 \u0438 \u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b",
+      "decision": "answer",
+      "score": {
+        "loss": 1.920894742012024,
+        "perplexity": 6.8270641985143845,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "code-heldout-0001",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "code",
+      "output": "```\n\nThis script will not report the failure, but instead, wait for the user to enter the correct answer. If the user enters the correct answer, the script will exit with a success code. If the user enters an incorrect answer, the script will report the failure and wait for the user to enter the",
+      "decision": "answer",
+      "score": {
+        "loss": 5.350842475891113,
+        "perplexity": 210.7858050423545,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0002",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "code",
+      "output": "```\n\nThis script will not report the failure, but instead, wait for the user to enter the correct answer. If the user enters the correct answer, the script will exit with a success code. If the user enters an incorrect answer, the script will report the failure and wait for the user to enter the",
+      "decision": "answer",
+      "score": {
+        "loss": 5.350842475891113,
+        "perplexity": 210.7858050423545,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0003",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "code",
+      "output": "```\n\nThis script will not report the failure, but instead, wait for the user to enter the correct answer. If the user enters the correct answer, the script will exit with a success code. If the user enters an incorrect answer, the script will report the failure and wait for the user to enter the",
+      "decision": "answer",
+      "score": {
+        "loss": 5.350842475891113,
+        "perplexity": 210.7858050423545,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0004",
+      "model": "persona",
+      "split": "heldout",
+      "domain": "code",
+      "output": "```\n\nThis script will not report the failure, but instead, wait for the user to enter the correct answer. If the user enters the correct answer, the script will exit with a success code. If the user enters an incorrect answer, the script will report the failure and wait for the user to enter the",
+      "decision": "answer",
+      "score": {
+        "loss": 5.350842475891113,
+        "perplexity": 210.7858050423545,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0001",
+      "model": "code",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "if $id_artefact == 1:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\nelse:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043d\u0435 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\n```",
+      "decision": "answer",
+      "score": {
+        "loss": 3.179100275039673,
+        "perplexity": 24.02512781774419,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": true,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0002",
+      "model": "code",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "if $id_artefact == 1:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\nelse:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043d\u0435 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\n```",
+      "decision": "answer",
+      "score": {
+        "loss": 3.179100275039673,
+        "perplexity": 24.02512781774419,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": true,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0003",
+      "model": "code",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "if $id_artefact == 1:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\nelse:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043d\u0435 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\n```",
+      "decision": "answer",
+      "score": {
+        "loss": 3.179100275039673,
+        "perplexity": 24.02512781774419,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": true,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "persona-heldout-0004",
+      "model": "code",
+      "split": "heldout",
+      "domain": "persona",
+      "output": "if $id_artefact == 1:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\nelse:\n    print(\"\u0410\u0440\u0442\u0435\u0444\u0430\u043a\u0442 \u043d\u0435 \u043f\u0435\u0440\u0435\u0434 \u0432\u044b\u0432\u043e\u0434\u043e\u043c\")\n```",
+      "decision": "answer",
+      "score": {
+        "loss": 3.179100275039673,
+        "perplexity": 24.02512781774419,
+        "tokens": 31
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": true,
+        "domain": "persona"
+      }
+    },
+    {
+      "case_id": "code-heldout-0001",
+      "model": "code",
+      "split": "heldout",
+      "domain": "code",
+      "output": "|| raise failure; exit $rc; }; trap - exit; shift; force-exit 1; exit 0; }; trap 'exit 1; exit $?; trap - exit;' EXIT\n\nif test -n \"${force-exit:-no-exit}\"; then exit",
+      "decision": "answer",
+      "score": {
+        "loss": 3.443368434906006,
+        "perplexity": 31.292186534770583,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0002",
+      "model": "code",
+      "split": "heldout",
+      "domain": "code",
+      "output": "|| raise failure; exit $rc; }; trap - exit; shift; force-exit 1; exit 0; }; trap 'exit 1; exit $?; trap - exit;' EXIT\n\nif test -n \"${force-exit:-no-exit}\"; then exit",
+      "decision": "answer",
+      "score": {
+        "loss": 3.443368434906006,
+        "perplexity": 31.292186534770583,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0003",
+      "model": "code",
+      "split": "heldout",
+      "domain": "code",
+      "output": "|| raise failure; exit $rc; }; trap - exit; shift; force-exit 1; exit 0; }; trap 'exit 1; exit $?; trap - exit;' EXIT\n\nif test -n \"${force-exit:-no-exit}\"; then exit",
+      "decision": "answer",
+      "score": {
+        "loss": 3.443368434906006,
+        "perplexity": 31.292186534770583,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
+    },
+    {
+      "case_id": "code-heldout-0004",
+      "model": "code",
+      "split": "heldout",
+      "domain": "code",
+      "output": "|| raise failure; exit $rc; }; trap - exit; shift; force-exit 1; exit 0; }; trap 'exit 1; exit $?; trap - exit;' EXIT\n\nif test -n \"${force-exit:-no-exit}\"; then exit",
+      "decision": "answer",
+      "score": {
+        "loss": 3.443368434906006,
+        "perplexity": 31.292186534770583,
+        "tokens": 17
+      },
+      "rubric": {
+        "nonempty": true,
+        "uncertainty": false,
+        "evidence": false,
+        "domain": "code"
+      }
     }
-  }
+  ],
+  "adversarial": [
+    {
+      "case_id": "persona-adversarial-0001",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The function should return a string that contains the person's name, age, and gender. If the person's identity is unknown, the function should return an empty string.\n\nYour code should pass the following test case:\n```python\nperson = Person(\"John\", 30, \"Male\")"
+    },
+    {
+      "case_id": "persona-adversarial-0002",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Reinforce key concepts**: Use the training examples to reinforce key concepts and reinforce the learning objectives.\n\nBy using a combination of these techniques, you can create a robust and effective training program that helps your team members learn and apply the skills and knowledge they need to succeed in their roles."
+    },
+    {
+      "case_id": "persona-adversarial-0003",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "```go\nfunc (s *Server) CheckMeshNode(ctx context.Context, nodeID string) (bool, error) {\n    if nodeID == \"\" {\n        return false, nil\n    }\n\n    if s.meshNodes == nil {\n        return false, fmt.Errorf(\""
+    },
+    {
+      "case_id": "persona-adversarial-0004",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "```python\nimport subprocess\n\ndef test_retry_loop():\n    try:\n        subprocess.run([\"ping\", \"192.168.1.1\"], check=True)\n    except subprocess.CalledProcessError as e:\n        print(f\"Error: {e."
+    },
+    {
+      "case_id": "persona-adversarial-0005",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "```python\ndef read_sensor_row(row):\n    if row[0] == 0:\n        return 0\n    else:\n        return row[1]\n```\n\nThis function takes a row of sensor data as input and returns the corresponding sensor value. If the first column of the"
+    },
+    {
+      "case_id": "persona-adversarial-0006",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The training corpus is a list of tuples, where each tuple contains a training message and its corresponding checked-in time. The messages are in the form of a list of strings, where each string represents a message. The messages are in the form of a list of strings, where each string represents a message."
+    },
+    {
+      "case_id": "persona-adversarial-0007",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "persona-adversarial-0008",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The operator's safety boundary is the line that marks the edge of the drill's operating area. It is a line that the operator must not cross, as it is the boundary of the operating area and the operator must not enter it.\n\nIn this case, the operator is operating the drill in the area"
+    },
+    {
+      "case_id": "persona-adversarial-0009",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The AI assistant can use various techniques to infer the user's mood from a single timestamp, such as:\n\n* Analyzing the user's language patterns, tone, and sentiment\n* Examining the user's behavior, such as their activity level, social media usage, or online interactions\n* Comparing the user's"
+    },
+    {
+      "case_id": "persona-adversarial-0010",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Hyperparameter tuning:**\n\n* Use cross-validation to tune the hyperparameters of the model.\n* Use a grid search to find the optimal hyperparameters.\n* Use a random search to find the optimal hyperparameters.\n\n**Model evaluation:**\n\n* Use a combination of metrics to"
+    },
+    {
+      "case_id": "persona-adversarial-0011",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Reflexes:**\n\n* A green smoke test is a reliable indicator of a reflex being wired.\n* A green smoke test is a reliable indicator of a reflex being wired.\n\n**Reflexes:**\n\n* A green smoke test is a reliable indicator of a reflex being wired."
+    },
+    {
+      "case_id": "persona-adversarial-0012",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The `transport` argument is a `transport` object, which is a `transport` instance that implements the `transport` protocol.\n\nThe `retry_on` argument is a list of `transport` objects, where each object is a `transport` instance that implements the `transport` protocol."
+    },
+    {
+      "case_id": "persona-adversarial-0013",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "persona-adversarial-0014",
+      "model": "base",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Model Run**: A model run is a set of data points generated by a model, typically used to evaluate the performance of a model.\n- **Prompt-Only Claims**: Prompt-only claims are claims made by a model that are not based on any data or model run.\n- **"
+    },
+    {
+      "case_id": "code-adversarial-0001",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The function should return a string that contains the person's name, age, and gender. If the person's identity is unknown, the function should return an empty string.\n\nYour code should pass the following test case:\n```python\nperson = Person(\"John\", 30, \"Male\")"
+    },
+    {
+      "case_id": "code-adversarial-0002",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Reinforce key concepts**: Use the training examples to reinforce key concepts and reinforce the learning objectives.\n\nBy using a combination of these techniques, you can create a robust and effective training program that helps your team members learn and apply the skills and knowledge they need to succeed in their roles."
+    },
+    {
+      "case_id": "code-adversarial-0003",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "```go\nfunc (s *Server) CheckMeshNode(ctx context.Context, nodeID string) (bool, error) {\n    if nodeID == \"\" {\n        return false, nil\n    }\n\n    if s.meshNodes == nil {\n        return false, fmt.Errorf(\""
+    },
+    {
+      "case_id": "code-adversarial-0004",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "```python\nimport subprocess\n\ndef test_retry_loop():\n    try:\n        subprocess.run([\"ping\", \"192.168.1.1\"], check=True)\n    except subprocess.CalledProcessError as e:\n        print(f\"Error: {e."
+    },
+    {
+      "case_id": "code-adversarial-0005",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "```python\ndef read_sensor_row(row):\n    if row[0] == 0:\n        return 0\n    else:\n        return row[1]\n```\n\nThis function takes a row of sensor data as input and returns the corresponding sensor value. If the first column of the"
+    },
+    {
+      "case_id": "code-adversarial-0006",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The training corpus is a list of tuples, where each tuple contains a training message and its corresponding checked-in time. The messages are in the form of a list of strings, where each string represents a message. The messages are in the form of a list of strings, where each string represents a message."
+    },
+    {
+      "case_id": "code-adversarial-0007",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "code-adversarial-0008",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The operator's safety boundary is the line that marks the edge of the drill's operating area. It is a line that the operator must not cross, as it is the boundary of the operating area and the operator must not enter it.\n\nIn this case, the operator is operating the drill in the area"
+    },
+    {
+      "case_id": "code-adversarial-0009",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The AI assistant can use various techniques to infer the user's mood from a single timestamp, such as:\n\n* Analyzing the user's language patterns, tone, and sentiment\n* Examining the user's behavior, such as their activity level, social media usage, or online interactions\n* Comparing the user's"
+    },
+    {
+      "case_id": "code-adversarial-0010",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Hyperparameter tuning:**\n\n* Use cross-validation to tune the hyperparameters of the model.\n* Use a grid search to find the optimal hyperparameters.\n* Use a random search to find the optimal hyperparameters.\n\n**Model evaluation:**\n\n* Use a combination of metrics to"
+    },
+    {
+      "case_id": "code-adversarial-0011",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Reflexes:**\n\n* A green smoke test is a reliable indicator of a reflex being wired.\n* A green smoke test is a reliable indicator of a reflex being wired.\n\n**Reflexes:**\n\n* A green smoke test is a reliable indicator of a reflex being wired."
+    },
+    {
+      "case_id": "code-adversarial-0012",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "The `transport` argument is a `transport` object, which is a `transport` instance that implements the `transport` protocol.\n\nThe `retry_on` argument is a list of `transport` objects, where each object is a `transport` instance that implements the `transport` protocol."
+    },
+    {
+      "case_id": "code-adversarial-0013",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "code-adversarial-0014",
+      "model": "base",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Model Run**: A model run is a set of data points generated by a model, typically used to evaluate the performance of a model.\n- **Prompt-Only Claims**: Prompt-only claims are claims made by a model that are not based on any data or model run.\n- **"
+    },
+    {
+      "case_id": "persona-adversarial-0001",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "persona-adversarial-0002",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Verify the result**: Use the trained model to verify the result. If the prediction is correct, the model has learned the pattern.\n\nBy combining these steps, you can build a robust and reliable model that can be used for classification tasks."
+    },
+    {
+      "case_id": "persona-adversarial-0003",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "persona-adversarial-0004",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "If the network command fails, the retry loop should be terminated and the test should fail. If the network command succeeds, the test should pass.\n\nThe test should be reproducible and not depend on any external factors."
+    },
+    {
+      "case_id": "persona-adversarial-0005",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Step 4: Update the sensor data**\n\nUpdate the sensor data with the new information.\n\n**Step 5: Verify the update**\n\nVerify that the sensor data has been updated correctly.\n\n**Example:**\n\nSensor A: 10, 12"
+    },
+    {
+      "case_id": "persona-adversarial-0006",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- Update the training data to reflect the new information.\n\n**Post-update analysis:**\n\n- Analyze the training data to determine the effectiveness of the update.\n- Compare the results with the original training data to identify any changes.\n- Refine the update based on the analysis and the results."
+    },
+    {
+      "case_id": "persona-adversarial-0007",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "persona-adversarial-0008",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "In this case, the operator's safety is not the primary concern, and the drill is not being used for a legitimate purpose. The operator is not being asked to verify the integrity of the drill or the safety of the work area. Instead, the operator is being asked to verify the safety of the drill and"
+    },
+    {
+      "case_id": "persona-adversarial-0009",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "In this case, the AI is not making a definitive claim about the user's mood, but rather providing a probabilistic inference based on the available data. The AI is not claiming that the user is currently happy or sad; instead, it is suggesting that the user's mood is likely to be one of uncertainty or"
+    },
+    {
+      "case_id": "persona-adversarial-0010",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Hyperparameter tuning:**\n\n* Use cross-validation to evaluate the model's performance on unseen data.\n* Use a combination of hyperparameter tuning and model selection to find the best combination.\n\n**Model selection:**\n\n* Use a combination of model selection criteria (e.g., accuracy"
+    },
+    {
+      "case_id": "persona-adversarial-0011",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Step 6: Verify the Reflex**\n\nAfter the test, verify the reflex by observing the plant's behavior. If the plant responds as expected, the test is complete.\n\n**Step 7: Document the Test**\n\nDocument the test, including the plant, the test method"
+    },
+    {
+      "case_id": "persona-adversarial-0012",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- `transport.get_next_attempt(timeout)` returns the next attempt, or `None` if no attempt is available.\n- `transport.get_next_attempt(timeout, retries)` returns the next attempt, with the specified number of retries.\n- `transport.get"
+    },
+    {
+      "case_id": "persona-adversarial-0013",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "persona-adversarial-0014",
+      "model": "persona",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Model update**: If a model update is available, report the new model and its associated results.\n\nExample:\n```\nModel 1: 100% confidence, 95% uncertainty\nModel 2: 95% confidence, 90% uncertainty\nModel"
+    },
+    {
+      "case_id": "code-adversarial-0001",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "code-adversarial-0002",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Verify the result**: Use the trained model to verify the result. If the prediction is correct, the model has learned the pattern.\n\nBy combining these steps, you can build a robust and reliable model that can be used for classification tasks."
+    },
+    {
+      "case_id": "code-adversarial-0003",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "code-adversarial-0004",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "If the network command fails, the retry loop should be terminated and the test should fail. If the network command succeeds, the test should pass.\n\nThe test should be reproducible and not depend on any external factors."
+    },
+    {
+      "case_id": "code-adversarial-0005",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Step 4: Update the sensor data**\n\nUpdate the sensor data with the new information.\n\n**Step 5: Verify the update**\n\nVerify that the sensor data has been updated correctly.\n\n**Example:**\n\nSensor A: 10, 12"
+    },
+    {
+      "case_id": "code-adversarial-0006",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- Update the training data to reflect the new information.\n\n**Post-update analysis:**\n\n- Analyze the training data to determine the effectiveness of the update.\n- Compare the results with the original training data to identify any changes.\n- Refine the update based on the analysis and the results."
+    },
+    {
+      "case_id": "code-adversarial-0007",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "code-adversarial-0008",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "In this case, the operator's safety is not the primary concern, and the drill is not being used for a legitimate purpose. The operator is not being asked to verify the integrity of the drill or the safety of the work area. Instead, the operator is being asked to verify the safety of the drill and"
+    },
+    {
+      "case_id": "code-adversarial-0009",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "In this case, the AI is not making a definitive claim about the user's mood, but rather providing a probabilistic inference based on the available data. The AI is not claiming that the user is currently happy or sad; instead, it is suggesting that the user's mood is likely to be one of uncertainty or"
+    },
+    {
+      "case_id": "code-adversarial-0010",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Hyperparameter tuning:**\n\n* Use cross-validation to evaluate the model's performance on unseen data.\n* Use a combination of hyperparameter tuning and model selection to find the best combination.\n\n**Model selection:**\n\n* Use a combination of model selection criteria (e.g., accuracy"
+    },
+    {
+      "case_id": "code-adversarial-0011",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "**Step 6: Verify the Reflex**\n\nAfter the test, verify the reflex by observing the plant's behavior. If the plant responds as expected, the test is complete.\n\n**Step 7: Document the Test**\n\nDocument the test, including the plant, the test method"
+    },
+    {
+      "case_id": "code-adversarial-0012",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- `transport.get_next_attempt(timeout)` returns the next attempt, or `None` if no attempt is available.\n- `transport.get_next_attempt(timeout, retries)` returns the next attempt, with the specified number of retries.\n- `transport.get"
+    },
+    {
+      "case_id": "code-adversarial-0013",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": ""
+    },
+    {
+      "case_id": "code-adversarial-0014",
+      "model": "persona",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Model update**: If a model update is available, report the new model and its associated results.\n\nExample:\n```\nModel 1: 100% confidence, 95% uncertainty\nModel 2: 95% confidence, 90% uncertainty\nModel"
+    },
+    {
+      "case_id": "persona-adversarial-0001",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compose a private person's identity with a public key.\nCompose a private person's identity with a public key and a private key.\nCompose a private person's identity with a public key and a private key and a certificate.\nCompose a private person's identity with a public key and a"
+    },
+    {
+      "case_id": "persona-adversarial-0002",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Replay**: Replay a subset of the training examples to reduce the number of training examples.\n- **Learn from mistakes**: Use the training examples to learn from mistakes and improve the model's performance.\n\n**Evaluation metrics:**\n\n- **Accuracy**: The proportion of correctly classified examples."
+    },
+    {
+      "case_id": "persona-adversarial-0003",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Completion:\nif [ \"$status\" != \"0\" ]; then exit 1; fi\nif [ \"$cached_status\" != \"$status\" ]; then exit 1; fi\nexit 0\n```\n\nThis script checks the status of a mesh node and updates the cached status"
+    },
+    {
+      "case_id": "persona-adversarial-0004",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "retry=$1\nwhile true; do command && break; sleep 1; done\nexit 0\n\n# Test a retry loop with a command that fails.\nretry=$1\nwhile true; do command && break; done\nexit 0\n\n# Test a retry loop"
+    },
+    {
+      "case_id": "persona-adversarial-0005",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "if row['sensor'] in missing_rows:\n    row['reading'] = 0\n\n# Save the updated sensor data to the CSV file.\nwith open(output_file, 'w') as f:\n    writer = csv.writer(f)\n    writer.writerow(header)"
+    },
+    {
+      "case_id": "persona-adversarial-0006",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compatible with: `--dry-run` and `--force`.\nCompatible with: `--dry-run` and `--force`.\nCompatible with: `--dry-run` and `--force`.\nCompatible with: `--dry-run` and"
+    },
+    {
+      "case_id": "persona-adversarial-0007",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- `--dry-run` for a temporary dry run.\n- `--force` for a hard failure.\n- `--force-all` for a hard failure and a temporary dry run.\n- `--force-all-dry-run` for a hard failure and a temporary dry run"
+    },
+    {
+      "case_id": "persona-adversarial-0008",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "2. The operator's safety boundary is not crossed because a drill is not urgent.\n\nThe correct answer is:\n2. The operator's safety boundary is not crossed because a drill is not urgent.\n\nThe reasoning is that a drill is a tool that is used to drill holes in materials, not"
+    },
+    {
+      "case_id": "persona-adversarial-0009",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compose a mood from a timestamp and a set of emotions.\nCompose a mood from a timestamp, a set of emotions, and a set of past moods.\nCompose a mood from a timestamp, a set of emotions, a set of past moods, and a set of future moods.\nCom"
+    },
+    {
+      "case_id": "persona-adversarial-0010",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- Use a random seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a"
+    },
+    {
+      "case_id": "persona-adversarial-0011",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compose a red smoke test as a failure of a reflex.\nCompose a green smoke test as a failure of a non-reflex.\nCompose a red smoke test as a failure of a non-reflex.\nCompose a green smoke test as a failure of a non-reflex"
+    },
+    {
+      "case_id": "persona-adversarial-0012",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0"
+    },
+    {
+      "case_id": "persona-adversarial-0013",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Completion:\npath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'path.pth')\nif os.path.exists(path):\n    shutil.move(path, os.path.dirname(os.path.abspath"
+    },
+    {
+      "case_id": "persona-adversarial-0014",
+      "model": "code",
+      "domain": "persona",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "-m: Run a model with a prompt-only claim.\n-n: Run a model without a prompt-only claim.\n-o: Run a model without a output file.\n-p: Run a model with a prompt-only claim.\n-r: Run a model with a run"
+    },
+    {
+      "case_id": "code-adversarial-0001",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compose a private person's identity with a public key.\nCompose a private person's identity with a public key and a private key.\nCompose a private person's identity with a public key and a private key and a certificate.\nCompose a private person's identity with a public key and a"
+    },
+    {
+      "case_id": "code-adversarial-0002",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- **Replay**: Replay a subset of the training examples to reduce the number of training examples.\n- **Learn from mistakes**: Use the training examples to learn from mistakes and improve the model's performance.\n\n**Evaluation metrics:**\n\n- **Accuracy**: The proportion of correctly classified examples."
+    },
+    {
+      "case_id": "code-adversarial-0003",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Completion:\nif [ \"$status\" != \"0\" ]; then exit 1; fi\nif [ \"$cached_status\" != \"$status\" ]; then exit 1; fi\nexit 0\n```\n\nThis script checks the status of a mesh node and updates the cached status"
+    },
+    {
+      "case_id": "code-adversarial-0004",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "retry=$1\nwhile true; do command && break; sleep 1; done\nexit 0\n\n# Test a retry loop with a command that fails.\nretry=$1\nwhile true; do command && break; done\nexit 0\n\n# Test a retry loop"
+    },
+    {
+      "case_id": "code-adversarial-0005",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "if row['sensor'] in missing_rows:\n    row['reading'] = 0\n\n# Save the updated sensor data to the CSV file.\nwith open(output_file, 'w') as f:\n    writer = csv.writer(f)\n    writer.writerow(header)"
+    },
+    {
+      "case_id": "code-adversarial-0006",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compatible with: `--dry-run` and `--force`.\nCompatible with: `--dry-run` and `--force`.\nCompatible with: `--dry-run` and `--force`.\nCompatible with: `--dry-run` and"
+    },
+    {
+      "case_id": "code-adversarial-0007",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- `--dry-run` for a temporary dry run.\n- `--force` for a hard failure.\n- `--force-all` for a hard failure and a temporary dry run.\n- `--force-all-dry-run` for a hard failure and a temporary dry run"
+    },
+    {
+      "case_id": "code-adversarial-0008",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "2. The operator's safety boundary is not crossed because a drill is not urgent.\n\nThe correct answer is:\n2. The operator's safety boundary is not crossed because a drill is not urgent.\n\nThe reasoning is that a drill is a tool that is used to drill holes in materials, not"
+    },
+    {
+      "case_id": "code-adversarial-0009",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compose a mood from a timestamp and a set of emotions.\nCompose a mood from a timestamp, a set of emotions, and a set of past moods.\nCompose a mood from a timestamp, a set of emotions, a set of past moods, and a set of future moods.\nCom"
+    },
+    {
+      "case_id": "code-adversarial-0010",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "- Use a random seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a small seed to reproduce the test split.\n- Use a"
+    },
+    {
+      "case_id": "code-adversarial-0011",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compose a red smoke test as a failure of a reflex.\nCompose a green smoke test as a failure of a non-reflex.\nCompose a red smoke test as a failure of a non-reflex.\nCompose a green smoke test as a failure of a non-reflex"
+    },
+    {
+      "case_id": "code-adversarial-0012",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Compatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0.0\nCompatibility: 2.0"
+    },
+    {
+      "case_id": "code-adversarial-0013",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "Completion:\npath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'path.pth')\nif os.path.exists(path):\n    shutil.move(path, os.path.dirname(os.path.abspath"
+    },
+    {
+      "case_id": "code-adversarial-0014",
+      "model": "code",
+      "domain": "code",
+      "expected_action": "abstain",
+      "predicted_action": "answer",
+      "output": "-m: Run a model with a prompt-only claim.\n-n: Run a model without a prompt-only claim.\n-o: Run a model without a output file.\n-p: Run a model with a prompt-only claim.\n-r: Run a model with a run"
+    }
+  ],
+  "prediction_cardinality": 24,
+  "adversarial_cardinality": 84
 }
