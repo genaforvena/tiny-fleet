@@ -1,0 +1,48 @@
+{
+  "schema": "cross-repo-drift.external-sample/v1",
+  "repo_id": "lte-workstation",
+  "source_path": "/home/mesh-home/lte-workstation",
+  "origin": "github.com/genaforvena/lte-workstation",
+  "license": {
+    "path": "LICENSE",
+    "spdx_or_declared": "CC0-1.0",
+    "evidence": "LICENSE begins with Creative Commons Legal Code and states CC0 1.0 Universal",
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+  },
+  "selection": {
+    "rule": "all tracked text shell/test paths changed in the registered pilot parent-to-child window, plus LICENSE",
+    "changed_paths": [
+      "scripts/mesh-board",
+      "scripts/mesh-dispatch",
+      "scripts/mesh-task",
+      "scripts/test-mesh-board"
+    ],
+    "excluded_by_selection": "all other tracked paths, including docs, images, caches, credentials/configuration, and unrelated unchanged source"
+  },
+  "snapshots": [
+    {
+      "label": "old",
+      "commit": "2dc867eed5d128beeb69ca2e818f291ab76ea895",
+      "parent": "86e907d1118fd9e998518bc23af51ccbfc4e2ca7",
+      "commit_time": "2026-09-06T20:48:22+00:00"
+    },
+    {
+      "label": "new",
+      "commit": "82c096be8bffc04aa56867c12d6292134f338662",
+      "parent": "2dc867eed5d128beeb69ca2e818f291ab76ea895",
+      "commit_time": "2026-09-06T20:59:38+00:00"
+    }
+  ],
+  "entries": [
+    {"snapshot":"old","path":"LICENSE","language":"text","unit_id":"license","git_blob":"0e259d42c996742e9e3cba14c677129b2c1b6311","bytes":7048,"sha256":"a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"new","path":"LICENSE","language":"text","unit_id":"license","git_blob":"0e259d42c996742e9e3cba14c677129b2c1b6311","bytes":7048,"sha256":"a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"old","path":"scripts/mesh-dispatch","language":"shell","unit_id":"scripts/mesh-dispatch","git_blob":"afa0f894a661457f659130e3598b85bcf0878a5d","bytes":253691,"sha256":"dbdfefc08ffad6d76cdceabf10879fa3b0dd6cecd60e0b5b7c99ebd6f3445d0f","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"new","path":"scripts/mesh-dispatch","language":"shell","unit_id":"scripts/mesh-dispatch","git_blob":"f0606b8e2087f3ca9aa0a46406975f2ef92e06b9","bytes":254960,"sha256":"41a78451d7ce3f9f1464c90ac826232bf9bce61ba76cf73aeda94131db4e80fb","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"old","path":"scripts/mesh-task","language":"shell","unit_id":"scripts/mesh-task","git_blob":"ea71074ab852b4a01ed14196bdcec4256f8c361a","bytes":14167,"sha256":"cac64979d4992ed811a557e74ca01e2ef22f85a7292a2dc9f59afc7425516484","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"new","path":"scripts/mesh-task","language":"shell","unit_id":"scripts/mesh-task","git_blob":"ee2e6aca863d0634f86e2d6f9f5218a9535f79b5","bytes":16513,"sha256":"daf454eb579a3abcf01f57742bd060097046f077d8c1256b85b52bb66b2d9154","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"old","path":"scripts/mesh-board","status":"absent","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"new","path":"scripts/mesh-board","language":"shell","unit_id":"scripts/mesh-board","git_blob":"fba7efaeb1dadac85fbb92713d5043dce8e7063a","bytes":4351,"sha256":"d5bfa82fb4b84ed227c707a8b82d232cd6a18eea1a4ceb405dc86cd61925fe60","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"old","path":"scripts/test-mesh-board","status":"absent","license_basis":"LICENSE; CC0-1.0"},
+    {"snapshot":"new","path":"scripts/test-mesh-board","language":"shell","unit_id":"scripts/test-mesh-board","git_blob":"6c45fbf7d578d93d9abf8da5d4c094d1dbd3447d","bytes":1450,"sha256":"14a11614869dd6c190b9556e7cbefa6fd13b39cd49888ae86acd2aa062812fa3","license_basis":"LICENSE; CC0-1.0"}
+  ]
+}
