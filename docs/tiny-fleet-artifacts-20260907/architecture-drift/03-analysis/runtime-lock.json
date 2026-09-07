@@ -1,0 +1,11 @@
+{
+  "schema": "pinned-runtime/v1",
+  "image": "alpine@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b",
+  "image_created": "2026-06-16T00:01:29.967161902Z",
+  "os_release": "3.24.1",
+  "packages": {"bash": "5.3.9-r1", "gcc": "15.2.0-r5", "musl-dev": "1.2.6-r2", "make": "4.4.1-r4"},
+  "source_archives": {"old_commit": "2dc867eed5d128beeb69ca2e818f291ab76ea895", "new_commit": "82c096be8bffc04aa56867c12d6292134f338662"},
+  "command": "apk add --no-cache bash=5.3.9-r1 gcc=15.2.0-r5 musl-dev=1.2.6-r2 make=4.4.1-r4; MESH_REPO=/work/{snapshot} MESH_UXN_DIR=/work/{snapshot}/scripts/uxn ./test-board-check",
+  "network": "only package installation; test execution after installation",
+  "result": "paired old-snapshot-equivalent board-check suite passed for both archives"
+}

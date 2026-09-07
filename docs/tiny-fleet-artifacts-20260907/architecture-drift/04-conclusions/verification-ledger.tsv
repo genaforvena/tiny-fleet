@@ -5,7 +5,7 @@ pinned-new	git cat-file -e 82c096be8bffc04aa56867c12d6292134f338662^{commit}	obj
 blob-records	manifest entries versus pinned Git objects	10 manifest rows: 8 blob/size/SHA-256 records match; 2 old absences intentional	PASS
 structural-input	03-analysis/structural.tsv	3->5 files; 274906->284322 bytes; +2 additions; +2 modifications	PASS-descriptive
 lexical-coverage	03-analysis/lexical.tsv	blocked: no tokenizer/dictionary binding	BLOCKED
-behavioral-coverage	03-analysis/behavioral.tsv	blocked: no runtime/paired execution capture	BLOCKED
+behavioral-coverage	03-analysis/behavioral.tsv; runtime-lock.json; command-capture.tsv	paired old/new scripts/uxn/test-board-check exits 0 in pinned Alpine runtime; bounded common-component smoke	PASS-BOUNDED
 generative-coverage	03-analysis/generative.tsv	blocked: no prompts/seeds/model/scorer/raw outputs	BLOCKED
 moving-revision-guard	analysis README and decision	frozen manifest required; moving HEAD rejected	PASS
-supply-decision	04-conclusions/README.md; limitations.md	separately pinned runtime + old-snapshot-equivalent board test (or preregistered replacement); lexical/generative inputs still required	RECORDED
+supply-decision	04-conclusions/README.md; limitations.md	pinned runtime and preregistered comparable replacement supplied; lexical/generative inputs still required	UPDATED

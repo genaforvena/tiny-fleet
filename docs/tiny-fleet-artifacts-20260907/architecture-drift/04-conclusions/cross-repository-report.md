@@ -30,8 +30,7 @@ generalization.
 - Structural: **PASS / descriptive only**.
 - Lexical/concept: **BLOCKED**; no pinned tokenizer, normalization contract,
   or versioned concept dictionary.
-- Behavioral: **BLOCKED**; no clean pinned runtime, paired native test
+- Behavioral: **PASS / BOUNDED**; paired common-component smoke in pinned runtime; no semantic drift finding
   capture, command record, exit codes, or output hashes.
 - Generative: **BLOCKED**; no prompts, seeds, decoding settings, model digest,
   scorer revision, paired outputs, or uncertainty data.
-

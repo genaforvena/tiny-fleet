@@ -1,6 +1,6 @@
 # Comparable architecture-drift analysis: frozen external sample
 
-Status: **PRELIMINARY / STRUCTURAL PLUS REPRODUCIBLE SMOKE; declared semantic/runtime gates incomplete**  
+Status: **PRELIMINARY / STRUCTURAL PLUS PAIRED BEHAVIORAL SMOKE; lexical and generative gates incomplete**
 Run date: 2026-09-07  
 Study: `tinyfleet-architecture-drift-completion`
 
@@ -23,7 +23,7 @@ single-repository comparison to a cross-repository finding.
 | structural | PASS / descriptive | 3 to 5 files, 274,906 to 284,322 bytes, 3 to 5 units; 2 additions and 2 modifications |
 | lexical/concept | BLOCKED | no pinned tokenizer or versioned concept dictionary is in the frozen sample |
 | behavioral smoke | PASS | `mesh-task --test` passes from both immutable archives; command, exit, duration, and output hashes captured |
-| behavioral parity | BLOCKED | old snapshot lacks `scripts/test-mesh-board`; no separately pinned environment image |
+| behavioral parity | PASS / bounded | preregistered common `scripts/uxn/test-board-check` passes for both immutable archives in pinned Alpine runtime; not a semantic drift finding |
 | generative | BLOCKED | prompts, seeds, model digests, scorer revision, and raw outputs are unavailable |
 
 Structural change is descriptive only. It is not evidence of semantic, behavioral, or
@@ -37,5 +37,6 @@ is warranted.
 - `structural.tsv`: measured per-snapshot structural summaries and deltas.
 - `lexical.tsv`, `behavioral.tsv`, `generative.tsv`: explicit blocked states.
 - `environment.txt`, `command-capture.tsv`, `outputs/`: runtime, command, exit, hash, and per-snapshot output capture.
+- `runtime-lock.json`: immutable container digest, package pins, source archive pins, and execution command.
 - `predicates.tsv`: fail-closed pass/blocked predicates; a smoke pass is not a drift finding.
 - `decision.md`: fail-closed decision and exact next action.

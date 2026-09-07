@@ -1,6 +1,6 @@
 {
   "schema": "cross-repo-drift.bundle/v1",
-  "status": "preliminary-structural-only",
+  "status": "preliminary-structural-plus-bounded-behavioral-smoke",
   "source_repository": "github.com/genaforvena/lte-workstation",
   "sample_manifest": {
     "path": "../02-external-sample/sample-manifest.json",
@@ -13,7 +13,7 @@
   "arms": {
     "structural": {"status": "pass-descriptive-only", "files_old": 3, "files_new": 5, "bytes_old": 274906, "bytes_new": 284322, "added": 2, "modified": 2},
     "lexical": {"status": "blocked"},
-    "behavioral": {"status": "blocked"},
+    "behavioral": {"status": "pass-bounded", "replacement": "scripts/uxn/test-board-check", "runtime": "../03-analysis/runtime-lock.json"},
     "generative": {"status": "blocked"}
   },
   "verdict": "no semantic, behavioral, architectural, or generative drift finding"

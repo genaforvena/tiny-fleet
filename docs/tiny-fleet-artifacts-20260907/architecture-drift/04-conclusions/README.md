@@ -1,6 +1,6 @@
 # Architecture-drift bundle and conclusions
 
-Status: **PRELIMINARY / STRUCTURAL PLUS REPOSITORY-NATIVE SMOKE; three declared gates remain blocked**
+Status: **PRELIMINARY / STRUCTURAL PLUS PAIRED BOUNDED BEHAVIORAL SMOKE; lexical and generative gates remain blocked**
 
 This bundle closes the packaging step for the frozen external sample. It does
 not upgrade the Step 3 result into a semantic, behavioral, or generative
@@ -30,9 +30,10 @@ two pinned revisions, with two additions and two modifications.
 
 ## Supply decision
 
-No missing arm is synthesized from the host. The next admissible run must provide a separately
-pinned runtime and either an old-snapshot-equivalent board test or a preregistered comparable
-replacement; lexical and generative arms remain blocked until their tokenizer/dictionary and
+The behavioral retry is now supplied by `03-analysis/runtime-lock.json`: a separately pinned
+runtime and preregistered common `scripts/uxn/test-board-check` replacement pass for both
+immutable archives. This bounded smoke result is not a semantic drift finding. Lexical and
+generative arms remain blocked until their tokenizer/dictionary and
 prompt/seed/model/scorer/raw-output records exist. Any continuation must retain manifest hash
 `c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7` and commits `2dc867e` and
 `82c096b`.

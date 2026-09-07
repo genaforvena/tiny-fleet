@@ -1,6 +1,6 @@
 # Step-3 decision
 
-Status: **PRELIMINARY — STRUCTURAL AND REPOSITORY-NATIVE SMOKE PASS; PARITY, LEXICAL, AND GENERATIVE GATES BLOCKED**
+Status: **PRELIMINARY — STRUCTURAL AND PAIRED BOUNDED BEHAVIORAL SMOKE PASS; LEXICAL AND GENERATIVE GATES BLOCKED**
 
 The frozen external sample is internally usable for the declared structural summary. The
 eight manifest entries were checked against the two pinned Git objects: all blob IDs, byte
@@ -11,14 +11,15 @@ with the license unchanged. Both immutable archives also pass the same
 hashes, runtime metadata, and per-snapshot outputs are retained in this directory.
 
 This is not a publishable cross-repository result. The lexical arm lacks a pinned tokenizer
-and concept dictionary. Behavioral parity is blocked: the old snapshot has no
-`scripts/test-mesh-board`, and the host runtime is not a separately image-pinned environment.
+and concept dictionary. The old snapshot has no `scripts/test-mesh-board`, so the preregistered
+comparable replacement `scripts/uxn/test-board-check` was run from both immutable archives in
+the separately pinned runtime recorded in `runtime-lock.json`; both passed with exit 0. This is
+bounded common-component smoke evidence, not a semantic drift finding.
 The generative arm lacks prompts, seeds, model/scorer revisions, raw outputs, and uncertainty
 data. These states remain `blocked`, never zero or null.
 
 ## Exact next action
 
-Provide a separately pinned runtime and an old-snapshot-equivalent board test (or explicitly
-preregister a comparable replacement), plus the missing lexical/generative inputs. Then rerun
-against this exact manifest and reject any changed commit or manifest hash. Do not replace this
-result with a moving `HEAD` comparison.
+The runtime and comparable board test are now supplied. Supply the missing lexical/generative
+inputs before any publishable conclusion; retain this exact manifest and reject any changed
+commit or manifest hash. Do not replace this result with a moving `HEAD` comparison.
