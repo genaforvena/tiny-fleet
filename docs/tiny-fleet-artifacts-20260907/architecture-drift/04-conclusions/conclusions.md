@@ -11,13 +11,15 @@ delta**.
 
 The bundle does not support a claim of semantic or conceptual drift,
 behavioral drift, generative drift, architectural drift, or a difference
-between repositories. The lexical, behavioral, and generative arms are
-`BLOCKED`, not zero, null, or negative findings. No power statement is made
-for those arms because their required inputs were absent.
+between repositories. The lexical, behavioral-parity, and generative arms are
+`BLOCKED`, not zero, null, or negative findings. The repository-native
+`mesh-task --test` smoke passes are reproducibility evidence only; they are not
+a parity or drift finding. No power statement is made for the blocked arms
+because their required inputs were absent.
 
 ## Exact continuation
 
-Provide the missing protocol-compliant inputs, retain the same sample-manifest
-hash, and rerun only against revisions `2dc867e` and `82c096b`. Reject any
-moving-`HEAD` comparison.
-
+Provide a separately pinned runtime and an old-snapshot-equivalent board test
+(or preregister a comparable replacement), plus the missing lexical/generative
+inputs. Retain the same sample-manifest hash and rerun only against revisions
+`2dc867e` and `82c096b`; reject any moving-`HEAD` comparison.

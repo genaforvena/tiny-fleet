@@ -8,3 +8,4 @@ lexical-coverage	03-analysis/lexical.tsv	blocked: no tokenizer/dictionary bindin
 behavioral-coverage	03-analysis/behavioral.tsv	blocked: no runtime/paired execution capture	BLOCKED
 generative-coverage	03-analysis/generative.tsv	blocked: no prompts/seeds/model/scorer/raw outputs	BLOCKED
 moving-revision-guard	analysis README and decision	frozen manifest required; moving HEAD rejected	PASS
+supply-decision	04-conclusions/README.md; limitations.md	separately pinned runtime + old-snapshot-equivalent board test (or preregistered replacement); lexical/generative inputs still required	RECORDED
