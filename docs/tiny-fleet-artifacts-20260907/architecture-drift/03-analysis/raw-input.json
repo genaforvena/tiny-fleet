@@ -1,0 +1,17 @@
+{
+  "schema": "cross-repo-drift.analysis-input/v1",
+  "manifest_path": "../02-external-sample/sample-manifest.json",
+  "manifest_sha256": "c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7",
+  "selection_rule": "all tracked text shell/test paths changed in the registered pilot parent-to-child window, plus LICENSE",
+  "snapshots": [
+    {"label":"old","commit":"2dc867eed5d128beeb69ca2e818f291ab76ea895","parent":"86e907d1118fd9e998518bc23af51ccbfc4e2ca7","commit_time":"2026-09-06T20:48:22+00:00"},
+    {"label":"new","commit":"82c096be8bffc04aa56867c12d6292134f338662","parent":"2dc867eed5d128beeb69ca2e818f291ab76ea895","commit_time":"2026-09-06T20:59:38+00:00"}
+  ],
+  "entry_count": 8,
+  "present_entry_count": {"old": 3, "new": 5},
+  "absent_entries": [
+    {"snapshot":"old","path":"scripts/mesh-board"},
+    {"snapshot":"old","path":"scripts/test-mesh-board"}
+  ],
+  "hash_verification": "all eight manifest blob, byte-count, and SHA-256 records verified against the pinned Git objects"
+}

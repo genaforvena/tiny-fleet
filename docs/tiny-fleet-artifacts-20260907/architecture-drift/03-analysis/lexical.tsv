@@ -1,0 +1,2 @@
+estimand	status	input	blocker	result
+lexical/concept	blocked	02-external-sample/sample-manifest.json	No pinned tokenizer, normalization contract, or versioned concept dictionary is present in the frozen input	No lexical or concept delta claimed

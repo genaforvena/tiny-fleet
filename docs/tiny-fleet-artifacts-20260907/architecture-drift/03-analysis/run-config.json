@@ -1,0 +1,21 @@
+{
+  "schema": "cross-repo-drift.analysis-run/v1",
+  "run_id": "tinyfleet-architecture-drift-completion-20260907-external-sample",
+  "protocol": "docs/cross-repository-drift-protocol.md",
+  "input_manifest": "../02-external-sample/sample-manifest.json",
+  "input_manifest_sha256": "c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7",
+  "repository": {
+    "repo_id": "lte-workstation",
+    "source_path": "/home/mesh-home/lte-workstation",
+    "old_commit": "2dc867eed5d128beeb69ca2e818f291ab76ea895",
+    "new_commit": "82c096be8bffc04aa56867c12d6292134f338662"
+  },
+  "selection": "consume manifest entries exactly; do not discover or move revisions",
+  "structural": {
+    "metrics": ["files", "bytes", "median_bytes", "p95_bytes", "languages", "units", "added_paths", "modified_paths", "deleted_paths"],
+    "p95_definition": "nearest-rank empirical percentile over included files"
+  },
+  "lexical": {"status": "blocked", "reason": "no pinned tokenizer or versioned concept dictionary in frozen inputs"},
+  "behavioral": {"status": "blocked", "reason": "no clean pinned runtime and paired test artifacts in frozen inputs"},
+  "generative": {"status": "blocked", "reason": "raw prompts, seeds, model digests, scorer revision, and outputs unavailable"}
+}

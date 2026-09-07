@@ -1,0 +1,2 @@
+estimand	status	input	blocker	result
+behavioral	blocked	02-external-sample/availability.md	No clean environment, paired repository-native test capture, command record, exit codes, or output hashes are available	No behavioral delta claimed

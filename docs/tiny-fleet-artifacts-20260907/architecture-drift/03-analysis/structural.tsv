@@ -1,0 +1,4 @@
+snapshot	commit	files	bytes	median_bytes	p95_bytes	text_files	shell_files	units	added_paths	modified_paths	deleted_paths	note
+old	2dc867eed5d128beeb69ca2e818f291ab76ea895	3	274906	14167	253691	1	2	3	0	0	0	manifest-present entries only
+new	82c096be8bffc04aa56867c12d6292134f338662	5	284322	7048	254960	1	4	5	2	2	0	manifest-present entries only
+delta	old-to-new	+2	+9416	-7119	+1269	0	+2	+2	+2	+2	0	descriptive sample delta; not a semantic verdict

@@ -1,0 +1,2 @@
+estimand	status	input	blocker	result
+generative	blocked	02-external-sample/availability.md	Raw prompts, decoding settings, seeds, model digest, scorer revision, paired outputs, and uncertainty data are unavailable	No generative delta claimed
