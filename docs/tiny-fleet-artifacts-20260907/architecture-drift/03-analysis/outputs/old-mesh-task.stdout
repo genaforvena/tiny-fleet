@@ -1,0 +1,1 @@
+mesh-task: smoke-test ok (ordered steps, artifact gate, failed-dispatch retry, two successor handoffs, block/reopen, final completion)

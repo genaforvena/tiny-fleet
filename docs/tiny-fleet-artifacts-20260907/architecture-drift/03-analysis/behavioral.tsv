@@ -1,2 +1,3 @@
 estimand	status	input	blocker	result
-behavioral	blocked	02-external-sample/availability.md	No clean environment, paired repository-native test capture, command record, exit codes, or output hashes are available	No behavioral delta claimed
+behavioral-smoke	pass	command-capture.tsv; outputs/*	No blocker for mesh-task smoke test; host runtime is captured but not separately image-pinned	Both pinned archives pass the same repository-native mesh-task smoke test; no behavioral drift inferred
+behavioral-parity	blocked	command-capture.tsv; predicates.tsv	old snapshot lacks scripts/test-mesh-board and no separately pinned environment image exists	No cross-snapshot board-test comparison claimed

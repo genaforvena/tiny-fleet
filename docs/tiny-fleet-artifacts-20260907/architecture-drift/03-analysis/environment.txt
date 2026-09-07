@@ -1,0 +1,10 @@
+run_id: tinyfleet-architecture-drift-completion-20260907-external-sample
+host_os: Linux (runtime host; snapshot source is immutable git archive)
+kernel: 6.8.0-138-generic
+shell: GNU bash 5.2.21(1)
+git: 2.43.0
+hledger: hledger 1.30.1
+rtk: 0.42.4
+source_repository: /home/mesh-home/lte-workstation
+source_policy: no working-tree files executed; each snapshot was extracted from git archive
+runtime_limit: host runtime is captured, but no separately provisioned dependency image/digest exists

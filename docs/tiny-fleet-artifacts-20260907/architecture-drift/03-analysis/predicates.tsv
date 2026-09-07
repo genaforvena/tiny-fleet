@@ -1,0 +1,8 @@
+predicate	status	basis	interpretation
+manifest-binding	PASS	manifest SHA-256 c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7; commits 2dc867e and 82c096b	Analysis is bound to the frozen sample
+structural	PASS	structural.tsv and prior blob/hash verification	Descriptive file/byte delta only
+behavioral-smoke	PASS	mesh-task --test exits 0 for both pinned archives; outputs captured	Repository-native smoke behavior is reproducible on this host; not a semantic drift verdict
+behavioral-parity	BLOCKED	old pinned snapshot has no scripts/test-mesh-board; no separately pinned environment image	No cross-snapshot board-test comparison claimed
+lexical	BLOCKED	No pinned tokenizer, normalization contract, or versioned concept dictionary	No lexical/concept delta claimed
+generative	BLOCKED	No frozen prompts, seeds, model/scorer digests, raw outputs, or repetitions	No generative delta claimed
+publishability	BLOCKED	Declared lexical, behavioral-parity, and generative gates are incomplete	Step 3 remains preliminary; do not advance to a publishable conclusion
