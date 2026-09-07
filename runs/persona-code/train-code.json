@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "domain": "code",
+  "device": "cpu",
+  "base_revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "adapter": "/home/mesh-home/tiny-fleet/adapters/persona-code-code",
+  "epochs": 5,
+  "losses": [
+    3.442137575149536,
+    2.716994786262512,
+    2.2337987184524537,
+    1.7906734347343445,
+    1.333334618806839
+  ]
+}

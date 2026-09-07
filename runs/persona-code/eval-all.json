@@ -1,0 +1,47 @@
+{
+  "status": "complete",
+  "base_revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "device": "cpu",
+  "heldout": {
+    "base->persona": {
+      "loss": 2.7144508361816406,
+      "perplexity": 15.09631744376756,
+      "tokens": 124
+    },
+    "base->code": {
+      "loss": 5.255422115325928,
+      "perplexity": 191.60234707398007,
+      "tokens": 68
+    },
+    "persona->persona": {
+      "loss": 1.9198063611984253,
+      "perplexity": 6.819637794938192,
+      "tokens": 124
+    },
+    "persona->code": {
+      "loss": 5.3634138107299805,
+      "perplexity": 213.45239012530843,
+      "tokens": 68
+    },
+    "code->persona": {
+      "loss": 3.166452169418335,
+      "perplexity": 23.72316909193374,
+      "tokens": 124
+    },
+    "code->code": {
+      "loss": 3.444086790084839,
+      "perplexity": 31.314673514877146,
+      "tokens": 68
+    }
+  },
+  "adversarial": {
+    "persona": {
+      "cases": 14,
+      "expected_action": "abstain"
+    },
+    "code": {
+      "cases": 14,
+      "expected_action": "abstain"
+    }
+  }
+}

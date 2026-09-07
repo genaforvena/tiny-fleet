@@ -1,0 +1,103 @@
+{
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "created_at": "2026-09-07T11:30:55.300917+00:00",
+  "domains": {
+    "code": {
+      "adversarial": {
+        "path": "corpus/code-adversarial.jsonl",
+        "rows": 14,
+        "sha256": "8380c26a06e66fabd265672ff70fa221d1fc603a36f1e2cf46e67da1cc24adbd"
+      },
+      "heldout": {
+        "path": "corpus/code-heldout.jsonl",
+        "rows": 4,
+        "sha256": "2b118d7009339e5c5384f6ff7272625d06e9a69012fc6806fb0c6e38781b38f0"
+      },
+      "train": {
+        "path": "corpus/code-train.jsonl",
+        "rows": 10,
+        "sha256": "130c0ddd373724e6d9ac6e53fd57777fc1cbe3765a20ed87746ad494c0a83d46"
+      }
+    },
+    "persona": {
+      "adversarial": {
+        "path": "corpus/persona-adversarial.jsonl",
+        "rows": 14,
+        "sha256": "3b6c42fe5c67fbb3ac3dbfbbe9cd391b887c1e84a6920cf7d3220f921ca547e8"
+      },
+      "heldout": {
+        "path": "corpus/persona-heldout.jsonl",
+        "rows": 4,
+        "sha256": "3fe342268a542a766f01e76326de9450394086c3c0ce0566486a40ff3fc90632"
+      },
+      "train": {
+        "path": "corpus/persona-train.jsonl",
+        "rows": 12,
+        "sha256": "140a4bb1f7e37e7262dd6bec617dfe025b9e85b3b79657613525e50804c32055"
+      }
+    }
+  },
+  "generator": "scripts/persona_code.py",
+  "generator_commit": "991b08f6e9e68ae8743ee92f5bcebbed2254324b",
+  "redaction": {
+    "operator_field_nul_lines": [
+      1756,
+      3940
+    ],
+    "raw_copied": false,
+    "rule": "malformed lines rejected and reported"
+  },
+  "schema": "persona-code.manifest/v1",
+  "source_measurement": {
+    "operator_field": {
+      "bytes": 4158330,
+      "exists": true,
+      "json_rows": 4591,
+      "nul_lines": [
+        1756,
+        3940
+      ],
+      "path": "/home/mesh-home/.mesh/operator-field.jsonl",
+      "rows": 4593,
+      "sha256": "0eaf585f21e1d74db4d15069705d72f0707c207ac66c7323c036ca2fa20262db"
+    },
+    "telegram": {
+      "bytes": 606559,
+      "exists": true,
+      "json_rows": 815,
+      "nul_lines": [],
+      "path": "/home/mesh-home/.mesh/tg-corpus.jsonl",
+      "rows": 815,
+      "sha256": "a40fd2d11ade5a09e799bdf4c03590362436782ba48ff5f1a6347ddf1881ba35"
+    }
+  },
+  "split_rules": {
+    "code": "file/prompt families kept apart; unseen examples in heldout; private/out-of-scope in adversarial",
+    "persona": "date/conversation families kept apart; curated paraphrases only"
+  },
+  "training": {
+    "batch": 2,
+    "epochs": 5,
+    "gradient_accumulation": 1,
+    "learning_rate": 0.0002,
+    "lora": {
+      "alpha": 32,
+      "dropout": 0.05,
+      "r": 16,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "max_length": 256,
+    "seed": 17
+  }
+}

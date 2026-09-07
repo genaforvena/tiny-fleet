@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-09-07T11:20:50.034886+00:00",
+  "policy": {
+    "nul_lines": "reject-and-report; never sanitize into training",
+    "raw_copied": false
+  },
+  "raw_inputs": {
+    "operator_field": {
+      "bytes": 4157478,
+      "exists": true,
+      "json_rows": 4590,
+      "nul_lines": [
+        1756,
+        3940
+      ],
+      "path": "/home/mesh-home/.mesh/operator-field.jsonl",
+      "rows": 4592,
+      "sha256": "2ce028f1745e049d6ca9dbef4ecf6e724b927710b2b08a2f59967bf4fc320fad"
+    },
+    "telegram": {
+      "bytes": 606559,
+      "exists": true,
+      "json_rows": 815,
+      "nul_lines": [],
+      "path": "/home/mesh-home/.mesh/tg-corpus.jsonl",
+      "rows": 815,
+      "sha256": "a40fd2d11ade5a09e799bdf4c03590362436782ba48ff5f1a6347ddf1881ba35"
+    }
+  },
+  "schema": "persona-code.measure/v1"
+}
