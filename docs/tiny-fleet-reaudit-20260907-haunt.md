@@ -1,7 +1,7 @@
 # Tiny Fleet re-audit — haunt step artifact
 
-Date: 2026-09-07 21:12 UTC  
-Chain: `tinyfleet-reaudit-20260907/reaudit-tinyfleet-full-scope`  
+Date: 2026-09-07 21:12 UTC
+Chain: `tinyfleet-reaudit-20260907/reaudit-tinyfleet-full-scope`
 Owner: `haunt`
 
 ## Fresh work
