@@ -3,7 +3,15 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 model_id = "StarpowerTechnology/BbyWVY-360m"
 print("loading tokenizer...", flush=True)
-tokenizer = AutoTokenizer.from_pretrained(model_id)
+# Current Transformers expects `extra_special_tokens` as a mapping, while the
+# published BbyWVY tokenizer metadata contains the equivalent list form.
+tokenizer = AutoTokenizer.from_pretrained(
+    model_id,
+    extra_special_tokens={
+        "im_start": "<|im_start|>",
+        "im_end": "<|im_end|>",
+    },
+)
 print("loading model...", flush=True)
 t0 = time.time()
 model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float16).to("cuda")
