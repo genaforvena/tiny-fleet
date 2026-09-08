@@ -1,0 +1,452 @@
+{
+  "observed_at": "2026-09-08T00:37:32.586405+00:00",
+  "repository": "/home/mesh-home/tiny-fleet",
+  "request": "review, publication/science, applications, architectural drift and board-dispatch exploration; haunt implements, vpn independently verifies",
+  "chains": [
+    {
+      "chain": "tinyfleet-publication-science-20260908",
+      "plan": "docs/plans/publication-science-20260908.tsv",
+      "path": "/home/mesh-home/.mesh/task-chains/tinyfleet-publication-science-20260908.json",
+      "status": "open",
+      "dispatch": "sent",
+      "current": 0,
+      "steps": [
+        {
+          "id": "tinyfleet-publication-science-20260908/reconcile-evidence",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-reconcile-evidence",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/validate-dataset-boundaries",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-validate-dataset-boundaries",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/validate-prediction-identity",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-validate-prediction-identity",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/validate-derived-reports",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-validate-derived-reports",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/correct-causal-loss",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-correct-causal-loss",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/immutable-training-runs",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-immutable-training-runs",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/router-failure-boundary",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-router-failure-boundary",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/enforce-decision-consumer",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-enforce-decision-consumer",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/preregister-fleet-study",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-preregister-fleet-study",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/freeze-independent-corpus",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-freeze-independent-corpus",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/matched-baseline-runner",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-matched-baseline-runner",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/independent-task-scoring",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-independent-task-scoring",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/calibrate-selective-routing",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-calibrate-selective-routing",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/run-paired-replications",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-run-paired-replications",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/resolve-mood-experiment",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-resolve-mood-experiment",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/bound-bbywvy-reproduction",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-bound-bbywvy-reproduction",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/operator-policy-robustness",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-operator-policy-robustness",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/clean-clone-reproduction",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-clean-clone-reproduction",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/publish-provenance-cards",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-publish-provenance-cards",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/write-research-report",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-write-research-report",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/demo-and-release-gate",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-publication-science-20260908/verify-demo-and-release-gate",
+          "owner": "vpn",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "chain": "tinyfleet-drift-science-20260908",
+      "plan": "docs/plans/drift-science-20260908.tsv",
+      "path": "/home/mesh-home/.mesh/task-chains/tinyfleet-drift-science-20260908.json",
+      "status": "open",
+      "dispatch": "sent",
+      "current": 0,
+      "steps": [
+        {
+          "id": "tinyfleet-drift-science-20260908/standalone-drift-extraction",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-drift-science-20260908/verify-standalone-drift-extraction",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-drift-science-20260908/lexical-drift-controls",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-drift-science-20260908/verify-lexical-drift-controls",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-drift-science-20260908/generative-drift-runner",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-drift-science-20260908/verify-generative-drift-runner",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-drift-science-20260908/validate-architectural-ground-truth",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-drift-science-20260908/verify-validate-architectural-ground-truth",
+          "owner": "vpn",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "chain": "tinyfleet-applications-20260908",
+      "plan": "docs/plans/applications-20260908.tsv",
+      "path": "/home/mesh-home/.mesh/task-chains/tinyfleet-applications-20260908.json",
+      "status": "open",
+      "dispatch": "sent",
+      "current": 0,
+      "steps": [
+        {
+          "id": "tinyfleet-applications-20260908/application-protocol",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-application-protocol",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/command-intents",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-command-intents",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/ticket-extraction",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-ticket-extraction",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/support-routing",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-support-routing",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/log-normalization",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-log-normalization",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/runbook-retrieval",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-runbook-retrieval",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/duplicate-incidents",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-duplicate-incidents",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/redaction-assistance",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-redaction-assistance",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/noisy-text-correction",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-noisy-text-correction",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/transliteration",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-transliteration",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/simulator-actions",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-applications-20260908/verify-simulator-actions",
+          "owner": "vpn",
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "chain": "tinyfleet-board-dispatch-20260908",
+      "plan": "docs/plans/board-dispatch-20260908.tsv",
+      "path": "/home/mesh-home/.mesh/task-chains/tinyfleet-board-dispatch-20260908.json",
+      "status": "open",
+      "dispatch": "sent",
+      "current": 0,
+      "steps": [
+        {
+          "id": "tinyfleet-board-dispatch-20260908/dispatch-corpus-contract",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-board-dispatch-20260908/verify-dispatch-corpus-contract",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-board-dispatch-20260908/dispatch-baselines",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-board-dispatch-20260908/verify-dispatch-baselines",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-board-dispatch-20260908/tiny-dispatch-selector",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-board-dispatch-20260908/verify-tiny-dispatch-selector",
+          "owner": "vpn",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-board-dispatch-20260908/dispatch-shadow-verdict",
+          "owner": "haunt",
+          "status": "open"
+        },
+        {
+          "id": "tinyfleet-board-dispatch-20260908/verify-dispatch-shadow-verdict",
+          "owner": "vpn",
+          "status": "open"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "haunt": 40,
+    "vpn": 40
+  },
+  "verification": "PASS: all 80 live step descriptions exactly match TSV; 40 unique implementation sections; strict haunt/vpn pairing; roots dispatched, not proof of execution"
+}
