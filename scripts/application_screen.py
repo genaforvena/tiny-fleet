@@ -74,6 +74,11 @@ def validate_registry(registry: dict[str, Any]) -> None:
             raise RegistryError(f"{app_id}: source URL must be HTTPS")
         if not item["source"].get("license"):
             raise RegistryError(f"{app_id}: source license is required")
+        data_license = item.get("data_license")
+        if not isinstance(data_license, str) or not data_license.strip():
+            raise RegistryError(f"{app_id}: data_license is required")
+        if not data_license.startswith("CC0-1.0"):
+            raise RegistryError(f"{app_id}: data_license must be CC0-1.0")
         baselines = item["baseline"]
         if not isinstance(baselines, list) or not baselines or not all(isinstance(x, dict) for x in baselines):
             raise RegistryError(f"{app_id}: baseline must be a non-empty list of objects")

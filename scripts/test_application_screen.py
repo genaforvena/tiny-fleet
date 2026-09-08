@@ -34,6 +34,12 @@ class ApplicationScreenTests(unittest.TestCase):
         self.assertTrue(all(item["state"] == "registered" for item in registry["applications"]))
         self.assertTrue(all(item["run_hashes"] == [] for item in registry["applications"]))
 
+    def test_data_license_is_required_for_every_application(self):
+        registry = json.loads(json.dumps(load_registry(REGISTRY)))
+        registry["applications"][0].pop("data_license", None)
+        with self.assertRaisesRegex(RegistryError, "A01: data_license is required"):
+            validate_registry(registry)
+
     def test_zero_failure_bound_requires_299_and_598_independent_cases(self):
         self.assertEqual(minimum_zero_failure_sample(0.01), 299)
         self.assertEqual(minimum_zero_failure_sample(0.005), 598)

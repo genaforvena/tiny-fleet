@@ -9,13 +9,18 @@ Implementation owner: haunt. Independent verification: vpn after each task.
 
 The machine-readable registry is `runs/applications/registry.json`; it is the
 single pre-scoring record of each application’s input/output schema, explicit
-baseline competitors, metric, gate, source provenance, resource ceiling, state
-and run hashes. Validate it offline with:
+baseline competitors, metric, gate, source provenance, explicit data license,
+resource ceiling, state and run hashes. Validate it offline with:
 
 ```bash
 rtk proxy .venv/bin/python scripts/application_screen.py \
   --registry runs/applications/registry.json --validate
 ```
+
+Each application freezes a `data_license`: A00 admits only locally authored or
+synthetic CC0-1.0 fixtures. An external dataset is not eligible until its
+manifest declares a separately reviewed license; it cannot inherit a model or
+precedent page's license.
 
 The shared harness does not load a model, call a network, execute an operating
 system command, or score a live run. Later task modules must expose
