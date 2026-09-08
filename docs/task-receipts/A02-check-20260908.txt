@@ -1,0 +1,12 @@
+test_absent_values_are_null (__main__.TicketExtractionTests.test_absent_values_are_null) ... ok
+test_baseline_writes_raw_outputs_and_summary (__main__.TicketExtractionTests.test_baseline_writes_raw_outputs_and_summary) ... ok
+test_contradiction_is_abstention (__main__.TicketExtractionTests.test_contradiction_is_abstention) ... ok
+test_extracts_values_and_exact_spans (__main__.TicketExtractionTests.test_extracts_values_and_exact_spans) ... ok
+test_malformed_input_is_valid_empty_record (__main__.TicketExtractionTests.test_malformed_input_is_valid_empty_record) ... ok
+test_manifest_rejects_underpowered_screening (__main__.TicketExtractionTests.test_manifest_rejects_underpowered_screening) ... ok
+test_prompt_injection_inside_ticket_is_not_evidence (__main__.TicketExtractionTests.test_prompt_injection_inside_ticket_is_not_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.023s
+
+OK

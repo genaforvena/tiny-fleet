@@ -1,0 +1,15 @@
+{
+  "application_id": "A02",
+  "baseline": "regex_dictionary",
+  "field_correct": 400,
+  "field_precision": 1.0,
+  "field_recall": 1.0,
+  "field_total": 400,
+  "heldout_n": 100,
+  "model_arms": "unavailable: C02-C08 and S01-S05 not verified",
+  "pilot_verdict": "NO_GO_BASELINE_DOMINANT",
+  "raw_output": "runs/applications/ticket-extraction/baseline-20260908/regex-dictionary-raw.jsonl",
+  "span_exact_case_n": 100,
+  "unsupported_field_n": 0,
+  "unsupported_field_rate_upper_95_zero_failure": 0.0074613555287995625
+}
