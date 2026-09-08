@@ -1,0 +1,11 @@
+test_duplicate_source_family_is_not_a_valid_independent_sample (__main__.ApplicationScreenTests.test_duplicate_source_family_is_not_a_valid_independent_sample) ... ok
+test_missing_values_are_null_with_reason_not_zero (__main__.ApplicationScreenTests.test_missing_values_are_null_with_reason_not_zero) ... ok
+test_no_go_is_a_valid_terminal_screening_state (__main__.ApplicationScreenTests.test_no_go_is_a_valid_terminal_screening_state) ... ok
+test_registry_has_ten_complete_offline_hypotheses (__main__.ApplicationScreenTests.test_registry_has_ten_complete_offline_hypotheses) ... ok
+test_uncalibrated_score_cannot_be_called_probability (__main__.ApplicationScreenTests.test_uncalibrated_score_cannot_be_called_probability) ... ok
+test_zero_failure_bound_requires_299_and_598_independent_cases (__main__.ApplicationScreenTests.test_zero_failure_bound_requires_299_and_598_independent_cases) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

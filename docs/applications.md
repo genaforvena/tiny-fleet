@@ -5,6 +5,28 @@ Implementation owner: haunt. Independent verification: vpn after each task.
 [Executable task plan](superpowers/plans/2026-09-08-publication-science.md), sections A00–A10.
 [Live-ledger input](plans/applications-20260908.tsv).
 
+## A00 frozen screening contract
+
+The machine-readable registry is `runs/applications/registry.json`; it is the
+single pre-scoring record of each application’s input/output schema, explicit
+baseline competitors, metric, gate, source provenance, resource ceiling, state
+and run hashes. Validate it offline with:
+
+```bash
+rtk proxy .venv/bin/python scripts/application_screen.py \
+  --registry runs/applications/registry.json --validate
+```
+
+The shared harness does not load a model, call a network, execute an operating
+system command, or score a live run. Later task modules must expose
+`predict_baseline(case) -> dict` and `score_case(case, prediction) -> dict`,
+while retaining raw outputs and explicit unavailable reasons. A source family
+is the independence unit: duplicate families cannot increase the denominator.
+Missing values are null plus a reason, never zero; a score is a probability
+only when calibrated. The exact one-sided 95% upper bound after zero failures is
+`1 - 0.05**(1/n)`: 299 independent units are required for a 1% bound and 598
+for 0.5%. A no-go or inconclusive result is a valid terminal screening result.
+
 ## Why explore this
 
 Tiny models are most credible where the input domain is bounded, the output is short or structured, correctness can be checked, and abstention has a safe downstream meaning. A 360M causal LM is only one candidate: an encoder, byte-level sequence model, parser or linear classifier may be the better instrument. The experiments must allow that outcome.
