@@ -82,4 +82,24 @@ The operator specifically proposed board dispatch. This is a plausible high-valu
 
 vpn is present in the live tmux roster. Its ordinary networking charter is not modified: the operator explicitly assigned these repository verification tasks to it. Existing witness-owned gates remain unchanged. Every new implementation submits to a vpn gate before its successor is released. Failed verification blocks progress and names a corrective haunt task; a valid negative scientific result can pass verification without qualifying for deployment.
 
+## C01 reconciliation instructions
+
+The repository-specific evidence map is maintained in `docs/evidence-status.tsv`, with the
+obligation and receipt reconciliation in `docs/ledger-reconciliation-20260908.md`. Those files
+are the current Tiny Fleet record for this review; receipts or claims under
+`hyperhauntology_for_kids` are not evidence for this repository. The four older owner obligations
+remain live and are not discharged by C01: `haunt-install-unblock-20260907/install-and-retry-tinyfleet`,
+`tinyfleet-publishable-closeout-20260907/publishable-repository-closeout`,
+`tinyfleet-real-mesh-pilot-20260907/select-real-mesh-use-case`, and the three haunt steps in
+`tinyfleet-architecture-drift-review-20260907`.
+
+For the existing closeout work, preserve the README as a concurrent owner's file and apply these
+corrections in its eventual closeout scope: describe prompt-conditioned Modelfiles as behavior
+conditioning, not training; remove unsupported causal or capacity explanations; remove the
+zero-latency claim (measure latency or state it is unmeasured); remove the presumed LoRA-divergence
+claim; and downgrade the drift cosine/vocabulary headlines until pinned inputs, raw outputs,
+controls, and uncertainty exist. The bounded operator-policy and toy-fleet contract checks may be
+reported with their observed denominators, but they are not evidence of general model usefulness,
+deployment eligibility, or a universal safety guarantee.
+
 The release may honestly present a negative or preliminary result. A stronger usefulness claim requires the paired experiment, uncertainty, resource comparison and original pilot gate. A cross-repository architectural claim additionally requires independent labels and the existing external-study/witness gate. Uploading a paper or publishing a release is not evidence that either claim is true.
