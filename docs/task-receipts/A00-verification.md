@@ -1,60 +1,63 @@
-# A00 verification receipt — FAIL
+# A00 verification receipt — PASS
 
 - Actor: `vpn`
 - Repository: `/home/mesh-home/tiny-fleet`
-- Submitted source revision: `6e394e48e65fb07e8ad495c0bd900cd51a2998c7`
-- Verification receipt base revision: `b9166d34f69e7b812955a8d6b58dea88ebd5b620`
+- Submitted source revision: `89ff4bdbf6d29bf9cdd5e1e5bb019c53e0649a25`
+- Verification receipt base revision: `263d6cf`
 - UTC: `2026-09-08`
-- Result: **FAIL — gate remains open.**
+- Result: **PASS — A00 acceptance gate is satisfied.**
 
 ## Independent checkout and commands
 
 The submitted source revision was checked out detached at
-`/tmp/tinyfleet-a00v-worktree.rg6cDw`. All verifier outputs are in the new
-temporary directory `/tmp/tinyfleet-a00v-output.QINSln`; no author run
-directory was replayed or modified.
+`/tmp/tinyfleet-a00v-20260908-0203`. Its local `.venv` was a symlink to the
+already-installed repository interpreter only; all outputs below are newly
+written under `/tmp/tinyfleet-a00v-output-20260908-0203`, not in an author run
+directory.
 
-1. The declared command first exited `127` because a fresh worktree has no
-   `.venv`. That captured stderr is
-   `/tmp/tinyfleet-a00v-output.QINSln/test-pass.txt`, SHA-256
-   `48bb8abdd3d09a167f1d4a72e8173232d89c48cf54e873c3e6d7916f462e7837`.
-   I then exposed the already-installed interpreter to the isolated checkout
-   through its local `.venv` symlink and reran the exact command.
-2. `rtk proxy .venv/bin/python scripts/test_application_screen.py` exited `0`.
-   Output: `/tmp/tinyfleet-a00v-output.QINSln/test-restored-pass.txt`;
-   SHA-256 `85078c38fa46ea226ab5b345e21b84ed9e378963fbb552f8ad0bf4bf16ad6a25`.
-3. `rtk proxy .venv/bin/python scripts/application_screen.py --registry runs/applications/registry.json --validate`
-   exited `0`. Output:
-   `/tmp/tinyfleet-a00v-output.QINSln/validate-pass.txt`; SHA-256
+1. `rtk proxy .venv/bin/python scripts/test_application_screen.py` exited `0`:
+   seven tests passed. Output `test-pass.txt` SHA-256:
+   `c910028474bf3b05f0d320ea3e9982a6b83e8252ba160f26154e5e5edc8d2236`.
+   The restored rerun also exited `0` with that same hash.
+2. `rtk proxy .venv/bin/python scripts/application_screen.py --registry
+   runs/applications/registry.json --validate` exited `0`, reporting ten
+   applications and `status: valid`. Output `validate-pass.txt` SHA-256:
    `9c3ec54de3f528c086d07902bb4901f32e0b14b4eec795d2ba80bdffde181532`.
-   It reported ten applications and `status: valid`.
-4. Deliberate isolated mutation: changed the validator's load-bearing
-   `gpu_minutes != 30` condition to `gpu_minutes != 31`. The test command
-   exited `1`, including failures of the registry and no-go validation paths.
-   Output: `/tmp/tinyfleet-a00v-output.QINSln/mutation-fail.txt`; SHA-256
-   `52cb60c6126f110d4c5e5a4262215d705a995818377eda489a08526e33311187`.
-   The source was restored, after which the exact test command exited `0`.
+3. The committed author artifact `docs/task-receipts/A00-check-20260908.txt`
+   recomputes to the corrected claimed SHA-256
+   `c22f3a854dcae8cef52a7feaf3ee5c2664c0060efeceefcc35367f3254620aeb`.
+   Its textual content matches the independent suite output except for the
+   nondeterministic reported duration (`0.003s` versus `0.001s`), so its byte
+   hash is not expected to equal an independently timed run.
+4. Independent counterexample absent from the author positives: replacing
+   A01's in-memory `data_license` with `Apache-2.0 external corpus` raised
+   `RegistryError: A01: data_license must be CC0-1.0`; command exit `0`
+   confirms the rejection. Output `data-license-counterexample.txt` SHA-256:
+   `882ff7ddda73beaf65488e581a6c7a5beb781c6cbd9d4dbcc87bc8b319c748fd`.
+5. Deliberate isolated source mutation changed the validator's CC0 prefix
+   guard from `CC0-1.0` to `CC0-9.9`. The exact suite then exited `1`, with
+   two registry-dependent tests failing. Output
+   `data-license-guard-mutation-fail.txt` SHA-256:
+   `5eb454654fabbb544dfa435ee0db06781df9fc5aadea32a123d24816d92229d8`.
+   The source was restored before the final passing rerun.
 
-## Failed acceptance predicates
+## Acceptance evidence
 
-1. A00 requires exact **data-license** contracts. Each registry application
-   supplies only `source.url` and `source.license`; several values explicitly
-   defer model/data licensing until a later run. There is no `data_license`
-   field and `validate_registry` does not require one. Thus the registry does
-   not freeze the required data contract before scoring.
-2. The implementation receipt claims the test-output SHA-256 is
-   `85078c38fa46ea226ab5b345e21b84ed9e378963fbb552f8adbf4bf16ad6a25`.
-   Independent execution twice produced
-   `85078c38fa46ea226ab5b345e21b84ed9e378963fbb552f8ad0bf4bf16ad6a25`.
-   The receipt hash is therefore incorrect, even though the test exits zero.
+The validator and a separate registry inspection established exactly A01-A10,
+all in `registered` state with empty run-hash lists, each carrying a non-empty
+`CC0-1.0; locally authored synthetic ... fixtures only` data license. Each
+also has the frozen 30 GPU-minute, one-job, no-paid-API cap. The existing test
+suite independently checks the 299/598 one-sided rare-error arithmetic,
+source-family independence, non-defaultable missing values, calibrated
+probabilities, terminal no-go state, and required data licenses. `git diff
+--check` on the detached submitted revision exited `0`.
 
-The ten IDs, baseline/gate/cost fields, exact 299/598 arithmetic, offline
-validator behavior, and mutation sensitivity were independently observed; they
-do not cure the missing data-license contract or inaccurate receipt hash.
+The registry is an offline, reproducible pre-scoring contract; this PASS does
+not establish the future applications' model quality, corpus manifests, or
+experimental results.
 
 ## Exact next action
 
-`haunt` must submit a corrected commit that adds and validates an explicit
-per-application data-license field (with tests), corrects the implementation
-receipt hash, and preserves the offline/reproducible contract. Then `vpn`
-resumes this same gate against that commit and repeats the independent checks.
+Commit and push this renewed VPN receipt, verify that its commit is contained
+by `origin/master`, then settle
+`tinyfleet-applications-20260908/verify-application-protocol` with this path.
