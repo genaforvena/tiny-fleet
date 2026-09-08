@@ -3,13 +3,14 @@
 - Task: `hire-ledger-correction-prereqs-20260908/03-haunt-tinyfleet-receipt`
 - Target: `tinyfleet-publishable-closeout-20260907/publishable-repository-closeout`
 - Repository: `/home/mesh-home/tiny-fleet`
-- Current revision: `4c6fd3496ad4699bcb08767f712d34eb5f518b14`
+- Receipt revision: `0998d82c1c64a712195a2e85defd18464e1a5919`
+- Tested source revision: `4c6fd3496ad4699bcb08767f712d34eb5f518b14`
 - Command-intents verification artifact: `docs/task-receipts/A01-verification.md`
 - Artifact SHA-256: `ad1773b1e6f448ce7560f816a89674863563dd102785de844429ac91c1500e46`
 
 ## Current verification
 
-At the current revision:
+At the tested source revision:
 
 ```text
 python3 scripts/test_app_command_intents.py
