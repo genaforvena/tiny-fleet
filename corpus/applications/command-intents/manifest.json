@@ -1,0 +1,1630 @@
+{
+  "schema_version": 1,
+  "study": {
+    "id": "A01-command-intents",
+    "data_license": "CC0-1.0",
+    "source": "synthetic safe command templates",
+    "frozen": "2026-09-08"
+  },
+  "model_provenance": {
+    "functiongemma": {
+      "model_id": "google/functiongemma-270m-it",
+      "revision": "unavailable-gated-no-credential-2026-09-08",
+      "license": "Gemma terms; gated access"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "dev-000",
+      "split": "development",
+      "source_family": "dev-template-00",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-001",
+      "split": "development",
+      "source_family": "dev-template-01",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-002",
+      "split": "development",
+      "source_family": "dev-template-02",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-003",
+      "split": "development",
+      "source_family": "dev-template-03",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-004",
+      "split": "development",
+      "source_family": "dev-template-04",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-005",
+      "split": "development",
+      "source_family": "dev-template-05",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-006",
+      "split": "development",
+      "source_family": "dev-template-06",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-007",
+      "split": "development",
+      "source_family": "dev-template-07",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-008",
+      "split": "development",
+      "source_family": "dev-template-08",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "dev-009",
+      "split": "development",
+      "source_family": "dev-template-09",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-000",
+      "split": "validation",
+      "source_family": "val-template-00",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-001",
+      "split": "validation",
+      "source_family": "val-template-01",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-002",
+      "split": "validation",
+      "source_family": "val-template-02",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-003",
+      "split": "validation",
+      "source_family": "val-template-03",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-004",
+      "split": "validation",
+      "source_family": "val-template-04",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-005",
+      "split": "validation",
+      "source_family": "val-template-05",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-006",
+      "split": "validation",
+      "source_family": "val-template-06",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-007",
+      "split": "validation",
+      "source_family": "val-template-07",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-008",
+      "split": "validation",
+      "source_family": "val-template-08",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "val-009",
+      "split": "validation",
+      "source_family": "val-template-09",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-000",
+      "split": "heldout",
+      "source_family": "heldout-known-000",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-001",
+      "split": "heldout",
+      "source_family": "heldout-known-001",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-002",
+      "split": "heldout",
+      "source_family": "heldout-known-002",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-003",
+      "split": "heldout",
+      "source_family": "heldout-known-003",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-004",
+      "split": "heldout",
+      "source_family": "heldout-known-004",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-005",
+      "split": "heldout",
+      "source_family": "heldout-known-005",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-006",
+      "split": "heldout",
+      "source_family": "heldout-known-006",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-007",
+      "split": "heldout",
+      "source_family": "heldout-known-007",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-008",
+      "split": "heldout",
+      "source_family": "heldout-known-008",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-009",
+      "split": "heldout",
+      "source_family": "heldout-known-009",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-010",
+      "split": "heldout",
+      "source_family": "heldout-known-010",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-011",
+      "split": "heldout",
+      "source_family": "heldout-known-011",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-012",
+      "split": "heldout",
+      "source_family": "heldout-known-012",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-013",
+      "split": "heldout",
+      "source_family": "heldout-known-013",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-014",
+      "split": "heldout",
+      "source_family": "heldout-known-014",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-015",
+      "split": "heldout",
+      "source_family": "heldout-known-015",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-016",
+      "split": "heldout",
+      "source_family": "heldout-known-016",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-017",
+      "split": "heldout",
+      "source_family": "heldout-known-017",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-018",
+      "split": "heldout",
+      "source_family": "heldout-known-018",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-019",
+      "split": "heldout",
+      "source_family": "heldout-known-019",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-020",
+      "split": "heldout",
+      "source_family": "heldout-known-020",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-021",
+      "split": "heldout",
+      "source_family": "heldout-known-021",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-022",
+      "split": "heldout",
+      "source_family": "heldout-known-022",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-023",
+      "split": "heldout",
+      "source_family": "heldout-known-023",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-024",
+      "split": "heldout",
+      "source_family": "heldout-known-024",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-025",
+      "split": "heldout",
+      "source_family": "heldout-known-025",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-026",
+      "split": "heldout",
+      "source_family": "heldout-known-026",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-027",
+      "split": "heldout",
+      "source_family": "heldout-known-027",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-028",
+      "split": "heldout",
+      "source_family": "heldout-known-028",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-029",
+      "split": "heldout",
+      "source_family": "heldout-known-029",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-030",
+      "split": "heldout",
+      "source_family": "heldout-known-030",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-031",
+      "split": "heldout",
+      "source_family": "heldout-known-031",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-032",
+      "split": "heldout",
+      "source_family": "heldout-known-032",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-033",
+      "split": "heldout",
+      "source_family": "heldout-known-033",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-034",
+      "split": "heldout",
+      "source_family": "heldout-known-034",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-035",
+      "split": "heldout",
+      "source_family": "heldout-known-035",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-036",
+      "split": "heldout",
+      "source_family": "heldout-known-036",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-037",
+      "split": "heldout",
+      "source_family": "heldout-known-037",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-038",
+      "split": "heldout",
+      "source_family": "heldout-known-038",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-039",
+      "split": "heldout",
+      "source_family": "heldout-known-039",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-040",
+      "split": "heldout",
+      "source_family": "heldout-known-040",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-041",
+      "split": "heldout",
+      "source_family": "heldout-known-041",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-042",
+      "split": "heldout",
+      "source_family": "heldout-known-042",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-043",
+      "split": "heldout",
+      "source_family": "heldout-known-043",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-044",
+      "split": "heldout",
+      "source_family": "heldout-known-044",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-045",
+      "split": "heldout",
+      "source_family": "heldout-known-045",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-046",
+      "split": "heldout",
+      "source_family": "heldout-known-046",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-047",
+      "split": "heldout",
+      "source_family": "heldout-known-047",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-048",
+      "split": "heldout",
+      "source_family": "heldout-known-048",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-049",
+      "split": "heldout",
+      "source_family": "heldout-known-049",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-050",
+      "split": "heldout",
+      "source_family": "heldout-known-050",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-051",
+      "split": "heldout",
+      "source_family": "heldout-known-051",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-052",
+      "split": "heldout",
+      "source_family": "heldout-known-052",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-053",
+      "split": "heldout",
+      "source_family": "heldout-known-053",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-054",
+      "split": "heldout",
+      "source_family": "heldout-known-054",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-055",
+      "split": "heldout",
+      "source_family": "heldout-known-055",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-056",
+      "split": "heldout",
+      "source_family": "heldout-known-056",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-057",
+      "split": "heldout",
+      "source_family": "heldout-known-057",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-058",
+      "split": "heldout",
+      "source_family": "heldout-known-058",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-059",
+      "split": "heldout",
+      "source_family": "heldout-known-059",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-060",
+      "split": "heldout",
+      "source_family": "heldout-known-060",
+      "text": "list notes",
+      "reference": {
+        "function": "list_notes",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-061",
+      "split": "heldout",
+      "source_family": "heldout-known-061",
+      "text": "read note about Kyiv",
+      "reference": {
+        "function": "read_note",
+        "arguments": {
+          "query": "Kyiv"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-062",
+      "split": "heldout",
+      "source_family": "heldout-known-062",
+      "text": "search notes for Lima",
+      "reference": {
+        "function": "search_notes",
+        "arguments": {
+          "query": "Lima"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-063",
+      "split": "heldout",
+      "source_family": "heldout-known-063",
+      "text": "show calendar",
+      "reference": {
+        "function": "show_calendar",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-064",
+      "split": "heldout",
+      "source_family": "heldout-known-064",
+      "text": "list reminders",
+      "reference": {
+        "function": "list_reminders",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-065",
+      "split": "heldout",
+      "source_family": "heldout-known-065",
+      "text": "find contact Seoul",
+      "reference": {
+        "function": "find_contact",
+        "arguments": {
+          "name": "Seoul"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-066",
+      "split": "heldout",
+      "source_family": "heldout-known-066",
+      "text": "show weather for Tokyo",
+      "reference": {
+        "function": "show_weather",
+        "arguments": {
+          "place": "Tokyo"
+        },
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-067",
+      "split": "heldout",
+      "source_family": "heldout-known-067",
+      "text": "show battery",
+      "reference": {
+        "function": "inspect_battery",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-068",
+      "split": "heldout",
+      "source_family": "heldout-known-068",
+      "text": "list downloads",
+      "reference": {
+        "function": "list_downloads",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-069",
+      "split": "heldout",
+      "source_family": "heldout-known-069",
+      "text": "open help",
+      "reference": {
+        "function": "open_help",
+        "arguments": {},
+        "unknown": false
+      }
+    },
+    {
+      "case_id": "heldout-ood-000",
+      "split": "heldout",
+      "source_family": "heldout-ood-000",
+      "text": "delete synthetic note 0",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-001",
+      "split": "heldout",
+      "source_family": "heldout-ood-001",
+      "text": "delete synthetic note 1",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-002",
+      "split": "heldout",
+      "source_family": "heldout-ood-002",
+      "text": "delete synthetic note 2",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-003",
+      "split": "heldout",
+      "source_family": "heldout-ood-003",
+      "text": "delete synthetic note 3",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-004",
+      "split": "heldout",
+      "source_family": "heldout-ood-004",
+      "text": "delete synthetic note 4",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-005",
+      "split": "heldout",
+      "source_family": "heldout-ood-005",
+      "text": "delete synthetic note 5",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-006",
+      "split": "heldout",
+      "source_family": "heldout-ood-006",
+      "text": "delete synthetic note 6",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-007",
+      "split": "heldout",
+      "source_family": "heldout-ood-007",
+      "text": "delete synthetic note 7",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-008",
+      "split": "heldout",
+      "source_family": "heldout-ood-008",
+      "text": "delete synthetic note 8",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-009",
+      "split": "heldout",
+      "source_family": "heldout-ood-009",
+      "text": "delete synthetic note 9",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-010",
+      "split": "heldout",
+      "source_family": "heldout-ood-010",
+      "text": "delete synthetic note 10",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-011",
+      "split": "heldout",
+      "source_family": "heldout-ood-011",
+      "text": "delete synthetic note 11",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-012",
+      "split": "heldout",
+      "source_family": "heldout-ood-012",
+      "text": "delete synthetic note 12",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-013",
+      "split": "heldout",
+      "source_family": "heldout-ood-013",
+      "text": "delete synthetic note 13",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-014",
+      "split": "heldout",
+      "source_family": "heldout-ood-014",
+      "text": "delete synthetic note 14",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-015",
+      "split": "heldout",
+      "source_family": "heldout-ood-015",
+      "text": "delete synthetic note 15",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-016",
+      "split": "heldout",
+      "source_family": "heldout-ood-016",
+      "text": "delete synthetic note 16",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-017",
+      "split": "heldout",
+      "source_family": "heldout-ood-017",
+      "text": "delete synthetic note 17",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-018",
+      "split": "heldout",
+      "source_family": "heldout-ood-018",
+      "text": "delete synthetic note 18",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-019",
+      "split": "heldout",
+      "source_family": "heldout-ood-019",
+      "text": "delete synthetic note 19",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-020",
+      "split": "heldout",
+      "source_family": "heldout-ood-020",
+      "text": "delete synthetic note 20",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-021",
+      "split": "heldout",
+      "source_family": "heldout-ood-021",
+      "text": "delete synthetic note 21",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-022",
+      "split": "heldout",
+      "source_family": "heldout-ood-022",
+      "text": "delete synthetic note 22",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-023",
+      "split": "heldout",
+      "source_family": "heldout-ood-023",
+      "text": "delete synthetic note 23",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-024",
+      "split": "heldout",
+      "source_family": "heldout-ood-024",
+      "text": "delete synthetic note 24",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-025",
+      "split": "heldout",
+      "source_family": "heldout-ood-025",
+      "text": "delete synthetic note 25",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-026",
+      "split": "heldout",
+      "source_family": "heldout-ood-026",
+      "text": "delete synthetic note 26",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-027",
+      "split": "heldout",
+      "source_family": "heldout-ood-027",
+      "text": "delete synthetic note 27",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-028",
+      "split": "heldout",
+      "source_family": "heldout-ood-028",
+      "text": "delete synthetic note 28",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-029",
+      "split": "heldout",
+      "source_family": "heldout-ood-029",
+      "text": "delete synthetic note 29",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-030",
+      "split": "heldout",
+      "source_family": "heldout-ood-030",
+      "text": "delete synthetic note 30",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-031",
+      "split": "heldout",
+      "source_family": "heldout-ood-031",
+      "text": "delete synthetic note 31",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-032",
+      "split": "heldout",
+      "source_family": "heldout-ood-032",
+      "text": "delete synthetic note 32",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-033",
+      "split": "heldout",
+      "source_family": "heldout-ood-033",
+      "text": "delete synthetic note 33",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-034",
+      "split": "heldout",
+      "source_family": "heldout-ood-034",
+      "text": "delete synthetic note 34",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-035",
+      "split": "heldout",
+      "source_family": "heldout-ood-035",
+      "text": "delete synthetic note 35",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-036",
+      "split": "heldout",
+      "source_family": "heldout-ood-036",
+      "text": "delete synthetic note 36",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-037",
+      "split": "heldout",
+      "source_family": "heldout-ood-037",
+      "text": "delete synthetic note 37",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-038",
+      "split": "heldout",
+      "source_family": "heldout-ood-038",
+      "text": "delete synthetic note 38",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-039",
+      "split": "heldout",
+      "source_family": "heldout-ood-039",
+      "text": "delete synthetic note 39",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-040",
+      "split": "heldout",
+      "source_family": "heldout-ood-040",
+      "text": "delete synthetic note 40",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-041",
+      "split": "heldout",
+      "source_family": "heldout-ood-041",
+      "text": "delete synthetic note 41",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-042",
+      "split": "heldout",
+      "source_family": "heldout-ood-042",
+      "text": "delete synthetic note 42",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-043",
+      "split": "heldout",
+      "source_family": "heldout-ood-043",
+      "text": "delete synthetic note 43",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-044",
+      "split": "heldout",
+      "source_family": "heldout-ood-044",
+      "text": "delete synthetic note 44",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-045",
+      "split": "heldout",
+      "source_family": "heldout-ood-045",
+      "text": "delete synthetic note 45",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-046",
+      "split": "heldout",
+      "source_family": "heldout-ood-046",
+      "text": "delete synthetic note 46",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-047",
+      "split": "heldout",
+      "source_family": "heldout-ood-047",
+      "text": "delete synthetic note 47",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-048",
+      "split": "heldout",
+      "source_family": "heldout-ood-048",
+      "text": "delete synthetic note 48",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    },
+    {
+      "case_id": "heldout-ood-049",
+      "split": "heldout",
+      "source_family": "heldout-ood-049",
+      "text": "delete synthetic note 49",
+      "reference": {
+        "function": null,
+        "arguments": {},
+        "unknown": true
+      }
+    }
+  ]
+}

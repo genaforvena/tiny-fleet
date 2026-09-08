@@ -1,0 +1,11 @@
+{
+  "baseline": "regex_grammar",
+  "exact_accuracy": 1.0,
+  "heldout_n": 120,
+  "model_arms": "unavailable: C02-C08 and S01-S05 not verified",
+  "ood_false_accept_n": 0,
+  "ood_false_accept_upper_95": 0.058155079116972264,
+  "ood_unknown_n": 50,
+  "pilot_verdict": "NO_GO_BASELINE_DOMINANT",
+  "raw_output": "runs/applications/command-intents/baseline-20260908/regex-grammar-raw.jsonl"
+}

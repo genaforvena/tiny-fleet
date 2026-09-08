@@ -1,0 +1,12 @@
+test_baseline_reports_gate_metrics_and_unknown_false_accepts (__main__.CommandIntentTests.test_baseline_reports_gate_metrics_and_unknown_false_accepts) ... ok
+test_case_requires_one_of_ten_functions_or_unknown (__main__.CommandIntentTests.test_case_requires_one_of_ten_functions_or_unknown) ... ok
+test_exact_score_counts_argument_hallucination_as_failure (__main__.CommandIntentTests.test_exact_score_counts_argument_hallucination_as_failure) ... ok
+test_manifest_requires_disjoint_source_families_and_pins (__main__.CommandIntentTests.test_manifest_requires_disjoint_source_families_and_pins) ... ok
+test_mixed_or_malformed_commands_do_not_emit_a_function (__main__.CommandIntentTests.test_mixed_or_malformed_commands_do_not_emit_a_function) ... ok
+test_parses_read_only_english_and_russian_intents (__main__.CommandIntentTests.test_parses_read_only_english_and_russian_intents) ... ok
+test_unknown_and_negated_commands_are_safe_unknown (__main__.CommandIntentTests.test_unknown_and_negated_commands_are_safe_unknown) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.007s
+
+OK
