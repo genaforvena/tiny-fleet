@@ -1,0 +1,18 @@
+{
+  "answerable_n": 100,
+  "application_id": "A04",
+  "baseline": "bm25",
+  "heldout_n": 160,
+  "mean_latency_ms": 0.17382796912347714,
+  "model_arms": "unavailable: C02-C08 and S01-S05 not verified",
+  "no_answer_false_accept_n": 0,
+  "no_answer_false_accept_rate": 0.0,
+  "no_answer_false_accept_upper_95": 0.04870291331009746,
+  "no_answer_n": 60,
+  "peak_ram_mb": null,
+  "pilot_verdict": "NO_GO_BASELINE_DOMINANT",
+  "raw_output": "runs/applications/runbook-retrieval/bm25-raw.jsonl",
+  "raw_sha256": "199639828a2927b77e01513253da2e0c04ff9c9f2c6ca71094a02fd5583b07d7",
+  "recall_at_5": 1.0,
+  "source_family_unit": "one frozen manual/source family per case"
+}
