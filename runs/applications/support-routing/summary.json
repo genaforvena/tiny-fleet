@@ -1,0 +1,20 @@
+{
+  "application_id": "A06",
+  "baseline": "tfidf_logistic_and_nearest_centroid",
+  "heldout_n": 140,
+  "model_arms": "unavailable: C02-C08 and S01-S05 not verified",
+  "nearest_centroid_macro_f1": 0.6492121848739496,
+  "nearest_centroid_mean_latency_ms": 0.02172363460536312,
+  "pilot_verdict": "NO_GO_BASELINE_DOMINANT",
+  "queue_count": 8,
+  "raw_outputs": {
+    "nearest_centroid": "runs/applications/support-routing/nearest-centroid-raw.jsonl",
+    "tfidf_logistic": "runs/applications/support-routing/tfidf-logistic-raw.jsonl"
+  },
+  "source_family_unit": "one unique source_family per case; synthetic CC0 fixtures",
+  "tfidf_macro_f1": 0.6611169467787115,
+  "tfidf_mean_latency_ms": 0.015762314106746673,
+  "tfidf_ood_false_accept_n": 0,
+  "tfidf_ood_false_accept_upper_95": 0.04870291331009746,
+  "tfidf_ood_n": 60
+}

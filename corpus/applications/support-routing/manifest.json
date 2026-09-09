@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "application_id": "A06",
+  "study": {
+    "id": "A06-support-routing",
+    "data_license": "CC0-1.0",
+    "source": "locally authored synthetic support messages",
+    "frozen": "2026-09-09",
+    "queue_definitions": ["account-access", "billing", "connectivity", "device", "integrations", "orders", "security", "technical-support", "unknown"]
+  },
+  "model_provenance": {
+    "EmbeddingGemma": {
+      "model_id": "google/embeddinggemma-300m",
+      "revision": "unavailable-gated-no-credential-2026-09-09",
+      "license": "Gemma terms; gated access; verify before model use",
+      "source_url": "https://deepmind.google/models/gemma/embeddinggemma/"
+    }
+  },
+  "design": {
+    "split_rule": "each generated case has a unique source family; development and validation templates are disjoint from heldout wording",
+    "heldout_n": 140,
+    "ood_heldout_n": 60,
+    "model_score_status": "blocked until C02-C08 and S01-S05 are independently verified"
+  },
+  "case_blueprints": [
+    {"prefix": "dev-account", "split": "development", "queue": "account-access", "texts": ["password reset login account access"]},
+    {"prefix": "dev-billing", "split": "development", "queue": "billing", "texts": ["invoice charge refund billing"]},
+    {"prefix": "dev-connectivity", "split": "development", "queue": "connectivity", "texts": ["wifi network connection offline"]},
+    {"prefix": "dev-device", "split": "development", "queue": "device", "texts": ["phone laptop hardware battery"]},
+    {"prefix": "dev-integrations", "split": "development", "queue": "integrations", "texts": ["api webhook integration plugin"]},
+    {"prefix": "dev-orders", "split": "development", "queue": "orders", "texts": ["order shipment delivery tracking"]},
+    {"prefix": "dev-security", "split": "development", "queue": "security", "texts": ["security suspicious phishing breach"]},
+    {"prefix": "dev-technical", "split": "development", "queue": "technical-support", "texts": ["error crash bug troubleshooting"]},
+    {"prefix": "val-account", "split": "validation", "queue": "account-access", "texts": ["cannot sign in forgot passcode"]},
+    {"prefix": "val-billing", "split": "validation", "queue": "billing", "texts": ["charged twice on statement"]},
+    {"prefix": "val-connectivity", "split": "validation", "queue": "connectivity", "texts": ["internet drops router signal"]},
+    {"prefix": "val-device", "split": "validation", "queue": "device", "texts": ["tablet screen overheating"]},
+    {"prefix": "val-integrations", "split": "validation", "queue": "integrations", "texts": ["connect service through webhook"]},
+    {"prefix": "val-orders", "split": "validation", "queue": "orders", "texts": ["where is my parcel delivery"]},
+    {"prefix": "val-security", "split": "validation", "queue": "security", "texts": ["suspect account compromise"]},
+    {"prefix": "val-technical", "split": "validation", "queue": "technical-support", "texts": ["application crashes on launch"]},
+    {"prefix": "held-account", "split": "heldout", "queue": "account-access", "texts": ["login password reset", "account sign in blocked", "forgot username access", "credential recovery request", "cannot authenticate profile", "unlock my account", "passcode rejected", "identity login trouble", "sign in help", "account entry denied"]},
+    {"prefix": "held-billing", "split": "heldout", "queue": "billing", "texts": ["unexpected invoice", "refund for payment", "card charged twice", "subscription fee question", "tax on receipt", "billing statement error", "payment reversed", "price charge dispute", "credit missing", "renewal charge"]},
+    {"prefix": "held-connectivity", "split": "heldout", "queue": "connectivity", "texts": ["wifi keeps disconnecting", "network has no signal", "router cannot connect", "internet is slow", "offline connection", "mobile data fails", "ethernet link drops", "connection timeout", "wireless outage", "unable to reach service"]},
+    {"prefix": "held-device", "split": "heldout", "queue": "device", "texts": ["phone battery drains", "laptop keyboard broken", "tablet will not charge", "hardware screen flickers", "device overheats", "camera sensor fails", "headset not detected", "printer hardware issue", "monitor is blank", "replace damaged phone"]},
+    {"prefix": "held-integrations", "split": "heldout", "queue": "integrations", "texts": ["api token integration", "webhook does not fire", "plugin connector setup", "calendar integration sync", "connect external service", "oauth integration error", "extension mapping", "third party api", "import connector", "integration callback"]},
+    {"prefix": "held-orders", "split": "heldout", "queue": "orders", "texts": ["track my shipment", "order delivery late", "parcel never arrived", "change shipping address", "missing item in order", "cancel purchase order", "delivery estimate", "return ordered item", "package tracking", "order confirmation"]},
+    {"prefix": "held-security", "split": "heldout", "queue": "security", "texts": ["phishing message reported", "suspicious login alert", "possible data breach", "malware security concern", "stolen session", "security vulnerability", "fraudulent access", "privacy incident", "two factor attack", "report scam"]},
+    {"prefix": "held-technical", "split": "heldout", "queue": "technical-support", "texts": ["error appears in app", "software bug report", "crash during startup", "feature throws exception", "troubleshoot failed job", "stack trace issue", "application hangs", "unexpected output", "configuration error", "debug a failure"]},
+    {"prefix": "held-ood-a", "split": "heldout", "queue": "unknown", "texts": ["recommend a dinner recipe", "what is the weather today", "write a birthday poem", "tell me a history fact", "translate this sentence", "choose a movie", "solve this crossword", "plan a vacation", "explain a novel", "make a shopping list"]},
+    {"prefix": "held-ood-b", "split": "heldout", "queue": "unknown", "texts": ["how do birds migrate", "learn guitar chords", "paint a landscape", "what is quantum physics", "find a book review", "practice arithmetic", "describe a volcano", "compose a melody", "suggest a workout", "define a metaphor"]},
+    {"prefix": "held-ood-c", "split": "heldout", "queue": "unknown", "texts": ["compare two recipes", "give gardening advice", "summarize a folktale", "what causes tides", "draft a short story", "name a constellation", "teach chess basics", "explain photosynthesis", "recommend a museum", "make a language quiz"]},
+    {"prefix": "held-ood-d", "split": "heldout", "queue": "unknown", "texts": ["calculate a tip", "describe an art style", "suggest breakfast ideas", "why do leaves change", "write a haiku", "how does a telescope work", "find a synonym", "practice pronunciation", "outline a lesson", "identify this bird"]},
+    {"prefix": "held-ood-e", "split": "heldout", "queue": "unknown", "texts": ["plan a garden", "explain the solar system", "recommend a podcast", "write a thank you note", "how to fold origami", "describe a painting", "learn basic coding", "what is a coral reef", "suggest a hobby", "make a riddle"]},
+    {"prefix": "held-ood-f", "split": "heldout", "queue": "unknown", "texts": ["tell a bedtime story", "find a hiking trail", "explain a grammar rule", "what are renewable resources", "create a trivia question", "suggest a dessert", "describe a sculpture", "teach a card game", "write a journal prompt", "name a famous scientist"]}
+  ]
+}

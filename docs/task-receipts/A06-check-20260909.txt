@@ -1,0 +1,12 @@
+test_baseline_writes_raw_outputs_and_explicit_no_go (__main__.SupportRoutingTests.test_baseline_writes_raw_outputs_and_explicit_no_go) ... ok
+test_declares_eight_queues_and_unknown (__main__.SupportRoutingTests.test_declares_eight_queues_and_unknown) ... ok
+test_manifest_requires_heldout_screening_and_disjoint_families (__main__.SupportRoutingTests.test_manifest_requires_heldout_screening_and_disjoint_families) ... ok
+test_nearest_centroid_abstains_on_empty_or_ambiguous_input (__main__.SupportRoutingTests.test_nearest_centroid_abstains_on_empty_or_ambiguous_input) ... ok
+test_score_rejects_malformed_or_wrong_queue (__main__.SupportRoutingTests.test_score_rejects_malformed_or_wrong_queue) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.072s
+
+OK
+
+git diff --check: exit 0
