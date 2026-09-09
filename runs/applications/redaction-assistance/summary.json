@@ -1,0 +1,113 @@
+{
+  "application_id": "A07",
+  "baseline": "regex",
+  "gate": {
+    "confidence": "Wilson 95%",
+    "critical_types": [
+      "name",
+      "email",
+      "phone",
+      "account_id"
+    ],
+    "passed": false,
+    "precision_minimum": 0.9,
+    "recall_minimum": 0.99
+  },
+  "mean_latency_ms": 0.115325,
+  "model_arm": {
+    "reason": "model scoring gated until dependency verification",
+    "status": "unavailable"
+  },
+  "per_type": {
+    "account_id": {
+      "exact_offsets": true,
+      "false_negative_n": 0,
+      "gold_n": 30,
+      "precision": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "predicted_n": 30,
+      "recall": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "true_positive_n": 30
+    },
+    "email": {
+      "exact_offsets": true,
+      "false_negative_n": 0,
+      "gold_n": 30,
+      "precision": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "predicted_n": 30,
+      "recall": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "true_positive_n": 30
+    },
+    "name": {
+      "exact_offsets": true,
+      "false_negative_n": 0,
+      "gold_n": 30,
+      "precision": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "predicted_n": 30,
+      "recall": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "true_positive_n": 30
+    },
+    "phone": {
+      "exact_offsets": true,
+      "false_negative_n": 0,
+      "gold_n": 30,
+      "precision": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "predicted_n": 30,
+      "recall": {
+        "estimate": 1.0,
+        "lower_95": 0.886483,
+        "upper_95": 1.0
+      },
+      "true_positive_n": 30
+    }
+  },
+  "provenance": {
+    "dataset_license": "CC0-1.0",
+    "dataset_policy": "synthetic-only",
+    "precedent": "https://arxiv.org/abs/2605.09973"
+  },
+  "raw_output": "runs/applications/redaction-assistance/regex-raw.jsonl",
+  "raw_sha256": "b9eec6416a1dfbc0caae9da431e0c43ecf03ef557f0228915f621da69d9eae31",
+  "residual_risks": [
+    "Suggestions are not automatic redaction and require human review.",
+    "Regex can miss unseen spellings, obfuscation, OCR noise, and entity types outside the declared taxonomy.",
+    "Synthetic CC0 documents do not establish performance on private or production records.",
+    "False negatives remain possible even when the finite screening gate passes; no complete anonymization claim is made."
+  ],
+  "split": {
+    "heldout_n": 120,
+    "languages": [
+      "en",
+      "ru"
+    ],
+    "source_family_n": 120
+  },
+  "verdict": "INCONCLUSIVE"
+}

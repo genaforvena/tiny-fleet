@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "application_id": "A07",
+  "license": "CC0-1.0",
+  "data_policy": "synthetic-only",
+  "description": "Synthetic multilingual documents with character-offset PII annotations; no private records.",
+  "document_blueprints": [
+    {
+      "prefix": "dev-name",
+      "split": "development",
+      "source_family_prefix": "dev-name-family",
+      "format_family": "plain",
+      "language": "en",
+      "entity_type": "name",
+      "label": "Name",
+      "template": "Customer profile\n{label}: {value}\nStatus: active\n",
+      "values": ["Alice Morgan", "Bruno Silva"],
+      "count": 12
+    },
+    {
+      "prefix": "val-email",
+      "split": "validation",
+      "source_family_prefix": "val-email-family",
+      "format_family": "markdown",
+      "language": "en",
+      "entity_type": "email",
+      "label": "Email",
+      "template": "| Contact | Value |\n|---|---|\n| {label} | {value} |\n",
+      "values": ["reviewer@example.org", "support@example.net"],
+      "count": 20
+    },
+    {
+      "prefix": "holdout-name-en",
+      "split": "heldout",
+      "source_family_prefix": "holdout-name-en-family",
+      "format_family": "plain",
+      "language": "en",
+      "entity_type": "name",
+      "label": "Name",
+      "template": "Intake record {index}\n{label}: {value}\nQueue: standard\n",
+      "values": ["Clara Jensen", "Diego Alvarez", "Evelyn Hart"],
+      "count": 15
+    },
+    {
+      "prefix": "holdout-name-ru",
+      "split": "heldout",
+      "source_family_prefix": "holdout-name-ru-family",
+      "format_family": "markdown",
+      "language": "ru",
+      "entity_type": "name",
+      "label": "Имя",
+      "template": "Карточка обращения {index}\n{label}: {value}\nСтатус: новый\n",
+      "values": ["Анна Кузнецова", "Борис Орлов", "Елена Смирнова"],
+      "count": 15
+    },
+    {
+      "prefix": "holdout-email-en",
+      "split": "heldout",
+      "source_family_prefix": "holdout-email-en-family",
+      "format_family": "csv",
+      "language": "en",
+      "entity_type": "email",
+      "label": "Email",
+      "template": "field,value\n{label},{value}\ncomment,synthetic\n",
+      "values": ["case.alpha@example.org", "case.beta@example.net", "case.gamma@example.com"],
+      "count": 15
+    },
+    {
+      "prefix": "holdout-email-ru",
+      "split": "heldout",
+      "source_family_prefix": "holdout-email-ru-family",
+      "format_family": "log",
+      "language": "ru",
+      "entity_type": "email",
+      "label": "Email",
+      "template": "поле={label}; значение={value}; источник=тест\n",
+      "values": ["ru.alpha@example.org", "ru.beta@example.net", "ru.gamma@example.com"],
+      "count": 15
+    },
+    {
+      "prefix": "holdout-phone-en",
+      "split": "heldout",
+      "source_family_prefix": "holdout-phone-en-family",
+      "format_family": "plain",
+      "language": "en",
+      "entity_type": "phone",
+      "label": "Phone",
+      "template": "Contact note {index}\n{label}: {value}\nRegion: test\n",
+      "values": ["+1 202 555 0141", "+44 20 7946 0958", "+49 30 901820"],
+      "count": 15
+    },
+    {
+      "prefix": "holdout-phone-ru",
+      "split": "heldout",
+      "source_family_prefix": "holdout-phone-ru-family",
+      "format_family": "markdown",
+      "language": "ru",
+      "entity_type": "phone",
+      "label": "Телефон",
+      "template": "Заявка {index}\n{label}: {value}\nКанал: тест\n",
+      "values": ["+7 495 555 01 41", "+7 812 555 09 58", "+7 343 555 18 20"],
+      "count": 15
+    },
+    {
+      "prefix": "holdout-account-en",
+      "split": "heldout",
+      "source_family_prefix": "holdout-account-en-family",
+      "format_family": "csv",
+      "language": "en",
+      "entity_type": "account_id",
+      "label": "Account",
+      "template": "record,field,value\n{index},{label},{value}\n",
+      "values": ["ACCT-2026-0042", "ACCT-2026-0187", "ACCT-2026-0311"],
+      "count": 15
+    },
+    {
+      "prefix": "holdout-account-ru",
+      "split": "heldout",
+      "source_family_prefix": "holdout-account-ru-family",
+      "format_family": "log",
+      "language": "ru",
+      "entity_type": "account_id",
+      "label": "Счет",
+      "template": "запись={index} поле={label} значение={value} источник=тест\n",
+      "values": ["СЧЕТ-2026-0042", "СЧЕТ-2026-0187", "СЧЕТ-2026-0311"],
+      "count": 15
+    }
+  ],
+  "critical_types": ["name", "email", "phone", "account_id"],
+  "precedent": {
+    "title": "GLiNER2-PII: A Multilingual Model for Personally Identifiable Information Extraction",
+    "url": "https://arxiv.org/abs/2605.09973",
+    "role": "feasibility precedent only; no Tiny Fleet model claim"
+  }
+}

@@ -1,0 +1,16 @@
+Command: rtk proxy .venv/bin/python scripts/test_app_redaction_assistance.py
+Exit: 0
+Result: 5 tests passed
+
+Command: rtk proxy .venv/bin/python scripts/applications/redaction_assistance.py --phase baseline --run-dir runs/applications/redaction-assistance --manifest corpus/applications/redaction-assistance/manifest.json
+Exit: 0
+Result: baseline completed; verdict INCONCLUSIVE
+Stdout SHA-256 (captured in /tmp/a07-final.stdout): 1513b3f5da5d52473a13a2c0e12964811b8d61ac54c32e1940cd501c914c57dc
+
+Command: git diff --check
+Exit: 0
+
+Artifact SHA-256:
+corpus/applications/redaction-assistance/manifest.json c13695a68ddee326bf1e312a9ac776a3ccd0b436bb41a9574809161af95cc4d2
+runs/applications/redaction-assistance/regex-raw.jsonl b9eec6416a1dfbc0caae9da431e0c43ecf03ef557f0228915f621da69d9eae31
+runs/applications/redaction-assistance/summary.json 474f2819f1fa4d74b9f66eb05f9aa3be1adab0fa2501f05f9945b1610ba12cd5
