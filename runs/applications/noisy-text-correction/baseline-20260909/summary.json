@@ -1,0 +1,65 @@
+{
+  "application_id": "A08",
+  "cost": {
+    "gpu_minutes": 0,
+    "paid_api_calls": 0
+  },
+  "gate": {
+    "clean_field_corruption_maximum": 0.005,
+    "protected_fields_unchanged": true,
+    "relative_cer_reduction_minimum": 0.2,
+    "uncertainty": "source-family intervals are not estimable for synthetic singleton families; verdict remains INCONCLUSIVE"
+  },
+  "heldout_n": 120,
+  "mean_latency_ms": 1.459362703946298,
+  "metrics": {
+    "baselines": {
+      "dictionary_edit_distance": {
+        "cer_mean": 0.0,
+        "exact_n": 120,
+        "protected_field_n": 120,
+        "protected_field_unchanged_n": 120
+      },
+      "identity": {
+        "cer_mean": 0.042258360054970225,
+        "exact_n": 0,
+        "protected_field_n": 120,
+        "protected_field_unchanged_n": 120
+      }
+    },
+    "protected_field": {
+      "corruption_rate": 0.0,
+      "total_n": 120,
+      "unchanged_n": 120
+    },
+    "relative_cer_reduction_vs_identity": 1.0,
+    "strongest_baseline": "dictionary_edit_distance"
+  },
+  "model_arms": {
+    "360m_lora": {
+      "reason": "dependency gates C02-C08 and S01-S05 not independently verified",
+      "status": "unavailable"
+    },
+    "ByT5-small": {
+      "reason": "dependency gates C02-C08 and S01-S05 not independently verified",
+      "status": "unavailable"
+    }
+  },
+  "pilot": {
+    "reason": "model arms unavailable and baseline headroom is not sufficient for a justified pilot",
+    "status": "not-run"
+  },
+  "provenance": {
+    "data_policy": "synthetic-only",
+    "license": "CC0-1.0",
+    "precedent": {
+      "role": "feasibility precedent only; no Tiny Fleet model claim",
+      "title": "ByT5: Towards a token-free future with pre-trained byte-to-byte models",
+      "url": "https://arxiv.org/abs/2105.13626"
+    }
+  },
+  "raw_output": "runs/applications/noisy-text-correction/baseline-20260909/raw.jsonl",
+  "raw_sha256": "555f1ab7808d5d01324c770e58fc594b48ea17ff55364d6a4214e4aed8b988fd",
+  "validation_n": 20,
+  "verdict": "INCONCLUSIVE"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "application_id": "A08",
+  "license": "CC0-1.0",
+  "data_policy": "synthetic-only",
+  "description": "Synthetic bilingual service notes with OCR/typing noise and protected identifiers.",
+  "blueprints": [
+    {"prefix": "dev-en", "split": "development", "language": "en", "count": 12, "source_family_prefix": "dev-en-family", "clean": "Order ID {id} ships to Berlin; please receive the package.", "noisy": "Order ID {id} ships to Berln; please recieve the package."},
+    {"prefix": "val-ru", "split": "validation", "language": "ru", "count": 20, "source_family_prefix": "val-ru-family", "clean": "Заказ {id}: адрес клиента Москва, статус получен.", "noisy": "Заказ {id}: адресс клиента Москва, статус получен."},
+    {"prefix": "hold-en", "split": "heldout", "language": "en", "count": 60, "source_family_prefix": "hold-en-family", "clean": "Ticket {id}: service address is Berlin; receive the parcel today.", "noisy": "Ticket {id}: servce adress is Berln; recieve the parcel today."},
+    {"prefix": "hold-ru", "split": "heldout", "language": "ru", "count": 60, "source_family_prefix": "hold-ru-family", "clean": "Заявка {id}: адрес Москва, клиент получил посылку.", "noisy": "Заявка {id}: адресс Москва, клиент получил посылку."}
+  ],
+  "protected_kind": "ticket_id",
+  "dictionary": {"servce": "service", "adress": "address", "Berln": "Berlin", "recieve": "receive", "адресс": "адрес"},
+  "precedent": {"title": "ByT5: Towards a token-free future with pre-trained byte-to-byte models", "url": "https://arxiv.org/abs/2105.13626", "role": "feasibility precedent only; no Tiny Fleet model claim"}
+}
