@@ -2,7 +2,7 @@
 
 - Actor: `haunt`
 - Repository: `/home/mesh-home/tiny-fleet`
-- Source revision: recorded after commit below
+- Submitted source revision: `370d7f233f7413197081f80b1dcb7a75ea5cf4ca`
 - UTC: `2026-09-09`
 - Scope: `scripts/applications/support_routing.py`, `scripts/test_app_support_routing.py`, `corpus/applications/support-routing/`, `runs/applications/support-routing/`, `docs/applications/support-routing.md`, `docs/task-receipts/A06-check-20260909.txt`
 - Primary precedent: <https://deepmind.google/models/gemma/embeddinggemma/>
