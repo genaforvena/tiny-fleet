@@ -10,8 +10,7 @@ Result: `INCONCLUSIVE` baseline exploration, ready for independent A08-V.
 - Data: `corpus/applications/noisy-text-correction/manifest.json`
 - Documentation: `docs/applications/noisy-text-correction.md`
 - Run: `runs/applications/noisy-text-correction/baseline-20260909/`
-- Source revision: the implementation commit containing these files; verify
-  the exact hash from repository history before independent verification.
+- Source revision: `ed7fa28` (`feat: add A08 noisy text correction baseline`).
 
 ## Verification
 
