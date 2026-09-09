@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "application_id": "A05",
+  "data_license": "CC0-1.0",
+  "model_provenance": {
+    "EmbeddingGemma": {
+      "model_id": "google/embeddinggemma-300m",
+      "revision": "57c266a740f537b4dc058e1b0cda161fd15afa75",
+      "license": "Gemma Terms of Use; gated model, candidate only, not scored",
+      "source_url": "https://huggingface.co/google/embeddinggemma-300m"
+    }
+  },
+  "incident_blueprints": [
+    {"prefix": "dev-inc", "count": 6, "split": "development", "time_period": "2026-Q1", "symptom": "service error", "detail": "restart required"},
+    {"prefix": "val-inc", "count": 6, "split": "validation", "time_period": "2026-Q2", "symptom": "service error", "detail": "restart required"},
+    {"prefix": "hold-inc", "count": 120, "split": "heldout", "time_period": "2026-Q3", "symptom": "service error", "detail": "restart required"}
+  ],
+  "case_blueprints": [
+    {"prefix": "dev", "incident_prefix": "dev-inc", "incident_count": 6, "count": 6, "split": "development", "time_period": "2026-Q1", "source_family_prefix": "ticket-dev"},
+    {"prefix": "val", "incident_prefix": "val-inc", "incident_count": 6, "count": 6, "split": "validation", "time_period": "2026-Q2", "source_family_prefix": "ticket-val"},
+    {"prefix": "heldout-match", "incident_prefix": "hold-inc", "incident_count": 120, "count": 100, "split": "heldout", "time_period": "2026-Q3", "source_family_prefix": "ticket-match", "paraphrase_every": 5},
+    {"prefix": "heldout-none", "incident_prefix": "hold-inc", "incident_count": 120, "count": 20, "split": "heldout", "time_period": "2026-Q3", "source_family_prefix": "ticket-none", "negative": true}
+  ]
+}
