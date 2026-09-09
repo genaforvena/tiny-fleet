@@ -28,7 +28,7 @@ rtk proxy .venv/bin/python scripts/applications/transliteration.py --phase basel
 ```
 
 Exit code: `0`; raw JSONL and summary were written. Raw output SHA-256:
-`bf7b5e768d07db7bad309226d6dcced00fe8bc1833ac08b1a62c521bcb16b5c`. Heldout count is 120 with 540 scored non-protected words
+`bf7b5e768d07dbb7bad309226d6dcced00fe8bc1833ac08b1a62c521bcb16b5c`. Heldout count is 120 with 540 scored non-protected words
 per baseline. Identity exact rate is `0/540`; deterministic lexicon exact rate
 is `540/540`; protected IDs are unchanged `120/120`.
 
