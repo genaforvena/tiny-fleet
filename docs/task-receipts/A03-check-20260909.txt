@@ -1,0 +1,7 @@
+rtk proxy .venv/bin/python scripts/test_app_log_normalization.py
+exit 0 (5 tests)
+rtk proxy .venv/bin/python scripts/applications/log_normalization.py --phase baseline --run-dir runs/applications/log-normalization
+exit 0
+summary: heldout_exact_rate=1.0 known_format_exact_rate=1.0 unsupported_field_rate=0.0 pilot_verdict=NO_GO_BASELINE_DOMINANT
+git diff --check
+exit 0
