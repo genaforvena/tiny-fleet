@@ -2,6 +2,7 @@
 
 - Actor: `haunt`
 - Repository: `/home/mesh-home/tiny-fleet`
+- Submitted source revision: `6fb49c8a3ef88dd9a6e3124c7913a7265a960641`
 - UTC: `2026-09-09`
 - Scope: `scripts/applications/duplicate_incidents.py`, `scripts/test_app_duplicate_incidents.py`, `corpus/applications/duplicate-incidents/`, `runs/applications/duplicate-incidents/`, `docs/applications/duplicate-incidents.md`, `docs/task-receipts/A05-check-20260909.txt`
 - Primary precedent: <https://deepmind.google/models/gemma/embeddinggemma/>; model card <https://huggingface.co/google/embeddinggemma-300m>
