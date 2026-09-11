@@ -22,6 +22,8 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, get_peft_model, PeftModel
 
+from loss_metrics import aggregate_perplexity, masked_labels, summed_nll
+
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "HuggingFaceTB/SmolLM2-360M-Instruct"
 DOMAINS = ["guitar", "sourdough"]
@@ -62,8 +64,9 @@ def train(domain):
         tot, n = 0.0, 0
         for ids, mask in dl:
             ids, mask = ids.cuda(), mask.cuda()
+            labels = masked_labels(ids, mask)
             loss = model(input_ids=ids, attention_mask=mask,
-                         labels=ids).loss
+                         labels=labels).loss
             opt.zero_grad()
             loss.backward()
             opt.step()
@@ -82,12 +85,16 @@ def perplexity(model, tok, texts):
     nll, ntok = 0.0, 0
     model.eval()
     for t in texts:
-        ids = tok(t, truncation=True, max_length=256,
-                  return_tensors="pt")["input_ids"].cuda()
-        n = ids.shape[-1]
-        nll += model(input_ids=ids, labels=ids).loss.item() * n
-        ntok += n
-    return math.exp(nll / ntok)
+        encoded = tok(t, truncation=True, max_length=256,
+                      return_tensors="pt")
+        ids = encoded["input_ids"].cuda()
+        mask = encoded["attention_mask"].cuda()
+        labels = masked_labels(ids, mask)
+        outputs = model(input_ids=ids, attention_mask=mask)
+        item_nll, item_targets = summed_nll(outputs.logits, labels)
+        nll += item_nll
+        ntok += item_targets
+    return aggregate_perplexity(nll, ntok)
 
 
 def evaluate():

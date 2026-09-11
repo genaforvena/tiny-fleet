@@ -11,6 +11,9 @@ import argparse, hashlib, json, os, platform, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from loss_metrics import aggregate_perplexity, masked_labels, summed_nll
+
 ROOT = Path(__file__).resolve().parent.parent
 CORPUS = ROOT / "corpus"
 BASE = "HuggingFaceTB/SmolLM2-360M-Instruct"
@@ -146,25 +149,39 @@ def _base(manifest, torch, AutoModelForCausalLM, AutoTokenizer, device):
     return tok, model.to(device)
 
 def _loss(model, tok, samples, device, torch):
-    total = tokens = 0
+    total = targets = 0
+    per_case = []
     model.eval()
     with torch.no_grad():
         for sample in samples:
+            full_length = len(tok(sample, add_special_tokens=True)["input_ids"])
             encoded = tok(sample, truncation=True, max_length=256, return_tensors="pt")
             ids = encoded["input_ids"].to(device)
-            value = model(input_ids=ids, labels=ids).loss
-            count = ids.shape[-1]
-            total += float(value) * count; tokens += count
-    return {"loss": total / tokens, "perplexity": float(__import__("math").exp(total / tokens)), "tokens": tokens}
+            mask = encoded["attention_mask"].to(device)
+            labels = masked_labels(ids, mask)
+            outputs = model(input_ids=ids, attention_mask=mask)
+            item_nll, item_targets = summed_nll(outputs.logits, labels)
+            total += item_nll; targets += item_targets
+            per_case.append({"nll_sum": item_nll, "target_count": item_targets,
+                             "truncation_count": int(full_length > 256)})
+    return {"loss": total / targets, "perplexity": aggregate_perplexity(total, targets),
+            "tokens": targets, "nll_sum": total, "target_count": targets,
+            "truncation_count": sum(x["truncation_count"] for x in per_case),
+            "cases": per_case}
 
 def _loss_one(model, tok, sample, device, torch):
     model.eval()
     with torch.no_grad():
+        full_length = len(tok(sample, add_special_tokens=True)["input_ids"])
         encoded = tok(sample, truncation=True, max_length=256, return_tensors="pt")
         ids = encoded["input_ids"].to(device)
-        value = model(input_ids=ids, labels=ids).loss
-    loss = float(value)
-    return {"loss": loss, "perplexity": float(__import__("math").exp(loss)), "tokens": int(ids.shape[-1])}
+        mask = encoded["attention_mask"].to(device)
+        labels = masked_labels(ids, mask)
+        outputs = model(input_ids=ids, attention_mask=mask)
+        nll, targets = summed_nll(outputs.logits, labels)
+    return {"loss": nll / targets, "perplexity": aggregate_perplexity(nll, targets),
+            "tokens": targets, "nll_sum": nll, "target_count": targets,
+            "truncation_count": int(full_length > 256)}
 
 def _generate(model, tok, sample, device, torch):
     model.eval()
@@ -202,7 +219,9 @@ def train_domain(manifest_path: Path, domain: str, run_dir: Path):
     for epoch in range(manifest["training"]["epochs"]):
         epoch_loss = 0.0
         for item in encoded:
-            ids = item["input_ids"].to(device); loss = model(input_ids=ids, labels=ids).loss
+            ids = item["input_ids"].to(device); mask = item["attention_mask"].to(device)
+            labels = masked_labels(ids, mask)
+            loss = model(input_ids=ids, attention_mask=mask, labels=labels).loss
             optimizer.zero_grad(); loss.backward(); optimizer.step(); epoch_loss += float(loss.detach())
         losses.append(epoch_loss / len(encoded)); print(f"{domain} epoch={epoch + 1} loss={losses[-1]:.4f}", flush=True)
     adapter = ROOT / "adapters" / f"persona-code-{domain}"
