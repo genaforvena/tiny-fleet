@@ -1,0 +1,18 @@
+{
+  "schema": "tiny-fleet.drift-validation-registration/v1",
+  "run_id": "drift-validation-v1",
+  "claim": "validate drift metrics against independent change evidence",
+  "estimands": ["structural", "lexical", "generative", "behavioral"],
+  "sample_status": "fixture-only; external three-repository freeze unavailable",
+  "score_reveal": false,
+  "repositories": [
+    {"repo_id": "fixture-ripgrep", "source_url": "https://github.com/BurntSushi/ripgrep", "old": "1111111111111111111111111111111111111111", "new": "2222222222222222222222222222222222222222", "license": "MIT/Unlicense", "source_family": "fixture-ripgrep"},
+    {"repo_id": "fixture-fd", "source_url": "https://github.com/sharkdp/fd", "old": "3333333333333333333333333333333333333333", "new": "4444444444444444444444444444444444444444", "license": "MIT/Apache-2.0", "source_family": "fixture-fd"},
+    {"repo_id": "fixture-jq", "source_url": "https://github.com/jqlang/jq", "old": "5555555555555555555555555555555555555555", "new": "6666666666666666666666666666666666666666", "license": "MIT", "source_family": "fixture-jq"}
+  ],
+  "label_schema": {
+    "labels": ["no_change", "cosmetic", "interface_change", "dependency_change", "behavior_change"],
+    "reviewers_required": 2,
+    "model_scores_allowed": false
+  }
+}
