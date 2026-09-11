@@ -21,6 +21,10 @@ exists, hashes resolve, and the negative controls fail closed.
   "candidate": {"id": "<adapter or model id>", "revision": "<sha256>"},
   "controls": ["base", "reference"],
   "seed": 17,
+  "prediction_matrix": {"models": ["base", "reference", "<adapter or model id>"], "seeds": [17], "repetitions": [0]},
+  "raw_output_schema": "tiny-fleet.predictions/v1",
+  "migration_report": {"status": "none"},
+  "rendering": {"template_sha256": "<64-hex>", "config_sha256": "<64-hex>"},
   "config_sha256": "<64-hex sha256>",
   "created_at": "2026-09-06T00:00:00Z",
   "cutoff": "2026-08-01T00:00:00Z",
@@ -87,6 +91,14 @@ The scorer writes these exact files under the same run directory:
 
 Raw predictions are append-only inputs. Scores and decision files are derived in a separate,
 deterministic pass; editing a prediction requires a new run id and new manifest hash.
+
+Each prediction has the key `(case_id, model, seed, repetition)` and must include the dataset
+prompt hash, the exact rendered-input text and hash, output, route, action, confidence and its
+declared kind, latency, and status. The manifest's prediction matrix is authoritative; duplicate,
+unknown, missing, or extra keys are rejected. Status is `ok`, `timeout`, or `error`; failed rows
+retain raw output when available and use null for unavailable confidence/latency values with an
+explicit reason. Prompt and rendered-input hashes are checked independently, and references may
+not be placed in rendered input without an explicit fixture justification.
 
 ## Deliberate negative controls
 

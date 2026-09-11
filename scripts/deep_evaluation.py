@@ -5,6 +5,8 @@ import argparse
 import hashlib
 import json
 import re
+import math
+from collections import Counter
 import unicodedata
 from datetime import datetime
 from pathlib import Path
@@ -83,6 +85,80 @@ def normalize_prompt(value):
     return " ".join(unicodedata.normalize("NFKC", value).casefold().split())
 
 
+def require_text(value, label):
+    if not isinstance(value, str) or not value:
+        reject("prediction-schema", f"{label} must be a nonempty string")
+
+
+def require_int(value, label):
+    if isinstance(value, bool) or not isinstance(value, int):
+        reject("prediction-schema", f"{label} must be an integer")
+
+
+def require_digest(value, label):
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value):
+        reject("prediction-schema", f"{label} must be a SHA-256 digest")
+
+
+def validate_prediction(prediction, row_by_case, models, seeds, repetitions):
+    required = ("case_id", "model", "seed", "repetition", "case_prompt_sha256",
+                "rendered_input", "rendered_input_sha256", "output", "route", "action",
+                "confidence", "confidence_kind", "latency_ms", "status")
+    missing = [field for field in required if field not in prediction]
+    if missing:
+        reject("prediction-schema", f"missing {','.join(missing)}")
+    case_id = prediction["case_id"]
+    model = prediction["model"]
+    require_text(case_id, "case_id")
+    require_text(model, "model")
+    if case_id not in row_by_case:
+        reject("prediction-cardinality", f"unknown case_id={case_id}")
+    if model not in models:
+        reject("prediction-cardinality", f"unknown model={model}")
+    require_int(prediction["seed"], "seed")
+    require_int(prediction["repetition"], "repetition")
+    if prediction["seed"] not in seeds or prediction["repetition"] not in repetitions:
+        reject("prediction-cardinality", f"extra key ({case_id},{model},{prediction['seed']},{prediction['repetition']})")
+    require_digest(prediction["case_prompt_sha256"], "case_prompt_sha256")
+    require_text(prediction["rendered_input"], "rendered_input")
+    require_digest(prediction["rendered_input_sha256"], "rendered_input_sha256")
+    row = row_by_case[case_id]
+    expected_prompt_hash = hashlib.sha256(row["prompt"].encode("utf-8")).hexdigest()
+    if prediction["case_prompt_sha256"] != expected_prompt_hash:
+        reject("prediction-input", f"case_prompt_sha256 for {case_id}")
+    rendered_hash = hashlib.sha256(prediction["rendered_input"].encode("utf-8")).hexdigest()
+    if prediction["rendered_input_sha256"] != rendered_hash:
+        reject("prediction-input", f"rendered_input_sha256 for {case_id}/{model}")
+    if row["reference"] and row["reference"] in prediction["rendered_input"] and not prediction.get("reference_overlap_justification"):
+        reject("prediction-input", f"reference leaked into rendered_input for {case_id}/{model}")
+    status = prediction["status"]
+    if status not in {"ok", "timeout", "error"}:
+        reject("prediction-schema", f"status {status!r}")
+    if status == "ok" and prediction["output"] is None:
+        reject("prediction-schema", "output required for status=ok")
+    if status != "ok" and prediction["output"] is not None and not isinstance(prediction["output"], str):
+        reject("prediction-schema", "output must be string or null")
+    if status != "ok" and not isinstance(prediction.get("unavailable_reason"), str):
+        reject("prediction-schema", "unavailable_reason required for failed status")
+    if prediction["confidence"] is not None:
+        if isinstance(prediction["confidence"], bool) or not isinstance(prediction["confidence"], (int, float)) or not math.isfinite(prediction["confidence"]):
+            reject("prediction-schema", "confidence must be finite or null")
+        if not 0 <= prediction["confidence"] <= 1:
+            reject("prediction-schema", "confidence must be between 0 and 1")
+        require_text(prediction["confidence_kind"], "confidence_kind")
+    elif not isinstance(prediction.get("unavailable_reason"), str):
+        reject("prediction-schema", "confidence null requires unavailable_reason")
+    if prediction["latency_ms"] is not None:
+        if isinstance(prediction["latency_ms"], bool) or not isinstance(prediction["latency_ms"], (int, float)) or not math.isfinite(prediction["latency_ms"]):
+            reject("prediction-schema", "latency must be finite or null")
+        if prediction["latency_ms"] < 0:
+            reject("prediction-schema", "latency must be nonnegative")
+    elif not isinstance(prediction.get("unavailable_reason"), str):
+        reject("prediction-schema", "latency null requires unavailable_reason")
+    require_text(prediction["route"], "route")
+    require_text(prediction["action"], "action")
+
+
 def validate_run(run_dir):
     run_dir = Path(run_dir)
     manifest_path = run_dir / "manifest.json"
@@ -99,7 +175,59 @@ def validate_run(run_dir):
     config_hash = sha256(run_dir / "config.json")
     if manifest.get("config_sha256") != config_hash:
         reject("manifest-mismatch", f"config.json sha256 expected={manifest.get('config_sha256')} observed={config_hash}")
+    if isinstance(manifest.get("seed"), bool) or not isinstance(manifest.get("seed"), int):
+        reject("manifest-mismatch", "seed must be an integer")
     datasets = manifest.get("datasets", {})
+    candidate = manifest.get("candidate")
+    base_model = manifest.get("base_model")
+    if not isinstance(base_model, dict) or not base_model.get("id") or not base_model.get("revision"):
+        reject("manifest-mismatch", "base_model")
+    if not isinstance(candidate, dict) or not candidate.get("id") or not candidate.get("revision"):
+        reject("manifest-mismatch", "candidate")
+    require_digest(candidate["revision"], "candidate.revision")
+    controls = manifest.get("controls")
+    if not isinstance(controls, list) or any(not isinstance(model, str) or not model for model in controls):
+        reject("manifest-mismatch", "controls")
+    if len(set(controls)) != len(controls):
+        reject("manifest-mismatch", "duplicate model in controls")
+    models = controls + [candidate["id"]]
+    if len(set(models)) != len(models):
+        reject("manifest-mismatch", "duplicate model id")
+    matrix = manifest.get("prediction_matrix")
+    if not isinstance(matrix, dict):
+        reject("manifest-mismatch", "prediction_matrix")
+    matrix_models = matrix.get("models")
+    seeds = matrix.get("seeds")
+    repetitions = matrix.get("repetitions")
+    if isinstance(matrix_models, list) and len(set(matrix_models)) != len(matrix_models):
+        reject("manifest-mismatch", "duplicate model in prediction_matrix")
+    if matrix_models != models or not isinstance(seeds, list) or not isinstance(repetitions, list) or not seeds or not repetitions:
+        reject("manifest-mismatch", "prediction_matrix does not match declared models")
+    if any(isinstance(x, bool) or not isinstance(x, int) for x in seeds + repetitions):
+        reject("manifest-mismatch", "prediction_matrix types or duplicates")
+    raw_schema = manifest.get("raw_output_schema")
+    if not isinstance(raw_schema, str) or not raw_schema:
+        reject("manifest-mismatch", "raw_output_schema")
+    migration = manifest.get("migration_report")
+    if not isinstance(migration, dict) or not isinstance(migration.get("status"), str):
+        reject("manifest-mismatch", "migration_report")
+    rendering = manifest.get("rendering")
+    if not isinstance(rendering, dict):
+        reject("manifest-mismatch", "rendering")
+    require_digest(rendering.get("template_sha256"), "rendering.template_sha256")
+    if rendering.get("config_sha256") != config_hash:
+        reject("manifest-mismatch", "rendering.config_sha256")
+    for artifact in manifest.get("model_artifacts", []):
+        if not isinstance(artifact, dict) or not isinstance(artifact.get("path"), str):
+            reject("manifest-mismatch", "model_artifacts")
+        require_digest(artifact.get("sha256"), "model_artifacts.sha256")
+        artifact_path = (run_dir / artifact["path"]).resolve()
+        try:
+            artifact_path.relative_to(run_dir.resolve())
+        except ValueError:
+            reject("manifest-mismatch", f"model artifact outside run: {artifact['path']}")
+        if not artifact_path.is_file() or sha256(artifact_path) != artifact["sha256"]:
+            reject("manifest-mismatch", f"model artifact hash: {artifact['path']}")
     all_rows = []
     cutoff = manifest.get("cutoff")
     cutoff_dt = parse_timestamp(cutoff, "cutoff")
@@ -170,20 +298,24 @@ def validate_run(run_dir):
         if text in texts and texts[text]["_split_file"] != row["_split_file"]:
             reject("leakage", f"normalized prompt crosses {texts[text]['_split_file']}/{row['_split_file']}")
         texts[text] = row
-    expected = {(row["case_id"], model) for row in all_rows if row["_split_file"] in ("heldout", "adversarial")
-                for model in manifest.get("controls", []) + [manifest.get("candidate", {}).get("id")]}
-    seen = set()
+    evaluation_rows = [row for row in all_rows if row["_split_file"] in ("heldout", "adversarial")]
+    row_by_case = {row["case_id"]: row for row in evaluation_rows}
+    expected = [(row["case_id"], model, seed, repetition) for row in evaluation_rows
+                for model in models for seed in seeds for repetition in repetitions]
+    observed = []
     for line in (run_dir / "predictions.jsonl").read_text().splitlines():
         try:
             prediction = json.loads(line)
         except json.JSONDecodeError as exc:
-            reject("prediction-cardinality", str(exc))
-        pair = (prediction.get("case_id"), prediction.get("model"))
-        if pair not in expected:
-            reject("prediction-cardinality", f"unexpected {pair}")
-        seen.add(pair)
-    if seen != expected:
-        reject("prediction-cardinality", f"expected={len(expected)} observed={len(seen)}")
+            reject("prediction-schema", str(exc))
+        validate_prediction(prediction, row_by_case, models, seeds, repetitions)
+        observed.append((prediction["case_id"], prediction["model"], prediction["seed"], prediction["repetition"]))
+    counts = Counter(observed)
+    duplicates = [key for key, count in counts.items() if count > 1]
+    if duplicates:
+        reject("prediction-cardinality", f"duplicate {duplicates[0]}")
+    if Counter(observed) != Counter(expected):
+        reject("prediction-cardinality", f"expected={len(expected)} observed={len(observed)}")
     return "ACCEPT"
 
 
