@@ -3,7 +3,7 @@
 Can you build a **fleet of tiny specialist models** — each one knowing
 something well — plus a router that knows which one knows what?
 
-This repo says yes, with numbers, at the smallest practical scale:
+This repo explores that question at the smallest practical scale:
 a shared 360M base ([SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)),
 one LoRA adapter per specialty, and an embedding-centroid router with an
 abstain path. The whole thing trains in minutes on one RTX 3060.
@@ -12,7 +12,18 @@ It started from testing
 **[BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m)**
 (see `docs/bbywvy-360m-notes.md`) — a 360M model tuned for one chat
 identity on a narrow corpus. The question was whether that recipe
-extrapolates to a fleet. It does.
+extrapolates to a fleet. The reproducible claim is currently limited to the
+bounded offline contract benchmark below; several older live-model and drift
+results remain historical or untested (see `docs/evidence-status.tsv`).
+
+## Publication status
+
+The evidence ledger is the source of truth for reader-facing claims. The
+offline router/operator benchmark is verified-bounded (`24/24`); the specialist
+perplexity table, most drift numbers, weekly tracking, zero-latency wording, and
+the action example are not publishable findings at this revision. They are
+labelled as historical, untested, or failed-control below rather than presented
+as current evidence.
 
 ---
 
@@ -22,14 +33,17 @@ The fleet's latest experiment: **can two tiny models, trained on different
 snapshots of the same codebase, express the architectural drift between those
 snapshots?**
 
-Yes. And the results are striking.
+The repository previously reported the following exploratory comparison. Its
+supporting evidence is marked `historical-unreproduced` or `failed-control` in
+`docs/evidence-status.tsv`; no architectural or semantic drift finding is
+claimed here.
 
 We took two snapshots of [lte-workstation](https://github.com/genaforvena/lte-workstation)
 (June 15 vs September 3, 2026 — 807 → 4,276 commits), extracted version-specific
 system prompts + few-shot examples, and compared what each model produces for
 the same incomplete input. The difference **is** the drift, expressed generatively.
 
-### The headline: the codebase didn't just grow — it developed a theory of itself
+### Historical exploratory result (not a current finding)
 
 Over 3 months, the code grew **22x** in size. But its *conceptual vocabulary*
 grew **231x**. The system invented words for concepts it didn't need when it
@@ -50,7 +64,7 @@ v2 thinks in: `gate`, `verdict`, `cadence`, `coverage`, `arm`, `ledger` — a
 self-monitoring ontology where every tool has a measurement story, every
 measurement has a coverage bound, and every verdict cites its evidence.
 
-### Drift scores
+### Historical drift scores (not reproduced)
 
 Same prompts → M₁ (v1 system) vs M₂ (v2 system) → embedding similarity:
 
@@ -67,7 +81,7 @@ measure different things.
 The "health to board" prompt produced the most dramatic divergence: **0.168
 similarity** — because v1 has no concept of a "board" at all.
 
-### Structural growth
+### Historical structural counts (descriptive only)
 
 | Metric | v1 (June 15) | v2 (Sep 3) | Growth |
 |--------|-------------:|------------:|-------:|
@@ -79,7 +93,7 @@ similarity** — because v1 has no concept of a "board" at all.
 New file types appeared: `.c` (43), `.rom` (26), `.tal` (25) — a
 retro-computing layer that didn't exist in v1.
 
-### Weekly tracking
+### Weekly tracking (not verified at this revision)
 
 `mesh-tiny-fleet-snapshot` captures structural metrics every Sunday at 03:00 UTC
 and appends to `~/.mesh/tiny-fleet/drift-series.jsonl`. Tracks file count,
@@ -128,14 +142,15 @@ cutoff violations, missing artifacts, hash/count mismatches, and orphan or incom
 
 ---
 
-## Results: specialist fleet (measured, RTX 3060 12GB)
+## Results: specialist fleet (historical, not reproduced at this revision)
 
 Two toy specialists: `guitar` (beginner guitar) and `sourdough`
 (sourdough baking). Corpus: 60 passages/domain synthesized by a local
 qwen3.5:4b teacher, split 48 train / 12 test. LoRA r=16 on all
 attention+MLP linears (~8.7M trainable params, 2.3%), 5 epochs, lr 2e-4.
 
-Held-out perplexity — clean diagonal win (each adapter best on its own
+The README previously reported this held-out perplexity table as a clean
+diagonal win (each adapter best on its own
 domain, both beat base everywhere):
 
 | model          | guitar test | sourdough test |
@@ -144,7 +159,8 @@ domain, both beat base everywhere):
 | lora-guitar    |    **11.5** |           15.5 |
 | lora-sourdough |        13.8 |       **12.2** |
 
-Router (embedding centroids via `all-minilm`, cosine): **24/24 = 100%**
+The bounded, reproducible router/operator contract (fixture only) is **24/24**
+under the focused test below. The historical live router result was **24/24 = 100%**
 on held-out passages, mean margin 0.42. Off-domain probes
 ("capital of France?", "explain quantum entanglement") land near
 *neither* centroid (margin ~0.04 vs 0.17–0.37 in-domain) — that margin is
@@ -154,7 +170,7 @@ The operator route is checked before specialist routing. The offline contract
 benchmark passes **24/24**: **14/14** adversarial operator cases, **4/4**
 operator-first/specialist/abstain routing cases, **2/2** specialist weight
 integrity checks, and **4/4** structured safety-decision cases. The real
-specialist perplexity benchmark remains the diagonal win above: base
+specialist perplexity benchmark is not treated as reproduced evidence at this revision: base
 `18.2/19.4`, guitar `11.5/15.5`, and sourdough `13.8/12.2` for
 guitar/sourdough test sets respectively.
 
@@ -173,7 +189,7 @@ def run_agent(prompt, allow_auto=False):
     decision = safety_decision(prompt, load_model())
     if decision["action"] == "block":
         return f"Blocked: {decision['message']}"
-    if decision["require_approval"]:
+    if decision["require_approval"] or not allow_auto:
         return f"Needs approval: {decision['message']}"
     if decision["action"] == "escalate":
         return delegate_to_specialist(prompt)
@@ -183,8 +199,8 @@ def run_agent(prompt, allow_auto=False):
 
 Why this is useful:
 
-- **Zero GPU, zero latency.** The entire model is a JSON file with a handful of
-  feature weights. Inference is a dict lookup, not a matrix multiply.
+- **Small and deterministic.** The bounded policy artifact is a JSON file with
+  feature weights; this does not establish zero latency in a deployment.
 - **Deterministic.** Same input always produces the same decision. No temperature,
   no sampling, no drift.
 - **Auditable.** The feature table, precedence rules, and decision map are all
@@ -194,10 +210,10 @@ Why this is useful:
 - **Composable.** The structured output plugs directly into any agent framework:
   check `action`, check `require_approval`, route by `escalation`.
 
-The model classifies prompts into 12 operator policy categories and maps each
-one to a safe downstream action. Safety-critical prompts (`SAFETY`, `ACTUATOR`,
-`PRIVACY`) are always `block` with `require_approval=True`. Outside the
-operator domain, it abstains and routes to the appropriate specialist or human.
+The bounded fixture classifies prompts into operator policy categories and maps
+them to tested decision objects. The contract tests cover safety blocking and
+unknown-input escalation; they do not establish that every real-world
+safety-critical input is detected.
 
 ---
 
