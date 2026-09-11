@@ -1,0 +1,14 @@
+{
+  "version": "concepts-v1",
+  "tokenizer": {
+    "name": "unicode-word-regex",
+    "rule": "Unicode casefold followed by regex tokenization of runs matching \\b[\\w]+\\b; underscores remain part of a token.",
+    "regex": "(?u)\\b[\\w]+\\b"
+  },
+  "terms": ["agent", "arm", "class", "evaluation", "gate", "model", "prompt", "router", "task", "test", "training"],
+  "ambiguous_examples": [
+    {"text": "class guitar", "term": "class", "reason": "ordinary programming/music noun; lexical hit is not a semantic verdict"},
+    {"text": "armchair", "term": "arm", "reason": "substring is not a token hit"},
+    {"text": "gate valve", "term": "gate", "reason": "domain meaning is intentionally not inferred"}
+  ]
+}
