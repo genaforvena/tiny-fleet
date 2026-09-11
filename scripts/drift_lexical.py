@@ -75,6 +75,72 @@ def aggregate(rows, terms):
     return out
 
 
+def file_evidence(run_dir):
+    """Return the immutable file inventory used to classify structural controls."""
+    evidence = {}
+    for snapshot in ("old", "new"):
+        with (Path(run_dir) / f"{snapshot}-files.tsv").open(newline="") as handle:
+            evidence[snapshot] = {
+                row["path"]: row for row in csv.DictReader(handle, delimiter="\t")
+                if row["status"] == "included"
+            }
+    return evidence
+
+
+def lexical_profiles(rows):
+    return {
+        (row["snapshot"], row["concept"]): row["rate_per_10000"]
+        for row in rows if row["category"] == "all"
+    }
+
+
+def same_lexical_profile(rows):
+    profiles = lexical_profiles(rows)
+    terms = {term for _, term in profiles}
+    return all(profiles.get(("old", term)) == profiles.get(("new", term)) for term in terms)
+
+
+def structural_controls(run_dir, rows):
+    files = file_evidence(run_dir)
+    old, new = files["old"], files["new"]
+    old_paths, new_paths = set(old), set(new)
+    added, deleted = new_paths - old_paths, old_paths - new_paths
+    old_hashes = {row["blob_sha256"] for row in old.values()}
+    duplicate_paths = {
+        path for path in added
+        if new[path]["blob_sha256"] in old_hashes
+        and any(old_path in new and new[old_path]["blob_sha256"] == new[path]["blob_sha256"]
+                for old_path in old_paths & new_paths)
+    }
+    rename_pairs = [
+        (old_path, new_path) for old_path in deleted for new_path in added
+        if old[old_path]["blob_sha256"] == new[new_path]["blob_sha256"]
+    ]
+    changed_paths = {
+        path for path in old_paths & new_paths
+        if old[path]["blob_sha256"] != new[path]["blob_sha256"]
+    }
+    profile_unchanged = same_lexical_profile(rows)
+    return {
+        "duplication": {
+            "evidence": {"duplicate_paths": sorted(duplicate_paths)},
+            "verdict": ("NO_NORMALIZED_CHANGE" if duplicate_paths and profile_unchanged
+                        else "NORMALIZED_CHANGE" if duplicate_paths else "NO_DUPLICATION"),
+        },
+        "rename": {
+            "evidence": {"pairs": [{"old": old_path, "new": new_path}
+                                    for old_path, new_path in rename_pairs]},
+            "verdict": ("LEXICAL_ONLY" if rename_pairs and profile_unchanged else
+                        "LEXICAL_CHANGE" if rename_pairs else "NO_RENAME"),
+        },
+        "shuffle": {
+            "evidence": {"changed_paths": sorted(changed_paths)},
+            "verdict": ("NO_SEMANTIC_VERDICT" if changed_paths and profile_unchanged
+                        else "LEXICAL_CHANGE" if changed_paths else "NO_SHUFFLE"),
+        },
+    }
+
+
 def analyze(run_dir):
     definition, dictionary_sha256 = dictionary_source()
     terms = [term.casefold() for term in definition["terms"]]
@@ -88,10 +154,8 @@ def analyze(run_dir):
             delta += 1
     controls = {
         "no_change": {"verdict": "NO_CHANGE" if delta == 0 else "CHANGED", "delta_concepts": delta},
-        "duplication": {"verdict": "NO_NORMALIZED_CHANGE"},
-        "rename": {"verdict": "LEXICAL_ONLY"},
-        "shuffle": {"verdict": "NO_SEMANTIC_VERDICT"},
     }
+    controls.update(structural_controls(run_dir, rows))
     (Path(run_dir) / "lexical.tsv").write_text(
         "snapshot\tcategory\tconcept\traw_count\tincluded_tokens\trate_per_10000\tunique_units\n" +
         "".join("\t".join(str(r[k]) if r[k] is not None else "" for k in ("snapshot", "category", "concept", "raw_count", "included_tokens", "rate_per_10000", "unique_units")) + "\n" for r in rows))

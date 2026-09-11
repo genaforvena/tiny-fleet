@@ -18,6 +18,7 @@ class DriftLexicalTests(unittest.TestCase):
         subprocess.run(["git", "config", "user.name", "Test"], cwd=self.repo, check=True)
 
     def commit(self, files, message):
+        subprocess.run(["git", "rm", "-q", "-r", "--ignore-unmatch", "."], cwd=self.repo, check=True)
         for name, data in files.items():
             path = self.repo / name
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -56,6 +57,17 @@ class DriftLexicalTests(unittest.TestCase):
         self.assertEqual(result["controls"]["rename"]["verdict"], "LEXICAL_ONLY")
         controls = list(csv.DictReader((out / "controls.tsv").open(), delimiter="\t"))
         self.assertIn("LEXICAL_ONLY", {row["verdict"] for row in controls})
+
+    def test_absent_rename_is_not_reported_as_lexical_only(self):
+        _, result = self.run_analysis({"a.py": "model gate\n"}, {"a.py": "model gate\n"})
+        self.assertEqual(result["controls"]["rename"]["verdict"], "NO_RENAME")
+
+    def test_shuffle_verdict_requires_changed_files_with_unchanged_lexical_evidence(self):
+        _, result = self.run_analysis(
+            {"a.py": "model gate prompt\n"},
+            {"a.py": "prompt gate model\n"},
+        )
+        self.assertEqual(result["controls"]["shuffle"]["verdict"], "NO_SEMANTIC_VERDICT")
 
     def test_dictionary_is_versioned_with_ambiguity_examples(self):
         data = json.loads(Path(__file__).parents[1].joinpath("docs/concepts-v1.json").read_text())
