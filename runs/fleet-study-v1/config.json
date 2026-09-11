@@ -1,0 +1,15 @@
+{
+  "schema": "tiny-fleet.study-config/v1",
+  "study_id": "fleet-study-v1",
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "tokenizer": {"same_as_base_model": true},
+  "decoding": {"do_sample": false, "max_new_tokens": 16, "temperature": null},
+  "arms": ["base", "prompt-only", "pooled-lora", "specialist:toy_passage_ppl", "specialist:executable_code", "specialist:rated_style", "specialist:adversarial_safety"],
+  "prompt_only": {"shots_per_domain": 2, "source_split": "train", "reference_used_for_shots": true},
+  "matrix": {"evaluation_split": "heldout", "domains": ["toy_passage_ppl", "executable_code", "rated_style", "adversarial_safety"], "cases_per_domain": 100},
+  "raw_record_policy": {"incremental_jsonl": true, "preserve_failures": true, "reference_is_scorer_only": true},
+  "adapters": {"pooled-lora": "adapters/study-pooled", "specialist": "adapters/study-{domain}"}
+}
