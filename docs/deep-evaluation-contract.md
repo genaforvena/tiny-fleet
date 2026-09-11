@@ -133,8 +133,26 @@ calibration, routing, adversarial, and cost tables; then write the decision. A l
 the earlier path and hash and may not regenerate missing inputs. Until this bundle exists, the
 current offline `24/24` benchmark remains a contract smoke test, not a specialist result.
 
-## Next implementation step
+## Derived-report validation
 
-Implement a dependency-free validator with `--manifest` and `--run-dir`, using the rejection
-categories above, and add its valid-fixture plus five negative-control cases to the offline test
-path before `mood-corpus` creates new RU/EN data.
+`report_contract.validate_reports(run_dir)` validates the derived bundle after the raw tape has
+passed `deep_evaluation.validate_run`. It parses `scores.json`, all TSV tables, and the required
+fields in `decision.md`; empty/existence-only checks are not sufficient.
+
+The report schemas are intentionally small and typed:
+
+- `scores.json` (`tiny-fleet.deep-eval.scores/v1`) records `result_status`, total/scored/correct
+  prediction counts, accuracy, and false accepts. Primary counts are recomputed from raw outputs.
+- `slices.tsv` has `slice`, `value`, `count`, `scored`, `correct`, and `accuracy`.
+- `calibration.tsv` has `bin`, `count`, `confidence_sum`, `correct`, `ece`, and `brier`.
+- `routing.tsv` has one row per raw prediction key and records expected route, actual route, and
+  action decision.
+- `adversarial.tsv` has one row per adversarial raw prediction key and records expected/actual
+  action, forbidden-output status, and review status.
+- `cost.tsv` has `metric`, finite nonnegative `value`, `unit`, and nonnegative `count`.
+- `decision.md` declares `result_status`, `routing_eligible`, and numeric `coverage`.
+
+`artifact_valid` is independent of experiment success. A complete failed or negative experiment
+may validate as an artifact while remaining ineligible for routing. An all-abstain report cannot
+claim routing usefulness. The executable contract tests include malformed, missing, tampered,
+unsafe-action, omitted-case, and all-abstain controls.
