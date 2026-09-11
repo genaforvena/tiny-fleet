@@ -10,6 +10,7 @@ Requires an embeddings backend. We used ollama + all-minilm
 sentence-embedding model works — swap out embed().
 """
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -23,14 +24,45 @@ except ModuleNotFoundError:  # package-style import from the repository root
 ROOT = Path(__file__).resolve().parent.parent
 DOMAINS = ["guitar", "sourdough"]
 ABSTAIN_MARGIN = 0.10  # below this, escalate instead of routing
+EMBEDDING_MODEL = "all-minilm"
+EMBEDDING_MODEL_REVISION = os.environ.get("TINY_FLEET_EMBEDDING_REVISION", "unresolved")
+EMBEDDING_MODEL_DIGEST = os.environ.get("TINY_FLEET_EMBEDDING_DIGEST", "unresolved")
+
+
+class RouterError(Exception):
+    """A typed failure at the embedding/router boundary."""
+
+    def __init__(self, reason):
+        super().__init__(reason)
+        self.reason = reason
 
 
 def embed(texts):
-    out = subprocess.run(
-        ["curl", "-s", "--max-time", "120", "localhost:11434/api/embed",
-         "-d", json.dumps({"model": "all-minilm", "input": texts})],
-        capture_output=True, text=True, timeout=150)
-    return np.array(json.loads(out.stdout)["embeddings"], dtype=np.float64)
+    try:
+        out = subprocess.run(
+            ["curl", "-s", "--max-time", "120", "localhost:11434/api/embed",
+             "-d", json.dumps({"model": EMBEDDING_MODEL, "input": texts})],
+            capture_output=True, text=True, timeout=150, check=True)
+    except subprocess.TimeoutExpired as exc:
+        raise RouterError("embedding_timeout") from exc
+    except subprocess.CalledProcessError as exc:
+        raise RouterError("embedding_backend_failure") from exc
+    except OSError as exc:
+        raise RouterError("embedding_backend_failure") from exc
+    try:
+        payload = json.loads(out.stdout)
+    except (TypeError, json.JSONDecodeError) as exc:
+        raise RouterError("embedding_invalid_json") from exc
+    embeddings = payload.get("embeddings") if isinstance(payload, dict) else None
+    if not isinstance(embeddings, list):
+        raise RouterError("embedding_response_schema")
+    try:
+        result = np.asarray(embeddings, dtype=np.float64)
+    except (TypeError, ValueError) as exc:
+        raise RouterError("embedding_response_schema") from exc
+    if result.ndim != 2 or result.shape[0] != len(texts):
+        raise RouterError("embedding_response_shape")
+    return result
 
 
 def load(domain, split):
@@ -42,12 +74,79 @@ def cos(a, b):
     return float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
 
 
+def _detail(reason, scores=None, best_similarity=None, margin=None):
+    return {
+        "reason": reason,
+        "scores": scores or {},
+        "best_similarity": best_similarity,
+        "margin": margin,
+        "embedding_backend": "ollama-http",
+        "embedding_model": EMBEDDING_MODEL,
+        "embedding_model_revision": EMBEDDING_MODEL_REVISION,
+        "embedding_model_digest": EMBEDDING_MODEL_DIGEST,
+    }
+
+
+def _validate_centroids(centroids):
+    if not isinstance(centroids, dict) or not centroids:
+        raise RouterError("invalid_centroids")
+    arrays = {}
+    dimension = None
+    for domain, centroid in centroids.items():
+        try:
+            vector = np.asarray(centroid, dtype=np.float64)
+        except (TypeError, ValueError) as exc:
+            raise RouterError("invalid_centroid_schema") from exc
+        if vector.ndim != 1:
+            raise RouterError("invalid_centroid_shape")
+        if dimension is None:
+            dimension = vector.shape[0]
+        if vector.shape[0] != dimension:
+            raise RouterError("invalid_centroid_shape")
+        if not np.all(np.isfinite(vector)):
+            raise RouterError("invalid_centroid_nonfinite")
+        if np.linalg.norm(vector) == 0:
+            raise RouterError("invalid_centroid_norm")
+        arrays[domain] = vector
+    return arrays, dimension
+
+
+def _validate_query_embedding(raw, dimension):
+    try:
+        matrix = np.asarray(raw, dtype=np.float64)
+    except (TypeError, ValueError) as exc:
+        raise RouterError("invalid_embedding_shape") from exc
+    if matrix.ndim != 2 or matrix.shape != (1, dimension):
+        raise RouterError("invalid_embedding_shape")
+    vector = matrix[0]
+    if not np.all(np.isfinite(vector)):
+        raise RouterError("invalid_embedding_nonfinite")
+    if np.linalg.norm(vector) == 0:
+        raise RouterError("invalid_embedding_norm")
+    return vector
+
+
 def make_centroids(embed_fn=embed):
     cent = {}
     for d in DOMAINS:
-        E = embed_fn(load(d, "train"))
+        texts = load(d, "train")
+        E = embed_fn(texts)
+        expected_count = len(texts)
+        try:
+            E = np.asarray(E, dtype=np.float64)
+        except (TypeError, ValueError) as exc:
+            raise RouterError("invalid_embedding_schema") from exc
+        if E.ndim != 2 or E.shape[0] != expected_count:
+            raise RouterError("invalid_embedding_shape")
+        if not np.all(np.isfinite(E)):
+            raise RouterError("invalid_embedding_nonfinite")
+        if np.any(np.linalg.norm(E, axis=1) == 0):
+            raise RouterError("invalid_embedding_norm")
         c = E.mean(axis=0)
-        cent[d] = c / np.linalg.norm(c)
+        norm = np.linalg.norm(c)
+        if not np.isfinite(norm) or norm == 0:
+            raise RouterError("invalid_centroid_norm")
+        cent[d] = c / norm
     return cent
 
 
@@ -62,15 +161,24 @@ def route_query(text, centroids, embed_fn=embed, operator_model=None):
     operator_model = operator_model or load_model()
     if is_operator_query(text, operator_model):
         return "operator", respond(text, operator_model)
-    vector = embed_fn([text])[0]
-    vector /= np.linalg.norm(vector)
-    scores = {domain: cos(vector, centroid)
-              for domain, centroid in centroids.items()}
+    try:
+        valid_centroids, dimension = _validate_centroids(centroids)
+        raw = embed_fn([text])
+        vector = _validate_query_embedding(raw, dimension)
+        vector /= np.linalg.norm(vector)
+        scores = {domain: cos(vector, centroid)
+                  for domain, centroid in valid_centroids.items()}
+        if not all(np.isfinite(value) for value in scores.values()):
+            raise RouterError("invalid_similarity")
+    except RouterError as exc:
+        return "abstain", _detail(exc.reason)
+    except (TypeError, ValueError, FloatingPointError) as exc:
+        return "abstain", _detail("router_runtime_failure")
     ranked = sorted(scores.items(), key=lambda item: (-item[1], item[0]))
     margin = ranked[0][1] - ranked[1][1] if len(ranked) > 1 else ranked[0][1]
     if margin < ABSTAIN_MARGIN:
-        return "abstain", "[ABSTAIN] No specialist has sufficient routing margin."
-    return f"specialist:{ranked[0][0]}", scores
+        return "abstain", _detail("low_confidence", scores, ranked[0][1], margin)
+    return f"specialist:{ranked[0][0]}", _detail("routed", scores, ranked[0][1], margin)
 
 
 def main():
