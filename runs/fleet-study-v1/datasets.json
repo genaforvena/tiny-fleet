@@ -1,0 +1,37 @@
+{
+  "schema": "tiny-fleet.study-datasets/v1",
+  "study_id": "fleet-study-v1",
+  "corpus_manifest": "corpus/study-v1/manifest.json",
+  "corpus_manifest_sha256": "2259fad8ba4fc3134d9de5ff4885e4898ae82192d10b4a2ca90aead7d8726dbc",
+  "files": {
+    "train": {
+      "path": "corpus/study-v1/train.jsonl",
+      "sha256": "b208a7dab05a34494e9672facb27341ec70d512b4f7b6f1df02d7d72b4188f4f",
+      "rows": 400
+    },
+    "validation": {
+      "path": "corpus/study-v1/validation.jsonl",
+      "sha256": "8212842b2f0619c2557c4a3d3f9ab4c19c6470fabbfd87d5183cb0c7ff602e46",
+      "rows": 400
+    },
+    "heldout": {
+      "path": "corpus/study-v1/heldout.jsonl",
+      "sha256": "e509d767dab388fa99c4e1e117843db76d8403f6203ce2c2a62c97216d786040",
+      "rows": 400
+    },
+    "adversarial": {
+      "path": "corpus/study-v1/adversarial.jsonl",
+      "sha256": "d57dcfcda2691d63f68727b08fc4ce2b06b40a203327da71103672578001b213",
+      "rows": 400
+    }
+  },
+  "domains": {
+    "toy_passage_ppl": {"train": 100, "validation": 100, "heldout": 100, "adversarial": 100},
+    "executable_code": {"train": 100, "validation": 100, "heldout": 100, "adversarial": 100},
+    "rated_style": {"train": 100, "validation": 100, "heldout": 100, "adversarial": 100},
+    "adversarial_safety": {"train": 100, "validation": 100, "heldout": 100, "adversarial": 100}
+  },
+  "reference_not_in_generation_prompt": true,
+  "split_rule": "Whole explicitly authored source families are assigned to one split before any variants; this corpus has one case per family.",
+  "source_policy": "Explicitly authored CC0 rows; no private mesh logs, credentials, or model outputs."
+}

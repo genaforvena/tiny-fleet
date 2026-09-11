@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-09-11T00:00:00Z",
+  "domains": [
+    "toy_passage_ppl",
+    "executable_code",
+    "rated_style",
+    "adversarial_safety"
+  ],
+  "files": {
+    "adversarial": "corpus/study-v1/adversarial.jsonl",
+    "heldout": "corpus/study-v1/heldout.jsonl",
+    "train": "corpus/study-v1/train.jsonl",
+    "validation": "corpus/study-v1/validation.jsonl"
+  },
+  "reference_not_in_prompt": true,
+  "rows_per_file": {
+    "adversarial": 400,
+    "heldout": 400,
+    "train": 400,
+    "validation": 400
+  },
+  "schema": "tiny-fleet.study-corpus.manifest/v1",
+  "sha256": {
+    "adversarial": "d57dcfcda2691d63f68727b08fc4ce2b06b40a203327da71103672578001b213",
+    "heldout": "e509d767dab388fa99c4e1e117843db76d8403f6203ce2c2a62c97216d786040",
+    "train": "b208a7dab05a34494e9672facb27341ec70d512b4f7b6f1df02d7d72b4188f4f",
+    "validation": "8212842b2f0619c2557c4a3d3f9ab4c19c6470fabbfd87d5183cb0c7ff602e46"
+  },
+  "source_policy": "public/licensed or explicitly authored; this release uses explicitly authored CC0 rows",
+  "splits": {
+    "adversarial": 100,
+    "heldout": 100,
+    "train": 100,
+    "validation": 100
+  },
+  "study_id": "fleet-study-v1"
+}
