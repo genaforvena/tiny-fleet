@@ -1,7 +1,7 @@
 # Deep-evaluation contract
 
 Status: design gate for `tinyfleet-specialists/design-deep-evals`  
-Version: `1`  
+Version: `2`  
 Owner: `tinyfleet-specialists`
 
 This contract turns `docs/evaluation-methodology.md` into a frozen hand-off between corpus
@@ -14,7 +14,7 @@ exists, hashes resolve, and the negative controls fail closed.
 
 ```json
 {
-  "schema": "tiny-fleet.deep-eval.manifest/v1",
+  "schema": "tiny-fleet.deep-eval.manifest/v2",
   "run_id": "2026-09-06-guitar-001",
   "git_commit": "<40-hex commit>",
   "base_model": {"id": "<pinned model id>", "revision": "<immutable revision>"},
@@ -24,6 +24,7 @@ exists, hashes resolve, and the negative controls fail closed.
   "config_sha256": "<64-hex sha256>",
   "created_at": "2026-09-06T00:00:00Z",
   "cutoff": "2026-08-01T00:00:00Z",
+  "temporal": {"train_end": "2026-07-01T00:00:00Z", "heldout_start": "2026-07-15T00:00:00Z"},
   "datasets": {
     "train": {"path": "corpus/guitar-train.jsonl", "rows": 0, "sha256": "<64-hex>"},
     "validation": {"path": "corpus/guitar-validation.jsonl", "rows": 0, "sha256": "<64-hex>"},
@@ -52,12 +53,20 @@ Each JSONL row must have these fields, with `split` matching its manifest datase
   "split": "heldout",
   "expected_route": "specialist:guitar",
   "expected_action": "answer",
+  "prompt": "What chord is this?",
+  "reference": "The answer text",
+  "source_family": "book-03",
   "provenance": {"kind": "licensed|synthetic|internal", "source": "...", "redacted": true}
 }
 ```
 
-`case_id` and `source_id` must be unique within their respective namespaces. The split is assigned
-before normalization. No source or time bucket may occur in both train and heldout/adversarial.
+`case_id` must be unique within each split. `prompt` and `reference` are actual typed strings;
+prompt leakage is checked after Unicode NFKC, case-folding, and collapsed whitespace. `source_family`
+is independent of split names and may not overlap train/validation or validation/heldout. All paths
+are resolved before containment checks, so symlink escapes are rejected without opening the target.
+Timestamps must be timezone-aware; `cutoff` is a maximum inclusion time, while `train_end` and
+`heldout_start` define the temporal holdout window. Version 1 remains readable only for archival
+inspection and is never publication-ready.
 
 ## Report bundle
 
@@ -95,6 +104,10 @@ The validator/test harness must execute these fixtures on every contract change:
    `REJECT manifest-mismatch` with expected and observed hash/count.
 5. **Orphan-prediction control:** add a prediction for an unknown `case_id` or omit one expected
    model/case pair. Expected result: `REJECT prediction-cardinality` before aggregate scores.
+6. **Boundary controls:** duplicate an ID within a split, overlap a `source_family` across adjacent
+   splits, use a malformed typed field, leave a required split empty, and point a dataset through a
+   symlink outside the run root. Expected results are stable `manifest-mismatch`, `split-boundary`,
+   or `leakage` rejections; the escaped target is never opened.
 
 Negative controls are successful only when they fail closed with a stable error category and a
 non-zero process exit. A green contract test therefore includes both valid-fixture acceptance and

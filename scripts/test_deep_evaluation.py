@@ -14,7 +14,7 @@ class DeepEvaluationValidatorTests(unittest.TestCase):
     def make_run(self):
         root = Path(tempfile.mkdtemp())
         (root / "manifest.json").write_text(json.dumps({
-            "schema": "tiny-fleet.deep-eval.manifest/v1",
+            "schema": "tiny-fleet.deep-eval.manifest/v2",
             "run_id": "fixture-001",
             "git_commit": "a" * 40,
             "base_model": {"id": "base", "revision": "r1"},
@@ -31,12 +31,15 @@ class DeepEvaluationValidatorTests(unittest.TestCase):
             },
             "slices": ["domain"],
             "evaluation": {"bootstrap_replicates": 10, "confidence": 0.95},
+            "temporal": {"train_end": "2026-08-01T00:00:00Z", "heldout_start": "2026-08-01T00:00:00Z"},
         }))
         row = lambda split, case: {
             "case_id": case, "source_id": f"source-{case}",
             "created_at": "2026-08-01T00:00:00Z", "domain": "fixture",
             "language": "en", "split": split, "expected_route": "specialist:fixture",
             "expected_action": "answer",
+            "prompt": f"Prompt for {case}", "reference": f"Reference for {case}",
+            "source_family": f"family-{case}",
             "provenance": {"kind": "synthetic", "source": "test", "redacted": True},
         }
         for name, split, case in (("train", "train", "train-1"),
@@ -103,6 +106,74 @@ class DeepEvaluationValidatorTests(unittest.TestCase):
         root = self.make_run()
         (root / "predictions.jsonl").write_text(json.dumps({"case_id": "unknown", "model": "base"}) + "\n")
         with self.assertRaisesRegex(ValidationError, r"^REJECT prediction-cardinality"):
+            validate_run(root)
+
+    def test_rejects_duplicate_ids_within_split(self):
+        root = self.make_run()
+        rows = [json.loads(line) for line in (root / "train.jsonl").read_text().splitlines()]
+        rows.append(rows[0])
+        (root / "train.jsonl").write_text("\n".join(json.dumps(row) for row in rows) + "\n")
+        manifest = json.loads((root / "manifest.json").read_text())
+        manifest["datasets"]["train"]["rows"] = 2
+        manifest["datasets"]["train"]["sha256"] = hashlib.sha256((root / "train.jsonl").read_bytes()).hexdigest()
+        (root / "manifest.json").write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValidationError, r"^REJECT manifest-mismatch.*duplicate case_id"):
+            validate_run(root)
+
+    def test_rejects_normalized_prompt_cross_split(self):
+        root = self.make_run()
+        row = json.loads((root / "validation.jsonl").read_text())
+        row["prompt"] = "  PROMPT   FOR   train-1 "
+        (root / "validation.jsonl").write_text(json.dumps(row) + "\n")
+        manifest = json.loads((root / "manifest.json").read_text())
+        manifest["datasets"]["validation"]["sha256"] = hashlib.sha256((root / "validation.jsonl").read_bytes()).hexdigest()
+        (root / "manifest.json").write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValidationError, r"^REJECT leakage.*normalized prompt"):
+            validate_run(root)
+
+    def test_rejects_source_family_overlap(self):
+        root = self.make_run()
+        row = json.loads((root / "heldout.jsonl").read_text())
+        row["source_family"] = "family-validation-1"
+        (root / "heldout.jsonl").write_text(json.dumps(row) + "\n")
+        manifest = json.loads((root / "manifest.json").read_text())
+        manifest["datasets"]["heldout"]["sha256"] = hashlib.sha256((root / "heldout.jsonl").read_bytes()).hexdigest()
+        (root / "manifest.json").write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValidationError, r"^REJECT split-boundary.*source_family"):
+            validate_run(root)
+
+    def test_rejects_required_empty_split(self):
+        root = self.make_run()
+        (root / "validation.jsonl").write_text("")
+        manifest = json.loads((root / "manifest.json").read_text())
+        manifest["datasets"]["validation"]["rows"] = 0
+        manifest["datasets"]["validation"]["sha256"] = hashlib.sha256(b"").hexdigest()
+        (root / "manifest.json").write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValidationError, r"^REJECT manifest-mismatch.*empty validation"):
+            validate_run(root)
+
+    def test_rejects_malformed_typed_row(self):
+        root = self.make_run()
+        row = json.loads((root / "train.jsonl").read_text())
+        row["prompt"] = 12
+        (root / "train.jsonl").write_text(json.dumps(row) + "\n")
+        manifest = json.loads((root / "manifest.json").read_text())
+        manifest["datasets"]["train"]["sha256"] = hashlib.sha256((root / "train.jsonl").read_bytes()).hexdigest()
+        (root / "manifest.json").write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValidationError, r"^REJECT manifest-mismatch.*prompt"):
+            validate_run(root)
+
+    def test_rejects_symlink_escape_without_opening_target(self):
+        root = self.make_run()
+        outside = Path(tempfile.mkdtemp()) / "outside.jsonl"
+        outside.write_text(json.dumps({"secret": True}) + "\n")
+        link = root / "escape.jsonl"
+        link.symlink_to(outside)
+        manifest = json.loads((root / "manifest.json").read_text())
+        manifest["datasets"]["validation"]["path"] = "escape.jsonl"
+        manifest["datasets"]["validation"]["sha256"] = "0" * 64
+        (root / "manifest.json").write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValidationError, r"^REJECT manifest-mismatch.*outside run"):
             validate_run(root)
 
 

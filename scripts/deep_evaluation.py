@@ -4,6 +4,8 @@
 import argparse
 import hashlib
 import json
+import re
+import unicodedata
 from datetime import datetime
 from pathlib import Path
 
@@ -16,7 +18,7 @@ REQUIRED = (
 SPLITS = ("train", "validation", "heldout", "adversarial")
 ROW_FIELDS = (
     "case_id", "source_id", "created_at", "domain", "language", "split",
-    "expected_route", "expected_action", "provenance",
+    "expected_route", "expected_action", "prompt", "reference", "source_family", "provenance",
 )
 
 
@@ -59,8 +61,26 @@ def load_rows(path, expected_split):
             reject("manifest-mismatch", f"{path.name}:{line_no}: missing {','.join(missing)}")
         if row["split"] != expected_split:
             reject("split-boundary", f"{row['case_id']} declares {row['split']} in {expected_split}")
+        if not isinstance(row["case_id"], str) or not row["case_id"]:
+            reject("manifest-mismatch", f"{path.name}:{line_no}: case_id")
+        for field in ("source_id", "domain", "language", "prompt", "reference", "source_family"):
+            if not isinstance(row[field], str) or not row[field].strip():
+                reject("manifest-mismatch", f"{path.name}:{line_no}: {field}")
         rows.append(row)
     return rows
+
+
+def parse_timestamp(value, label):
+    if not isinstance(value, str) or not re.search(r"(?:Z|[+-]\d\d:\d\d)$", value):
+        reject("split-boundary", f"{label} must be timezone-aware")
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        reject("split-boundary", f"{label} invalid timestamp")
+
+
+def normalize_prompt(value):
+    return " ".join(unicodedata.normalize("NFKC", value).casefold().split())
 
 
 def validate_run(run_dir):
@@ -69,8 +89,10 @@ def validate_run(run_dir):
     if not manifest_path.is_file():
         reject("missing-artifact", "manifest.json")
     manifest = load_json(manifest_path)
-    if manifest.get("schema") != "tiny-fleet.deep-eval.manifest/v1":
+    if manifest.get("schema") not in {"tiny-fleet.deep-eval.manifest/v1", "tiny-fleet.deep-eval.manifest/v2"}:
         reject("manifest-mismatch", "schema")
+    if manifest.get("schema") != "tiny-fleet.deep-eval.manifest/v2":
+        reject("manifest-mismatch", "legacy v1 is archival-only")
     for name in REQUIRED:
         if not (run_dir / name).is_file():
             reject("missing-artifact", name)
@@ -80,52 +102,73 @@ def validate_run(run_dir):
     datasets = manifest.get("datasets", {})
     all_rows = []
     cutoff = manifest.get("cutoff")
-    try:
-        cutoff_dt = datetime.fromisoformat(cutoff.replace("Z", "+00:00"))
-    except (AttributeError, ValueError):
-        reject("manifest-mismatch", "cutoff")
+    cutoff_dt = parse_timestamp(cutoff, "cutoff")
+    temporal = manifest.get("temporal")
+    if not isinstance(temporal, dict):
+        reject("manifest-mismatch", "temporal")
+    train_end = parse_timestamp(temporal.get("train_end"), "train_end")
+    heldout_start = parse_timestamp(temporal.get("heldout_start"), "heldout_start")
+    if train_end > heldout_start:
+        reject("split-boundary", "contradictory temporal windows")
     for split in SPLITS:
         spec = datasets.get(split)
         if not isinstance(spec, dict) or not spec.get("path"):
             reject("manifest-mismatch", f"datasets.{split}")
-        path = run_dir / spec["path"]
+        if not isinstance(spec["path"], str) or Path(spec["path"]).is_absolute():
+            reject("manifest-mismatch", f"dataset outside run: {spec.get('path')}")
+        path = (run_dir / spec["path"]).resolve()
         try:
-            path.relative_to(run_dir)
+            path.relative_to(run_dir.resolve())
         except ValueError:
             reject("manifest-mismatch", f"dataset outside run: {spec['path']}")
         if not path.is_file():
             reject("missing-artifact", spec["path"])
         rows = load_rows(path, split)
+        if not rows:
+            reject("manifest-mismatch", f"empty {split}")
         observed_hash = sha256(path)
         if spec.get("sha256") != observed_hash:
             reject("manifest-mismatch", f"{spec['path']} sha256 expected={spec.get('sha256')} observed={observed_hash}")
         if spec.get("rows") != len(rows):
             reject("manifest-mismatch", f"{spec['path']} rows expected={spec.get('rows')} observed={len(rows)}")
         for row in rows:
-            try:
-                created = datetime.fromisoformat(row["created_at"].replace("Z", "+00:00"))
-            except ValueError:
-                reject("split-boundary", f"{row['case_id']} invalid created_at")
+            created = parse_timestamp(row["created_at"], row["case_id"])
+            if created > cutoff_dt:
+                reject("split-boundary", f"{row['case_id']} after cutoff {cutoff}")
+            if split == "train" and created > train_end:
+                reject("split-boundary", f"{row['case_id']} after train_end")
+            if split == "heldout" and created < heldout_start:
+                reject("split-boundary", f"{row['case_id']} before heldout_start")
             if split in ("heldout", "adversarial") and created > cutoff_dt:
                 reject("split-boundary", f"{row['case_id']} after cutoff {cutoff}")
             row["_split_file"] = split
         all_rows.extend(rows)
     by_case = {}
     by_source = {}
+    by_family = {}
+    seen_ids = set()
     for row in all_rows:
         case = row["case_id"]
+        split = row["_split_file"]
+        if (split, case) in seen_ids:
+            reject("manifest-mismatch", f"duplicate case_id={case} in {split}")
+        seen_ids.add((split, case))
         if case in by_case and by_case[case]["_split_file"] != row["_split_file"]:
             reject("leakage", f"case_id={case} crosses {by_case[case]['_split_file']}/{row['_split_file']}")
         by_case[case] = row
         by_source.setdefault(row["source_id"], set()).add(row["_split_file"])
+        by_family.setdefault(row["source_family"], set()).add(split)
+    for family, splits in by_family.items():
+        if ("train" in splits and "validation" in splits) or ("validation" in splits and "heldout" in splits):
+            reject("split-boundary", f"source_family={family} crosses {'/'.join(sorted(splits))}")
     for source, splits in by_source.items():
         if "train" in splits and any(split in splits for split in ("heldout", "adversarial")):
             reject("split-boundary", f"source_id={source} crosses {'/'.join(sorted(splits))}")
     texts = {}
     for row in all_rows:
-        text = json.dumps({key: row[key] for key in ROW_FIELDS if key not in ("case_id", "split")}, sort_keys=True)
+        text = normalize_prompt(row["prompt"])
         if text in texts and texts[text]["_split_file"] != row["_split_file"]:
-            reject("leakage", f"normalized row crosses {texts[text]['_split_file']}/{row['_split_file']}")
+            reject("leakage", f"normalized prompt crosses {texts[text]['_split_file']}/{row['_split_file']}")
         texts[text] = row
     expected = {(row["case_id"], model) for row in all_rows if row["_split_file"] in ("heldout", "adversarial")
                 for model in manifest.get("controls", []) + [manifest.get("candidate", {}).get("id")]}
