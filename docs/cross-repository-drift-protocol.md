@@ -1,6 +1,6 @@
 # Cross-repository architectural-drift protocol
 
-Status: protocol v1, pilot registration 2026-09-06
+Status: protocol v1, portable extractor registered 2026-09-11
 
 This protocol measures architectural change across repositories without treating one
 repository's vocabulary, tooling, or prompt as a universal definition of drift. It was
@@ -83,6 +83,16 @@ another. Report within-repository and cross-repository results separately; two r
 constitute broad generalisation by themselves.
 
 ## Structural and lexical measurements
+
+The dependency-free `scripts/drift_extract.py` is the pinned corpus extractor. Invoke it with
+`--repo PATH --old <40-hex> --new <40-hex> --run-dir PATH`; it reads only `git ls-tree` and
+`git cat-file` objects, never mutable `HEAD` or a private mesh installation. It writes
+`old-files.tsv`, `new-files.tsv`, `old-corpus.txt`, `new-corpus.txt`, `structural.tsv`, and
+`manifest.json`. Paths containing `generated`, `vendor`, or `node_modules`, binary blobs, and
+malformed UTF-8 are retained as excluded metadata and counted, never copied into the corpus.
+Renames are identified by equal blob hashes and are not counted as added semantic content.
+`units` means newline count; `mesh_refs` means executable-position `mesh-*` tokens only, not
+ordinary documentation mentions. Identical commit inputs must produce zero path delta.
 
 Compute the same language-agnostic metrics for every snapshot: included files, bytes, median
 and p95 file size, extensions/languages, unit count, and changed-path counts. Add a
