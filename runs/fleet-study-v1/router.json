@@ -1,0 +1,320 @@
+{
+  "artifact_sha256": "f33c1e26f8315a3f19d8744ba2ef4d2f191dc60a39fb0bcfc820f20bf36b9c76",
+  "calibration_method": "validation_grid_abs_margin",
+  "cases": {
+    "validation_ids": [
+      "adversarial_safety-validation-001",
+      "adversarial_safety-validation-002",
+      "adversarial_safety-validation-003",
+      "executable_code-validation-001",
+      "executable_code-validation-002",
+      "executable_code-validation-003",
+      "rated_style-validation-001",
+      "rated_style-validation-002",
+      "rated_style-validation-003",
+      "toy_passage_ppl-validation-001",
+      "toy_passage_ppl-validation-002",
+      "toy_passage_ppl-validation-003",
+      "s05-ood-quantum"
+    ],
+    "validation_n": 13
+  },
+  "centroids": {
+    "adversarial_safety": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "executable_code": [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    "rated_style": [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "toy_passage_ppl": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "corpus_hash": "2259fad8ba4fc3134d9de5ff4885e4898ae82192d10b4a2ca90aead7d8726dbc",
+  "embedding_digest": "fixture-one-hot-v1",
+  "false_accept_bound": 0.05,
+  "margin_min": 0.0,
+  "metrics": {
+    "correct": 12,
+    "coverage": 0.9230769230769231,
+    "false_accepts": 0,
+    "n": 13,
+    "risk": 0.0,
+    "routed": 12
+  },
+  "schema": "tiny-fleet.router-calibration/v1",
+  "score_grid": [
+    [
+      -1.0,
+      0.0
+    ],
+    [
+      -0.5,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.2,
+      0.05
+    ],
+    [
+      0.4,
+      0.1
+    ],
+    [
+      0.6,
+      0.1
+    ],
+    [
+      0.8,
+      0.2
+    ],
+    [
+      0.9,
+      0.4
+    ]
+  ],
+  "similarity_min": 0.0,
+  "validation_routes": [
+    {
+      "best_similarity": 1.0,
+      "case_id": "adversarial_safety-validation-001",
+      "correct": true,
+      "expected": "specialist:adversarial_safety",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:adversarial_safety",
+      "scores": {
+        "adversarial_safety": 1.0,
+        "executable_code": 0.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "adversarial_safety-validation-002",
+      "correct": true,
+      "expected": "specialist:adversarial_safety",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:adversarial_safety",
+      "scores": {
+        "adversarial_safety": 1.0,
+        "executable_code": 0.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "adversarial_safety-validation-003",
+      "correct": true,
+      "expected": "specialist:adversarial_safety",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:adversarial_safety",
+      "scores": {
+        "adversarial_safety": 1.0,
+        "executable_code": 0.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "executable_code-validation-001",
+      "correct": true,
+      "expected": "specialist:executable_code",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:executable_code",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 1.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "executable_code-validation-002",
+      "correct": true,
+      "expected": "specialist:executable_code",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:executable_code",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 1.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "executable_code-validation-003",
+      "correct": true,
+      "expected": "specialist:executable_code",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:executable_code",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 1.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "rated_style-validation-001",
+      "correct": true,
+      "expected": "specialist:rated_style",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:rated_style",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 0.0,
+        "rated_style": 1.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "rated_style-validation-002",
+      "correct": true,
+      "expected": "specialist:rated_style",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:rated_style",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 0.0,
+        "rated_style": 1.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "rated_style-validation-003",
+      "correct": true,
+      "expected": "specialist:rated_style",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:rated_style",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 0.0,
+        "rated_style": 1.0,
+        "toy_passage_ppl": 0.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "toy_passage_ppl-validation-001",
+      "correct": true,
+      "expected": "specialist:toy_passage_ppl",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:toy_passage_ppl",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 0.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 1.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "toy_passage_ppl-validation-002",
+      "correct": true,
+      "expected": "specialist:toy_passage_ppl",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:toy_passage_ppl",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 0.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 1.0
+      }
+    },
+    {
+      "best_similarity": 1.0,
+      "case_id": "toy_passage_ppl-validation-003",
+      "correct": true,
+      "expected": "specialist:toy_passage_ppl",
+      "false_accept": false,
+      "margin": 1.0,
+      "model_refusal": false,
+      "reason": "routed",
+      "route": "specialist:toy_passage_ppl",
+      "scores": {
+        "adversarial_safety": 0.0,
+        "executable_code": 0.0,
+        "rated_style": 0.0,
+        "toy_passage_ppl": 1.0
+      }
+    },
+    {
+      "best_similarity": -0.5,
+      "case_id": "s05-ood-quantum",
+      "correct": false,
+      "expected": null,
+      "false_accept": false,
+      "margin": 0.0,
+      "model_refusal": false,
+      "reason": "absolute_similarity",
+      "route": "abstain",
+      "scores": {
+        "adversarial_safety": -0.5,
+        "executable_code": -0.5,
+        "rated_style": -0.5,
+        "toy_passage_ppl": -0.5
+      }
+    }
+  ],
+  "verdict": "eligible-router"
+}

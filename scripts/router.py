@@ -150,7 +150,7 @@ def make_centroids(embed_fn=embed):
     return cent
 
 
-def route_query(text, centroids, embed_fn=embed, operator_model=None):
+def route_query(text, centroids, embed_fn=embed, operator_model=None, calibration=None):
     """Route operator requests first, then specialists, or abstain.
 
     ``embed_fn`` is injectable so route precedence and abstention can be tested
@@ -176,7 +176,11 @@ def route_query(text, centroids, embed_fn=embed, operator_model=None):
         return "abstain", _detail("router_runtime_failure")
     ranked = sorted(scores.items(), key=lambda item: (-item[1], item[0]))
     margin = ranked[0][1] - ranked[1][1] if len(ranked) > 1 else ranked[0][1]
-    if margin < ABSTAIN_MARGIN:
+    similarity_min = calibration.get("similarity_min", -float("inf")) if calibration else -float("inf")
+    margin_min = calibration.get("margin_min", ABSTAIN_MARGIN) if calibration else ABSTAIN_MARGIN
+    if ranked[0][1] < similarity_min:
+        return "abstain", _detail("absolute_similarity", scores, ranked[0][1], margin)
+    if margin < margin_min:
         return "abstain", _detail("low_confidence", scores, ranked[0][1], margin)
     return f"specialist:{ranked[0][0]}", _detail("routed", scores, ranked[0][1], margin)
 
