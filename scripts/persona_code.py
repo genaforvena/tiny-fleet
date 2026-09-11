@@ -13,6 +13,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from loss_metrics import aggregate_perplexity, masked_labels, summed_nll
+from run_manifest import prepare_run, record_completion
 
 ROOT = Path(__file__).resolve().parent.parent
 CORPUS = ROOT / "corpus"
@@ -205,29 +206,43 @@ def _rubric(output: str, domain: str) -> dict:
         "domain": domain,
     }
 
-def train_domain(manifest_path: Path, domain: str, run_dir: Path):
+def train_domain(manifest_path: Path, domain: str, run_dir: Path, seed: int | None = None):
     manifest = load_manifest(manifest_path)
+    seed = manifest["training"].get("seed", 17) if seed is None else seed
+    import torch
+    prepared = prepare_run(manifest_path, run_dir, seed, arm=domain,
+                           device="cuda" if torch.cuda.is_available() else "cpu",
+                           dtype="float16" if torch.cuda.is_available() else "float32")
     torch, AutoModelForCausalLM, AutoTokenizer, LoraConfig, _PeftModel, get_peft_model = _imports()
-    device = _device(torch); torch.manual_seed(manifest["training"]["seed"])
+    device = _device(torch)
     tok, model = _base(manifest, torch, AutoModelForCausalLM, AutoTokenizer, device)
     cfg = manifest["training"]["lora"]
     lora_cfg = {"r": cfg["r"], "lora_alpha": cfg["alpha"], "lora_dropout": cfg["dropout"], "target_modules": cfg["target_modules"]}
     model = get_peft_model(model, LoraConfig(task_type="CAUSAL_LM", **lora_cfg))
-    encoded = [tok(t, truncation=True, max_length=manifest["training"]["max_length"], return_tensors="pt") for t in texts(manifest, domain, "train")]
-    model.train(); optimizer = torch.optim.AdamW(model.parameters(), lr=manifest["training"]["learning_rate"])
+    train_cfg = manifest["training"]
+    batch = int(train_cfg.get("batch", 1)); accumulation = int(train_cfg.get("gradient_accumulation", 1))
+    encoded = tok(texts(manifest, domain, "train"), truncation=True,
+                  max_length=train_cfg["max_length"], padding=True, return_tensors="pt")
+    import torch.utils.data as D
+    dl = D.DataLoader(D.TensorDataset(encoded["input_ids"], encoded["attention_mask"]), batch_size=batch, shuffle=True)
+    model.train(); optimizer = torch.optim.AdamW(model.parameters(), lr=train_cfg["learning_rate"])
     losses = []
-    for epoch in range(manifest["training"]["epochs"]):
+    optimizer_steps = 0
+    for epoch in range(train_cfg["epochs"]):
         epoch_loss = 0.0
-        for item in encoded:
-            ids = item["input_ids"].to(device); mask = item["attention_mask"].to(device)
+        optimizer.zero_grad(set_to_none=True)
+        for index, (ids, mask) in enumerate(dl):
+            ids, mask = ids.to(device), mask.to(device)
             labels = masked_labels(ids, mask)
-            loss = model(input_ids=ids, attention_mask=mask, labels=labels).loss
-            optimizer.zero_grad(); loss.backward(); optimizer.step(); epoch_loss += float(loss.detach())
-        losses.append(epoch_loss / len(encoded)); print(f"{domain} epoch={epoch + 1} loss={losses[-1]:.4f}", flush=True)
-    adapter = ROOT / "adapters" / f"persona-code-{domain}"
+            loss = model(input_ids=ids, attention_mask=mask, labels=labels).loss / accumulation
+            loss.backward(); epoch_loss += float(loss.detach())
+            if (index + 1) % accumulation == 0 or index + 1 == len(dl):
+                optimizer.step(); optimizer.zero_grad(set_to_none=True); optimizer_steps += 1
+        losses.append(epoch_loss * accumulation / len(dl)); print(f"{domain} epoch={epoch + 1} loss={losses[-1]:.4f}", flush=True)
+    adapter = Path(prepared["run"]["adapter_dir"])
     model.save_pretrained(adapter)
-    result = {"status": "complete", "domain": domain, "device": str(device), "base_revision": manifest["base_model"]["revision"], "adapter": str(adapter), "epochs": len(losses), "losses": losses}
-    run_dir.mkdir(parents=True, exist_ok=True); (run_dir / f"train-{domain}.json").write_text(json.dumps(result, indent=2) + "\n"); print(json.dumps(result, indent=2))
+    result = {"status": "complete", "domain": domain, "seed": seed, "device": str(device), "base_revision": manifest["base_model"]["revision"], "adapter": str(adapter), "epochs": len(losses), "losses": losses, "optimizer_steps": optimizer_steps, "examples_seen": len(texts(manifest, domain, "train")) * len(losses)}
+    (run_dir / f"train-{domain}.json").write_text(json.dumps(result, indent=2) + "\n"); record_completion(run_dir, result); print(json.dumps(result, indent=2))
 
 def evaluate(manifest_path: Path, run_dir: Path):
     manifest = load_manifest(manifest_path)
@@ -268,7 +283,7 @@ def main():
     b = sub.add_parser("build"); b.add_argument("--manifest", required=True, type=Path)
     st = sub.add_parser("self-test"); st.add_argument("--manifest", type=Path)
     for name in ("train", "eval"):
-        x = sub.add_parser(name); x.add_argument("--manifest", required=True, type=Path); x.add_argument("--domain", choices=("persona", "code")); x.add_argument("--base", default=BASE); x.add_argument("--run-dir", type=Path)
+        x = sub.add_parser(name); x.add_argument("--manifest", required=True, type=Path); x.add_argument("--domain", choices=("persona", "code")); x.add_argument("--base", default=BASE); x.add_argument("--run-dir", type=Path); x.add_argument("--seed", type=int)
     a = p.parse_args()
     if a.command == "measure": measure(a.manifest); return
     if a.command == "build": build(a.manifest); return
@@ -286,7 +301,7 @@ def main():
     run_dir = a.run_dir or a.manifest.parent
     if a.command == "train":
         if not a.domain: raise SystemExit("train requires --domain persona|code")
-        train_domain(a.manifest, a.domain, run_dir)
+        train_domain(a.manifest, a.domain, run_dir, a.seed)
     else:
         evaluate(a.manifest, run_dir)
 
