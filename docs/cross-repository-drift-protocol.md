@@ -194,3 +194,14 @@ validator remains the gate for per-model train/validation/heldout/adversarial ro
 protocol adds repository identity, snapshot provenance, cross-repo split controls, and
 cross-repo comparability. The baseline audit remains evidence about what the old report could
 not prove, not a result produced by this protocol.
+
+## Offline generative fixture runner
+
+`scripts/drift_generate.py` is the bounded fixture runner for the generative arm. Its frozen
+manifest names repository/snapshot/prompt identity, the three required arms (`base`, `prompt-only`,
+`lora`), seeds, repetitions, model digest, and scorer digest. It writes one raw
+`generative.jsonl` record for every `(repo, snapshot, arm, prompt_id, seed, repetition)` key and
+validates input hashes and provenance before accepting the matrix. Missing arms, duplicate keys,
+snapshot-label swaps, and prompt contamination fail closed. The default fixture backend is
+dependency-free and does not execute generated commands or access the network; real inference is
+an explicitly separate, pinned run.
