@@ -184,23 +184,23 @@ returning a machine-readable decision that a pipeline can enforce:
 
 ```python
 from scripts.operator_policy import load_model, safety_decision
+from scripts.policy_consumer import dispatch_decision
 
-def run_agent(prompt, allow_auto=False):
+def run_agent(prompt):
     decision = safety_decision(prompt, load_model())
-    if decision["action"] == "block":
-        return f"Blocked: {decision['message']}"
-    if decision["require_approval"] or not allow_auto:
-        return f"Needs approval: {decision['message']}"
-    if decision["action"] == "escalate":
-        return delegate_to_specialist(prompt)
-    # action == review or allow
-    return execute_task(prompt)
+    return dispatch_decision(
+        decision,
+        execute=lambda _: execute_task(prompt),
+        review=lambda _: request_human_review(prompt),
+        escalate=lambda _: delegate_to_specialist(prompt),
+    )
 ```
 
 Why this is useful:
 
 - **Small and deterministic.** The bounded policy artifact is a JSON file with
-  feature weights; this does not establish zero latency in a deployment.
+  lexical feature weights; confidence is uncalibrated, and the finite latency
+  measured by the fixture is not a zero-latency deployment guarantee.
 - **Deterministic.** Same input always produces the same decision. No temperature,
   no sampling, no drift.
 - **Auditable.** The feature table, precedence rules, and decision map are all
@@ -211,9 +211,12 @@ Why this is useful:
   check `action`, check `require_approval`, route by `escalation`.
 
 The bounded fixture classifies prompts into operator policy categories and maps
-them to tested decision objects. The contract tests cover safety blocking and
-unknown-input escalation; they do not establish that every real-world
-safety-critical input is detected.
+them to tested decision objects. Review observations include paraphrases such
+as “assume the `--test` flag proves cron dispatch” and “dispatch a claim with
+no task slug because the owner sounds confident”; these are regression
+observations, not hidden claims of robust safety. The lexical baseline has
+limited threat coverage and uncalibrated confidence; it does not establish
+that every real-world safety-critical input is detected.
 
 ---
 
@@ -264,6 +267,8 @@ python scripts/router.py
 # operator model: no GPU or third-party runtime required
 python scripts/operator_policy.py train
 python scripts/operator_policy.py --test
+# policy consumer contract (injected callbacks; no shell/actions)
+python scripts/test_policy_consumer.py
 # offline fleet benchmark: no GPU, model download, or network required
 python scripts/fleet_benchmark.py --test
 # optional live centroid benchmark (requires Ollama + all-minilm)
@@ -284,8 +289,10 @@ it returns `[ABSTAIN]` for escalation. The offline fleet benchmark currently
 passes `24/24`; the live specialist benchmark reproduces the perplexity table
 above and requires the cached base model plus GPU.
 
-The bounded operator model is intentionally a policy classifier plus safe
-templates, not an autonomous LLM. It ships two interfaces:
+The bounded operator model is intentionally a deterministic lexical policy
+classifier plus safe templates, not an autonomous LLM. Its confidence is
+uncalibrated, its measured fixture latency is finite, and its threat coverage
+is limited. It ships two interfaces:
 
 **Simple text interface** (backward-compatible):
 
