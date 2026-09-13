@@ -1,8 +1,14 @@
 # D04 drift-validation registration
 
-Status: registered fixture; external comparison remains preliminary.
+Status: v1 is a fixture; current external objective subset is registered as v2 and remains preliminary.
 Registered: 2026-09-11 UTC
 Owner: haunt
+
+## Current external registration
+
+The current score-blind registration is `docs/drift-validation-registration-v2.md`, with immutable snapshots and objective labels in `runs/drift-validation-v2/`. It covers one objective public-interface label for each of Flask, Requests, and Pydantic. It claims no behavioral/dependency labels, semantic generalization, or metric association. No independent reviewers are claimed; the main semantic comparison still requires two independent blinded reviewers. `validation.json` is preliminary until vpn completes D04-V on the exact registration and label hashes.
+
+The previous fixture below remains historical v1 validation evidence and is not the external label ledger.
 
 ## Claim and estimands
 

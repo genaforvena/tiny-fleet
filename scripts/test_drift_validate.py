@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import copy
+import hashlib
 import json
 import tempfile
 import unittest
@@ -68,6 +69,112 @@ class DriftValidationTests(unittest.TestCase):
         rows[0]["adjudication"] = None
         with self.assertRaisesRegex(ValueError, "adjudication"):
             validate_labels(self.registration(), rows)
+
+    def test_objective_interface_subset_does_not_require_invented_reviewers(self):
+        registration = self.registration()
+        registration["label_schema"]["objective_only"] = True
+        registration["semantic_generalization"] = False
+        row = self.labels()[0]
+        row.update({
+            "unit_id": "r1:public-interface",
+            "unit_kind": "interface",
+            "label_basis": "objective_interface",
+            "evidence_kind": "commit_diff",
+            "evidence": {
+                "old_commit": "a" * 40,
+                "new_commit": "b" * 40,
+                "old_path": "api.py",
+                "new_path": "api.py",
+                "changed_public_symbols": ["Client.new_method"],
+                "release_note_path": "CHANGELOG.md",
+                "old_source_sha256": "0" * 64,
+                "new_source_sha256": "1" * 64,
+                "release_note_sha256": "2" * 64,
+            },
+        })
+        row.pop("reviewers")
+        row.pop("adjudication")
+        row.pop("reviewer_labels", None)
+        rows = [row]
+        for repo in registration["repositories"][1:]:
+            next_row = copy.deepcopy(row)
+            next_row["unit_id"] = f"{repo['repo_id']}:public-interface"
+            next_row["repo_id"] = repo["repo_id"]
+            next_row["evidence"]["old_commit"] = repo["old"]
+            next_row["evidence"]["new_commit"] = repo["new"]
+            rows.append(next_row)
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            unit_map = {
+                "schema": "tiny-fleet.drift-unit-map/v1",
+                "units": [
+                    {
+                        "unit_id": item["unit_id"],
+                        "repo_id": item["repo_id"],
+                        "old_path": item["evidence"]["old_path"],
+                        "new_path": item["evidence"]["new_path"],
+                        "selected_symbol": item["evidence"]["changed_public_symbols"][0],
+                    }
+                    for item in rows
+                ],
+            }
+            unit_map_bytes = (json.dumps(unit_map, sort_keys=True) + "\n").encode()
+            (root / "unit-map.json").write_bytes(unit_map_bytes)
+            registration["unit_map"] = "unit-map.json"
+            registration["unit_map_sha256"] = hashlib.sha256(unit_map_bytes).hexdigest()
+            (root / "registration.json").write_text(json.dumps(registration))
+            (root / "labels.jsonl").write_text("\n".join(json.dumps(item) for item in rows) + "\n")
+            result = validate_run(root)
+            decision = (root / "decision.md").read_text()
+            (root / "unit-map.json").write_text("{}\n")
+            with self.assertRaisesRegex(ValueError, "unit map hash mismatch"):
+                validate_run(root)
+        self.assertEqual(result["coverage"]["units"], 3)
+        self.assertEqual(result["coverage"]["reviewed_units"], 0)
+        self.assertTrue(result["coverage"]["objective_only"])
+        self.assertIn("semantic generalization is withheld", decision)
+
+    def test_objective_only_cannot_label_semantic_behavior_without_reviewers(self):
+        registration = self.registration()
+        registration["label_schema"]["objective_only"] = True
+        registration["semantic_generalization"] = False
+        row = self.labels()[0]
+        row.update({"label_basis": "objective_interface", "change_class": "behavior_change"})
+        row.pop("reviewers")
+        row.pop("adjudication")
+        row.pop("reviewer_labels", None)
+        with self.assertRaisesRegex(ValueError, "objective interface labels"):
+            validate_labels(registration, [row])
+
+    def test_objective_interface_evidence_requires_source_hashes(self):
+        registration = self.registration()
+        registration["label_schema"]["objective_only"] = True
+        registration["semantic_generalization"] = False
+        row = copy.deepcopy(self.labels()[0])
+        row.update({"label_basis": "objective_interface", "unit_kind": "interface"})
+        row.pop("reviewers")
+        row.pop("adjudication")
+        row["evidence"].update({
+            "old_commit": "a" * 40,
+            "new_commit": "b" * 40,
+            "old_path": "api.py",
+            "new_path": "api.py",
+            "changed_public_symbols": ["Client.new_method"],
+            "release_note_path": "CHANGELOG.md",
+            "old_source_sha256": "0" * 64,
+            "release_note_sha256": "2" * 64,
+        })
+        rows = [row]
+        for repo in registration["repositories"][1:]:
+            next_row = copy.deepcopy(row)
+            next_row["unit_id"] = f"{repo['repo_id']}:public-interface"
+            next_row["repo_id"] = repo["repo_id"]
+            next_row["evidence"]["old_commit"] = repo["old"]
+            next_row["evidence"]["new_commit"] = repo["new"]
+            next_row["evidence"]["new_source_sha256"] = "1" * 64
+            rows.append(next_row)
+        with self.assertRaisesRegex(ValueError, "evidence content hashes required"):
+            validate_labels(registration, rows)
 
 
 if __name__ == "__main__":
