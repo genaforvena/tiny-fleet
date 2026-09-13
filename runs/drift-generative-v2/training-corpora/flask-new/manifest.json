@@ -1,0 +1,51 @@
+{
+  "corpus_builder": {
+    "path": "scripts/build_drift_train_corpus.py",
+    "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+  },
+  "inventory": {
+    "excluded": 226,
+    "included": 23,
+    "path": "runs/drift-generative-v2/training-corpora/flask-new/inventory.jsonl",
+    "rows": 249,
+    "sha256": "d7886988f502e154a85a5f07541e1308edacec21078053032ec4447ffb042cd5"
+  },
+  "license": {
+    "saved_path": "runs/drift-generative-v2/training-corpora/flask-new/LICENSE.txt",
+    "saved_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+    "source_path": "LICENSE.txt",
+    "source_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+    "spdx": "BSD-3-Clause"
+  },
+  "package_root": "src/flask",
+  "repo": "flask",
+  "schema": "tiny-fleet.drift-training-corpus/v1",
+  "selection": {
+    "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+    "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+    "exclude": [
+      "outside native package",
+      "tests directories and test_*.py/*_test.py files",
+      "generated/vendor trees",
+      "non-Python files",
+      "symlinks and non-regular objects",
+      "binary or malformed UTF-8",
+      "selected held-out source module"
+    ],
+    "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+    "heldout_source_excluded": "src/flask/cli.py",
+    "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+  },
+  "snapshot": "new",
+  "source_commit": "ab8149664182b662453a563161aa89013c806dc9",
+  "train": {
+    "path": "runs/drift-generative-v2/training-corpora/flask-new/train.jsonl",
+    "rows": 20,
+    "sha256": "9c99161068468e65c859ce4a256545fb608ff3c1a8038b6a592b9fa281512282"
+  },
+  "validation": {
+    "path": "runs/drift-generative-v2/training-corpora/flask-new/validation.jsonl",
+    "rows": 3,
+    "sha256": "b32765f5fe869a76600e94589b87fa9d19ae2bce56fdeebd3c42ab51ea700b12"
+  }
+}

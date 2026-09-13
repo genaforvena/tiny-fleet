@@ -1,0 +1,379 @@
+{
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "corpora": [
+    {
+      "corpus_builder": {
+        "path": "scripts/build_drift_train_corpus.py",
+        "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+      },
+      "inventory": {
+        "excluded": 221,
+        "included": 21,
+        "path": "runs/drift-generative-v2/training-corpora/flask-old/inventory.jsonl",
+        "rows": 242,
+        "sha256": "eec9071e4f27e08e4ddca557c1f029eedb53ea5bcddc3ff32607c804ef1ac922"
+      },
+      "license": {
+        "saved_path": "runs/drift-generative-v2/training-corpora/flask-old/LICENSE.txt",
+        "saved_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+        "source_path": "LICENSE.rst",
+        "source_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+        "spdx": "BSD-3-Clause"
+      },
+      "manifest_sha256": "c2826506d82f7dd80c839c5fae0d845e7876a4236abc36b45fe655d84086cef1",
+      "package_root": "src/flask",
+      "repo": "flask",
+      "schema": "tiny-fleet.drift-training-corpus/v1",
+      "selection": {
+        "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+        "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+        "exclude": [
+          "outside native package",
+          "tests directories and test_*.py/*_test.py files",
+          "generated/vendor trees",
+          "non-Python files",
+          "symlinks and non-regular objects",
+          "binary or malformed UTF-8",
+          "selected held-out source module"
+        ],
+        "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+        "heldout_source_excluded": "src/flask/cli.py",
+        "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+      },
+      "snapshot": "old",
+      "source_commit": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3",
+      "train": {
+        "path": "runs/drift-generative-v2/training-corpora/flask-old/train.jsonl",
+        "rows": 18,
+        "sha256": "c9ac1739920d841cf6f47bdb1658f4af3620eed1e3315f0f4264de4bd093a768"
+      },
+      "validation": {
+        "path": "runs/drift-generative-v2/training-corpora/flask-old/validation.jsonl",
+        "rows": 3,
+        "sha256": "95e3c8541eb430026c6ae20a319e707832cf464b2aa98396b0a4df777f76001a"
+      }
+    },
+    {
+      "corpus_builder": {
+        "path": "scripts/build_drift_train_corpus.py",
+        "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+      },
+      "inventory": {
+        "excluded": 226,
+        "included": 23,
+        "path": "runs/drift-generative-v2/training-corpora/flask-new/inventory.jsonl",
+        "rows": 249,
+        "sha256": "d7886988f502e154a85a5f07541e1308edacec21078053032ec4447ffb042cd5"
+      },
+      "license": {
+        "saved_path": "runs/drift-generative-v2/training-corpora/flask-new/LICENSE.txt",
+        "saved_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+        "source_path": "LICENSE.txt",
+        "source_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+        "spdx": "BSD-3-Clause"
+      },
+      "manifest_sha256": "7cf04ab6bc54ce2f354d64f406b313c7b1792c038c74fa02e6a4c6037101ef61",
+      "package_root": "src/flask",
+      "repo": "flask",
+      "schema": "tiny-fleet.drift-training-corpus/v1",
+      "selection": {
+        "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+        "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+        "exclude": [
+          "outside native package",
+          "tests directories and test_*.py/*_test.py files",
+          "generated/vendor trees",
+          "non-Python files",
+          "symlinks and non-regular objects",
+          "binary or malformed UTF-8",
+          "selected held-out source module"
+        ],
+        "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+        "heldout_source_excluded": "src/flask/cli.py",
+        "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+      },
+      "snapshot": "new",
+      "source_commit": "ab8149664182b662453a563161aa89013c806dc9",
+      "train": {
+        "path": "runs/drift-generative-v2/training-corpora/flask-new/train.jsonl",
+        "rows": 20,
+        "sha256": "9c99161068468e65c859ce4a256545fb608ff3c1a8038b6a592b9fa281512282"
+      },
+      "validation": {
+        "path": "runs/drift-generative-v2/training-corpora/flask-new/validation.jsonl",
+        "rows": 3,
+        "sha256": "b32765f5fe869a76600e94589b87fa9d19ae2bce56fdeebd3c42ab51ea700b12"
+      }
+    },
+    {
+      "corpus_builder": {
+        "path": "scripts/build_drift_train_corpus.py",
+        "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+      },
+      "inventory": {
+        "excluded": 309,
+        "included": 25,
+        "path": "runs/drift-generative-v2/training-corpora/pydantic-old/inventory.jsonl",
+        "rows": 334,
+        "sha256": "f5ca717e5d6dd8aa31d5f30e113a80bf390c9bc8c342ffd1809df2ab42798fa7"
+      },
+      "license": {
+        "saved_path": "runs/drift-generative-v2/training-corpora/pydantic-old/LICENSE.txt",
+        "saved_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+        "source_path": "LICENSE",
+        "source_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+        "spdx": "MIT"
+      },
+      "manifest_sha256": "b1b146fa9856c30ab8cb983199628867adf99da1ab25dd424322339ca1b86e99",
+      "package_root": "pydantic",
+      "repo": "pydantic",
+      "schema": "tiny-fleet.drift-training-corpus/v1",
+      "selection": {
+        "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+        "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+        "exclude": [
+          "outside native package",
+          "tests directories and test_*.py/*_test.py files",
+          "generated/vendor trees",
+          "non-Python files",
+          "symlinks and non-regular objects",
+          "binary or malformed UTF-8",
+          "selected held-out source module"
+        ],
+        "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+        "heldout_source_excluded": "pydantic/config.py",
+        "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+      },
+      "snapshot": "old",
+      "source_commit": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d",
+      "train": {
+        "path": "runs/drift-generative-v2/training-corpora/pydantic-old/train.jsonl",
+        "rows": 22,
+        "sha256": "2151e40014f0cda63d2a9e5820d5a846f889184d8e5e930633807e696b9d5dbb"
+      },
+      "validation": {
+        "path": "runs/drift-generative-v2/training-corpora/pydantic-old/validation.jsonl",
+        "rows": 3,
+        "sha256": "c85ac0f5a00fdf0d6f787d8e526e6b83aa93ef0b62edad961007c88d1b119dc7"
+      }
+    },
+    {
+      "corpus_builder": {
+        "path": "scripts/build_drift_train_corpus.py",
+        "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+      },
+      "inventory": {
+        "excluded": 373,
+        "included": 102,
+        "path": "runs/drift-generative-v2/training-corpora/pydantic-new/inventory.jsonl",
+        "rows": 475,
+        "sha256": "37f8cb7b85c7f882cf50c5f8d2fa65ec2ac993b0ef5bfc2dddcead0e01ac48b5"
+      },
+      "license": {
+        "saved_path": "runs/drift-generative-v2/training-corpora/pydantic-new/LICENSE.txt",
+        "saved_sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+        "source_path": "LICENSE",
+        "source_sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+        "spdx": "MIT"
+      },
+      "manifest_sha256": "a996a9183252dd28bda3b38b47e6c2e174079e522b164560ee263a101d76d6ff",
+      "package_root": "pydantic",
+      "repo": "pydantic",
+      "schema": "tiny-fleet.drift-training-corpus/v1",
+      "selection": {
+        "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+        "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+        "exclude": [
+          "outside native package",
+          "tests directories and test_*.py/*_test.py files",
+          "generated/vendor trees",
+          "non-Python files",
+          "symlinks and non-regular objects",
+          "binary or malformed UTF-8",
+          "selected held-out source module"
+        ],
+        "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+        "heldout_source_excluded": "pydantic/config.py",
+        "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+      },
+      "snapshot": "new",
+      "source_commit": "5bd3a6507b749fcd4833173fba88b3690ff77170",
+      "train": {
+        "path": "runs/drift-generative-v2/training-corpora/pydantic-new/train.jsonl",
+        "rows": 91,
+        "sha256": "02eecbce80bc19244d78f55f800caef0693f7071171cffc025c1d68548e39609"
+      },
+      "validation": {
+        "path": "runs/drift-generative-v2/training-corpora/pydantic-new/validation.jsonl",
+        "rows": 11,
+        "sha256": "db2ba5922d7a54fa754c38d164c1350bbbf5870bb206f144dc316a6aa5350ac9"
+      }
+    },
+    {
+      "corpus_builder": {
+        "path": "scripts/build_drift_train_corpus.py",
+        "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+      },
+      "inventory": {
+        "excluded": 83,
+        "included": 17,
+        "path": "runs/drift-generative-v2/training-corpora/requests-old/inventory.jsonl",
+        "rows": 100,
+        "sha256": "3ae23597e61f432e1396d30146fb4b0389d50d66ff2230a492f29e13a6046075"
+      },
+      "license": {
+        "saved_path": "runs/drift-generative-v2/training-corpora/requests-old/LICENSE.txt",
+        "saved_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "source_path": "LICENSE",
+        "source_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "spdx": "Apache-2.0"
+      },
+      "manifest_sha256": "01b4b0978adda5a82394ab8aaceaa8ef4b25ec4b9457d308a3c5ff20561f6499",
+      "package_root": "requests",
+      "repo": "requests",
+      "schema": "tiny-fleet.drift-training-corpus/v1",
+      "selection": {
+        "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+        "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+        "exclude": [
+          "outside native package",
+          "tests directories and test_*.py/*_test.py files",
+          "generated/vendor trees",
+          "non-Python files",
+          "symlinks and non-regular objects",
+          "binary or malformed UTF-8",
+          "selected held-out source module"
+        ],
+        "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+        "heldout_source_excluded": "requests/structures.py",
+        "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+      },
+      "snapshot": "old",
+      "source_commit": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b",
+      "train": {
+        "path": "runs/drift-generative-v2/training-corpora/requests-old/train.jsonl",
+        "rows": 15,
+        "sha256": "06fa91a35e3fd1ef3ff9403a8ea844e364284a426885970ef186c88ceab004bb"
+      },
+      "validation": {
+        "path": "runs/drift-generative-v2/training-corpora/requests-old/validation.jsonl",
+        "rows": 2,
+        "sha256": "c1b5d23d29c54cf31f513597ff30c645d4d6c69e851629170b2759fb5529dc89"
+      }
+    },
+    {
+      "corpus_builder": {
+        "path": "scripts/build_drift_train_corpus.py",
+        "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+      },
+      "inventory": {
+        "excluded": 114,
+        "included": 17,
+        "path": "runs/drift-generative-v2/training-corpora/requests-new/inventory.jsonl",
+        "rows": 131,
+        "sha256": "c3ad16f7729cd06f9d28f79bf9406d1409b2fa346e21163eced7a2676c68e26f"
+      },
+      "license": {
+        "saved_path": "runs/drift-generative-v2/training-corpora/requests-new/LICENSE.txt",
+        "saved_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "source_path": "LICENSE",
+        "source_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "spdx": "Apache-2.0"
+      },
+      "manifest_sha256": "e9c958418ccaa3ed82dad74747271de0647893ce9332cac7e44efc83f3d2ce36",
+      "package_root": "src/requests",
+      "repo": "requests",
+      "schema": "tiny-fleet.drift-training-corpus/v1",
+      "selection": {
+        "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+        "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+        "exclude": [
+          "outside native package",
+          "tests directories and test_*.py/*_test.py files",
+          "generated/vendor trees",
+          "non-Python files",
+          "symlinks and non-regular objects",
+          "binary or malformed UTF-8",
+          "selected held-out source module"
+        ],
+        "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+        "heldout_source_excluded": "src/requests/structures.py",
+        "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+      },
+      "snapshot": "new",
+      "source_commit": "0e322af87745eff34caffe4df68456ebc20d9068",
+      "train": {
+        "path": "runs/drift-generative-v2/training-corpora/requests-new/train.jsonl",
+        "rows": 15,
+        "sha256": "a9e2f0d1676d596e2d0a3d031c07b800c4ad42f7e86d5d1e13442180e0860821"
+      },
+      "validation": {
+        "path": "runs/drift-generative-v2/training-corpora/requests-new/validation.jsonl",
+        "rows": 2,
+        "sha256": "6e892e9e3be1cc5d4ac302b184620a6bc6cc5c5aca1ec7fb150b0a3e1d1abece"
+      }
+    }
+  ],
+  "corpus_builder": {
+    "path": "scripts/build_drift_train_corpus.py",
+    "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+  },
+  "heldout_excerpt_ledger": {
+    "path": "runs/drift-generative-v2/heldout-excerpts/heldout-excerpts.json",
+    "sha256": "ef117c462697932c461645c356302907ad3ab9275d49ab0be5ccf52b358ccba6"
+  },
+  "schema": "tiny-fleet.drift-adapter-training-plan/v1",
+  "scorer_registration": {
+    "path": "runs/drift-generative-v2/execution-scorer.json",
+    "sha256": "d914993163725123e76b09c30d78c534dfdd75cdca33c1e4f5e5eeb9f5013027"
+  },
+  "source_sample_manifest": {
+    "path": "docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json",
+    "sha256": "07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59"
+  },
+  "status": "corpora-built-no-training-run-yet",
+  "training": {
+    "batch_size": 1,
+    "epochs": 1,
+    "gradient_accumulation": 4,
+    "learning_rate": 0.0002,
+    "lora": {
+      "alpha": 16,
+      "dropout": 0.05,
+      "rank": 8,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "max_gradient_norm": 1.0,
+    "max_sequence_length": 256,
+    "parameter_rationale": {
+      "epochs_and_token_budget": "one pass over a deterministic maximum of 16384 train tokens bounds each of six adapters to at most 64 full 256-token sequences; source corpora contain substantially more data and selected excerpts are removed",
+      "gpu_and_ram_budget": "admit only with 8192 MiB free VRAM and an 8192 MiB mesh-heavy-run RAM ceiling; current baseline has less VRAM, so use mesh-gpu-lease preemption and restore the exact previously active managed services",
+      "learning_rate_and_rank": "2e-4 AdamW with rank 8 / alpha 16 LoRA is a low-rank bounded adaptation for the pinned 360M base and small repository-specific corpus",
+      "seed": "use the first seed in the already frozen generation schedule for a reproducible per-snapshot adapter",
+      "sequence_and_batch": "256-token windows and batch size one bound RTX 3060 activation memory; four-step gradient accumulation yields effective batch size four",
+      "validation": "reserve deterministic whole source files (10% by path hash) before token selection; at most 4096 validation tokens per adapter, with smaller actual validation corpora left smaller"
+    },
+    "runtime": "local-only pinned Transformers/PyTorch/PEFT; CPU fallback is prohibited for this GPU-budgeted run",
+    "seed": 17,
+    "sequence_sampling": "tokenize per-file text, split to non-overlapping 256-token chunks, rank chunks by SHA256(repo + NUL + snapshot + NUL + source path + NUL + chunk index), then take the lowest ranks up to the registered budget",
+    "train_token_budget_per_adapter": 16384,
+    "validation": "token-weighted causal-language-model loss on the file-disjoint deterministic 10% split; reports adaptation validation only, not external semantic truth",
+    "validation_token_budget_per_adapter": 4096,
+    "weight_decay": 0.01
+  },
+  "training_runner": {
+    "path": "scripts/train_drift_adapters.py",
+    "source_sha256": "2f77e47420aaaab975a18b170c4b80f721ad0db2c7a5b0c519ec7c90e27d0d75"
+  }
+}
