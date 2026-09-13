@@ -1,0 +1,13 @@
+2026-09-13 20:05:46,237 INFO starting run=1bc5fbed5b10732a0c53 repo=attrs snapshot=new gpu=NVIDIA GeForce RTX 3060 free_mib=11911
+2026-09-13 20:05:46,238 ERROR training failed
+Traceback (most recent call last):
+  File "/home/mesh-home/tiny-fleet/scripts/train_drift_adapters.py", line 240, in train_one
+    import torch
+ModuleNotFoundError: No module named 'torch'
+2026-09-13 20:09:44,308 INFO starting run=1bc5fbed5b10732a0c53 repo=attrs snapshot=new gpu=NVIDIA GeForce RTX 3060 free_mib=11911
+2026-09-13 20:09:55,601 INFO progress chunks=16/66 mean_loss=2.27017
+2026-09-13 20:09:58,873 INFO progress chunks=32/66 mean_loss=2.18815
+2026-09-13 20:10:03,497 INFO progress chunks=48/66 mean_loss=2.11225
+2026-09-13 20:10:11,379 INFO progress chunks=64/66 mean_loss=2.12907
+2026-09-13 20:10:12,014 INFO progress chunks=66/66 mean_loss=2.11888
+2026-09-13 20:10:16,065 INFO complete adapter_sha256=bb47fd26c057d345ff82009e2d6603a7a16e938956ce767ca7146352f71404de train_loss=2.11888 validation_before=1.82272 validation_after=1.76424

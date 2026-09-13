@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 import unittest
 
-from train_drift_adapters import chunk_tokens, select_chunks
+from train_drift_adapters import chunk_tokens, run_root_for_plan, select_chunks
 
 
 class DriftAdapterTrainingHelpersTests(unittest.TestCase):
+    def test_training_artifacts_stay_bound_to_the_plan_sample(self):
+        self.assertEqual(run_root_for_plan({"schema": "tiny-fleet.drift-adapter-training-plan/v1"}),
+                         "runs/drift-generative-v2")
+        self.assertEqual(run_root_for_plan({"schema": "tiny-fleet.drift-confirmatory-adapter-training-plan/v1"}),
+                         "runs/drift-confirmatory-v1")
+
     def test_chunking_is_nonoverlapping_and_drops_short_tail(self):
         chunks = chunk_tokens(list(range(11)), max_length=4, minimum_tokens=4)
         self.assertEqual(chunks, [(0, 1, 2, 3), (4, 5, 6, 7)])

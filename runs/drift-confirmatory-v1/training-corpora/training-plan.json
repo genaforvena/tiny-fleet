@@ -1,0 +1,193 @@
+{
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "corpora": [
+    {
+      "inventory": {
+        "excluded": 110,
+        "included": 12,
+        "path": "runs/drift-confirmatory-v1/training-corpora/attrs-new/inventory.jsonl",
+        "rows": 122,
+        "sha256": "084f87eba714b1eae3ad9c09689a4516b98cd01c9362c1e4fc4ffdd57cd91786"
+      },
+      "manifest_path": "runs/drift-confirmatory-v1/training-corpora/attrs-new/manifest.json",
+      "manifest_sha256": "7d441983ed5a7aae756ddb7658821a85fd61c95d0f6b7d6bb6e915f7ee0c5583",
+      "repo": "attrs",
+      "snapshot": "new",
+      "train": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/attrs-new/train.jsonl",
+        "rows": 10,
+        "sha256": "565ce2e59b26569b5c45e999b34c4631da502bb0d0676382e74a9d6d16881188"
+      },
+      "validation": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/attrs-new/validation.jsonl",
+        "rows": 2,
+        "sha256": "2160151d5b95e0164b45aaf5af49e2ac33e5ff7fed6a6a078053b933c8a51b67"
+      }
+    },
+    {
+      "inventory": {
+        "excluded": 100,
+        "included": 12,
+        "path": "runs/drift-confirmatory-v1/training-corpora/attrs-old/inventory.jsonl",
+        "rows": 112,
+        "sha256": "e4e12e26a975a173812da28359931e6ab5ae0b2b07b2d649acccf6a8f15e03eb"
+      },
+      "manifest_path": "runs/drift-confirmatory-v1/training-corpora/attrs-old/manifest.json",
+      "manifest_sha256": "60b4fd56f04f2b2bb4c484bafd760a11a09d0fd5992eed8c3dd5d2ef480fe330",
+      "repo": "attrs",
+      "snapshot": "old",
+      "train": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/attrs-old/train.jsonl",
+        "rows": 10,
+        "sha256": "0bf6f529a31910a01e4e04a15e44ed5090f8ce21d55b04b7c0c4e4521df9e2d6"
+      },
+      "validation": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/attrs-old/validation.jsonl",
+        "rows": 2,
+        "sha256": "66f0b256e4e353cdcd60636b3fef1c974d62a3503e7631c4ea74695844076872"
+      }
+    },
+    {
+      "inventory": {
+        "excluded": 103,
+        "included": 22,
+        "path": "runs/drift-confirmatory-v1/training-corpora/httpx-new/inventory.jsonl",
+        "rows": 125,
+        "sha256": "9f6720f1547649a6e92a8cffd6406ac3b46375d4c47d612e8248743a32aad597"
+      },
+      "manifest_path": "runs/drift-confirmatory-v1/training-corpora/httpx-new/manifest.json",
+      "manifest_sha256": "9245209fa3004bd1ead47347d86f7b77923846d6db6d9478317589e1ac025cfc",
+      "repo": "httpx",
+      "snapshot": "new",
+      "train": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/httpx-new/train.jsonl",
+        "rows": 19,
+        "sha256": "78688b3a942e9054de3ec7490cb7a926bdd2863b0fdc50a6fc8c854d0af1ecf1"
+      },
+      "validation": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/httpx-new/validation.jsonl",
+        "rows": 3,
+        "sha256": "5935728e4d96787fd892b7007fd2cdb4b40b95421e7e9470f89eb322d2261f25"
+      }
+    },
+    {
+      "inventory": {
+        "excluded": 94,
+        "included": 22,
+        "path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/inventory.jsonl",
+        "rows": 116,
+        "sha256": "3133e3c074ae2e8d8798089d604e32fa433c70ae187ea6b1cb600ca95dc42c97"
+      },
+      "manifest_path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/manifest.json",
+      "manifest_sha256": "3229c1a34b2291793afa9890d7df31a7c0cb691c5778d82dd74f0c28b110f657",
+      "repo": "httpx",
+      "snapshot": "old",
+      "train": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/train.jsonl",
+        "rows": 19,
+        "sha256": "4a134f083eb1bc866f0190b3017249178cc5c72a5d93fa2d16bc30893cb0fb1e"
+      },
+      "validation": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/validation.jsonl",
+        "rows": 3,
+        "sha256": "a2eacfa1cda103a0c51c65852e220494fafdbc5e5d0de312c2c2996e4521053a"
+      }
+    },
+    {
+      "inventory": {
+        "excluded": 533,
+        "included": 66,
+        "path": "runs/drift-confirmatory-v1/training-corpora/pytest-new/inventory.jsonl",
+        "rows": 599,
+        "sha256": "e9912ef448efe200e8f666e6b10a3a8ada0ed9a0292b478de21feffee60e2927"
+      },
+      "manifest_path": "runs/drift-confirmatory-v1/training-corpora/pytest-new/manifest.json",
+      "manifest_sha256": "f87276a0d38004e3e098c59b9b1db091055849870dec956f713aab2f448f868e",
+      "repo": "pytest",
+      "snapshot": "new",
+      "train": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/pytest-new/train.jsonl",
+        "rows": 59,
+        "sha256": "4c3a8bcb405a3fff0ce37feba69883679f9178c510a47b33d05dfd62b9aa0c06"
+      },
+      "validation": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/pytest-new/validation.jsonl",
+        "rows": 7,
+        "sha256": "121f14a8882fd5913872bf17761980d68513aa7cda0ef657160c41f889c28f72"
+      }
+    },
+    {
+      "inventory": {
+        "excluded": 495,
+        "included": 66,
+        "path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/inventory.jsonl",
+        "rows": 561,
+        "sha256": "73438aa05ee9e8348c411687e86e8cf4f1b0a0d733c693ab48c1c2c0eafee236"
+      },
+      "manifest_path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/manifest.json",
+      "manifest_sha256": "d3fe08994511f0acc550d34b6bf6afb7956c8f1ccefce9fe25bdb75c79cb175c",
+      "repo": "pytest",
+      "snapshot": "old",
+      "train": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/train.jsonl",
+        "rows": 59,
+        "sha256": "136ee97d5397c05115dd1d2789edb1c940fa62e1044357eb3ba52592073d6c39"
+      },
+      "validation": {
+        "path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/validation.jsonl",
+        "rows": 7,
+        "sha256": "485b2babe27091c5f9759f4f074c3b5bbd533404cdbbfc12c46097470ab78485"
+      }
+    }
+  ],
+  "corpus_builder": {
+    "path": "scripts/build_drift_confirmatory_corpus.py",
+    "source_sha256": "71eaa0a013c38ab97914f4cd22a6e6fa39f13ca8c3eab018447a94e62761bad1"
+  },
+  "heldout_excerpt_ledger": {
+    "path": "runs/drift-confirmatory-v1/heldout-excerpts/heldout-excerpts.json",
+    "sha256": "d37c62534a429d7659b78d44f4f7bc2e6ca2d56ee14a1eb101b81e00d245c83a"
+  },
+  "sample_registration": {
+    "path": "runs/drift-confirmatory-v1/registration.json",
+    "sha256": "f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8"
+  },
+  "schema": "tiny-fleet.drift-confirmatory-adapter-training-plan/v1",
+  "status": "corpora-built-no-training-run-yet",
+  "training": {
+    "batch_size": 1,
+    "epochs": 1,
+    "gradient_accumulation": 4,
+    "learning_rate": 0.0002,
+    "lora": {
+      "alpha": 16,
+      "dropout": 0.05,
+      "rank": 8,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "max_gradient_norm": 1.0,
+    "max_sequence_length": 256,
+    "resource_admission": "GPU required; mesh-heavy-run RAM ceiling 8192 MiB, minimum free VRAM 8192 MiB, preempt enabled, lease TTL 1800s; exact managed-service restoration must be recorded",
+    "seed": 17,
+    "sequence_sampling": "non-overlapping 256-token chunks, ranked by SHA256(repo + NUL + snapshot + NUL + source path + NUL + chunk index), then take the lowest ranks up to the budget",
+    "train_token_budget_per_adapter": 16384,
+    "validation": "token-weighted causal-language-model loss on the file-disjoint deterministic 10% split; adaptation diagnostic only",
+    "validation_token_budget_per_adapter": 4096,
+    "weight_decay": 0.01
+  },
+  "training_runner": {
+    "path": "scripts/train_drift_adapters.py",
+    "source_sha256": "b02606262acdeb4b7f9556229c2efc864d08c3c9b0b8ad2dc300678a61c7c8a7"
+  }
+}

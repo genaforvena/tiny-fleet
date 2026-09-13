@@ -30,6 +30,17 @@ def sha256(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def run_root_for_plan(plan):
+    roots = {
+        "tiny-fleet.drift-adapter-training-plan/v1": "runs/drift-generative-v2",
+        "tiny-fleet.drift-confirmatory-adapter-training-plan/v1": "runs/drift-confirmatory-v1",
+    }
+    try:
+        return roots[plan.get("schema")]
+    except (AttributeError, KeyError) as exc:
+        raise ValueError("unsupported adapter training plan schema") from exc
+
+
 def chunk_tokens(input_ids, *, max_length, minimum_tokens=32):
     if max_length <= 1 or minimum_tokens <= 0 or minimum_tokens > max_length:
         raise ValueError("invalid token chunk limits")
@@ -121,8 +132,7 @@ def load_corpus(plan_path, repo, snapshot):
     plan_path = Path(plan_path)
     plan_bytes = plan_path.read_bytes()
     plan = json.loads(plan_bytes)
-    if plan.get("schema") != "tiny-fleet.drift-adapter-training-plan/v1":
-        raise ValueError("training plan schema mismatch")
+    run_root = Path(run_root_for_plan(plan))
     if plan.get("base_model") != {"id": BASE_MODEL, "revision": BASE_REVISION}:
         raise ValueError("training plan base-model mismatch")
     runner = plan.get("training_runner", {})
@@ -131,7 +141,8 @@ def load_corpus(plan_path, repo, snapshot):
     corpus = next((row for row in plan["corpora"] if row["repo"] == repo and row["snapshot"] == snapshot), None)
     if corpus is None:
         raise ValueError("no corpus row for requested snapshot")
-    corpus_manifest_path = REPO_ROOT / "runs" / "drift-generative-v2" / "training-corpora" / f"{repo}-{snapshot}" / "manifest.json"
+    corpus_manifest_path = (REPO_ROOT / corpus["manifest_path"] if run_root.name == "drift-confirmatory-v1"
+                            else REPO_ROOT / run_root / "training-corpora" / f"{repo}-{snapshot}" / "manifest.json")
     manifest_bytes = corpus_manifest_path.read_bytes()
     if sha256(manifest_bytes) != corpus["manifest_sha256"]:
         raise ValueError("snapshot corpus manifest hash mismatch")
@@ -144,7 +155,9 @@ def load_corpus(plan_path, repo, snapshot):
     if sha256(train_bytes) != corpus["train"]["sha256"] or sha256(validation_bytes) != corpus["validation"]["sha256"]:
         raise ValueError("corpus split hash mismatch")
     train_records, validation_records = read_jsonl(train_path), read_jsonl(validation_path)
-    heldout = manifest["selection"]["heldout_source_excluded"]
+    heldout = (manifest["heldout_excerpt_ledger"]["source_path_excluded"]
+               if run_root.name == "drift-confirmatory-v1"
+               else manifest["selection"]["heldout_source_excluded"])
     for row in train_records + validation_records:
         if row["source_path"] == heldout:
             raise ValueError("held-out module leaked into training corpus")
@@ -197,8 +210,9 @@ def train_one(plan_path, repo, snapshot):
     config = plan["training"]
     seed = int(config["seed"])
     run_key = hashlib.sha256(f"{plan_sha}\0{repo}\0{snapshot}\0{seed}".encode()).hexdigest()[:20]
-    run_dir = REPO_ROOT / "runs" / "drift-generative-v2" / "training-runs" / f"{repo}-{snapshot}"
-    adapter_dir = REPO_ROOT / "runs" / "drift-generative-v2" / "adapters" / f"{repo}-{snapshot}"
+    run_root = REPO_ROOT / run_root_for_plan(plan)
+    run_dir = run_root / "training-runs" / f"{repo}-{snapshot}"
+    adapter_dir = run_root / "adapters" / f"{repo}-{snapshot}"
     run_dir.mkdir(parents=True, exist_ok=True)
     log_path = run_dir / "training.log"
     handler = logging.FileHandler(log_path, mode="a", encoding="utf-8")
@@ -216,7 +230,7 @@ def train_one(plan_path, repo, snapshot):
         "hyperparameters": {key: config[key] for key in ("epochs", "max_sequence_length", "train_token_budget_per_adapter",
             "validation_token_budget_per_adapter", "batch_size", "gradient_accumulation", "learning_rate", "weight_decay",
             "max_gradient_norm", "lora")},
-        "adapter_path": adapter_dir.relative_to(REPO_ROOT / "runs" / "drift-generative-v2").as_posix(),
+        "adapter_path": adapter_dir.relative_to(run_root).as_posix(),
         "resource_at_start": resource,
     }
     write_json(run_dir / "run.json", result)
@@ -331,14 +345,16 @@ def _redact_lease_token(value):
 
 def run_all(plan_path):
     plan_path = Path(plan_path)
+    plan = json.loads(plan_path.read_text(encoding="utf-8"))
+    run_root = REPO_ROOT / run_root_for_plan(plan)
     baseline = system_resources()
     if any(state not in {"active", "inactive"} for state in baseline["services"].values()):
         raise RuntimeError("cannot establish exact managed GPU-service state before training")
     if baseline["gpu_lease"] is not None or baseline["gpu_name"] is None or baseline["gpu_free_mib"] is None:
         raise RuntimeError("cannot start: an existing GPU lease or unreadable GPU state is present")
     training_rows = []
-    adapter_root = REPO_ROOT / "runs" / "drift-generative-v2" / "adapters"
-    training_root = REPO_ROOT / "runs" / "drift-generative-v2" / "training-runs"
+    adapter_root = run_root / "adapters"
+    training_root = run_root / "training-runs"
     training_root.mkdir(parents=True, exist_ok=True)
     for corpus in json.loads(plan_path.read_text(encoding="utf-8"))["corpora"]:
         repo, snapshot = corpus["repo"], corpus["snapshot"]
@@ -353,7 +369,7 @@ def run_all(plan_path):
                 if previous.get("training_plan_sha256") != sha256(plan_path.read_bytes()):
                     raise RuntimeError(f"completed run plan changed for {repo}/{snapshot}")
                 from drift_generate import adapter_tree_digest
-                adapter_dir = REPO_ROOT / "runs" / "drift-generative-v2" / previous["adapter_path"]
+                adapter_dir = run_root / previous["adapter_path"]
                 if adapter_tree_digest(adapter_dir) != previous.get("adapter_digest"):
                     raise RuntimeError(f"completed adapter digest changed for {repo}/{snapshot}")
                 post = system_resources()
@@ -412,21 +428,25 @@ def run_all(plan_path):
                               "returncode": execution.returncode, "child_status": child.get("status"),
                               "resource_after_run": post}, sort_keys=True))
             return execution.returncode or 1
+    confirmatory = plan.get("schema") == "tiny-fleet.drift-confirmatory-adapter-training-plan/v1"
     registration = {
-        "schema": "tiny-fleet.drift-adapter-registration/v1", "status": "six-adapters-trained",
-        "training_plan_sha256": sha256(plan_path.read_bytes()), "base_model": {"id": BASE_MODEL, "revision": BASE_REVISION},
-        "seed": 17, "adapters": [], "temporal_limit": "inherits the strict blind-order limitation in execution-scorer.json",
+        "schema": "tiny-fleet.drift-confirmatory-adapter-registration/v1" if confirmatory else "tiny-fleet.drift-adapter-registration/v1",
+        "status": "six-adapters-trained", "training_plan_sha256": sha256(plan_path.read_bytes()),
+        "base_model": {"id": BASE_MODEL, "revision": BASE_REVISION}, "seed": 17, "adapters": [],
+        "temporal_limit": "adaptation artifacts only; no generation, scoring, or comparison was run",
     }
+    if confirmatory:
+        registration["sample_registration"] = plan["sample_registration"]
     for row in training_rows:
         run = json.loads((REPO_ROOT / row["run_path"]).read_text(encoding="utf-8"))
-        adapter_path = REPO_ROOT / "runs" / "drift-generative-v2" / run["adapter_path"]
+        adapter_path = run_root / run["adapter_path"]
         registration["adapters"].append({"repo": row["repo"], "snapshot": row["snapshot"],
                                          "source_commit": run["source_commit"],
-                                         "adapter_path": adapter_path.relative_to(REPO_ROOT / "runs" / "drift-generative-v2").as_posix(),
+                                         "adapter_path": adapter_path.relative_to(run_root).as_posix(),
                                          "adapter_digest": run["adapter_digest"],
                                          "training_run_sha256": sha256((REPO_ROOT / row["run_path"]).read_bytes()),
                                          "corpus_manifest_sha256": run["corpus_manifest_sha256"]})
-    registration_path = REPO_ROOT / "runs" / "drift-generative-v2" / "adapter-registration.json"
+    registration_path = run_root / "adapter-registration.json"
     write_json(registration_path, registration)
     progress = {"schema": "tiny-fleet.drift-adapter-training-progress/v1", "status": "complete",
                 "baseline_resources": baseline, "runs": training_rows,
@@ -442,10 +462,10 @@ def run_all(plan_path):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group(required=True)
-    mode.add_argument("--all", action="store_true", help="train all six registered snapshots, sequentially through mesh-heavy-run")
+    mode.add_argument("--all", action="store_true", help="train all six plan snapshots, sequentially through mesh-heavy-run")
     mode.add_argument("--one", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--plan", required=True, type=Path)
-    parser.add_argument("--repo", choices=("flask", "requests", "pydantic"))
+    parser.add_argument("--repo", choices=("flask", "requests", "pydantic", "httpx", "attrs", "pytest"))
     parser.add_argument("--snapshot", choices=("old", "new"))
     args = parser.parse_args(argv)
     if args.all:

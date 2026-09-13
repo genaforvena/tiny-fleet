@@ -1,0 +1,159 @@
+{
+  "adapter_digest": "640881b4de8a24b60a4b6fe0e73a367513a5ef791acd9783032ee526303ea089",
+  "adapter_files": {
+    "README.md": "936902814594f6251f7b8ce8febff1db20686c0bbaa17f8131ede28f01018ec0",
+    "adapter_config.json": "94e20eae30446bf81b13bf760bece0d62f92f86dcec2fe71465a892aaa9b0c43",
+    "adapter_model.safetensors": "c34af4ed2c6e9c81d246de8eb8a9ea3651be99e6c5389d01f80924a85115e091"
+  },
+  "adapter_path": "adapters/pytest-old",
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "corpus_manifest_sha256": "d3fe08994511f0acc550d34b6bf6afb7956c8f1ccefce9fe25bdb75c79cb175c",
+  "heavy_run": {
+    "command": [
+      "mesh-heavy-run",
+      "8192",
+      "--",
+      "train_drift_adapters.py",
+      "--one",
+      "pytest",
+      "old"
+    ],
+    "gpu_lease_ttl_seconds": 1800,
+    "gpu_min_free_mib": 8192,
+    "gpu_preempt": true,
+    "lease_stderr_sha256": "0e0d1c1d2a28fc379aaf2831086a13058e0bf09e8d4601b02cd83bc2053c1c4e",
+    "lease_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "returncode": 0,
+    "stderr_path": "runs/drift-confirmatory-v1/training-runs/pytest-old/mesh-heavy-run.stderr.log",
+    "stdout_path": "runs/drift-confirmatory-v1/training-runs/pytest-old/mesh-heavy-run.stdout.log"
+  },
+  "hyperparameters": {
+    "batch_size": 1,
+    "epochs": 1,
+    "gradient_accumulation": 4,
+    "learning_rate": 0.0002,
+    "lora": {
+      "alpha": 16,
+      "dropout": 0.05,
+      "rank": 8,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "max_gradient_norm": 1.0,
+    "max_sequence_length": 256,
+    "train_token_budget_per_adapter": 16384,
+    "validation_token_budget_per_adapter": 4096,
+    "weight_decay": 0.01
+  },
+  "repo": "pytest",
+  "resource_after_run": {
+    "gpu_free_mib": 9006,
+    "gpu_lease": null,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 12776,
+    "resource_guard_summary": "node: avail 16445MB/32019MB, swap free 5582MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 5582
+  },
+  "resource_at_start": {
+    "gpu_free_mib": 9006,
+    "gpu_lease": null,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 14067,
+    "resource_guard_summary": "node: avail 14023MB/32019MB, swap free 5589MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 5586
+  },
+  "resource_during_run": {
+    "gpu_free_mib": 7151,
+    "gpu_lease": null,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 12391,
+    "resource_guard_summary": "node: avail 11496MB/32019MB, swap free 5596MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 5596
+  },
+  "restoration_check": {
+    "lease_released": true,
+    "passed": true,
+    "service_states_after": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "service_states_before": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "service_states_match_baseline": true
+  },
+  "run_id": "7ffbbb52d75d8785ced6",
+  "runtime": {
+    "cuda": "13.0",
+    "device": "NVIDIA GeForce RTX 3060",
+    "peft": "0.19.1",
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130",
+    "transformers": "5.14.1"
+  },
+  "schema": "tiny-fleet.drift-adapter-training-run/v1",
+  "seed": 17,
+  "snapshot": "old",
+  "source_commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
+  "status": "complete",
+  "token_budget": {
+    "train_candidates": 931,
+    "train_selected_chunks": 67,
+    "train_selected_tokens": 16384,
+    "validation_candidates": 88,
+    "validation_selected_chunks": 17,
+    "validation_selected_tokens": 4096
+  },
+  "train": {
+    "chunks_seen": 67,
+    "epochs": 1,
+    "mean_chunk_loss": 2.0228570681899343,
+    "optimizer_steps": 17
+  },
+  "train_corpus_sha256": "136ee97d5397c05115dd1d2789edb1c940fa62e1044357eb3ba52592073d6c39",
+  "training_plan_sha256": "6d256ef9cf0c67f76e0898ef7d557062559fd129e52decbf8f65a1c8a68b693d",
+  "validation_after": {
+    "chunks": 17,
+    "mean_token_nll": 2.0596799776232046,
+    "perplexity": 7.843459326138469,
+    "target_tokens": 4079
+  },
+  "validation_before": {
+    "chunks": 17,
+    "mean_token_nll": 2.1072673499511136,
+    "perplexity": 8.22573249600496,
+    "target_tokens": 4079
+  },
+  "validation_corpus_sha256": "485b2babe27091c5f9759f4f074c3b5bbd533404cdbbfc12c46097470ab78485"
+}
