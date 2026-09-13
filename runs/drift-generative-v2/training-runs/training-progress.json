@@ -1,0 +1,160 @@
+{
+  "adapter_registration": "runs/drift-generative-v2/adapter-registration.json",
+  "adapter_registration_sha256": "3896fd9fd5df55775caf37fc6432d420ce97658967a8b7a3cce42b2c97671db7",
+  "baseline_resources": {
+    "gpu_free_mib": 784,
+    "gpu_lease": null,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 14916,
+    "resource_guard_summary": "node: avail 15440MB/32019MB, swap free 6035MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 6035
+  },
+  "runs": [
+    {
+      "adapter_digest": "9012ad80a9aacfd95eb30f133fc1d7975e683df58af3bd7230a6c37d69117666",
+      "repo": "flask",
+      "restoration_check": {
+        "lease_released": true,
+        "passed": true,
+        "service_states_after": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_before": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_match_baseline": true
+      },
+      "returncode": 0,
+      "run_path": "runs/drift-generative-v2/training-runs/flask-old/run.json",
+      "snapshot": "old",
+      "status": "complete"
+    },
+    {
+      "adapter_digest": "ba7bae9ab2e561fe56765350b8258d11acc10a259a5858f475958b17a3ab47fa",
+      "repo": "flask",
+      "restoration_check": {
+        "lease_released": true,
+        "passed": true,
+        "service_states_after": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_before": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_match_baseline": true
+      },
+      "returncode": 0,
+      "run_path": "runs/drift-generative-v2/training-runs/flask-new/run.json",
+      "snapshot": "new",
+      "status": "complete"
+    },
+    {
+      "adapter_digest": "987a7880e98bf494869a5edac4a58e906fd60350bdd892f1681708da9c978e85",
+      "repo": "pydantic",
+      "restoration_check": {
+        "lease_released": true,
+        "passed": true,
+        "service_states_after": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_before": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_match_baseline": true
+      },
+      "returncode": 0,
+      "run_path": "runs/drift-generative-v2/training-runs/pydantic-old/run.json",
+      "snapshot": "old",
+      "status": "complete"
+    },
+    {
+      "adapter_digest": "e0e23af43fac2f5001e23c1ee033c76a54ad658b415cf45949679d9c15a1d4bf",
+      "repo": "pydantic",
+      "restoration_check": {
+        "lease_released": true,
+        "passed": true,
+        "service_states_after": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_before": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_match_baseline": true
+      },
+      "returncode": 0,
+      "run_path": "runs/drift-generative-v2/training-runs/pydantic-new/run.json",
+      "snapshot": "new",
+      "status": "complete"
+    },
+    {
+      "adapter_digest": "fd363d3a8ff887e075ef5d8cbe02fefc46570330ccfbdc2e1b23b69a5627d8a5",
+      "repo": "requests",
+      "restoration_check": {
+        "lease_released": true,
+        "passed": true,
+        "service_states_after": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_before": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_match_baseline": true
+      },
+      "returncode": 0,
+      "run_path": "runs/drift-generative-v2/training-runs/requests-old/run.json",
+      "snapshot": "old",
+      "status": "complete"
+    },
+    {
+      "adapter_digest": "d2d388b1fb4f996edf797019d0245b79ec519a020df15c5ab6868ddea07f45f6",
+      "repo": "requests",
+      "restoration_check": {
+        "lease_released": true,
+        "passed": true,
+        "service_states_after": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_before": {
+          "mesh-room-gigaam.service": "active",
+          "mesh-voice-clone.service": "active",
+          "ollama.service": "active"
+        },
+        "service_states_match_baseline": true
+      },
+      "returncode": 0,
+      "run_path": "runs/drift-generative-v2/training-runs/requests-new/run.json",
+      "snapshot": "new",
+      "status": "complete"
+    }
+  ],
+  "schema": "tiny-fleet.drift-adapter-training-progress/v1",
+  "status": "complete"
+}

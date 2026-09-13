@@ -1,0 +1,67 @@
+{
+  "adapters": [
+    {
+      "adapter_digest": "9012ad80a9aacfd95eb30f133fc1d7975e683df58af3bd7230a6c37d69117666",
+      "adapter_path": "adapters/flask-old",
+      "corpus_manifest_sha256": "c2826506d82f7dd80c839c5fae0d845e7876a4236abc36b45fe655d84086cef1",
+      "repo": "flask",
+      "snapshot": "old",
+      "source_commit": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3",
+      "training_run_sha256": "5f32631a1eeba13d8ec75ff78db7e18ecd8bf2e18d01d4085b0f0e3eefd86647"
+    },
+    {
+      "adapter_digest": "ba7bae9ab2e561fe56765350b8258d11acc10a259a5858f475958b17a3ab47fa",
+      "adapter_path": "adapters/flask-new",
+      "corpus_manifest_sha256": "7cf04ab6bc54ce2f354d64f406b313c7b1792c038c74fa02e6a4c6037101ef61",
+      "repo": "flask",
+      "snapshot": "new",
+      "source_commit": "ab8149664182b662453a563161aa89013c806dc9",
+      "training_run_sha256": "011916eb173d46b73abe7dea4603992f47690134ba1dde6562a73bdb29dea272"
+    },
+    {
+      "adapter_digest": "987a7880e98bf494869a5edac4a58e906fd60350bdd892f1681708da9c978e85",
+      "adapter_path": "adapters/pydantic-old",
+      "corpus_manifest_sha256": "b1b146fa9856c30ab8cb983199628867adf99da1ab25dd424322339ca1b86e99",
+      "repo": "pydantic",
+      "snapshot": "old",
+      "source_commit": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d",
+      "training_run_sha256": "b85855c45d20c42346b3be686ebb27bcf119b8b232fef8c32bac002951d0f7af"
+    },
+    {
+      "adapter_digest": "e0e23af43fac2f5001e23c1ee033c76a54ad658b415cf45949679d9c15a1d4bf",
+      "adapter_path": "adapters/pydantic-new",
+      "corpus_manifest_sha256": "a996a9183252dd28bda3b38b47e6c2e174079e522b164560ee263a101d76d6ff",
+      "repo": "pydantic",
+      "snapshot": "new",
+      "source_commit": "5bd3a6507b749fcd4833173fba88b3690ff77170",
+      "training_run_sha256": "728192d47a4e800e15fd5603b333bcb4d65b3f53282a03be513a723c5ac8019f"
+    },
+    {
+      "adapter_digest": "fd363d3a8ff887e075ef5d8cbe02fefc46570330ccfbdc2e1b23b69a5627d8a5",
+      "adapter_path": "adapters/requests-old",
+      "corpus_manifest_sha256": "01b4b0978adda5a82394ab8aaceaa8ef4b25ec4b9457d308a3c5ff20561f6499",
+      "repo": "requests",
+      "snapshot": "old",
+      "source_commit": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b",
+      "training_run_sha256": "2789c047db7375d0a0a347e6afaed8e377e57b463cd9f87572c00c5a1abafd9e"
+    },
+    {
+      "adapter_digest": "d2d388b1fb4f996edf797019d0245b79ec519a020df15c5ab6868ddea07f45f6",
+      "adapter_path": "adapters/requests-new",
+      "corpus_manifest_sha256": "e9c958418ccaa3ed82dad74747271de0647893ce9332cac7e44efc83f3d2ce36",
+      "repo": "requests",
+      "snapshot": "new",
+      "source_commit": "0e322af87745eff34caffe4df68456ebc20d9068",
+      "training_run_sha256": "f754bced6061b0720e93add1a3ff1e83cc1dc87c7fad51262ed809fc584ca00e"
+    }
+  ],
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "schema": "tiny-fleet.drift-adapter-registration/v1",
+  "seed": 17,
+  "status": "six-adapters-trained",
+  "temporal_limit": "inherits the strict blind-order limitation in execution-scorer.json",
+  "training_plan_sha256": "e82978c938be4c51ed8924e18ee1fcc45a51558cecd88cd1e6319c2670ae5c39"
+}

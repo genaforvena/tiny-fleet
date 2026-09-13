@@ -1,0 +1,2 @@
+mesh-heavy-run: GPU lease acquired token=<redacted>
+mesh-gpu-lease: restored=mesh-voice-clone.service,mesh-room-gigaam.service,ollama.service

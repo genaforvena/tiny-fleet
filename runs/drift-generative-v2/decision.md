@@ -16,14 +16,21 @@ scorer is registered separately in `execution-scorer.json`; it checks Ollama 0.3
 all-minilm model digest, then scores only complete old/new pairs. The original registration remains
 byte-for-byte unchanged. Existing unrelated LoRA adapters remain excluded.
 
-The experimental matrix is still blocked because six per-snapshot LoRA adapters are not trained.
-There is also a temporal limitation: score-blind D04 objective labels had already been frozen and
-a generic non-experimental model smoke had already run before excerpt selection. The selector did
-not access either artifact, but this cannot satisfy strict blind ordering. Treat any use of this
-sample as implementation audit or exploratory analysis only; confirmatory use requires a newly
-frozen unseen sample or explicit independent review.
+Six per-snapshot LoRA adapters have now been trained from the frozen license-filtered corpora and
+registered in `adapter-registration.json` (SHA256
+`3896fd9fd5df55775caf37fc6432d420ce97658967a8b7a3cce42b2c97671db7`). Each adapter tree and
+training-run manifest digest was recomputed; all six runs completed on the pinned base revision,
+and all six file-disjoint adaptation validation losses decreased. These validation metrics are
+training diagnostics, not evidence about external semantic truth.
 
-After all six adapters and their tree digests have artifacts, create the complete v2 manifest, run
-the 162-record paired matrix, retain its raw tape and separate score artifact, and have D04-V
-independently verify the labels. Until then there is no experimental comparison result and the
-original analysis stays blocked.
+The experimental matrix remains blocked by independent review of the exact D04 labels and by a
+temporal limitation: score-blind D04 objective labels had already been frozen and a generic
+non-experimental model smoke had already run before excerpt selection. The selector did not access
+either artifact, but this cannot satisfy strict blind ordering. Treat any use of this sample as
+implementation audit or exploratory analysis only; confirmatory use requires a newly frozen unseen
+sample or explicit independent review.
+
+After independent D04 label and v2 execution-artifact verification, complete the registered v2
+manifest and run the 162-record paired matrix; retain its raw tape and separate score artifact.
+Until the exact gates pass, there is no experimental comparison result and the original analysis
+stays blocked.

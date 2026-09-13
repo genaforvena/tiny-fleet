@@ -1,0 +1,197 @@
+{
+  "adapter_digest": "9012ad80a9aacfd95eb30f133fc1d7975e683df58af3bd7230a6c37d69117666",
+  "adapter_files": {
+    "README.md": "210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48",
+    "adapter_config.json": "2c2b4895fe370e66c787a1b49f230c0ab7f7326010c98bbd140e20ede902cb04",
+    "adapter_model.safetensors": "786acf90e8317a1fc218753ed2a67540798ce3a51db9c93ceb8660331108d430"
+  },
+  "adapter_path": "adapters/flask-old",
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "corpus_manifest_sha256": "c2826506d82f7dd80c839c5fae0d845e7876a4236abc36b45fe655d84086cef1",
+  "heavy_run": {
+    "command": [
+      "mesh-heavy-run",
+      "8192",
+      "--",
+      "train_drift_adapters.py",
+      "--one",
+      "flask",
+      "old"
+    ],
+    "gpu_lease_ttl_seconds": 1800,
+    "gpu_min_free_mib": 8192,
+    "gpu_preempt": true,
+    "lease_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lease_stdout_sha256": "1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c",
+    "returncode": 0,
+    "stderr_path": "runs/drift-generative-v2/training-runs/flask-old/mesh-heavy-run.stderr.log",
+    "stdout_path": "runs/drift-generative-v2/training-runs/flask-old/mesh-heavy-run.stdout.log"
+  },
+  "hyperparameters": {
+    "batch_size": 1,
+    "epochs": 1,
+    "gradient_accumulation": 4,
+    "learning_rate": 0.0002,
+    "lora": {
+      "alpha": 16,
+      "dropout": 0.05,
+      "rank": 8,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "max_gradient_norm": 1.0,
+    "max_sequence_length": 256,
+    "train_token_budget_per_adapter": 16384,
+    "validation_token_budget_per_adapter": 4096,
+    "weight_decay": 0.01
+  },
+  "repo": "flask",
+  "resource_after_run": {
+    "gpu_free_mib": 2527,
+    "gpu_lease": null,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 24334,
+    "resource_guard_summary": "node: avail 23650MB/32019MB, swap free 7187MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 7187
+  },
+  "resource_at_start": {
+    "gpu_free_mib": 9542,
+    "gpu_lease": {
+      "acquired_at": 1789313115,
+      "acquired_free_mb": 11743,
+      "created_at": 1789313040,
+      "expires_at": 1789314840,
+      "host": "mesh-home",
+      "initial_free_mb": 784,
+      "last_stopped": "mesh-room-gigaam.service",
+      "required_free_mb": 8192,
+      "restore_services": [
+        "mesh-voice-clone.service",
+        "mesh-room-gigaam.service",
+        "ollama.service"
+      ],
+      "stopped_services": [
+        "mesh-voice-clone.service",
+        "mesh-room-gigaam.service"
+      ],
+      "version": 1
+    },
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 23932,
+    "resource_guard_summary": "node: avail 23913MB/32019MB, swap free 7456MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "failed",
+      "mesh-voice-clone.service": "failed",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 7455
+  },
+  "resource_during_run": {
+    "gpu_free_mib": 676,
+    "gpu_lease": {
+      "acquired_at": 1789313115,
+      "acquired_free_mb": 11743,
+      "created_at": 1789313040,
+      "expires_at": 1789314840,
+      "host": "mesh-home",
+      "initial_free_mb": 784,
+      "last_stopped": "mesh-room-gigaam.service",
+      "required_free_mb": 8192,
+      "restore_services": [
+        "mesh-voice-clone.service",
+        "mesh-room-gigaam.service",
+        "ollama.service"
+      ],
+      "stopped_services": [
+        "mesh-voice-clone.service",
+        "mesh-room-gigaam.service"
+      ],
+      "version": 1
+    },
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 22816,
+    "resource_guard_summary": "node: avail 22860MB/32019MB, swap free 7187MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "failed",
+      "mesh-voice-clone.service": "failed",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 7187
+  },
+  "restoration_check": {
+    "lease_released": true,
+    "passed": true,
+    "service_states_after": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "service_states_before": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "service_states_match_baseline": true
+  },
+  "run_id": "cec63e7f26eda1a505c2",
+  "runtime": {
+    "cuda": "13.0",
+    "device": "NVIDIA GeForce RTX 3060",
+    "peft": "0.20.0",
+    "python": "3.12.3",
+    "torch": "2.14.0+cu130",
+    "transformers": "4.57.6"
+  },
+  "schema": "tiny-fleet.drift-adapter-training-run/v1",
+  "seed": 17,
+  "snapshot": "old",
+  "source_commit": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3",
+  "status": "complete",
+  "token_budget": {
+    "train_candidates": 198,
+    "train_selected_chunks": 68,
+    "train_selected_tokens": 16384,
+    "validation_candidates": 106,
+    "validation_selected_chunks": 16,
+    "validation_selected_tokens": 4096
+  },
+  "train": {
+    "chunks_seen": 68,
+    "epochs": 1,
+    "mean_chunk_loss": 1.8815207384964998,
+    "optimizer_steps": 17
+  },
+  "train_corpus_sha256": "c9ac1739920d841cf6f47bdb1658f4af3620eed1e3315f0f4264de4bd093a768",
+  "training_plan_sha256": "e82978c938be4c51ed8924e18ee1fcc45a51558cecd88cd1e6319c2670ae5c39",
+  "validation_after": {
+    "chunks": 16,
+    "mean_token_nll": 1.9120201617479324,
+    "perplexity": 6.766744919344637,
+    "target_tokens": 4080
+  },
+  "validation_before": {
+    "chunks": 16,
+    "mean_token_nll": 1.9638363048434258,
+    "perplexity": 7.12661455606216,
+    "target_tokens": 4080
+  },
+  "validation_corpus_sha256": "95e3c8541eb430026c6ae20a319e707832cf464b2aa98396b0a4df777f76001a"
+}
