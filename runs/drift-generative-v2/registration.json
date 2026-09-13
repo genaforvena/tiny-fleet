@@ -1,0 +1,46 @@
+{
+  "schema": "tiny-fleet.cross-repository-generative-registration/v1",
+  "study": "tinyfleet-architecture-drift-review-20260907",
+  "status": "blocked-before-generation",
+  "sample_manifest": {
+    "path": "docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json",
+    "sha256": "07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59"
+  },
+  "claim": "Estimate snapshot-conditioned output changes separately from base-model variation and weight-adapted output changes; no semantic-truth claim is made from embedding similarity.",
+  "snapshots": [
+    {"repo": "flask", "old": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3", "new": "ab8149664182b662453a563161aa89013c806dc9"},
+    {"repo": "requests", "old": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b", "new": "0e322af87745eff34caffe4df68456ebc20d9068"},
+    {"repo": "pydantic", "old": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d", "new": "5bd3a6507b749fcd4833173fba88b3690ff77170"}
+  ],
+  "prompt_contract": {
+    "template_id": "snapshot-component-description-v1",
+    "template": "Using only the supplied snapshot excerpt, describe the module's documented public responsibility and explicit behavioral guarantees. Cite the supplied path. Do not infer changes outside the excerpt; say 'not stated' when evidence is absent.",
+    "base_and_lora_input": "template only; no repository excerpt",
+    "prompt_only_input": "the exact same template plus one preselected held-out excerpt for that repo/snapshot",
+    "snapshot_excerpt_hashes": null,
+    "state": "template frozen; six held-out excerpts and their hashes not yet frozen"
+  },
+  "arms": [
+    {"id": "base", "base_model": "HuggingFaceTB/SmolLM2-360M-Instruct", "model_revision": "a10cc1512eabd3dde888204e902eca88bddb4951", "adapter": null, "conditioning": "none"},
+    {"id": "prompt-only", "base_model": "HuggingFaceTB/SmolLM2-360M-Instruct", "model_revision": "a10cc1512eabd3dde888204e902eca88bddb4951", "adapter": null, "conditioning": "held-out snapshot excerpt"},
+    {"id": "lora", "base_model": "HuggingFaceTB/SmolLM2-360M-Instruct", "model_revision": "a10cc1512eabd3dde888204e902eca88bddb4951", "adapter_map": null, "conditioning": "none", "required_adapter_count": 6, "state": "no adapters trained on these six snapshots"}
+  ],
+  "decoding": {"do_sample": true, "temperature": 0.7, "top_p": 0.9, "max_new_tokens": 128},
+  "seeds": [17, 29, 43],
+  "repetitions": [0, 1, 2],
+  "scorer": {
+    "embedding_model": "all-minilm:latest",
+    "embedding_model_digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef",
+    "metric": "cosine similarity of paired output embeddings",
+    "scorer_code_revision": null,
+    "state": "model pinned; deterministic scoring implementation and emitted score artifact absent"
+  },
+  "output_contract": "One raw record per (repo,snapshot,arm,prompt_id,seed,repetition), including effective input hash, output, base model revision, adapter digest, scorer digest and runtime metadata.",
+  "blockers": [
+    {"missing": "D03 runtime cannot select arm-specific prompts and six snapshot-specific adapter digests; its CLI defaults to FakeBackend and record schema has no adapter digest", "retry_event": "a real backend/schema implementation passes independent D03 verification and serializes effective input, model and adapter provenance per record"},
+    {"missing": "six LoRA adapters trained from the six registered snapshot corpora", "retry_event": "per-snapshot adapters are trained from the frozen, license-filtered corpus and their hashes are in the registration"},
+    {"missing": "six selected held-out excerpts and their hashes", "retry_event": "the frozen v2 commits are extracted with the registered inclusion policy and held-out files are fixed before inference"},
+    {"missing": "versioned deterministic embedding-score implementation", "retry_event": "a scorer implementation is committed and its source hash is frozen before output generation"}
+  ],
+  "decision": "No inference, scoring, or comparison was performed. Missing generated output is a blocker, never a zero."
+}

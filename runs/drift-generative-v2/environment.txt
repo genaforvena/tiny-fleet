@@ -1,0 +1,9 @@
+Study: tinyfleet-architecture-drift-review-20260907
+Sample registry SHA-256: 07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59
+Base checkpoint: HuggingFaceTB/SmolLM2-360M-Instruct
+Base checkpoint immutable HF revision: a10cc1512eabd3dde888204e902eca88bddb4951
+Cached training runtime: torch 2.14.0; transformers 4.57.6; peft 0.20.0; safetensors 0.8.0
+Host model service: Ollama API 127.0.0.1:11434; all-minilm:latest digest 1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef
+Hardware observed: NVIDIA GeForce RTX 3060, 12 GiB; 7.5 GiB occupied at observation, including unrelated model processes.
+Available relevant adapter artifacts are existing guitar, sourdough, persona and code adapters; none are trained from any of the six frozen external snapshots, so none are admitted to this registration.
+Execution status: no generation or scorer process was started because the verified D03 CLI cannot encode the registered per-arm inputs and adapter provenance.
