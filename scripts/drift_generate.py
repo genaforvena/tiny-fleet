@@ -112,7 +112,12 @@ def validate_v2_manifest(manifest):
 
 def build_effective_input(manifest, prompt, arm):
     if arm == "prompt-only":
-        return f"{manifest['prompt_template']}\n\nSnapshot excerpt:\n{prompt['snapshot_excerpt']}"
+        return (
+            f"{manifest['prompt_template']}\n\n"
+            f"Snapshot: {prompt['repo']} ({prompt['snapshot']})\n"
+            f"Source path: {prompt['source_path']}\n\n"
+            f"Snapshot excerpt:\n{prompt['snapshot_excerpt']}"
+        )
     if arm in {"base", "lora"}:
         return manifest["prompt_template"]
     raise ValueError(f"unknown arm: {arm}")

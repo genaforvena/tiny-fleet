@@ -114,6 +114,8 @@ class DriftGenerateTests(unittest.TestCase):
         for prompt in manifest["prompts"]:
             for arm in manifest["arms"]:
                 effective_input = build_effective_input(manifest, prompt, arm)
+                if arm == "prompt-only":
+                    self.assertIn(prompt["source_path"], effective_input)
                 records.append({
                     "schema": "tiny-fleet.drift-generative/v2",
                     "repo": prompt["repo"], "snapshot": prompt["snapshot"], "prompt_id": prompt["prompt_id"],
