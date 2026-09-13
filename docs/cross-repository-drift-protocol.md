@@ -31,7 +31,11 @@ zero. A comparison is publishable only if its data and runtime gates pass.
 
 ## Repository and snapshot selection
 
-Select at least two materially different repositories before analysis. Record for each:
+For the registered architectural-drift study, freeze at least **three independent external
+repositories** before analysis. The study's own repository (`tiny-fleet`) is not an external
+repository. The earlier two-repository local pilot and its `lte-workstation` sample are retained
+as historical artifacts; they do not satisfy or count toward this external-repository gate. Record
+for each external repository:
 
 | field | requirement |
 |---|---|
@@ -155,18 +159,22 @@ missing-artifact case; the gates must detect all three. The decision must distin
 - `preliminary`: structural/lexical or behavioral evidence exists, but a declared arm is absent;
 - `blocked`: a required artifact, dependency, provenance, or control failed.
 
-## Registered pilot
+## Historical local pilot and registered external sample
 
-The first pilot uses two materially different local repositories:
+The earlier two-repository pilot is retained for historical reproducibility only: `tiny-fleet`
+(`4e87f2e` on 2026-09-03, with its new commit to be frozen by that pilot's own runner) and
+`lte-workstation` (`2dc867eed5d128beeb69ca2e818f291ab76ea895` to
+`82c096be8bffc04aa56867c12d6292134f338662`). The original
+`02-external-sample/sample-manifest.json` is not edited by this amendment. Neither local repository
+counts toward the separate requirement for three independent external repositories.
 
-| repo | role | old snapshot | new snapshot | rationale |
-|---|---|---|---|---|
-| `tiny-fleet` | small-model evaluation and corpus tooling | `4e87f2e` (2026-09-03) | next preregistered commit after protocol review | evaluation/code/data mix; Python/JSONL |
-| `lte-workstation` | distributed mesh substrate and shell tools | `2dc867e` (2026-09-06) | `82c096b` (2026-09-06) | operational shell/docs/tooling mix; materially different domain |
-
-The table leaves the new `tiny-fleet` commit unclaimed until the pilot runner freezes it. The
-protocol artifact records the observed commits so a runner can reject a moving target. The pilot
-must not reuse the old report's June-vs-September pair as if it were a new result.
+For that requirement, freeze and use all three entries in
+`02-external-sample-v2/sample-manifest.json`: `pallets/flask`, `psf/requests`, and
+`pydantic/pydantic`. The manifest defines the stable-tag cutoff rule, commit IDs, license evidence,
+snapshot windows, inclusion policy, and canonical archive SHA-256 for every pinned snapshot. It is
+the sole input registry for the external sample; do not substitute `HEAD`, add repositories, or
+change a pair after examining comparison results. A required unavailable input blocks only its
+declared arm and must be named in the run decision.
 
 ## Reproduction command contract
 
@@ -174,8 +182,9 @@ The eventual runner accepts explicit paths and commits and writes only inside a 
 
 ```bash
 cross-repo-drift register --run-dir runs/<run-id> \
-  --repo tiny-fleet=/path/to/tiny-fleet@<commit> \
-  --repo lte-workstation=/path/to/lte-workstation@<commit>
+  --repo flask=/path/to/flask@ab8149664182b662453a563161aa89013c806dc9 \
+  --repo requests=/path/to/requests@0e322af87745eff34caffe4df68456ebc20d9068 \
+  --repo pydantic=/path/to/pydantic@5bd3a6507b749fcd4833173fba88b3690ff77170
 cross-repo-drift corpus --run-dir runs/<run-id>
 cross-repo-drift split --run-dir runs/<run-id>
 cross-repo-drift measure --run-dir runs/<run-id> --arm structural,lexical,behavioral
