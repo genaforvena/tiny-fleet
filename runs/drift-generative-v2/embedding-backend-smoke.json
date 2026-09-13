@@ -1,0 +1,13 @@
+{
+  "schema": "tiny-fleet.embedding-backend-smoke/v1",
+  "observed_utc": "2026-09-13T14:58:55Z",
+  "purpose": "verify the registered embedding endpoint and response dimension without study excerpts or generation outputs",
+  "probe_input_sha256": "8df3a0016ba295faaeddcdb99cc8ab1f199d2e4d610ad6de58f9ff8e70c7396a",
+  "runtime": "Ollama 0.33.2",
+  "model": "all-minilm:latest",
+  "model_digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef",
+  "response_count": 1,
+  "embedding_dimension": 384,
+  "vector_or_score_retained": false,
+  "experimental_output": false
+}
