@@ -1,0 +1,1762 @@
+{
+  "repositories": [
+    {
+      "identity": "https://github.com/encode/httpx",
+      "owner_namespace": "encode",
+      "repo_id": "httpx",
+      "role": "Python HTTP client",
+      "selection_candidate_count": 84,
+      "snapshots": [
+        {
+          "archive_sha256": null,
+          "commit": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
+          "commit_time": "2022-11-18T12:48:32+00:00",
+          "label": "old",
+          "license_path": null,
+          "license_sha256": null,
+          "parents": [
+            "a2a69e4bf7fc071b3ad237a643b306e5e131337f"
+          ],
+          "tag": "0.23.1",
+          "tree": "37ae981e1b2fefe4ef8105368b40c6b18305605b",
+          "version": [
+            0,
+            23,
+            1
+          ]
+        },
+        {
+          "archive_sha256": null,
+          "commit": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+          "commit_time": "2024-12-06T15:35:41+00:00",
+          "label": "new",
+          "license_path": null,
+          "license_sha256": null,
+          "parents": [
+            "89599a9541af14bcf906fc4ed58ccbdf403802ba"
+          ],
+          "tag": "0.28.1",
+          "tree": "f6bc290d5ec30e882f9d6215a016aa7aac2c02a1",
+          "version": [
+            0,
+            28,
+            1
+          ]
+        }
+      ],
+      "stable_tag_inventory": [
+        {
+          "commit": "68b80dcfb043715350d277d6411e966a03a7de59",
+          "commit_time": "2019-04-04T18:34:17+01:00",
+          "tag": "0.0.1"
+        },
+        {
+          "commit": "7bd9f32cf5fa3fa176b789cffe7e7114a3348b76",
+          "commit_time": "2019-04-04T18:46:12+01:00",
+          "tag": "0.0.2"
+        },
+        {
+          "commit": "75b8fa4d0d62ce459f5c8aaff539f5c7528152e5",
+          "commit_time": "2019-04-06T13:38:38+01:00",
+          "tag": "0.0.3"
+        },
+        {
+          "commit": "23252f6cd9e629ae7c513bc24a8c6a1061d61429",
+          "commit_time": "2019-04-18T11:53:53+01:00",
+          "tag": "0.1.0"
+        },
+        {
+          "commit": "66594e30dc733dd47724a540f7efb8e0208991ee",
+          "commit_time": "2019-04-19T20:37:20+01:00",
+          "tag": "0.1.1"
+        },
+        {
+          "commit": "35b7516674ced88073eace33b5d58c4c4d6bab65",
+          "commit_time": "2019-12-29T17:00:34+00:00",
+          "tag": "0.10.0"
+        },
+        {
+          "commit": "2c5fdc51f42801709e27c53ac728c22891819996",
+          "commit_time": "2020-01-09T09:35:56+00:00",
+          "tag": "0.11.0"
+        },
+        {
+          "commit": "b128bfaf211314dfb9b0a19ab6e00cfbe98522b8",
+          "commit_time": "2020-01-17T21:31:56+00:00",
+          "tag": "0.11.1"
+        },
+        {
+          "commit": "6e40c1b26ac3526bfe4115c00c028899d37e551e",
+          "commit_time": "2020-03-09T10:18:34+00:00",
+          "tag": "0.12.0"
+        },
+        {
+          "commit": "23486b5438c8c142c430aba702d61144ec2e901b",
+          "commit_time": "2020-03-19T20:55:13+00:00",
+          "tag": "0.12.1"
+        },
+        {
+          "commit": "2c2c6a71a9ff520d237f8283a586df2753f01f5e",
+          "commit_time": "2020-05-22T09:41:02+01:00",
+          "tag": "0.13.0"
+        },
+        {
+          "commit": "ebc9c2936503cbff979658a70530ce22775bd11a",
+          "commit_time": "2020-05-22T10:34:01+01:00",
+          "tag": "0.13.1"
+        },
+        {
+          "commit": "f5e1aa5517e35afb40000d4a540569f737baea6e",
+          "commit_time": "2020-05-27T15:58:41+01:00",
+          "tag": "0.13.2"
+        },
+        {
+          "commit": "56d880030e37d64c273ea23b92e24dc00b586c3b",
+          "commit_time": "2020-05-29T11:28:27+01:00",
+          "tag": "0.13.3"
+        },
+        {
+          "commit": "8c7729e42c9ebf860e75820d5325741b85d64970",
+          "commit_time": "2020-08-07T15:50:25+01:00",
+          "tag": "0.14.0"
+        },
+        {
+          "commit": "db4e417a137bf3bb04c1a3ffc492bf80d222959c",
+          "commit_time": "2020-08-11T12:04:03+01:00",
+          "tag": "0.14.1"
+        },
+        {
+          "commit": "4161d7ace9d9f50227c54e991050de550c49e169",
+          "commit_time": "2020-08-24T11:03:26+01:00",
+          "tag": "0.14.2"
+        },
+        {
+          "commit": "ec06ba244e0a59e3152491c7899713222ebd7ac6",
+          "commit_time": "2020-09-02T12:17:23+01:00",
+          "tag": "0.14.3"
+        },
+        {
+          "commit": "5d11756585067c4f140be600098ed796b5430542",
+          "commit_time": "2020-09-22T11:49:33+01:00",
+          "tag": "0.15.0"
+        },
+        {
+          "commit": "27e67b32e940429f04f37ddd5be8b7a4fe4fbb19",
+          "commit_time": "2020-09-23T11:12:50+02:00",
+          "tag": "0.15.1"
+        },
+        {
+          "commit": "8ceb34f48672f89de2458df371e2624659e2c24f",
+          "commit_time": "2020-09-23T11:28:22+01:00",
+          "tag": "0.15.2"
+        },
+        {
+          "commit": "24da8d40ff126c903d78547a5e045306ab620374",
+          "commit_time": "2020-09-24T11:39:02+02:00",
+          "tag": "0.15.3"
+        },
+        {
+          "commit": "a7a76fbb12479fa82e718322e43fc511dec0eb21",
+          "commit_time": "2020-09-25T12:34:52+01:00",
+          "tag": "0.15.4"
+        },
+        {
+          "commit": "c9354282ba60a857f959e5fe60cdf2b74cdbd294",
+          "commit_time": "2020-10-01T13:57:08+01:00",
+          "tag": "0.15.5"
+        },
+        {
+          "commit": "dbbcf438cd4e07d75b976350042f4042cadf9524",
+          "commit_time": "2020-10-06T15:29:40+01:00",
+          "tag": "0.16.0"
+        },
+        {
+          "commit": "92ca4d0cc654859fc2257c492e55d8752370d427",
+          "commit_time": "2020-10-08T13:14:15+01:00",
+          "tag": "0.16.1"
+        },
+        {
+          "commit": "59f65e2b98c147e389c281bce26b7f797faa9265",
+          "commit_time": "2021-02-28T17:05:01+01:00",
+          "tag": "0.17.0"
+        },
+        {
+          "commit": "e05a5372eb6172287458b37447c30f650047e1b8",
+          "commit_time": "2021-03-15T09:18:29+00:00",
+          "tag": "0.17.1"
+        },
+        {
+          "commit": "0c2cb240dfd6b6648ea1dbaf1d195dd90bf25767",
+          "commit_time": "2021-04-27T15:20:22+01:00",
+          "tag": "0.18.0"
+        },
+        {
+          "commit": "54f4194c387e1817f958ba8c25710d551cec278a",
+          "commit_time": "2021-04-29T13:57:12+01:00",
+          "tag": "0.18.1"
+        },
+        {
+          "commit": "f312e629bf0f1a03ae66bc08130e2fb0799a1c89",
+          "commit_time": "2021-06-17T11:29:22+01:00",
+          "tag": "0.18.2"
+        },
+        {
+          "commit": "0d7c4caada43324cb3b6ebe4101745c0f7f575db",
+          "commit_time": "2021-08-19T12:37:25+01:00",
+          "tag": "0.19.0"
+        },
+        {
+          "commit": "903a961897c791e09612c9353dc8b08c23e4ff31",
+          "commit_time": "2019-04-23T11:54:20+01:00",
+          "tag": "0.2.0"
+        },
+        {
+          "commit": "91a2a1b8968bceae16e3cdcbae396dd212cdf7da",
+          "commit_time": "2019-04-24T11:52:51+01:00",
+          "tag": "0.2.1"
+        },
+        {
+          "commit": "35164b7a64fbda91629778f37f05afd6ac3f17ee",
+          "commit_time": "2021-10-13T10:43:58+01:00",
+          "tag": "0.20.0"
+        },
+        {
+          "commit": "61188feeaec598116996ddffa801a104363be924",
+          "commit_time": "2021-11-15T14:30:54+00:00",
+          "tag": "0.21.0"
+        },
+        {
+          "commit": "716749e3fd3c99cb47cc20b96def280dcb3c8d16",
+          "commit_time": "2021-11-16T11:51:56+00:00",
+          "tag": "0.21.1"
+        },
+        {
+          "commit": "f6b76571fa2d2ec89224dbcc82e1b6bfb7144d0f",
+          "commit_time": "2022-01-05T16:24:42+00:00",
+          "tag": "0.21.2"
+        },
+        {
+          "commit": "07f786c2f871d230f9c93b5f351b4aa305ee1599",
+          "commit_time": "2022-01-06T14:36:58+00:00",
+          "tag": "0.21.3"
+        },
+        {
+          "commit": "15c51b9dd5dfe3ede3d8c2de72073e3a678ff5a2",
+          "commit_time": "2022-01-26T14:47:40+00:00",
+          "tag": "0.22.0"
+        },
+        {
+          "commit": "89cdd903b2f339c6ae319773c31b8c9352bd9cd8",
+          "commit_time": "2022-05-23T16:31:12+01:00",
+          "tag": "0.23.0"
+        },
+        {
+          "commit": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
+          "commit_time": "2022-11-18T12:48:32+00:00",
+          "tag": "0.23.1"
+        },
+        {
+          "commit": "2ab735849a4e3c1d408778f7e2e4509078b907ad",
+          "commit_time": "2023-01-02T11:46:22+00:00",
+          "tag": "0.23.2"
+        },
+        {
+          "commit": "08a557e3e2b9220b90ee21238e316206ffa65d36",
+          "commit_time": "2023-01-04T09:39:43+00:00",
+          "tag": "0.23.3"
+        },
+        {
+          "commit": "579a3f2fb8e1ebd151b8f3a6c1e9bc6dedf5f5bd",
+          "commit_time": "2023-04-11T11:00:02+01:00",
+          "tag": "0.24.0"
+        },
+        {
+          "commit": "fcf1bc73dbe13bc61d18a6e998237a5021d3341c",
+          "commit_time": "2023-05-18T12:03:21+01:00",
+          "tag": "0.24.1"
+        },
+        {
+          "commit": "c3585a5ccfa57bec653f3846b8625a27d11dcd5e",
+          "commit_time": "2023-09-11T11:13:24+01:00",
+          "tag": "0.25.0"
+        },
+        {
+          "commit": "b07d4e8ce40f730b5074abe36347b933f1b77814",
+          "commit_time": "2023-11-03T13:18:54+00:00",
+          "tag": "0.25.1"
+        },
+        {
+          "commit": "cc206cf2dad42600479962ac1daaa44675cfaf56",
+          "commit_time": "2023-11-24T16:33:18+04:00",
+          "tag": "0.25.2"
+        },
+        {
+          "commit": "08eff926a6011ac84961fd2cee22d9fd4d4b1a88",
+          "commit_time": "2023-12-20T14:52:22+04:00",
+          "tag": "0.26.0"
+        },
+        {
+          "commit": "326b9431c761e1ef1e00b9f760d1f654c8db48c6",
+          "commit_time": "2024-02-21T13:06:19+00:00",
+          "tag": "0.27.0"
+        },
+        {
+          "commit": "1d6b6634331686c0701c75b6ff4830925269f23d",
+          "commit_time": "2024-08-27T12:27:08+01:00",
+          "tag": "0.27.1"
+        },
+        {
+          "commit": "609df7ecc0f7cb10a1c998aa9c269bba77337c5f",
+          "commit_time": "2024-08-27T13:52:05+01:00",
+          "tag": "0.27.2"
+        },
+        {
+          "commit": "80960fa31918d7663c3f4c3ad61661cf0e80628f",
+          "commit_time": "2024-11-28T14:50:04+00:00",
+          "tag": "0.28.0"
+        },
+        {
+          "commit": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+          "commit_time": "2024-12-06T15:35:41+00:00",
+          "tag": "0.28.1"
+        },
+        {
+          "commit": "7155e74898355995df610fb1eadada187ddaf087",
+          "commit_time": "2019-05-16T12:42:49+01:00",
+          "tag": "0.3.0"
+        },
+        {
+          "commit": "f4591f08ae0a8009789ff23a68cb1830ea7100f5",
+          "commit_time": "2019-06-06T14:44:32+01:00",
+          "tag": "0.3.1"
+        },
+        {
+          "commit": "ba033c549f5c2834e7ebc79739a86d84dad86d62",
+          "commit_time": "2019-06-06T15:24:01+01:00",
+          "tag": "0.4.0"
+        },
+        {
+          "commit": "9f192bbf0bb62d801bfe9a78d01f7ba1580c3469",
+          "commit_time": "2019-06-18T15:54:41+01:00",
+          "tag": "0.5.0"
+        },
+        {
+          "commit": "2af17c8d7ab5c7cbecd1096f5eade683a41088cd",
+          "commit_time": "2019-06-21T13:50:19+01:00",
+          "tag": "0.6.0"
+        },
+        {
+          "commit": "7ff8483fc83df2ec637c25e5db2e4151f8172d9b",
+          "commit_time": "2019-06-21T16:44:40+01:00",
+          "tag": "0.6.1"
+        },
+        {
+          "commit": "9930de80910655ac44c3b10e5f0a1f5425730e30",
+          "commit_time": "2019-06-23T11:24:17+01:00",
+          "tag": "0.6.2"
+        },
+        {
+          "commit": "d3a12e73c0ce96dad34795859da8a9d9d75b1802",
+          "commit_time": "2019-06-24T16:54:24+01:00",
+          "tag": "0.6.3"
+        },
+        {
+          "commit": "5326cd1a20a5264afe5b1b89178d0a7feb23ccb7",
+          "commit_time": "2019-06-25T13:24:12+01:00",
+          "tag": "0.6.4"
+        },
+        {
+          "commit": "fe71e939c399f708887058ebe26224e5aba9dbe8",
+          "commit_time": "2019-06-27T16:46:58+01:00",
+          "tag": "0.6.5"
+        },
+        {
+          "commit": "fe1f9ed1193e8824c9f1041117758741dd34600e",
+          "commit_time": "2019-07-03T10:33:38+01:00",
+          "tag": "0.6.6"
+        },
+        {
+          "commit": "561fb842489e52831daf91621f821b745be748eb",
+          "commit_time": "2019-07-08T15:58:44+01:00",
+          "tag": "0.6.7"
+        },
+        {
+          "commit": "77cf336eabcd53fbbda0c69dc692b5df820f578c",
+          "commit_time": "2019-07-25T22:53:31+01:00",
+          "tag": "0.6.8"
+        },
+        {
+          "commit": "c35dbce543974f2814e4f6a106079265bf34a38c",
+          "commit_time": "2019-08-17T15:11:30-05:00",
+          "tag": "0.7.0"
+        },
+        {
+          "commit": "caba78568e2c786591ea8ef72f0c217ab6fcb592",
+          "commit_time": "2019-08-18T05:19:14-05:00",
+          "tag": "0.7.1"
+        },
+        {
+          "commit": "8c456e48e9a4d99b5fc0fae45dbdf8941ee7f8d7",
+          "commit_time": "2019-08-29T07:19:02-05:00",
+          "tag": "0.7.2"
+        },
+        {
+          "commit": "7a08aaa5360cad8b36f38fe24e166342524a4c7b",
+          "commit_time": "2019-09-20T21:05:02+02:00",
+          "tag": "0.7.3"
+        },
+        {
+          "commit": "640667d81d4bbf0d6f5e319d061353cad083f068",
+          "commit_time": "2019-09-26T13:45:38+02:00",
+          "tag": "0.7.4"
+        },
+        {
+          "commit": "c1f51277d3df8b4ec956c77e0e87e84c9da49fb9",
+          "commit_time": "2019-10-10T09:18:22-05:00",
+          "tag": "0.7.5"
+        },
+        {
+          "commit": "a62947826fa337e6e8176aae27ec627a9def25af",
+          "commit_time": "2019-11-02T12:09:26+01:00",
+          "tag": "0.7.6"
+        },
+        {
+          "commit": "6045ee242fbe0308ce9d5faf654f5de68e1a3dd8",
+          "commit_time": "2019-11-15T21:56:02+00:00",
+          "tag": "0.7.7"
+        },
+        {
+          "commit": "a5f99830376ead8d7a1357169f49d9c76f085622",
+          "commit_time": "2019-11-19T22:06:04+01:00",
+          "tag": "0.7.8"
+        },
+        {
+          "commit": "831e79f50a59cb7c2af549fc186951703497fe08",
+          "commit_time": "2019-11-27T13:35:02+00:00",
+          "tag": "0.8.0"
+        },
+        {
+          "commit": "8d1bc9e60f62a12080f0d1b568cbf4d7b75d0f1e",
+          "commit_time": "2019-12-06T15:32:22+00:00",
+          "tag": "0.9.0"
+        },
+        {
+          "commit": "76f3ff9dd965df5e199ebed75000950b1dc619ac",
+          "commit_time": "2019-12-06T17:45:56+00:00",
+          "tag": "0.9.1"
+        },
+        {
+          "commit": "3a0df657b3f7aac722979347a73c0e5f77242a8a",
+          "commit_time": "2019-12-07T08:49:34+00:00",
+          "tag": "0.9.2"
+        },
+        {
+          "commit": "f55db15a01ce311b9d4229d9707aa58043a8eaed",
+          "commit_time": "2019-12-07T09:07:33+00:00",
+          "tag": "0.9.3"
+        },
+        {
+          "commit": "b847ab07a33e0d6a006b85130c07e71a2479d92b",
+          "commit_time": "2019-12-13T10:44:02+00:00",
+          "tag": "0.9.4"
+        },
+        {
+          "commit": "9904684d353f8d806755918533487b78138f7c08",
+          "commit_time": "2019-12-20T11:18:22+00:00",
+          "tag": "0.9.5"
+        }
+      ],
+      "window_days": 749
+    },
+    {
+      "identity": "https://github.com/python-attrs/attrs",
+      "owner_namespace": "python-attrs",
+      "repo_id": "attrs",
+      "role": "Python data model library",
+      "selection_candidate_count": 35,
+      "snapshots": [
+        {
+          "archive_sha256": null,
+          "commit": "a9960de98d0f58ccb2880d03c97dafba3fc1111c",
+          "commit_time": "2022-12-21T10:07:30+01:00",
+          "label": "old",
+          "license_path": null,
+          "license_sha256": null,
+          "parents": [
+            "566248a2d8a95d3740045ea314eb3232d52944da"
+          ],
+          "tag": "22.2.0",
+          "tree": "549baab084f437c55fcaa31663c09e8d0343eeb7",
+          "version": [
+            22,
+            2,
+            0
+          ]
+        },
+        {
+          "archive_sha256": null,
+          "commit": "598494a618410490cfbe0c896b7a544f6d23e0d9",
+          "commit_time": "2024-12-16T07:26:35+01:00",
+          "label": "new",
+          "license_path": null,
+          "license_sha256": null,
+          "parents": [
+            "805ff5ec21abcbf133397de21fd1a4771e25f6bf"
+          ],
+          "tag": "24.3.0",
+          "tree": "78d64832fdac023ab98d4a3f5e0fa5e07dd764ef",
+          "version": [
+            24,
+            3,
+            0
+          ]
+        }
+      ],
+      "stable_tag_inventory": [
+        {
+          "commit": "21d5dd792a00595ec219daf0e64de5de135377af",
+          "commit_time": "2015-04-15T17:39:29-04:00",
+          "tag": "15.0.0"
+        },
+        {
+          "commit": "5158b66af9976d4e32a014a154c2d56ac3802512",
+          "commit_time": "2015-08-20T13:53:57+02:00",
+          "tag": "15.1.0"
+        },
+        {
+          "commit": "81ff5309d93d7404c314f647ac7f420372e54071",
+          "commit_time": "2015-12-08T16:24:46+01:00",
+          "tag": "15.2.0"
+        },
+        {
+          "commit": "c37f4423be8557ea586ffcba2ece92f75655b9a3",
+          "commit_time": "2016-05-23T20:29:31+02:00",
+          "tag": "16.0.0"
+        },
+        {
+          "commit": "dae4e40446ff77446844b13b86aad1700f104681",
+          "commit_time": "2016-08-30T12:23:28+02:00",
+          "tag": "16.1.0"
+        },
+        {
+          "commit": "cc980c1f53906d88c9d5610a702e05c02947d81e",
+          "commit_time": "2016-09-17T07:49:51+02:00",
+          "tag": "16.2.0"
+        },
+        {
+          "commit": "5516d5452c76416b3fea0c9d9f2b7505fae82c2b",
+          "commit_time": "2016-11-24T14:01:14+01:00",
+          "tag": "16.3.0"
+        },
+        {
+          "commit": "f094aec6a92de33caded84c73c24ed4347c277bd",
+          "commit_time": "2017-05-16T18:56:14+02:00",
+          "tag": "17.1.0"
+        },
+        {
+          "commit": "c324a7d5474ff54f91b2b9443746facf2b6213a2",
+          "commit_time": "2017-05-24T10:57:35-07:00",
+          "tag": "17.2.0"
+        },
+        {
+          "commit": "aa097d62a1f794ff3188c4859db8d368af4f60e5",
+          "commit_time": "2017-11-08T18:44:09+01:00",
+          "tag": "17.3.0"
+        },
+        {
+          "commit": "ca06613b750936f6edd315cd94e5c7de0db6580d",
+          "commit_time": "2017-12-30T09:06:59+01:00",
+          "tag": "17.4.0"
+        },
+        {
+          "commit": "9c3e07bab90d09a6063a7802af4063ac52da77b7",
+          "commit_time": "2018-05-03T18:15:26+02:00",
+          "tag": "18.1.0"
+        },
+        {
+          "commit": "aaeba93b0618b24d6bcb37971445d0dcb5f52910",
+          "commit_time": "2018-09-01T06:44:34+02:00",
+          "tag": "18.2.0"
+        },
+        {
+          "commit": "0356f0603eb5d8d4e7bae132ab80847fff4abcfc",
+          "commit_time": "2019-03-03T09:31:44+01:00",
+          "tag": "19.1.0"
+        },
+        {
+          "commit": "7fcd616aabb4067b07a5bded22bc578d35f9e14d",
+          "commit_time": "2019-10-01T16:48:30+02:00",
+          "tag": "19.2.0"
+        },
+        {
+          "commit": "823c1c332ce7de24eef8a28e6d9ccf818ce7746c",
+          "commit_time": "2019-10-15T07:46:04+02:00",
+          "tag": "19.3.0"
+        },
+        {
+          "commit": "90386b669e8ad786bfd79ef2bbce37727ed855b6",
+          "commit_time": "2020-08-20T19:16:15+02:00",
+          "tag": "20.1.0"
+        },
+        {
+          "commit": "4f74fbaca3cc12911e4dcf67a5cc9d2465c3e571",
+          "commit_time": "2020-09-05T12:19:07+02:00",
+          "tag": "20.2.0"
+        },
+        {
+          "commit": "f3762ba07bf0cec8bebdaaeca2212ba1d662ff13",
+          "commit_time": "2020-11-05T11:00:48+01:00",
+          "tag": "20.3.0"
+        },
+        {
+          "commit": "b22195ee65d5b0ee7694ebd9da7dcd27abafd88c",
+          "commit_time": "2021-05-06T10:20:53+02:00",
+          "tag": "21.1.0"
+        },
+        {
+          "commit": "83d3cd70f90a3f4d19ee8b508e58d1c58821c0ad",
+          "commit_time": "2021-05-07T11:22:31+02:00",
+          "tag": "21.2.0"
+        },
+        {
+          "commit": "dd26edd68e12879f716c6554f25d957af299b801",
+          "commit_time": "2021-12-28T06:59:45+01:00",
+          "tag": "21.3.0"
+        },
+        {
+          "commit": "2de90143100e713d8ae6b5d1adb5e1e879af01fb",
+          "commit_time": "2021-12-29T14:09:28+01:00",
+          "tag": "21.4.0"
+        },
+        {
+          "commit": "b3dfebe2e10b44437c4f97d788fb5220d790efd0",
+          "commit_time": "2022-07-28T15:03:02+02:00",
+          "tag": "22.1.0"
+        },
+        {
+          "commit": "a9960de98d0f58ccb2880d03c97dafba3fc1111c",
+          "commit_time": "2022-12-21T10:07:30+01:00",
+          "tag": "22.2.0"
+        },
+        {
+          "commit": "1e2f6f9cac5cc60f0adab051c14adf09ffe39155",
+          "commit_time": "2023-04-16T12:22:15+02:00",
+          "tag": "23.1.0"
+        },
+        {
+          "commit": "9e443b18527dc96b194e92805fa751cbf8434ba9",
+          "commit_time": "2023-12-31T07:20:03+01:00",
+          "tag": "23.2.0"
+        },
+        {
+          "commit": "556ca7c919fb22c1327a096a3d99493a7bb48bdc",
+          "commit_time": "2024-08-03T16:14:36+02:00",
+          "tag": "24.1.0"
+        },
+        {
+          "commit": "6771a04893780166e4b7826b63599f43ac30d00a",
+          "commit_time": "2024-08-06T16:27:33+02:00",
+          "tag": "24.2.0"
+        },
+        {
+          "commit": "598494a618410490cfbe0c896b7a544f6d23e0d9",
+          "commit_time": "2024-12-16T07:26:35+01:00",
+          "tag": "24.3.0"
+        },
+        {
+          "commit": "fbff14eeaf817e4b34e9c5727c8d546dc118a346",
+          "commit_time": "2025-01-25T12:23:36+01:00",
+          "tag": "25.1.0"
+        },
+        {
+          "commit": "19943b775d40c018e844f2cb1728442f58112a3b",
+          "commit_time": "2025-03-12T10:55:16+01:00",
+          "tag": "25.2.0"
+        },
+        {
+          "commit": "3dca08ce5bbe673d7df25f44f3dda92505d1043d",
+          "commit_time": "2025-03-13T12:00:23+01:00",
+          "tag": "25.3.0"
+        },
+        {
+          "commit": "9a98e00a7c078360add417c5d62db820d4645ab1",
+          "commit_time": "2025-10-06T11:22:26+02:00",
+          "tag": "25.4.0"
+        },
+        {
+          "commit": "7bfc49e9b22d5ba25b6e429524c3d49fee27cb36",
+          "commit_time": "2026-03-19T10:06:02-04:00",
+          "tag": "26.1.0"
+        }
+      ],
+      "window_days": 725
+    },
+    {
+      "identity": "https://github.com/pytest-dev/pytest",
+      "owner_namespace": "pytest-dev",
+      "repo_id": "pytest",
+      "role": "Python test framework",
+      "selection_candidate_count": 201,
+      "snapshots": [
+        {
+          "archive_sha256": null,
+          "commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
+          "commit_time": "2022-10-23T20:28:15+00:00",
+          "label": "old",
+          "license_path": null,
+          "license_sha256": null,
+          "parents": [
+            "bc2c3b66aa084fa4ff64f836aee73eae4cb72818"
+          ],
+          "tag": "7.2.0",
+          "tree": "3c2ab323250e7a895e7cac6b38d1067cc1a7f51d",
+          "version": [
+            7,
+            2,
+            0
+          ]
+        },
+        {
+          "archive_sha256": null,
+          "commit": "53f8b4e634c5066c4f797a87b20060edbb086240",
+          "commit_time": "2024-12-01T09:43:00-03:00",
+          "label": "new",
+          "license_path": null,
+          "license_sha256": null,
+          "parents": [
+            "98dff36c9dc0a44881e9e90daf381f9079adf4cc"
+          ],
+          "tag": "8.3.4",
+          "tree": "c2b9ea0fea29f54252d7dd7dd1c1859ccacbc68b",
+          "version": [
+            8,
+            3,
+            4
+          ]
+        }
+      ],
+      "stable_tag_inventory": [
+        {
+          "commit": "a94afc6b5efa730fbd647d75f1e00d7debe656b7",
+          "commit_time": "2009-08-04T12:02:38+02:00",
+          "tag": "1.0.0"
+        },
+        {
+          "commit": "4f50ae13364037f581c417d9acbb56b1a30f69b4",
+          "commit_time": "2009-08-19T18:25:11+02:00",
+          "tag": "1.0.1"
+        },
+        {
+          "commit": "f522838c77470b0f7d8bcdc7ed6b4e3f0407e422",
+          "commit_time": "2009-08-27T11:43:46+02:00",
+          "tag": "1.0.2"
+        },
+        {
+          "commit": "e0bca8fe519e143ab320c4567fe5de9dad8cf6e8",
+          "commit_time": "2009-11-05T17:46:14+01:00",
+          "tag": "1.1.0"
+        },
+        {
+          "commit": "9d5b313aad3f5610356385aa6b7f007362abc3c0",
+          "commit_time": "2009-11-24T15:16:58+01:00",
+          "tag": "1.1.1"
+        },
+        {
+          "commit": "6756416d694ed4aa25cd7298419feaffce584eef",
+          "commit_time": "2010-01-18T17:00:22+01:00",
+          "tag": "1.2.0"
+        },
+        {
+          "commit": "222a08ec03e1ea3879d4f96c6fe02a8fdec2f3b9",
+          "commit_time": "2010-02-08T16:39:29+01:00",
+          "tag": "1.2.1"
+        },
+        {
+          "commit": "a127767da68a8f4fbee251fa9cbff657cfb5744e",
+          "commit_time": "2010-05-05T21:03:43+02:00",
+          "tag": "1.3.0"
+        },
+        {
+          "commit": "2e36e2619fbe564b37a6657d4370b01e6805c8cd",
+          "commit_time": "2010-05-25T21:01:43+02:00",
+          "tag": "1.3.1"
+        },
+        {
+          "commit": "caf5bdbf8935f108fa0078aabedd7bed46a76ee5",
+          "commit_time": "2010-07-08T17:20:52+02:00",
+          "tag": "1.3.2"
+        },
+        {
+          "commit": "365459295967b317b1c3765b2692ed29c3d10d95",
+          "commit_time": "2010-07-30T15:06:50+02:00",
+          "tag": "1.3.3"
+        },
+        {
+          "commit": "bb6e9848b3a8770b199a085d3341d498bd7b50d1",
+          "commit_time": "2010-09-14T17:35:01+02:00",
+          "tag": "1.3.4"
+        },
+        {
+          "commit": "f741d6a01ee5441e957b577abf6b7b712fdb1250",
+          "commit_time": "2010-11-25T21:02:09+01:00",
+          "tag": "2.0.0"
+        },
+        {
+          "commit": "98cd8edb7197309ab54d24d6d4e1ac4079071a63",
+          "commit_time": "2011-02-07T11:45:37+01:00",
+          "tag": "2.0.1"
+        },
+        {
+          "commit": "527bc472a8b1a68705bc6f38efd2914a16ea2ab3",
+          "commit_time": "2011-03-09T13:59:00+01:00",
+          "tag": "2.0.2"
+        },
+        {
+          "commit": "07e870dc1494b923b6f6588330598164c391612e",
+          "commit_time": "2011-05-11T11:54:30+02:00",
+          "tag": "2.0.3"
+        },
+        {
+          "commit": "50c8218501f84ed3863d805a77b027e4c9351dc2",
+          "commit_time": "2011-07-09T12:02:22+02:00",
+          "tag": "2.1.0"
+        },
+        {
+          "commit": "172d46abd07e422bf3eb812c6b7048f150be1438",
+          "commit_time": "2011-09-24T08:06:39+02:00",
+          "tag": "2.1.2"
+        },
+        {
+          "commit": "448f1c0d9ccabfe5b63af81117cdb1b8a11bd750",
+          "commit_time": "2011-10-18T20:58:19+02:00",
+          "tag": "2.1.3"
+        },
+        {
+          "commit": "48e6823c7a552e5f1c53771b0ae826ac14b26683",
+          "commit_time": "2011-11-18T18:45:15+00:00",
+          "tag": "2.2.0"
+        },
+        {
+          "commit": "b83a3bcc80c85513b875866416306228a6a0e057",
+          "commit_time": "2011-12-16T11:43:05+00:00",
+          "tag": "2.2.1"
+        },
+        {
+          "commit": "87b4cb283ffa559cab6bcd1d86d6a9f61fb5ac0b",
+          "commit_time": "2012-02-05T18:33:04-05:00",
+          "tag": "2.2.2"
+        },
+        {
+          "commit": "4d21274a29f89c925922c5535166046e40c5a5b7",
+          "commit_time": "2012-02-05T23:38:31-05:00",
+          "tag": "2.2.3"
+        },
+        {
+          "commit": "69fc6987adae78966a983eeecb8b7661d908cb48",
+          "commit_time": "2012-05-22T17:24:43+02:00",
+          "tag": "2.2.4"
+        },
+        {
+          "commit": "a5ce481022ed55c13edf043c4d7f65713cd1c607",
+          "commit_time": "2012-10-19T11:12:13+02:00",
+          "tag": "2.3.0"
+        },
+        {
+          "commit": "d4d213f83dca2d99fe29722ae32c94fd46f4fdaa",
+          "commit_time": "2012-10-20T14:10:12+02:00",
+          "tag": "2.3.1"
+        },
+        {
+          "commit": "6ad16936bbdcdf18a933f7a44d8438176d39ab6f",
+          "commit_time": "2012-10-25T13:48:31+02:00",
+          "tag": "2.3.2"
+        },
+        {
+          "commit": "d6f10d502cab1e488d212ae2f0eed98e6f447741",
+          "commit_time": "2012-11-06T15:36:11+01:00",
+          "tag": "2.3.3"
+        },
+        {
+          "commit": "b5955c59793b924a14e3ab185f38d690cef32fb3",
+          "commit_time": "2012-11-20T14:01:31+01:00",
+          "tag": "2.3.4"
+        },
+        {
+          "commit": "8c7ae7f7a5beb922443a73c9946f459ebd1cda52",
+          "commit_time": "2013-04-30T12:26:30+02:00",
+          "tag": "2.3.5"
+        },
+        {
+          "commit": "f9927e457b2f3f4a010287dcdecc180d66753c9b",
+          "commit_time": "2013-10-01T10:43:36+02:00",
+          "tag": "2.4.0"
+        },
+        {
+          "commit": "2b8f4214c30e20c6cddcf81069ef928b1e975e1a",
+          "commit_time": "2013-10-02T09:16:51+02:00",
+          "tag": "2.4.1"
+        },
+        {
+          "commit": "4b395d56cc9e706fe9f9e9478626e6f38a02d8ce",
+          "commit_time": "2013-10-04T13:59:44+02:00",
+          "tag": "2.4.2"
+        },
+        {
+          "commit": "a056b41070b453da78a8eebeed83f7de18249e19",
+          "commit_time": "2013-12-12T13:01:57+01:00",
+          "tag": "2.5.0"
+        },
+        {
+          "commit": "cc9b3ec296567a25721040549ef69352cc4b8e33",
+          "commit_time": "2013-12-17T08:59:50+01:00",
+          "tag": "2.5.1"
+        },
+        {
+          "commit": "1830de2c136fb4cb6b07d53bec7fefa065bd8c2f",
+          "commit_time": "2014-01-29T13:56:24+01:00",
+          "tag": "2.5.2"
+        },
+        {
+          "commit": "52011e84d37921679fd8c9d7dfc468ad81dd6f72",
+          "commit_time": "2014-07-20T13:15:21+02:00",
+          "tag": "2.6.0"
+        },
+        {
+          "commit": "e5eaf02e19116192693f563b41878cf89ad218ed",
+          "commit_time": "2014-08-07T21:41:51+02:00",
+          "tag": "2.6.1"
+        },
+        {
+          "commit": "7dad3cb1577faa1e3f85d7acedf2261ea02aeaf4",
+          "commit_time": "2014-09-05T13:13:23+02:00",
+          "tag": "2.6.2"
+        },
+        {
+          "commit": "b57545bd21ff6bf30651de1146b8a355a1486c54",
+          "commit_time": "2014-09-24T14:59:55+02:00",
+          "tag": "2.6.3"
+        },
+        {
+          "commit": "60cdb875ed17f1e6ca0b189a4bc2cb12de5835f4",
+          "commit_time": "2014-10-24T15:24:44+02:00",
+          "tag": "2.6.4"
+        },
+        {
+          "commit": "d2a8866bced48411be883fb0fce4f2f7cabe71ec",
+          "commit_time": "2015-03-26T09:34:10+01:00",
+          "tag": "2.7.0"
+        },
+        {
+          "commit": "738c8762df3f2e754c252bb73175989f1e0b1443",
+          "commit_time": "2015-05-19T01:54:24+01:00",
+          "tag": "2.7.1"
+        },
+        {
+          "commit": "e84c00efae4fc8841cf5974c0fa68fc043e50a22",
+          "commit_time": "2015-06-23T16:31:24+02:00",
+          "tag": "2.7.2"
+        },
+        {
+          "commit": "b4c47c0ac0699da6c604231f07369e527f1d33cd",
+          "commit_time": "2015-09-15T11:37:38+01:00",
+          "tag": "2.7.3"
+        },
+        {
+          "commit": "1aca998f3f75a533888db079bb05dd646957e149",
+          "commit_time": "2015-09-18T16:01:22+02:00",
+          "tag": "2.8.0"
+        },
+        {
+          "commit": "afdbb6b17aa6811f30bf2c99d4083e69bf582b3c",
+          "commit_time": "2015-09-29T15:19:07+02:00",
+          "tag": "2.8.1"
+        },
+        {
+          "commit": "7c529e0afe7e8d4f5b3c7d9bfcecf5be0c56f2d5",
+          "commit_time": "2015-10-07T17:51:34+02:00",
+          "tag": "2.8.2"
+        },
+        {
+          "commit": "e4a000bb001d859a1224837e9938036f76917fe4",
+          "commit_time": "2015-11-18T17:57:41+01:00",
+          "tag": "2.8.3"
+        },
+        {
+          "commit": "8c17c7cd121fc4a435beb6b42d07b4a6fd855913",
+          "commit_time": "2015-12-06T17:44:08+01:00",
+          "tag": "2.8.4"
+        },
+        {
+          "commit": "855b115daba16bfe9c9da29198c567921c405b93",
+          "commit_time": "2015-12-11T22:35:44-02:00",
+          "tag": "2.8.5"
+        },
+        {
+          "commit": "82d00efa8dd4ef903f0eca2bd02fa1aab9ddbb96",
+          "commit_time": "2016-01-21T19:17:53-02:00",
+          "tag": "2.8.6"
+        },
+        {
+          "commit": "3315b3a12fdd9ef8e05d4efb6d6bea52aa750668",
+          "commit_time": "2016-01-24T23:23:15+01:00",
+          "tag": "2.8.7"
+        },
+        {
+          "commit": "19d05814d2e6d662b36bf07fc10ad5dbd7de6052",
+          "commit_time": "2016-02-29T17:09:31-05:00",
+          "tag": "2.9.0"
+        },
+        {
+          "commit": "168daaa71f4cc5f846064ebebab41b9cf625a89a",
+          "commit_time": "2016-03-17T17:13:41-04:00",
+          "tag": "2.9.1"
+        },
+        {
+          "commit": "978bb190a14d04634dffa1018dce2a5ead404efa",
+          "commit_time": "2016-05-31T19:06:29+02:00",
+          "tag": "2.9.2"
+        },
+        {
+          "commit": "c74ce371ab923edb990f40cf21f4309e1b4871ad",
+          "commit_time": "2016-08-18T12:02:01-04:00",
+          "tag": "3.0.0"
+        },
+        {
+          "commit": "49fc4e5e4c74c2b9914bd81856b2d62cb1473d28",
+          "commit_time": "2016-08-23T18:15:43-04:00",
+          "tag": "3.0.1"
+        },
+        {
+          "commit": "4e58c9a7d010be4b9f67f89495d1e7c2ae9062d0",
+          "commit_time": "2016-09-01T07:19:11-04:00",
+          "tag": "3.0.2"
+        },
+        {
+          "commit": "ba6ecc14c80b6b8a045143bada89598f1f3f8c9c",
+          "commit_time": "2016-09-28T17:16:57-04:00",
+          "tag": "3.0.3"
+        },
+        {
+          "commit": "ab274299fee959e64a4a749806e1124eb5d2f29b",
+          "commit_time": "2016-11-09T16:44:58-05:00",
+          "tag": "3.0.4"
+        },
+        {
+          "commit": "f592c7746a53999f52df46db764b31d9fbb987f9",
+          "commit_time": "2016-12-05T07:22:06-05:00",
+          "tag": "3.0.5"
+        },
+        {
+          "commit": "0e64cd045c8477cc81014490ed5e38e5b690a1ea",
+          "commit_time": "2017-01-22T22:14:54+01:00",
+          "tag": "3.0.6"
+        },
+        {
+          "commit": "90c934e25ed378bd517da9039dfed65c1ea570ba",
+          "commit_time": "2017-03-13T18:59:15-04:00",
+          "tag": "3.0.7"
+        },
+        {
+          "commit": "9b48613baa9ee1ab4e1e233bfe956de03e89b23e",
+          "commit_time": "2017-05-19T18:12:59-04:00",
+          "tag": "3.1.0"
+        },
+        {
+          "commit": "2fd7626046f55e4c1c8d64990c47fe92a00729fb",
+          "commit_time": "2017-05-30T17:19:34-04:00",
+          "tag": "3.1.1"
+        },
+        {
+          "commit": "7cbf265bb5b279d8c39ba6dd85d4ef96aacd0163",
+          "commit_time": "2017-06-08T17:37:42-04:00",
+          "tag": "3.1.2"
+        },
+        {
+          "commit": "b63f6770a17a122850ddc7902e16ce0c2f6af1ea",
+          "commit_time": "2017-07-03T23:29:13+00:00",
+          "tag": "3.1.3"
+        },
+        {
+          "commit": "3d88d1827b42b7f7b0e774d19ac58f02e5c67d0a",
+          "commit_time": "2018-11-03T19:50:19-03:00",
+          "tag": "3.10.0"
+        },
+        {
+          "commit": "2626bd9afa714c9ae1f50b99f7d0d18e7cf29d27",
+          "commit_time": "2018-11-11T13:43:04+00:00",
+          "tag": "3.10.1"
+        },
+        {
+          "commit": "d2bca93109a7c85f316e493c5c31ee2322578980",
+          "commit_time": "2017-08-01T18:01:22-03:00",
+          "tag": "3.2.0"
+        },
+        {
+          "commit": "45d2962e97eae33ea71adee74911952c730bc039",
+          "commit_time": "2017-08-08T21:11:11+00:00",
+          "tag": "3.2.1"
+        },
+        {
+          "commit": "c52f87ede304f42cb9e8c79e461ccde8a55ea5f8",
+          "commit_time": "2017-09-06T21:37:57+00:00",
+          "tag": "3.2.2"
+        },
+        {
+          "commit": "6b91bc88de36e3c75da5ab1b7480cbe067eed57b",
+          "commit_time": "2017-10-03T21:42:34+00:00",
+          "tag": "3.2.3"
+        },
+        {
+          "commit": "a0ad9e31da70606916dd22ff4fd9bd64269f5eec",
+          "commit_time": "2017-11-13T20:01:17+00:00",
+          "tag": "3.2.4"
+        },
+        {
+          "commit": "a220a40350a8a81c0f0e1986aa184e4c33da29d6",
+          "commit_time": "2017-11-15T00:12:42+00:00",
+          "tag": "3.2.5"
+        },
+        {
+          "commit": "6cdd85122705393cfcfe08570bae581bf9f2d157",
+          "commit_time": "2017-11-27T10:19:34-02:00",
+          "tag": "3.3.0"
+        },
+        {
+          "commit": "2a111ff700f295d9b27fb1a43219e08df62fc0bd",
+          "commit_time": "2017-12-05T20:41:57+00:00",
+          "tag": "3.3.1"
+        },
+        {
+          "commit": "bd2d0d2c3c9bf92711e5a858e93e46d390dd4229",
+          "commit_time": "2017-12-25T20:38:27+00:00",
+          "tag": "3.3.2"
+        },
+        {
+          "commit": "527845ef298d94b1e101684bb52e5eac3ce53485",
+          "commit_time": "2018-01-30T19:49:08+00:00",
+          "tag": "3.4.0"
+        },
+        {
+          "commit": "b3193755927d38816e25777d9ac6776637d82bbf",
+          "commit_time": "2018-02-20T01:43:59+00:00",
+          "tag": "3.4.1"
+        },
+        {
+          "commit": "e8368e6c2ea101a79b877509622878ab7b12d1bd",
+          "commit_time": "2018-03-05T07:26:38-03:00",
+          "tag": "3.4.2"
+        },
+        {
+          "commit": "beacecf29ba0b99511a4e5ae9b96ff2b0c42c775",
+          "commit_time": "2018-03-21T20:46:07+00:00",
+          "tag": "3.5.0"
+        },
+        {
+          "commit": "4a92011e6e0cf57ed219897afca33b4cb541dac7",
+          "commit_time": "2018-04-24T07:06:52-03:00",
+          "tag": "3.5.1"
+        },
+        {
+          "commit": "45e77031336b11a64756d745b1aba46301b32f27",
+          "commit_time": "2018-05-22T21:12:51-03:00",
+          "tag": "3.6.0"
+        },
+        {
+          "commit": "2a79f58ba39a42d0484d688c7c1541513758e61f",
+          "commit_time": "2018-06-04T22:14:04-03:00",
+          "tag": "3.6.1"
+        },
+        {
+          "commit": "46aa18dfa7c46e70ae5c204667f3590181abe25f",
+          "commit_time": "2018-06-19T21:34:03-03:00",
+          "tag": "3.6.2"
+        },
+        {
+          "commit": "73d787df3a13af635d18464a6560984e78c0b4da",
+          "commit_time": "2018-07-03T22:15:23-03:00",
+          "tag": "3.6.3"
+        },
+        {
+          "commit": "317cd41215cc4e6e829f86afdacf0dc15bb43e36",
+          "commit_time": "2018-07-28T12:59:04+00:00",
+          "tag": "3.6.4"
+        },
+        {
+          "commit": "997ef593068a36c283cbb83d938272b9770caa36",
+          "commit_time": "2018-07-30T18:31:35-03:00",
+          "tag": "3.7.0"
+        },
+        {
+          "commit": "f7a3f45a182ed8b4dabb130d2b46d717b006edeb",
+          "commit_time": "2018-08-02T12:04:39+00:00",
+          "tag": "3.7.1"
+        },
+        {
+          "commit": "e0b088b52ea2c9ad9748acbed62dccfd20eccf42",
+          "commit_time": "2018-08-16T19:32:41-03:00",
+          "tag": "3.7.2"
+        },
+        {
+          "commit": "70bdacf01aa0917d4499c1aff4f9f2061968a655",
+          "commit_time": "2018-08-26T12:58:47+00:00",
+          "tag": "3.7.3"
+        },
+        {
+          "commit": "aea962dc21c4a1c4b3236500af69d7e78c60f8d5",
+          "commit_time": "2018-08-29T08:57:54-07:00",
+          "tag": "3.7.4"
+        },
+        {
+          "commit": "1f2062661826efb5ac4322c17e24db202bf0a147",
+          "commit_time": "2018-09-05T21:06:32+00:00",
+          "tag": "3.8.0"
+        },
+        {
+          "commit": "3f6a46c2a47bc29993d07d47139ef101f7aa630f",
+          "commit_time": "2018-09-22T16:34:06+00:00",
+          "tag": "3.8.1"
+        },
+        {
+          "commit": "d3673c7429f00ac7dfa91180194d43fe9dd99b5c",
+          "commit_time": "2018-10-02T07:46:02-07:00",
+          "tag": "3.8.2"
+        },
+        {
+          "commit": "2868c314953e3a2cf2c753ebb87710d65c906cfa",
+          "commit_time": "2018-10-15T20:23:30+00:00",
+          "tag": "3.9.0"
+        },
+        {
+          "commit": "c5bbf8ac73a78fd15016296e808d13f2a2a983f1",
+          "commit_time": "2018-10-16T22:21:15+02:00",
+          "tag": "3.9.1"
+        },
+        {
+          "commit": "771e860011c24f5582d31ebf0631d38bee60c770",
+          "commit_time": "2018-10-22T21:47:42+00:00",
+          "tag": "3.9.2"
+        },
+        {
+          "commit": "96784c2052ba5d36a8c3deaf039c9ab406b12cca",
+          "commit_time": "2018-10-27T13:07:54+00:00",
+          "tag": "3.9.3"
+        },
+        {
+          "commit": "c2d6b3524cc0039e152da52fe21eb375e63704cf",
+          "commit_time": "2018-11-13T21:01:51+00:00",
+          "tag": "4.0.0"
+        },
+        {
+          "commit": "be3b8fc9c1417243b9567bd31992c0c42f0bf898",
+          "commit_time": "2018-11-23T22:47:58+01:00",
+          "tag": "4.0.1"
+        },
+        {
+          "commit": "6c5a1150d46f0392e84d6c9f28ace48d5199ca22",
+          "commit_time": "2018-12-13T23:37:51+00:00",
+          "tag": "4.0.2"
+        },
+        {
+          "commit": "e24031fb3627ae6c187ea476c99a5f6d90e876f6",
+          "commit_time": "2019-01-05T20:42:44+00:00",
+          "tag": "4.1.0"
+        },
+        {
+          "commit": "34eeda1c09074ade61944bb5b8af326c18157a0b",
+          "commit_time": "2019-01-12T00:55:12+00:00",
+          "tag": "4.1.1"
+        },
+        {
+          "commit": "fa979a4290cdd6ba089091bf898ea65ff1bc2a65",
+          "commit_time": "2019-01-30T14:25:38-02:00",
+          "tag": "4.2.0"
+        },
+        {
+          "commit": "82cc3d8cc209b05edecbab8ffc8bf7565e862ce7",
+          "commit_time": "2019-02-12T20:17:06+00:00",
+          "tag": "4.2.1"
+        },
+        {
+          "commit": "ff015f630851927a39899b35b175a39945dd6c74",
+          "commit_time": "2019-02-18T18:46:03+01:00",
+          "tag": "4.3.0"
+        },
+        {
+          "commit": "492cc4219ca00fff2ba9823dc704a2f4aa9d4a1e",
+          "commit_time": "2019-03-11T12:59:54-03:00",
+          "tag": "4.3.1"
+        },
+        {
+          "commit": "4621638f0703620ccab416a9b1724746da402463",
+          "commit_time": "2019-03-29T20:29:40-03:00",
+          "tag": "4.4.0"
+        },
+        {
+          "commit": "006dc30476b7ed5924f8f7e8bb97de06a9b573e6",
+          "commit_time": "2019-04-15T14:24:17+00:00",
+          "tag": "4.4.1"
+        },
+        {
+          "commit": "3ac43314eeb3285b3680c8e481a5067b3115c46a",
+          "commit_time": "2019-05-08T12:46:14-03:00",
+          "tag": "4.4.2"
+        },
+        {
+          "commit": "63fe547d9f97a78c63a91e139d3a17c15afe7e84",
+          "commit_time": "2019-05-11T16:35:32+00:00",
+          "tag": "4.5.0"
+        },
+        {
+          "commit": "e7cd00ac920f3db2855becd75193d2241b84e56d",
+          "commit_time": "2019-05-31T23:12:57-07:00",
+          "tag": "4.6.0"
+        },
+        {
+          "commit": "abb853f482e5fa37b2f18f22662d33e52117e696",
+          "commit_time": "2019-06-02T10:09:51-07:00",
+          "tag": "4.6.1"
+        },
+        {
+          "commit": "180f93158e380fd570340b39ae5aafc066e07ff8",
+          "commit_time": "2020-05-08T12:59:26-03:00",
+          "tag": "4.6.10"
+        },
+        {
+          "commit": "2262734edfce27bed7839c93a9f7c42ace056a70",
+          "commit_time": "2020-06-04T13:49:08-04:00",
+          "tag": "4.6.11"
+        },
+        {
+          "commit": "70f0b77c729d689d79498bcb525a8ec6d5464dd0",
+          "commit_time": "2019-06-03T10:43:09-07:00",
+          "tag": "4.6.2"
+        },
+        {
+          "commit": "b8e65d03bf563d5de3a285af187fd00a2f202e5e",
+          "commit_time": "2019-06-11T08:48:11-07:00",
+          "tag": "4.6.3"
+        },
+        {
+          "commit": "d3549df5b94137453b832345a9b8074f518731b0",
+          "commit_time": "2019-06-28T18:23:53-07:00",
+          "tag": "4.6.4"
+        },
+        {
+          "commit": "7807c263bcbb98ba91b50cb2b0dcdf55c49f80e6",
+          "commit_time": "2019-08-05T13:37:25-03:00",
+          "tag": "4.6.5"
+        },
+        {
+          "commit": "5b499bafb24ee0347b1dc25f3f670602818e18a7",
+          "commit_time": "2019-10-11T17:02:08-04:00",
+          "tag": "4.6.6"
+        },
+        {
+          "commit": "6f43eee106937b49bfa8e1f28a5a1aac091aa837",
+          "commit_time": "2019-12-05T15:29:25-05:00",
+          "tag": "4.6.7"
+        },
+        {
+          "commit": "2d398d870604b4d2f95b4a0157b97553008e762a",
+          "commit_time": "2019-12-19T14:42:09-08:00",
+          "tag": "4.6.8"
+        },
+        {
+          "commit": "f6a5578d5cc780887d98a18beb5a922ccd9c27d3",
+          "commit_time": "2020-01-04T04:40:51-08:00",
+          "tag": "4.6.9"
+        },
+        {
+          "commit": "58bfc7736fc4f88eca669157822e00715c67a9bf",
+          "commit_time": "2019-06-28T14:44:49-07:00",
+          "tag": "5.0.0"
+        },
+        {
+          "commit": "bb29f31d2278fc93efba7ef3e123616c13ce8022",
+          "commit_time": "2019-07-04T20:01:16-04:00",
+          "tag": "5.0.1"
+        },
+        {
+          "commit": "eaf7ce9a992cea7506553b7d77fdf9622900ae36",
+          "commit_time": "2019-08-15T20:00:09-04:00",
+          "tag": "5.1.0"
+        },
+        {
+          "commit": "b135f5af8d9b3a2a3904a55ec51b55db737c97d1",
+          "commit_time": "2019-08-20T11:30:36-07:00",
+          "tag": "5.1.1"
+        },
+        {
+          "commit": "e56544cb587e8f288bea12aff01355b31aec92f7",
+          "commit_time": "2019-08-30T12:43:47-03:00",
+          "tag": "5.1.2"
+        },
+        {
+          "commit": "1a9f4a51cb2a3c3b1d8e3bd5189552a24a85f5f4",
+          "commit_time": "2019-09-18T10:11:59-03:00",
+          "tag": "5.1.3"
+        },
+        {
+          "commit": "068ef90b92a9e9205af31cb3d82e7d2a433ff969",
+          "commit_time": "2019-09-28T21:18:37-04:00",
+          "tag": "5.2.0"
+        },
+        {
+          "commit": "12cc729f6b50abbd3708dfc64e76ff454852b805",
+          "commit_time": "2019-10-06T08:00:49-04:00",
+          "tag": "5.2.1"
+        },
+        {
+          "commit": "b27ba977219260528f4e47c9614c129d680dee90",
+          "commit_time": "2019-10-24T19:24:04-04:00",
+          "tag": "5.2.2"
+        },
+        {
+          "commit": "dd9a27cf543c39f91039ecd7aa6aa595b3e79330",
+          "commit_time": "2019-11-14T17:51:38-03:00",
+          "tag": "5.2.3"
+        },
+        {
+          "commit": "c9a96cdee8ee7c1a9ead49b355fab9aef73196fe",
+          "commit_time": "2019-11-15T13:26:56-08:00",
+          "tag": "5.2.4"
+        },
+        {
+          "commit": "be59827216612fd416818702be7e2b8448f4089d",
+          "commit_time": "2019-11-19T13:56:22-03:00",
+          "tag": "5.3.0"
+        },
+        {
+          "commit": "05008f6b557ad35b71efd9e9ebca96c07402d793",
+          "commit_time": "2019-11-25T14:32:37-03:00",
+          "tag": "5.3.1"
+        },
+        {
+          "commit": "7f24cc2feb87af41e95d2c0aee59fc81a44dbea8",
+          "commit_time": "2019-12-14T10:06:59-03:00",
+          "tag": "5.3.2"
+        },
+        {
+          "commit": "544b4a14d5f6dbe141c34878d1a360cc6b15c87f",
+          "commit_time": "2020-01-17T07:18:57-03:00",
+          "tag": "5.3.3"
+        },
+        {
+          "commit": "6a26ac41255a304eb3eec2da565101caf2112394",
+          "commit_time": "2020-01-20T13:53:31-03:00",
+          "tag": "5.3.4"
+        },
+        {
+          "commit": "fd1a51a23fa687cf344f3506dff6cde0166faf2c",
+          "commit_time": "2020-01-29T03:03:56+01:00",
+          "tag": "5.3.5"
+        },
+        {
+          "commit": "c9fd1bdbd6d25917d33b27511d8ebc2a65538899",
+          "commit_time": "2020-03-12T14:14:35+00:00",
+          "tag": "5.4.0"
+        },
+        {
+          "commit": "3d0f3baa2bb89257dfff25ae6ebabd565287240e",
+          "commit_time": "2020-03-13T13:34:24+00:00",
+          "tag": "5.4.1"
+        },
+        {
+          "commit": "f838c7b7eb0088a5cf6c247f158d455b15d0ccd6",
+          "commit_time": "2020-05-08T11:14:08+00:00",
+          "tag": "5.4.2"
+        },
+        {
+          "commit": "b322004047774f4b0992bfc8b9b1123069a6d0f1",
+          "commit_time": "2020-06-02T15:22:35+00:00",
+          "tag": "5.4.3"
+        },
+        {
+          "commit": "41a453959441d9b03cba3e47730efca27fa2f252",
+          "commit_time": "2020-07-28T14:15:45-03:00",
+          "tag": "6.0.0"
+        },
+        {
+          "commit": "92af2e22d276d6f9b6aca4435ec19af81ffaea49",
+          "commit_time": "2020-07-30T11:50:12+00:00",
+          "tag": "6.0.1"
+        },
+        {
+          "commit": "09b1d7cc997200dca5adb3e62e593c312d6864d3",
+          "commit_time": "2020-09-04T21:48:44+00:00",
+          "tag": "6.0.2"
+        },
+        {
+          "commit": "868bc003ecb0af65548c14de997205cc0e37c3c6",
+          "commit_time": "2020-09-26T17:32:18+00:00",
+          "tag": "6.1.0"
+        },
+        {
+          "commit": "0ad20b533ffc52ced7bb1a03fba664615e90c093",
+          "commit_time": "2020-10-03T19:05:02+00:00",
+          "tag": "6.1.1"
+        },
+        {
+          "commit": "4e8b50ba01f0d8a6a2abb98440d3421a037eddb7",
+          "commit_time": "2020-10-28T11:37:31+00:00",
+          "tag": "6.1.2"
+        },
+        {
+          "commit": "e7073afe6e2373175130511135020af8b4e3a670",
+          "commit_time": "2020-12-12T22:45:09+02:00",
+          "tag": "6.2.0"
+        },
+        {
+          "commit": "d3971c30f4d0f1890a372af3b98de41ee555dcb3",
+          "commit_time": "2020-12-15T13:06:34+00:00",
+          "tag": "6.2.1"
+        },
+        {
+          "commit": "b9c98762f597f624be58d791ea7bdee6cd517967",
+          "commit_time": "2021-01-25T12:30:53+00:00",
+          "tag": "6.2.2"
+        },
+        {
+          "commit": "3a2fd9630547e224bea6e024a4f6852761235c61",
+          "commit_time": "2021-04-03T21:41:18+00:00",
+          "tag": "6.2.3"
+        },
+        {
+          "commit": "017dd1ccd60055bc6a7a41af11b74425da87a696",
+          "commit_time": "2021-05-04T08:33:43-07:00",
+          "tag": "6.2.4"
+        },
+        {
+          "commit": "1569fac603d9a50022e1474b494eebf970a2a3af",
+          "commit_time": "2021-08-29T11:09:45-03:00",
+          "tag": "6.2.5"
+        },
+        {
+          "commit": "3554b833c24f541af5c7272e47cfa52b89d8138d",
+          "commit_time": "2022-02-03T17:39:39+01:00",
+          "tag": "7.0.0"
+        },
+        {
+          "commit": "3f12087fe0d86a319216653b08b66a96d400bee2",
+          "commit_time": "2022-02-11T15:56:37+00:00",
+          "tag": "7.0.1"
+        },
+        {
+          "commit": "1dbffcc0b4d822b87ad9f90595ffab6d9beee769",
+          "commit_time": "2022-03-13T13:44:48+00:00",
+          "tag": "7.1.0"
+        },
+        {
+          "commit": "0ffe9e07422dfec72479a6d056154ec8b9b0dbae",
+          "commit_time": "2022-03-17T20:21:30+00:00",
+          "tag": "7.1.1"
+        },
+        {
+          "commit": "2f2f1a601e33aa1a77de42f164ba4b642252f1c0",
+          "commit_time": "2022-04-23T11:33:44+00:00",
+          "tag": "7.1.2"
+        },
+        {
+          "commit": "4645bcd44915c2fd6043b101626e5bf1a983ac07",
+          "commit_time": "2022-08-31T14:53:40-03:00",
+          "tag": "7.1.3"
+        },
+        {
+          "commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
+          "commit_time": "2022-10-23T20:28:15+00:00",
+          "tag": "7.2.0"
+        },
+        {
+          "commit": "1ae778f13ec8350e224ae6a365f21cc0d83af018",
+          "commit_time": "2023-01-13T11:01:33+00:00",
+          "tag": "7.2.1"
+        },
+        {
+          "commit": "4191e0259805acbc499d326441c98e2b950637f1",
+          "commit_time": "2023-03-03T17:05:52+00:00",
+          "tag": "7.2.2"
+        },
+        {
+          "commit": "ef982aaf2bce28d6b27e24756a4d29377a593a1d",
+          "commit_time": "2023-04-08T21:19:52+00:00",
+          "tag": "7.3.0"
+        },
+        {
+          "commit": "dab199281c8f969ef870d842a660e40872785bd4",
+          "commit_time": "2023-04-14T17:14:35+00:00",
+          "tag": "7.3.1"
+        },
+        {
+          "commit": "9d47a39bdd85e6bef40a5674e5f0eded54e54d7e",
+          "commit_time": "2023-06-10T18:52:19+00:00",
+          "tag": "7.3.2"
+        },
+        {
+          "commit": "d9bf9dbec104af1e3a2c02b04f4e1d501d5d86a2",
+          "commit_time": "2023-06-23T14:03:58+03:00",
+          "tag": "7.4.0"
+        },
+        {
+          "commit": "7855a72d2c5c810a025460f135ffdd77160bb091",
+          "commit_time": "2023-09-02T08:46:22-03:00",
+          "tag": "7.4.1"
+        },
+        {
+          "commit": "45f34dfb8d813b00c7d8060a3ea75f7b4bc5cd7d",
+          "commit_time": "2023-09-07T17:21:49+00:00",
+          "tag": "7.4.2"
+        },
+        {
+          "commit": "23906106968eb95afbd61adfbc7bbb795fc9aaa9",
+          "commit_time": "2023-10-24T15:45:08-03:00",
+          "tag": "7.4.3"
+        },
+        {
+          "commit": "33f694f4b30c5c502f21f81cb8ab907b12ad2f65",
+          "commit_time": "2023-12-31T10:17:27+00:00",
+          "tag": "7.4.4"
+        },
+        {
+          "commit": "478f8233bca8147445f0c5129f04ada892cc6c91",
+          "commit_time": "2024-01-27T23:23:56+02:00",
+          "tag": "8.0.0"
+        },
+        {
+          "commit": "d7d320a15a1f8dae909e0aa71f20ab5daeaa42d3",
+          "commit_time": "2024-02-16T13:20:17+00:00",
+          "tag": "8.0.1"
+        },
+        {
+          "commit": "31afeeb0df0e8bdab1325b5992a2cc733e981e82",
+          "commit_time": "2024-02-24T22:02:40+00:00",
+          "tag": "8.0.2"
+        },
+        {
+          "commit": "b9a167f9bbbd6eda4f0360c5bf5b7f5af50f2bc4",
+          "commit_time": "2024-03-03T20:47:25+00:00",
+          "tag": "8.1.0"
+        },
+        {
+          "commit": "81653ee385f4c62ee7e64502a7b7530096553115",
+          "commit_time": "2024-03-09T08:31:12-03:00",
+          "tag": "8.1.1"
+        },
+        {
+          "commit": "cf84163ac3549e657eed5ef2a4f4c7a5d1ffbe8c",
+          "commit_time": "2024-04-26T11:54:49+00:00",
+          "tag": "8.1.2"
+        },
+        {
+          "commit": "6bd3f313447290380cbc2db30fb9ee5cca7eb941",
+          "commit_time": "2024-04-27T10:20:51-03:00",
+          "tag": "8.2.0"
+        },
+        {
+          "commit": "66ff8dffdf9eee9b3dd6686de34542c49ff80dcd",
+          "commit_time": "2024-05-19T16:43:40+00:00",
+          "tag": "8.2.1"
+        },
+        {
+          "commit": "329d3712146e69c471be3e30883d54bdde2f76cb",
+          "commit_time": "2024-06-04T12:54:55+00:00",
+          "tag": "8.2.2"
+        },
+        {
+          "commit": "a7d5a8eba9addd119432fa71880b51052a89812f",
+          "commit_time": "2024-07-19T14:55:32+02:00",
+          "tag": "8.3.0"
+        },
+        {
+          "commit": "de98446075cc07c768387cf64ba497dd75c205de",
+          "commit_time": "2024-07-20T19:10:56+03:00",
+          "tag": "8.3.1"
+        },
+        {
+          "commit": "bbcec9c46509c417ef58e4849847b4aa43f4591e",
+          "commit_time": "2024-07-24T21:30:07+00:00",
+          "tag": "8.3.2"
+        },
+        {
+          "commit": "d0f136fe64f9374f18a04562305b178fb380d1ec",
+          "commit_time": "2024-09-09T18:45:50-03:00",
+          "tag": "8.3.3"
+        },
+        {
+          "commit": "53f8b4e634c5066c4f797a87b20060edbb086240",
+          "commit_time": "2024-12-01T09:43:00-03:00",
+          "tag": "8.3.4"
+        },
+        {
+          "commit": "b55ab2aabb68c0ce94c3903139b062d0c2790152",
+          "commit_time": "2025-03-02T12:47:09+00:00",
+          "tag": "8.3.5"
+        },
+        {
+          "commit": "315b3ae798fe38264b3ab2312dced212c46f1e21",
+          "commit_time": "2025-06-02T14:57:38+00:00",
+          "tag": "8.4.0"
+        },
+        {
+          "commit": "8d99211f0ce3927eb7ee579f7b4f969da06dc787",
+          "commit_time": "2025-06-17T21:56:14+00:00",
+          "tag": "8.4.1"
+        },
+        {
+          "commit": "bfae4224fd554d3d7f2c277a4cc092b6ec6af3ae",
+          "commit_time": "2025-09-03T14:00:04+00:00",
+          "tag": "8.4.2"
+        },
+        {
+          "commit": "f4b0fd2294a0b2f89bf308d513d574e1e2e01ad5",
+          "commit_time": "2025-11-08T18:48:00+02:00",
+          "tag": "9.0.0"
+        },
+        {
+          "commit": "d1b64aa60b9e1a0fcfaf03af7ebeb185f1024a87",
+          "commit_time": "2025-11-12T12:20:38+00:00",
+          "tag": "9.0.1"
+        },
+        {
+          "commit": "3d10b5148e03eb82b3ee29181dbdc73cf82699e2",
+          "commit_time": "2025-12-06T21:07:49+00:00",
+          "tag": "9.0.2"
+        },
+        {
+          "commit": "a7d58d7a21b78581e636bbbdea13c66ad1657c1e",
+          "commit_time": "2026-04-07T16:52:39+00:00",
+          "tag": "9.0.3"
+        },
+        {
+          "commit": "b2522cf0b11fb33ecc1f4895fa1dffbb9252a63d",
+          "commit_time": "2026-06-13T21:26:47+03:00",
+          "tag": "9.1.0"
+        },
+        {
+          "commit": "cf470ec0bf7eb89cd97dd56df4859eae5db46447",
+          "commit_time": "2026-06-19T09:44:29+00:00",
+          "tag": "9.1.1"
+        },
+        {
+          "commit": "23906106968eb95afbd61adfbc7bbb795fc9aaa9",
+          "commit_time": "2023-10-24T15:45:08-03:00",
+          "tag": "v7.4.3"
+        }
+      ],
+      "window_days": 769
+    }
+  ],
+  "schema": "tiny-fleet.drift-confirmatory-selection/v1",
+  "selection_code": "scripts/select_drift_confirmatory_snapshots.py",
+  "selection_policy": {
+    "anchors_utc": [
+      "2023-01-01T00:00:00Z",
+      "2025-01-01T00:00:00Z"
+    ],
+    "data_firewall": "metadata-only selection; no source blobs, diffs, labels, tests, scores, smoke, or inference read by this selector",
+    "minimum_window_days": 365,
+    "repositories": "three distinct canonical public GitHub repositories under distinct owner namespaces, not used by the prior v1/v2 sample or adapter corpus",
+    "sample_kind": "purposive fixed set; not random or population-representative",
+    "stable_tag_rule": "^v?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+    "tag_rule": "resolve every matching annotated or lightweight tag to its commit; use committer timestamp; choose latest commit timestamp not later than each anchor; ties: greatest numeric version tuple, then tag, then commit ID"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "tiny-fleet.drift-confirmatory-repository-metadata/v1",
+  "source": "GitHub REST repository metadata API",
+  "observation_clock_utc": "2026-09-13T16:12:15Z",
+  "records": [
+    {
+      "url": "https://api.github.com/repos/encode/httpx",
+      "full_name": "encode/httpx",
+      "fork": false,
+      "archived": false,
+      "spdx": "BSD-3-Clause"
+    },
+    {
+      "url": "https://api.github.com/repos/python-attrs/attrs",
+      "full_name": "python-attrs/attrs",
+      "fork": false,
+      "archived": false,
+      "spdx": "MIT"
+    },
+    {
+      "url": "https://api.github.com/repos/pytest-dev/pytest",
+      "full_name": "pytest-dev/pytest",
+      "fork": false,
+      "archived": false,
+      "spdx": "MIT"
+    }
+  ]
+}
