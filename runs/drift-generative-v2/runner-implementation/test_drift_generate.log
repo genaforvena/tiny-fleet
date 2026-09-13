@@ -1,0 +1,11 @@
+test_matrix_and_provenance (__main__.DriftGenerateTests.test_matrix_and_provenance) ... ok
+test_missing_arm_is_blocked (__main__.DriftGenerateTests.test_missing_arm_is_blocked) ... ok
+test_shuffled_snapshot_label_and_contamination_are_rejected (__main__.DriftGenerateTests.test_shuffled_snapshot_label_and_contamination_are_rejected) ... ok
+test_v2_records_bind_effective_input_model_adapter_and_scorer (__main__.DriftGenerateTests.test_v2_records_bind_effective_input_model_adapter_and_scorer) ... ok
+test_v2_refuses_fake_backend_without_writing_run_artifacts (__main__.DriftGenerateTests.test_v2_refuses_fake_backend_without_writing_run_artifacts) ... ok
+test_v2_requires_six_immutable_snapshots_and_pinned_arm_provenance (__main__.DriftGenerateTests.test_v2_requires_six_immutable_snapshots_and_pinned_arm_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.006s
+
+OK

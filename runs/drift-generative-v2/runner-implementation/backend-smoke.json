@@ -1,0 +1,1 @@
+{"kind": "non-experimental backend smoke; raw output discarded", "status": "pass", "backend": "transformers-pinned-v2", "model_id": "HuggingFaceTB/SmolLM2-360M-Instruct", "model_revision": "a10cc1512eabd3dde888204e902eca88bddb4951", "torch": "2.14.0", "transformers": "4.57.6", "output_nonempty": true, "output_chars": 5, "adapter_digest": null}
