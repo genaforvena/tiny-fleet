@@ -1,0 +1,32 @@
+Actor: haunt
+Repository: /home/mesh-home/tiny-fleet
+Source revision under verification: ecac5eb45abad2dfc4fec6503b0ca3d497147bd8
+
+Command: rtk proxy python3 -m json.tool docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json >/dev/null
+Exit: 0
+
+Command: rtk proxy python3 - (manifest structure assertions)
+Exit: 0
+Output: manifest structure: PASS (3 pinned upstreams; 6 immutable commits; comparison not run)
+
+Command: rtk proxy sha256sum docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample/sample-manifest.json docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json docs/cross-repository-drift-protocol.md docs/plans/drift-science-20260908.tsv
+Exit: 0
+Output:
+c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7  docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample/sample-manifest.json
+07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59  docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json
+76b62091b80109bfd8fd0002882b2b297a2fdb0cfff14f7347bbedb529b97466  docs/cross-repository-drift-protocol.md
+c767991144054e827fd808259cd5a1a3ff550a42867f760be37d434b613504c9  docs/plans/drift-science-20260908.tsv
+
+Command: rtk git diff --check -- docs/cross-repository-drift-protocol.md docs/plans/drift-science-20260908.tsv docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2 docs/task-receipts/haunt-architecture-drift-preregistration-unblock-20260913.md
+Exit: 0
+
+Command: rtk proxy git push origin master
+Exit: 0
+Output: ecac5eb pushed to origin/master
+
+Command: rtk proxy git ls-remote origin refs/heads/master
+Exit: 0
+Output: ecac5eb45abad2dfc4fec6503b0ca3d497147bd8\trefs/heads/master
+
+Stderr: empty for all listed commands.
+Comparison outputs: none; no comparison was run.
