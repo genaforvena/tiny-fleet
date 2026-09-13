@@ -23,14 +23,17 @@ training-run manifest digest was recomputed; all six runs completed on the pinne
 and all six file-disjoint adaptation validation losses decreased. These validation metrics are
 training diagnostics, not evidence about external semantic truth.
 
-The experimental matrix remains blocked by independent review of the exact D04 labels and by a
-temporal limitation: score-blind D04 objective labels had already been frozen and a generic
-non-experimental model smoke had already run before excerpt selection. The selector did not access
-either artifact, but this cannot satisfy strict blind ordering. Treat any use of this sample as
-implementation audit or exploratory analysis only; confirmatory use requires a newly frozen unseen
-sample or explicit independent review.
+The independent D04-V review passes only for the three source-backed objective interface labels;
+it does not establish semantic ground truth, behavioral outcomes, or blinded access history. The
+behavioral preflight has only two passing snapshot suites; four arms remain blocked. The exact v2
+execution artifacts are still under independent verification, and no complete 162-record manifest
+or raw output tape exists. In addition, score-blind D04 labels and a generic non-experimental model
+smoke preceded excerpt selection. The selector did not access either artifact, but this cannot
+satisfy strict blind ordering. Treat any use of this sample as implementation audit or exploratory
+analysis only; confirmatory use requires a newly frozen unseen sample or independent review that
+explicitly covers the ordering limitation.
 
-After independent D04 label and v2 execution-artifact verification, complete the registered v2
-manifest and run the 162-record paired matrix; retain its raw tape and separate score artifact.
-Until the exact gates pass, there is no experimental comparison result and the original analysis
-stays blocked.
+After the behavioral blockers are resolved, exact v2 execution-artifact verification passes, and
+the blind-order limitation has a valid disposition, complete the registered v2 manifest and run
+the 162-record paired matrix; retain its raw tape and separate score artifact. Until these exact
+gates pass, there is no experimental comparison result and the original analysis stays blocked.
