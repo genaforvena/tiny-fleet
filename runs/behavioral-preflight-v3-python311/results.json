@@ -1,0 +1,100 @@
+{
+  "python": "3.11.13 (main, Sep 30 2025, 00:39:50) [GCC 12.2.0]",
+  "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.36",
+  "run_started_epoch": 1789319488.2363064,
+  "additional_apt_build_dependencies": [],
+  "openssl": "OpenSSL 3.0.17 1 Jul 2025 (Library: OpenSSL 3.0.17 1 Jul 2025)",
+  "run_finished_epoch": 1789320020.2048335,
+  "suites": [
+    {
+      "suite": "flask-old",
+      "venv_exit": 0,
+      "install_exit": 0,
+      "freeze_exit": 0,
+      "pytest_exit": 0,
+      "pytest_tail": "........................................................................ [ 14%]\n........................................................................ [ 29%]\n........................................................................ [ 44%]\n........................................................................ [ 59%]\n........................................................................ [ 74%]\n............................ss.......................................... [ 89%]\n...................................................                      [100%]\n481 passed, 2 skipped in 1.99s\n"
+    },
+    {
+      "suite": "flask-new",
+      "venv_exit": 0,
+      "install_exit": 0,
+      "freeze_exit": 0,
+      "pytest_exit": 0,
+      "pytest_tail": "........................................................................ [ 14%]\n........................................................................ [ 29%]\n........................................................................ [ 43%]\n........................................................................ [ 58%]\n........................................................................ [ 73%]\n..................................ss.................................... [ 87%]\n............................................................             [100%]\n490 passed, 2 skipped in 1.53s\n"
+    },
+    {
+      "suite": "requests-old",
+      "venv_exit": 0,
+      "install_exit": 0,
+      "freeze_exit": 0,
+      "pytest_exit": 0,
+      "pytest_tail": "...............127.0.0.1 - - [13/Sep/2026 17:13:23] \"GET /digest-auth/auth/user/pass/SHA-512 HTTP/1.1\" 401 0\n........................... [ 24%]\n...pytest-httpbin server hit an exception serving request: [SSL: TLSV1_ALERT_UNKNOWN_CA] tlsv1 alert unknown ca (_ssl.c:1016)\nattempting to ignore so the rest of the tests can run\n..................................................................... [ 36%]\n........................127.0.0.1 - - [13/Sep/2026 17:13:24] \"GET /get HTTP/1.1\" 200 222\n................x............................... [ 48%]\n........................................................................ [ 60%]\n.............s......s................................................... [ 72%]\n........................................................................ [ 84%]\n........................................................................ [ 97%]\n.sssssssssss.....                                                        [100%]\n579 passed, 13 skipped, 1 xfailed in 90.10s (0:01:30)\n"
+    },
+    {
+      "suite": "requests-new",
+      "venv_exit": 0,
+      "install_exit": 0,
+      "freeze_exit": 0,
+      "pytest_exit": 0,
+      "pytest_tail": "warnings.warn(\n\ntests/test_utils.py::TestContentEncodingDetection::test_none\ntests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta charset=\"UTF-8\">]\ntests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta http-equiv=\"Content-type\" content=\"text/html;charset=UTF-8\">]\ntests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta http-equiv=\"Content-type\" content=\"text/html;charset=UTF-8\" />]\ntests/test_utils.py::TestContentEncodingDetection::test_pragmas[<?xml version=\"1.0\" encoding=\"UTF-8\"?>]\ntests/test_utils.py::TestContentEncodingDetection::test_precedence\n  /study/work/requests-new/src/requests/utils.py:494: DeprecationWarning: In requests 3.0, get_encodings_from_content will be removed. For more information, please see the discussion on issue #2266. (This warning should only appear once.)\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n590 passed, 15 skipped, 1 xfailed, 18 warnings in 97.41s (0:01:37)\n"
+    },
+    {
+      "suite": "pydantic-old",
+      "venv_exit": 0,
+      "install_exit": 0,
+      "freeze_exit": 0,
+      "pytest_exit": 0,
+      "pytest_tail": "[ 68%]\n.............s.......................................................... [ 71%]\n........................................................................ [ 73%]\n..................................ss.................................... [ 76%]\n........................................................................ [ 79%]\n........................................................................ [ 82%]\n........................................................................ [ 85%]\n........................................................................ [ 88%]\n........................................................................ [ 90%]\n........ss.............................................................. [ 93%]\n........................................................................ [ 96%]\n...................................................sssssssssssssssssssss [ 99%]\nsssss.........                                                           [100%]\n2441 passed, 93 skipped in 9.96s\n"
+    },
+    {
+      "suite": "pydantic-new",
+      "venv_exit": 0,
+      "install_exit": 0,
+      "freeze_exit": 0,
+      "pytest_exit": 0,
+      "pytest_tail": "...................................... [ 87%]\n........................................................................ [ 88%]\n..................................................s..................... [ 89%]\n........................................................................ [ 90%]\n..................................s.s.s.s.s.s.s.s.s.s.s.s..s.s.s.s.s.sss [ 91%]\n..........s.s.s.s.s.s.................................s................. [ 93%]\n.................................................................s...... [ 94%]\n........................................................................ [ 95%]\n........................................................................ [ 96%]\n.......sss.............................................................. [ 97%]\n........................................................................ [ 99%]\n..................................x.......................               [100%]\nResults (22.95s):\n      5050 passed\n      1039 skipped\n        17 xfailed\n"
+    }
+  ],
+  "image": {
+    "name": "python:3.11.13-slim-bookworm",
+    "digest": "sha256:86adf8dbadc3d6e82ee5dd2c74bec2e1c2467cdad47886280501df722372d2e1"
+  },
+  "test_command": "python -m pytest -q tests",
+  "source_archive_sha256": {
+    "flask-old": "9cab061d3c8b1fcc156b1ebb247d0a6caa73864fb096e1ebcdb369d2b3fbaefc",
+    "flask-new": "1ab1e67fb5c9e05d226e3cd94734e46009e012b269e29794f29151ef341feb06",
+    "requests-old": "5b95d48511eaaad22b4bfe0ba42d12dcce08c97fb587aa9cfd17dab0399868b9",
+    "requests-new": "02db3918a45a7707a9eba6e240a7d3cde2ad5be23fc293dbe218d263662453dd",
+    "pydantic-old": "d47f96f734030506f57bf3868314f2e3ccfcf34be323422a4ac645eb99c04585",
+    "pydantic-new": "d8c26a1987494e70b3ee903a19ed7a75d37ea907358ed124d1567b7fa63b2df4"
+  },
+  "runtime_adjustments": {
+    "flask-old": "Werkzeug 2.2.2, Jinja2 3.1.2, MarkupSafe 2.1.5; the captured Werkzeug 2.0.0 pin was below the frozen snapshot's declared minimum.",
+    "requests-new": "greenlet 2.0.2; required by frozen httpbin 0.10.4 on Python <3.12.",
+    "pydantic-old": "mypy_extensions 0.4.3; avoids the 1.1.0 deprecation warning promoted to an error by the snapshot's warning policy."
+  },
+  "dependency_freeze_sha256": {
+    "flask-old": "5cfe777cc24246048ea235cdfd75d430ab1ac02fb496aa9d7d977cae766b61cf",
+    "flask-new": "9394584b694364848c5b539bb6d80a5826931bc4aff8659dfbd203d85d6c80f4",
+    "requests-old": "85eb0035b71b522c239820248f30c5c4c414a49c5860525a4e0e73510d6c95c7",
+    "requests-new": "b0035a5a149179d941caae0aa82f524add447483e577399b7ec273be901f4bc6",
+    "pydantic-old": "bb1113a4097868ef905790a36e22a91bbe684e214fe3a09c02101706bc3d8a29",
+    "pydantic-new": "4cc2802ddc94505166023c34f5aa07baad33cbfd58fa1bd9b5e045bd69693ecf"
+  },
+  "pytest_log_sha256": {
+    "flask-old": "b53143b95fe0ee8d88fd382fcd963154263d7c28d4c5366a001cdcb9888ccbea",
+    "flask-new": "d0cbf3e7adfbbb9fcb2a6b9871496990b98c4afa95551803652ed2be796c8123",
+    "requests-old": "470da4bffa9a7d837288b3f778d862652bce1e6fadc4d6aa561475088567d032",
+    "requests-new": "66a931e270817749cd1809be9c27b517adcd629e1b9a2d364427db292b49005d",
+    "pydantic-old": "802bb24101bae0e7a1e0c01dc5262f1549197b91e8641fe422455f468ce0be14",
+    "pydantic-new": "4f6701b7efa8d367163a0ff851d61ef272cb0c07790e6476195e4557c40626b0"
+  },
+  "requests_new_client_certificate_overlay": {
+    "source_copy_path": "work/requests-new/tests/certs/mtls/client/client.pem",
+    "sha256": "1323192105e8111761fb80f9fda74d5c63a458595a582cea830130098eb10c2b",
+    "not_before": "2026-09-13T16:53:04Z",
+    "not_after": "2028-09-12T16:53:04Z",
+    "issuer": "CN=Self-Signed Root CA (snapshot test CA)"
+  },
+  "interpretation": "All six source-pinned snapshot suites pass under one pinned Python runtime. This is a compatibility preflight only; it is not a behavioral comparison, score, or label."
+}

@@ -1,0 +1,59 @@
+[2026-09-13 17:18:00,949] WARNING in core: flasgger is not installed; serving the static landing page at / and skipping the Swagger UI and /spec.json.
+.................................................................127.0.0.1 - - [13/Sep/2026 17:18:21] "GET /relative-redirect/20 HTTP/1.1" 302 0
+....... [ 11%]
+....127.0.0.1 - - [13/Sep/2026 17:18:21] "GET /user-agent HTTP/1.1" 200 34
+...127.0.0.1 - - [13/Sep/2026 17:18:21] "GET /get HTTP/1.1" 200 297
+.....................................127.0.0.1 - - [13/Sep/2026 17:18:40] "GET /basic-auth/user/pass HTTP/1.1" 401 0
+.....................127.0.0.1 - - [13/Sep/2026 17:18:40] "PUT /put HTTP/1.1" 200 412
+....... [ 23%]
+.....s........127.0.0.1 - - [13/Sep/2026 17:18:40] "POST /post HTTP/1.1" 200 111329
+.....127.0.0.1 - - [13/Sep/2026 17:18:40] "POST /post HTTP/1.1" 200 222191
+.127.0.0.1 - - [13/Sep/2026 17:18:40] "GET / HTTP/1.1" 200 13760
+.................................................... [ 35%]
+..............................................x....127.0.0.1 - - [13/Sep/2026 17:18:40] "GET /status/204 HTTP/1.1" 204 0
+..................... [ 47%]
+....................................127.0.0.1 - - [13/Sep/2026 17:19:10] "GET /status/200 HTTP/1.1" 200 0
+.................................... [ 59%]
+.........................s......s....................................... [ 71%]
+........................................................................ [ 83%]
+........................................................................ [ 95%]
+.............sssssssssss.....s                                           [100%]
+=============================== warnings summary ===============================
+tests/test_requests.py::TestRequests::test_set_basicauth[42-42]
+tests/test_requests.py::TestRequests::test_set_basicauth[42-42]
+  /study/work/requests-new/src/requests/auth.py:36: DeprecationWarning: Non-string usernames will no longer be supported in Requests 3.0.0. Please convert the object you've passed in (42) to a string or bytes object in the near future to avoid problems.
+    warnings.warn(
+
+tests/test_requests.py::TestRequests::test_set_basicauth[42-42]
+tests/test_requests.py::TestRequests::test_set_basicauth[42-42]
+  /study/work/requests-new/src/requests/auth.py:46: DeprecationWarning: Non-string passwords will no longer be supported in Requests 3.0.0. Please convert the object you've passed in (<class 'int'>) to a string or bytes object in the near future to avoid problems.
+    warnings.warn(
+
+tests/test_requests.py::TestRequests::test_set_basicauth[None-None]
+tests/test_requests.py::TestRequests::test_set_basicauth[None-None]
+  /study/work/requests-new/src/requests/auth.py:36: DeprecationWarning: Non-string usernames will no longer be supported in Requests 3.0.0. Please convert the object you've passed in (None) to a string or bytes object in the near future to avoid problems.
+    warnings.warn(
+
+tests/test_requests.py::TestRequests::test_set_basicauth[None-None]
+tests/test_requests.py::TestRequests::test_set_basicauth[None-None]
+  /study/work/requests-new/src/requests/auth.py:46: DeprecationWarning: Non-string passwords will no longer be supported in Requests 3.0.0. Please convert the object you've passed in (<class 'NoneType'>) to a string or bytes object in the near future to avoid problems.
+    warnings.warn(
+
+tests/test_requests.py::TestPreparingURLs::test_different_connection_pool_for_tls_settings_verify_True
+tests/test_requests.py::TestPreparingURLs::test_different_connection_pool_for_tls_settings_verify_bundle_expired_cert
+tests/test_requests.py::TestPreparingURLs::test_different_connection_pool_for_tls_settings_verify_bundle_unexpired_cert
+tests/test_requests.py::TestPreparingURLs::test_different_connection_pool_for_mtls_settings
+  /study/envs/requests-new/lib/python3.11/site-packages/urllib3/connectionpool.py:1110: InsecureRequestWarning: Unverified HTTPS request is being made to host 'localhost'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+    warnings.warn(
+
+tests/test_utils.py::TestContentEncodingDetection::test_none
+tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta charset="UTF-8">]
+tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta http-equiv="Content-type" content="text/html;charset=UTF-8">]
+tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />]
+tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<?xml version="1.0" encoding="UTF-8"?>]
+tests/test_utils.py::TestContentEncodingDetection::test_precedence
+  /study/work/requests-new/src/requests/utils.py:494: DeprecationWarning: In requests 3.0, get_encodings_from_content will be removed. For more information, please see the discussion on issue #2266. (This warning should only appear once.)
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+590 passed, 15 skipped, 1 xfailed, 18 warnings in 97.41s (0:01:37)
