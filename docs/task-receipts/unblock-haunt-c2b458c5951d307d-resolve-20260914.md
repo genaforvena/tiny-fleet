@@ -17,6 +17,10 @@ AnyIO 4.15.1's declared Trio-extra minimum, so that result was not accepted. The
 combination AnyIO 4.9.0 + Trio 0.26.1 passed. AnyIO 4.9.0's installed metadata declares
 `Requires-Dist: trio>=0.26.1; extra == "trio"`.
 
+The AnyIO 4.15.1 + Trio 0.32.0 diagnostic is retained at
+`runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio032/` (targeted failure log,
+runtime, requirements, and full environment freeze).
+
 ## Accepted retry
 
 The accepted run uses the frozen HTTPX-new source and tests copied byte-for-byte to a writable
