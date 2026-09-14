@@ -1,46 +1,46 @@
 {
   "adapters": [
     {
-      "digest": null,
-      "path": null,
+      "digest": "c180cd1efcf012d91057c76d1dea5c0635ecab0a966b33831fc118ad3977090d",
+      "path": "adapters/attrs-old",
       "repo": "attrs",
       "snapshot": "old",
-      "status": "not-trained-for-confirmatory-sample"
+      "status": "trained-confirmatory-sample"
     },
     {
-      "digest": null,
-      "path": null,
+      "digest": "bb47fd26c057d345ff82009e2d6603a7a16e938956ce767ca7146352f71404de",
+      "path": "adapters/attrs-new",
       "repo": "attrs",
       "snapshot": "new",
-      "status": "not-trained-for-confirmatory-sample"
+      "status": "trained-confirmatory-sample"
     },
     {
-      "digest": null,
-      "path": null,
+      "digest": "6edc191006c7b51366ab3af95f09d1797d3b557d91e6ef481e68861fb0fab052",
+      "path": "adapters/httpx-old",
       "repo": "httpx",
       "snapshot": "old",
-      "status": "not-trained-for-confirmatory-sample"
+      "status": "trained-confirmatory-sample"
     },
     {
-      "digest": null,
-      "path": null,
+      "digest": "38bccff100199c2e92aae4f2fe907bf52a63bb41826ea8395f67f1f9030d3778",
+      "path": "adapters/httpx-new",
       "repo": "httpx",
       "snapshot": "new",
-      "status": "not-trained-for-confirmatory-sample"
+      "status": "trained-confirmatory-sample"
     },
     {
-      "digest": null,
-      "path": null,
+      "digest": "640881b4de8a24b60a4b6fe0e73a367513a5ef791acd9783032ee526303ea089",
+      "path": "adapters/pytest-old",
       "repo": "pytest",
       "snapshot": "old",
-      "status": "not-trained-for-confirmatory-sample"
+      "status": "trained-confirmatory-sample"
     },
     {
-      "digest": null,
-      "path": null,
+      "digest": "8c3d48d75ffd8760877c3b235801f991ac74b573f7ff4995f42e2a0030d287c9",
+      "path": "adapters/pytest-new",
       "repo": "pytest",
       "snapshot": "new",
-      "status": "not-trained-for-confirmatory-sample"
+      "status": "trained-confirmatory-sample"
     }
   ],
   "arm_contract": {
@@ -59,93 +59,78 @@
   },
   "blockers": [
     {
-      "exact": "No source inventory, license-filtered train/validation corpus, or per-snapshot corpus manifest exists under runs/drift-confirmatory-v1. The existing build_drift_train_corpus.py and training plan bind paths and hashes to the disjoint v2 Flask/Requests/Pydantic sample and cannot be reused as confirmatory-v1 provenance.",
-      "id": "confirmatory-corpora-absent",
-      "retry_event": "Implement a confirmatory-v1 corpus builder bound to the six registered archives and frozen excerpt ledger; publish six inventories, corpus manifests, train/validation hashes, and a sample-bound training plan."
-    },
-    {
-      "exact": "All six confirmatory-v1 adapter path and digest fields are null because no LoRA adapter was trained from a confirmatory-v1 corpus. V2 adapters are tied to different source commits and must not be substituted.",
-      "id": "confirmatory-adapters-absent",
-      "retry_event": "After corpus provenance is frozen, train one adapter per exact old/new snapshot under a separately authorized training task and register each adapter-tree digest and run manifest."
-    },
-    {
-      "exact": "scripts/drift_generate.py validates every prompt row for a non-empty LoRA adapter path and 64-hex digest before generation; this registration intentionally has no adapter values, so the runner must refuse it.",
-      "id": "runner-rejects-unbound-lora",
-      "retry_event": "Fill all six adapter references from the confirmatory-v1 adapter registration, then independently verify the exact completed manifest before any generation."
-    },
-    {
-      "exact": "The deterministic selector was run after the objective-only label ledger was frozen. It verified the ledger hash but never read label contents; this is not a pre-label excerpt freeze.",
-      "id": "excerpt-after-label-freeze",
-      "retry_event": "Independent gate audit must explicitly accept this label-content-blind chronology for the narrow registered objective-only study or require a new unseen sample."
+      "id": "behavioral-and-independent-gates-open",
+      "exact": "The paired six-snapshot behavioral preflight now has six PASS outcomes across its pinned and supported retry environments. No current independent PASS covers the exact refreshed behavioral evidence and bound generation registration.",
+      "retry_event": "Obtain independent PASS over the final behavioral closeout and generation-registration hashes before any comparison or matrix."
     }
   ],
   "comparison_authorized": false,
   "corpora": [
     {
-      "corpus_manifest": null,
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/attrs-old/manifest.json",
       "repo": "attrs",
       "snapshot": "old",
       "source_archive": "runs/drift-confirmatory-v1/snapshots/attrs-old.tar",
       "source_archive_sha256": "15ed2bb657cf9d4e00c690978f5787c1f2c9be6a49106ad4df6a8c0723b3b80b",
       "source_commit": "a9960de98d0f58ccb2880d03c97dafba3fc1111c",
-      "status": "not-built-for-confirmatory-sample",
-      "train_sha256": null,
-      "validation_sha256": null
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "0bf6f529a31910a01e4e04a15e44ed5090f8ce21d55b04b7c0c4e4521df9e2d6",
+      "validation_sha256": "66f0b256e4e353cdcd60636b3fef1c974d62a3503e7631c4ea74695844076872"
     },
     {
-      "corpus_manifest": null,
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/attrs-new/manifest.json",
       "repo": "attrs",
       "snapshot": "new",
       "source_archive": "runs/drift-confirmatory-v1/snapshots/attrs-new.tar",
       "source_archive_sha256": "d3d1264c17c2161794eef66f6b1e958f4104157ee7cdc2926cb4e46befe2988b",
       "source_commit": "598494a618410490cfbe0c896b7a544f6d23e0d9",
-      "status": "not-built-for-confirmatory-sample",
-      "train_sha256": null,
-      "validation_sha256": null
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "565ce2e59b26569b5c45e999b34c4631da502bb0d0676382e74a9d6d16881188",
+      "validation_sha256": "2160151d5b95e0164b45aaf5af49e2ac33e5ff7fed6a6a078053b933c8a51b67"
     },
     {
-      "corpus_manifest": null,
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/httpx-old/manifest.json",
       "repo": "httpx",
       "snapshot": "old",
       "source_archive": "runs/drift-confirmatory-v1/snapshots/httpx-old.tar",
       "source_archive_sha256": "3b72f973d801b5551bd2f34c1f29a7410a66c0c69f119f2c96bbf8a6ef928084",
       "source_commit": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
-      "status": "not-built-for-confirmatory-sample",
-      "train_sha256": null,
-      "validation_sha256": null
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "4a134f083eb1bc866f0190b3017249178cc5c72a5d93fa2d16bc30893cb0fb1e",
+      "validation_sha256": "a2eacfa1cda103a0c51c65852e220494fafdbc5e5d0de312c2c2996e4521053a"
     },
     {
-      "corpus_manifest": null,
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/httpx-new/manifest.json",
       "repo": "httpx",
       "snapshot": "new",
       "source_archive": "runs/drift-confirmatory-v1/snapshots/httpx-new.tar",
       "source_archive_sha256": "a0bee0b5081ad8aba0d45b3bebc7d7b835ba43bf9d62f1a2734c64db29c94ca6",
       "source_commit": "26d48e0634e6ee9cdc0533996db289ce4b430177",
-      "status": "not-built-for-confirmatory-sample",
-      "train_sha256": null,
-      "validation_sha256": null
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "78688b3a942e9054de3ec7490cb7a926bdd2863b0fdc50a6fc8c854d0af1ecf1",
+      "validation_sha256": "5935728e4d96787fd892b7007fd2cdb4b40b95421e7e9470f89eb322d2261f25"
     },
     {
-      "corpus_manifest": null,
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/pytest-old/manifest.json",
       "repo": "pytest",
       "snapshot": "old",
       "source_archive": "runs/drift-confirmatory-v1/snapshots/pytest-old.tar",
       "source_archive_sha256": "63ea92035356ff82a56d01293f0d2e3fe7b9d8caeb9f70380d092a2fd0a37696",
       "source_commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
-      "status": "not-built-for-confirmatory-sample",
-      "train_sha256": null,
-      "validation_sha256": null
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "136ee97d5397c05115dd1d2789edb1c940fa62e1044357eb3ba52592073d6c39",
+      "validation_sha256": "485b2babe27091c5f9759f4f074c3b5bbd533404cdbbfc12c46097470ab78485"
     },
     {
-      "corpus_manifest": null,
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/pytest-new/manifest.json",
       "repo": "pytest",
       "snapshot": "new",
       "source_archive": "runs/drift-confirmatory-v1/snapshots/pytest-new.tar",
       "source_archive_sha256": "c19a5d8554bc4eeb9b5bd741d3387cb1d7caf1fabd27e790a5eebd431c8b3b30",
       "source_commit": "53f8b4e634c5066c4f797a87b20060edbb086240",
-      "status": "not-built-for-confirmatory-sample",
-      "train_sha256": null,
-      "validation_sha256": null
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "4c3a8bcb405a3fff0ce37feba69883679f9178c510a47b33d05dfd62b9aa0c06",
+      "validation_sha256": "121f14a8882fd5913872bf17761980d68513aa7cda0ef657160c41f889c28f72"
     }
   ],
   "expected_record_count": 162,
@@ -172,7 +157,10 @@
   "prompts": [
     {
       "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/attrs-old.txt",
-      "lora_adapter": null,
+      "lora_adapter": {
+        "path": "adapters/attrs-old",
+        "digest": "c180cd1efcf012d91057c76d1dea5c0635ecab0a966b33831fc118ad3977090d"
+      },
       "prompt_id": "snapshot-component-description-v1",
       "repo": "attrs",
       "selection_key_sha256": "15d6201db2bba02a19998c4b8f7f98751f6430926ee93976d0fc80a2c4557a25",
@@ -186,7 +174,10 @@
     },
     {
       "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/attrs-new.txt",
-      "lora_adapter": null,
+      "lora_adapter": {
+        "path": "adapters/attrs-new",
+        "digest": "bb47fd26c057d345ff82009e2d6603a7a16e938956ce767ca7146352f71404de"
+      },
       "prompt_id": "snapshot-component-description-v1",
       "repo": "attrs",
       "selection_key_sha256": "15d6201db2bba02a19998c4b8f7f98751f6430926ee93976d0fc80a2c4557a25",
@@ -200,7 +191,10 @@
     },
     {
       "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/httpx-old.txt",
-      "lora_adapter": null,
+      "lora_adapter": {
+        "path": "adapters/httpx-old",
+        "digest": "6edc191006c7b51366ab3af95f09d1797d3b557d91e6ef481e68861fb0fab052"
+      },
       "prompt_id": "snapshot-component-description-v1",
       "repo": "httpx",
       "selection_key_sha256": "0cb98fda6b5bcc7226c5ce1cab143fb70f3fd47510f51e59a3903983ed16a593",
@@ -214,7 +208,10 @@
     },
     {
       "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/httpx-new.txt",
-      "lora_adapter": null,
+      "lora_adapter": {
+        "path": "adapters/httpx-new",
+        "digest": "38bccff100199c2e92aae4f2fe907bf52a63bb41826ea8395f67f1f9030d3778"
+      },
       "prompt_id": "snapshot-component-description-v1",
       "repo": "httpx",
       "selection_key_sha256": "0cb98fda6b5bcc7226c5ce1cab143fb70f3fd47510f51e59a3903983ed16a593",
@@ -228,7 +225,10 @@
     },
     {
       "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/pytest-old.txt",
-      "lora_adapter": null,
+      "lora_adapter": {
+        "path": "adapters/pytest-old",
+        "digest": "640881b4de8a24b60a4b6fe0e73a367513a5ef791acd9783032ee526303ea089"
+      },
       "prompt_id": "snapshot-component-description-v1",
       "repo": "pytest",
       "selection_key_sha256": "0175b49e83b9a6478e4e20eebc57f88af8b7678610d5f7c53c08200fe78075c9",
@@ -242,7 +242,10 @@
     },
     {
       "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/pytest-new.txt",
-      "lora_adapter": null,
+      "lora_adapter": {
+        "path": "adapters/pytest-new",
+        "digest": "8c3d48d75ffd8760877c3b235801f991ac74b573f7ff4995f42e2a0030d287c9"
+      },
       "prompt_id": "snapshot-component-description-v1",
       "repo": "pytest",
       "selection_key_sha256": "0175b49e83b9a6478e4e20eebc57f88af8b7678610d5f7c53c08200fe78075c9",
@@ -281,7 +284,8 @@
     "path": "scripts/drift_score.py",
     "revision": "6c8cf98adb641086384a344233a466a9e53fb040",
     "runtime": "Ollama 0.33.2",
-    "source_sha256": "54142ae236a6a55ff4452e360e2c6867e219b356d56f0ff4c589cd6fb8b8e127"
+    "source_sha256": "54142ae236a6a55ff4452e360e2c6867e219b356d56f0ff4c589cd6fb8b8e127",
+    "digest": "54142ae236a6a55ff4452e360e2c6867e219b356d56f0ff4c589cd6fb8b8e127"
   },
   "seeds": [
     17,
@@ -307,5 +311,9 @@
   ],
   "status": "blocked-before-generation",
   "study": "tinyfleet-confirmatory-v1-arm-gates-20260913",
-  "temporal_limit": "selection follows the objective-only label freeze; selection is deterministic and label-content-blind, but it is not a pre-label freeze"
+  "temporal_limit": "selection follows the objective-only label freeze; selection is deterministic and label-content-blind, but it is not a pre-label freeze",
+  "adapter_registration": {
+    "path": "runs/drift-confirmatory-v1/adapter-registration.json",
+    "sha256": "aca4c62e360b92d27223707f86a340d471113bcfb9042658426e121be47cfc6a"
+  }
 }
