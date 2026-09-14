@@ -46,10 +46,12 @@ generalization to repositories at large is supported.
 Two limits materially narrow the result. First, deterministic held-out excerpt selection happened
 after the objective-label freeze. The selector was label-content-blind, so this is a chronology
 limitation rather than evidence of label leakage; it is still not a pre-label excerpt freeze.
-Second, the frozen generation registration still says
-`status=blocked-before-generation` and `comparison_authorized=false`; those fields were not changed.
-The execution receipt records that the assigned task proceeded because the runner did not hard-stop
-on this flag. Resolve this registry state before treating the comparison as publishable.
+Second, the frozen generation registration records
+`status=frozen_pending_independent_verification` and `comparison_authorized=false`. The sample is
+frozen pending independent verification, and this registration does not authorize comparisons. The
+execution receipt records that the assigned task proceeded because the runner did not hard-stop on
+this flag. Resolve the independent-verification and authorization state before treating the
+comparison as publishable.
 
 The evidence is in the [matrix receipt](task-receipts/haunt-confirmatory-v1-generative-matrix-20260914.md),
 [behavioral gate receipt](task-receipts/haunt-confirmatory-v1-paired-closeout-20260914.md), and
