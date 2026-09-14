@@ -8,6 +8,15 @@ The sample contains three external projects and six pinned release snapshots: HT
 attrs 22.2.0→24.3.0, and pytest 7.2.0→8.3.4. The frozen registrations and raw evidence are under
 [`runs/drift-confirmatory-v1/`](../runs/drift-confirmatory-v1/).
 
+**Sample scope.** These HTTPX/attrs/pytest snapshots are a distinct frozen sample recorded in
+[`runs/drift-confirmatory-v1/registration.json`](../runs/drift-confirmatory-v1/registration.json).
+They are not the registered external sample in [protocol v1](cross-repository-drift-protocol.md):
+its [`02-external-sample-v2` manifest](tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json)
+pins Flask, Requests, and Pydantic. The HTTPX/attrs/pytest run does not replace or amend that
+registered study. Its available result remains descriptive and generative-only; publication of the
+registered comparison remains blocked until a versioned protocol/registration update admits this
+sample or a compliant run uses the registered Flask/Requests/Pydantic sample.
+
 | Estimand | Evidence and conclusion |
 |---|---|
 | Structural | **Blocked / not measured.** This run has no structural summary of file, byte, type, or unit changes. |
