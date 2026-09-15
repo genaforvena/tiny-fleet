@@ -189,7 +189,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"study_id": registration.get("study_id"), "rows": matrix}, sort_keys=True))
         return 0
     if args.run_root.exists() and any(args.run_root.iterdir()):
-        allowed_inputs = {"registration.json", "config.json", "datasets.json", "router.json", "resource-preflight.json", "autonomy-decision.json"}
+        allowed_inputs = {"registration.json", "config.json", "datasets.json", "router.json", "resource-preflight.json", "autonomy-decision.json", "adapter-training.json"}
         existing = {entry.name for entry in args.run_root.iterdir()}
         if not existing.issubset(allowed_inputs):
             raise RuntimeError(f"refusing to overwrite non-empty run root: {args.run_root}")
