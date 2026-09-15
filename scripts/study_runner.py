@@ -103,6 +103,8 @@ class TransformersBackend(Backend):
     def __init__(self, model_id: str, revision: str, adapter_dir: Path | None = None):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
+        self.model_id = model_id
+        self.revision = revision
         self.torch = torch
         self.tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision, local_files_only=True)
         if self.tokenizer.pad_token is None:
