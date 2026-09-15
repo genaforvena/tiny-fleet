@@ -8,6 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from run_study_matrix import build_matrix, execution_arms, require_adapters, selected_matrix_rows, wait_for_gpu
+from train_study_adapters import adapter_tree_digest, training_specs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,6 +59,30 @@ class StudyMatrixTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             with self.assertRaisesRegex(RuntimeError, "missing trained adapter artifacts"):
                 require_adapters(Path(td), "pooled_adapter")
+
+    def test_real_adapter_arm_refuses_tampered_provenance_before_backend_use(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            study_root = root / "runs" / "fleet-study-v1"
+            study_root.mkdir(parents=True)
+            (root / "corpus/study-v1").mkdir(parents=True)
+            source_registration = ROOT / "runs/fleet-study-v1/registration.json"
+            source_manifest = ROOT / "corpus/study-v1/manifest.json"
+            source_train = ROOT / "corpus/study-v1/train.jsonl"
+            for source, target in ((source_registration, study_root / "registration.json"),
+                                   (source_manifest, root / "corpus/study-v1/manifest.json"),
+                                   (source_train, root / "corpus/study-v1/train.jsonl")):
+                target.write_bytes(source.read_bytes())
+            adapter = root / "adapters/study-pooled"
+            adapter.mkdir(parents=True)
+            (adapter / "adapter_model.safetensors").write_bytes(b"fixture")
+            specs = training_specs(json.loads(source_registration.read_text()), source_manifest.read_bytes(), source_train.read_bytes())
+            receipt = {**specs["pooled"], "status": "complete", "adapter_tree_digest": adapter_tree_digest(adapter)}
+            (adapter / "study-adapter.json").write_text(json.dumps(receipt))
+            receipt["train_corpus_sha256"] = "0" * 64
+            (adapter / "study-adapter.json").write_text(json.dumps(receipt))
+            with self.assertRaisesRegex(RuntimeError, "train_corpus_sha256"):
+                require_adapters(study_root, "pooled_adapter")
 
     def test_verification_only_smoke_writes_all_registered_arms_without_training(self):
         with tempfile.TemporaryDirectory() as td:

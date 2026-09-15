@@ -2,9 +2,27 @@
 import unittest
 
 from train_drift_adapters import chunk_tokens, run_root_for_plan, select_chunks
+from train_study_adapters import DOMAINS, derive_rows, sha_json, training_specs
 
 
 class DriftAdapterTrainingHelpersTests(unittest.TestCase):
+    def test_study_specs_define_exactly_pooled_plus_four_provenance_bound_adapters(self):
+        registration = {"study_id": "fleet-study-v1", "model": {"base_id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+            "base_revision": "a10cc1512eabd3dde888204e902eca88bddb4951", "adapter": {"r": 16, "alpha": 32,
+            "dropout": 0.05, "target_modules": ["q_proj"], "max_length": 256, "learning_rate": 0.0002, "epochs": 1}}}
+        specs = training_specs(registration, b"manifest", b"train")
+        self.assertEqual(set(specs), {"pooled", *DOMAINS})
+        self.assertEqual(specs["pooled"]["domains"], list(DOMAINS))
+        self.assertEqual(specs["toy_passage_ppl"]["domains"], ["toy_passage_ppl"])
+        self.assertEqual(specs["pooled"]["config_sha256"], sha_json(specs["pooled"]["config"]))
+
+    def test_study_rows_are_derived_only_from_the_frozen_domain_and_keep_provenance(self):
+        rows = [{"domain": "a", "source_family": "family-a", "prompt": "p1", "reference": "r1"},
+                {"domain": "b", "source_family": "family-b", "prompt": "p2", "reference": "r2"}]
+        self.assertEqual(derive_rows(rows, "specialist", "a"), ["p1\nAnswer: r1"])
+        self.assertEqual(len(derive_rows(rows, "pooled")), 2)
+        with self.assertRaisesRegex(ValueError, "no frozen training rows"):
+            derive_rows(rows, "specialist", "missing")
     def test_training_artifacts_stay_bound_to_the_plan_sample(self):
         self.assertEqual(run_root_for_plan({"schema": "tiny-fleet.drift-adapter-training-plan/v1"}),
                          "runs/drift-generative-v2")

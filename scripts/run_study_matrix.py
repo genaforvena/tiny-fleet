@@ -106,12 +106,13 @@ def selected_matrix_rows(registration: dict, seeds: list[int] | None = None) -> 
 
 
 def require_adapters(run_root: Path, registered_arm: str) -> dict[str, Path]:
-    """Resolve required frozen adapter artifacts; never substitute another arm."""
+    """Resolve and validate required frozen adapter artifacts; never substitute another arm."""
+    study_root = run_root.parents[1]
     if registered_arm == "pooled_adapter":
-        required = {"pooled-lora": ROOT / "adapters/study-pooled"}
+        required = {"pooled-lora": study_root / "adapters/study-pooled"}
     elif registered_arm in {"simple_router", "routed_specialists"}:
         required = {
-            arm: ROOT / "adapters" / f"study-{arm.split(':', 1)[1]}"
+            arm: study_root / "adapters" / f"study-{arm.split(':', 1)[1]}"
             for arm in execution_arms(registered_arm)
         }
     else:
@@ -121,6 +122,23 @@ def require_adapters(run_root: Path, registered_arm: str) -> dict[str, Path]:
         raise RuntimeError(
             f"missing trained adapter artifacts for {registered_arm}: {', '.join(missing)}"
         )
+    from train_study_adapters import adapter_tree_digest, training_specs
+    registration = json.loads((run_root / "registration.json").read_text(encoding="utf-8"))
+    manifest_path = study_root / "corpus/study-v1/manifest.json"
+    train_path = study_root / "corpus/study-v1/train.jsonl"
+    specs = training_specs(registration, manifest_path.read_bytes(), train_path.read_bytes())
+    for execution_arm, path in required.items():
+        key = "pooled" if execution_arm == "pooled-lora" else execution_arm.split(":", 1)[1]
+        receipt_path = path / "study-adapter.json"
+        if not receipt_path.is_file():
+            raise RuntimeError(f"adapter provenance receipt missing: {path}")
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        expected = specs[key]
+        for field in ("study_id", "adapter_id", "role", "base_model", "corpus_manifest_sha256", "train_corpus_sha256", "config_sha256"):
+            if receipt.get(field) != expected.get(field):
+                raise RuntimeError(f"adapter provenance mismatch for {path}: {field}")
+        if receipt.get("adapter_tree_digest") != adapter_tree_digest(path):
+            raise RuntimeError(f"adapter tree digest mismatch: {path}")
     return required
 
 
