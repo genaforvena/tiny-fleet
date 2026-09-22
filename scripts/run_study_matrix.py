@@ -93,6 +93,33 @@ def execution_arms(registered_arm: str) -> tuple[str, ...]:
         raise ValueError(f"no execution mapping for registered arm: {registered_arm}") from exc
 
 
+def _row_complete(run_root: Path, seed: int, registered_arm: str) -> bool:
+    """True only if every execution arm of this registered arm already has records.
+
+    Resume never overwrites a row: a row is kept only when every one of its
+    execution arms carries a non-empty prediction tape plus its summary.
+    """
+    arm_dir = run_root / f"seed-{seed}" / registered_arm
+    if not arm_dir.is_dir():
+        return False
+    for execution_arm in execution_arms(registered_arm):
+        sub = arm_dir / execution_arm.replace(':', '__')
+        if not sub.is_dir():
+            sub = arm_dir
+        summary = next((p for p in sub.glob("summary-*.json")), None)
+        if summary is None:
+            return False
+        try:
+            record = json.loads(summary.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return False
+        if not record.get("records"):
+            return False
+        tapes = list(sub.glob("predictions-*.jsonl"))
+        if not tapes or not any(p.stat().st_size for p in tapes):
+            return False
+    return True
+
 def selected_matrix_rows(registration: dict, seeds: list[int] | None = None) -> list[dict]:
     """Return each registered arm×seed row once, preserving registration order."""
     matrix = build_matrix(registration)
@@ -163,8 +190,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run the immutable fleet-study matrix.")
     parser.add_argument("--registration", required=True, type=Path)
     parser.add_argument("--run-root", required=True, type=Path)
-    parser.add_argument("--plan-only", action="store_true", help="validate and print the frozen matrix without running it")
+    parser.add_argument("--resume", action="store_true",
+                        help="keep existing complete seed/ arm rows in the run root and run only the missing ones")
     parser.add_argument("--manifest", type=Path, default=Path("corpus/study-v1/manifest.json"))
+    parser.add_argument("--plan-only", action="store_true", help="validate and print the frozen matrix without running it")
     parser.add_argument("--seeds", nargs="+", type=int)
     parser.add_argument("--max-cases", type=int)
     parser.add_argument("--max-train-steps", type=int, help="accepted for bounded smoke compatibility; no training is performed")
@@ -189,10 +218,16 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"study_id": registration.get("study_id"), "rows": matrix}, sort_keys=True))
         return 0
     if args.run_root.exists() and any(args.run_root.iterdir()):
-        allowed_inputs = {"registration.json", "config.json", "datasets.json", "router.json", "resource-preflight.json", "autonomy-decision.json", "adapter-training.json", "autonomy-readiness.json"}
+        allowed_inputs = {"registration.json", "config.json", "datasets.json", "router.json", "resource-preflight.json", "autonomy-decision.json", "adapter-training.json", "autonomy-readiness.json", "smoke-summary.json"}
+        allowed_seed_dirs = {f"seed-{seed}" for seed in registration["statistics"]["seeds"]}
         existing = {entry.name for entry in args.run_root.iterdir()}
-        if not existing.issubset(allowed_inputs):
+        unknown = existing - allowed_inputs - allowed_seed_dirs
+        if not args.resume and unknown:
             raise RuntimeError(f"refusing to overwrite non-empty run root: {args.run_root}")
+        if args.resume and unknown:
+            raise RuntimeError(
+                f"refusing to resume run root with unrecognized entries: {sorted(unknown)}"
+            )
     if args.max_cases is not None and args.max_cases < 1:
         raise ValueError("--max-cases must be positive")
     if args.max_train_steps not in (None, 0, 1, 2):
@@ -235,8 +270,12 @@ def main(argv: list[str] | None = None) -> int:
         "simple_router": "base", "routed_specialists": "base",
     }
     summaries = []
+    skipped = []
     for item in selected:
         registered_arm = item["arm"]
+        if args.resume and _row_complete(args.run_root, item["seed"], registered_arm):
+            skipped.append({"arm": registered_arm, "seed": item["seed"], "reason": "already complete"})
+            continue
         if args.verification_only:
             summary = run_arm(args.manifest, args.run_root / f"seed-{item['seed']}" / registered_arm,
                               arm_map[registered_arm], item["seed"], backend=backend, limit=limit)
@@ -253,6 +292,7 @@ def main(argv: list[str] | None = None) -> int:
         "seeds": seeds, "arms": [a["id"] for a in registration["arms"]],
         "rows": len(summaries), "summaries": summaries,
         "resource_preflight": resource_receipt,
+        "skipped": skipped,
     }
     (args.run_root / "smoke-summary.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(result, sort_keys=True))

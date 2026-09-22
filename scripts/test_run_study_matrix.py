@@ -113,6 +113,46 @@ class StudyMatrixTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("refusing to overwrite", result.stderr)
 
+    def test_resume_keeps_complete_rows_and_refuses_foreign_entries(self):
+        """A partial live matrix must be resumable, but never overwritten."""
+        with tempfile.TemporaryDirectory() as td:
+            run_root = Path(td) / "study"
+            result = subprocess.run([
+                sys.executable, str(Path(__file__).parent / "run_study_matrix.py"),
+                "--registration", str(REGISTRATION), "--run-root", str(run_root),
+                "--verification-only", "--max-cases", "1", "--max-train-steps", "2",
+            ], capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+
+            # A complete row must be skipped verbatim on resume, not rewritten.
+            before = (run_root / "seed-17" / "base" / "predictions-base.jsonl")
+            digest_before = before.read_bytes()
+
+            result = subprocess.run([
+                sys.executable, str(Path(__file__).parent / "run_study_matrix.py"),
+                "--registration", str(REGISTRATION), "--run-root", str(run_root),
+                "--verification-only", "--max-cases", "1", "--max-train-steps", "2",
+                "--resume",
+            ], capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(before.read_bytes(), digest_before,
+                             "resume must not overwrite an already complete row")
+            payload = json.loads(result.stdout)
+            self.assertTrue(any(s["arm"] == "base" and s["seed"] == 17 for s in payload["skipped"]),
+                            "the complete base/seed-17 row must be reported as skipped")
+
+            # Foreign content still blocks resume instead of silently absorbing it.
+            (run_root / "foreign-entry").mkdir()
+            result = subprocess.run([
+                sys.executable, str(Path(__file__).parent / "run_study_matrix.py"),
+                "--registration", str(REGISTRATION), "--run-root", str(run_root),
+                "--verification-only", "--max-cases", "1", "--max-train-steps", "2",
+                "--resume",
+            ], capture_output=True, text=True, check=False)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("unrecognized entries", result.stderr)
+
+
     def test_real_execution_rejects_manual_subset_overrides(self):
         with tempfile.TemporaryDirectory() as td:
             result = subprocess.run([
