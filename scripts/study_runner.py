@@ -109,16 +109,20 @@ class TransformersBackend(Backend):
         self.tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision, local_files_only=True)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
-        self.model = AutoModelForCausalLM.from_pretrained(model_id, revision=revision, local_files_only=True)
+        self.model = AutoModelForCausalLM.from_pretrained(
+            model_id, revision=revision, local_files_only=True, torch_dtype=torch.bfloat16,
+        )
         if adapter_dir:
             from peft import PeftModel
             self.model = PeftModel.from_pretrained(self.model, str(adapter_dir))
         self.model.eval()
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(self.device)
 
     def generate(self, rendered_input: str, *, seed: int, arm: str, timeout_s: float) -> str:
         torch = self.torch
         torch.manual_seed(seed)
-        encoded = self.tokenizer(rendered_input, return_tensors="pt", truncation=True, max_length=256)
+        encoded = self.tokenizer(rendered_input, return_tensors="pt", truncation=True, max_length=256).to(self.device)
         started = time.monotonic()
         with torch.no_grad():
             output = self.model.generate(**encoded, max_new_tokens=16, do_sample=False, pad_token_id=self.tokenizer.pad_token_id)
