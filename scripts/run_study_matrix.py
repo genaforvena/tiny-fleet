@@ -118,6 +118,13 @@ def _row_complete(run_root: Path, seed: int, registered_arm: str) -> bool:
         tapes = list(sub.glob("predictions-*.jsonl"))
         if not tapes or not any(p.stat().st_size for p in tapes):
             return False
+        for tape in tapes:
+            try:
+                rows = [json.loads(line) for line in tape.read_text(encoding="utf-8").splitlines() if line.strip()]
+            except (OSError, ValueError):
+                return False
+            if len(rows) != record["records"]:
+                return False
     return True
 
 def selected_matrix_rows(registration: dict, seeds: list[int] | None = None) -> list[dict]:
