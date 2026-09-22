@@ -1,0 +1,10 @@
+{
+  "arm": "base",
+  "config": "runs/verification-s06-20260922/seed-17/routed_specialists/config.json",
+  "failed": 0,
+  "ok": 2,
+  "predictions": "runs/verification-s06-20260922/seed-17/routed_specialists/predictions-base.jsonl",
+  "records": 2,
+  "records_sha256": "fb71be723730ab27dff15d917c1fbc0eeee449b35c2aee8f0b32a4420a4a3c36",
+  "schema": "tiny-fleet.study-run-summary/v1"
+}

@@ -1,0 +1,10 @@
+{
+  "arm": "prompt-only",
+  "config": "runs/verification-s06-20260922/seed-29/prompt_only/config.json",
+  "failed": 0,
+  "ok": 2,
+  "predictions": "runs/verification-s06-20260922/seed-29/prompt_only/predictions-prompt-only.jsonl",
+  "records": 2,
+  "records_sha256": "5801d7c381233551402ec0863c3791db7d0b0a7b277c7a55ca0fe74f3086ba44",
+  "schema": "tiny-fleet.study-run-summary/v1"
+}

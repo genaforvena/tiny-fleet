@@ -1,0 +1,10 @@
+{
+  "arm": "pooled-lora",
+  "config": "runs/verification-s06-20260922/seed-17/pooled_adapter/config.json",
+  "failed": 0,
+  "ok": 2,
+  "predictions": "runs/verification-s06-20260922/seed-17/pooled_adapter/predictions-pooled-lora.jsonl",
+  "records": 2,
+  "records_sha256": "4a8aff8a7a60c05434928348ad83766c0f65b8fcc27c7da6ea10b352d92efa99",
+  "schema": "tiny-fleet.study-run-summary/v1"
+}

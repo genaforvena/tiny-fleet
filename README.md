@@ -235,8 +235,8 @@ that every real-world safety-critical input is detected.
 - Toy corpora, toy domains. The claim is "the loop works and is cheap",
   not "these two adapters are useful".
 - The drift measurement uses Modelfile system prompts (changes behavior,
-  not weights). True LoRA fine-tuning on each snapshot would show even more
-  divergence.
+  not weights). A comparison of true LoRA fine-tuning is an untested future
+  experiment, not a supported prediction here.
 
 ## Layout
 
@@ -286,8 +286,9 @@ handoff; it currently passes `14/14`. The structured safety contract tests
 require-approval flags. The fleet router checks the operator policy first, then
 routes to a specialist only when its embedding margin clears `0.10`; otherwise
 it returns `[ABSTAIN]` for escalation. The offline fleet benchmark currently
-passes `24/24`; the live specialist benchmark reproduces the perplexity table
-above and requires the cached base model plus GPU.
+passes `24/24`. The live specialist perplexity table above is historical and
+has not been reproduced at this revision; reproducing it requires the cached
+base model plus GPU.
 
 The bounded operator model is intentionally a deterministic lexical policy
 classifier plus safe templates, not an autonomous LLM. Its confidence is
