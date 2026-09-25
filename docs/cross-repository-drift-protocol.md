@@ -100,8 +100,10 @@ python3 scripts/drift_extract.py --repo . \
   --run-dir runs/architecture-drift-local-20260925
 ```
 
-It reads only `git ls-tree` and `git cat-file` objects, never mutable `HEAD`
-or a private mesh installation. It writes `old-files.tsv`, `new-files.tsv`,
+It reads immutable `git ls-tree` entries and `git cat-file` for blobs, never
+mutable `HEAD` or a private mesh installation. Gitlinks (mode `160000`, kind
+`commit`) are excluded from blob reads even when the target exists locally.
+It writes `old-files.tsv`, `new-files.tsv`,
 `old-corpus.txt`, `new-corpus.txt`, `old-python-edges.tsv`,
 `new-python-edges.tsv`, `python-edge-delta.tsv`, `structural.tsv`, and
 `manifest.json`. The delta table is sorted by change (`added`, then
@@ -109,12 +111,16 @@ or a private mesh installation. It writes `old-files.tsv`, `new-files.tsv`,
 included inventory for both `source_blob_sha256` and `target_blob_sha256`.
 Manifest added/removed edge counts equal the corresponding table row counts.
 Paths under `generated`, `vendor`, `node_modules`, `runs`, `adapters`, or
-`corpus`, binary blobs, and malformed UTF-8 are retained as excluded metadata
-and counted, never copied into the corpus. Identical-blob renames are matched
-one-to-one; changed paths compare blob content at the same pathname. The
-Python edge set parses static `import` and `from` statements and retains only
-targets mapped to included local Python files; dynamic imports, runtime
-resolution, and other languages are out of scope. These AST edges are not
+`corpus`, binary blobs, malformed UTF-8, and gitlinks are retained as excluded
+metadata and counted, never copied into the corpus. Inventory TSVs retain
+their existing columns and append `git_object` with the exact tree-entry
+object ID; for gitlinks `reason=gitlink`, `blob_sha256` is empty, and no blob
+bytes or text delta are attributed to the commit target. Missing ordinary
+blobs fail extraction rather than being classified as gitlinks. Identical-blob
+renames are matched one-to-one; changed paths compare blob content at the same
+pathname. The Python edge set parses static `import` and `from` statements
+and retains only targets mapped to included local Python files; dynamic imports,
+runtime resolution, and other languages are out of scope. These AST edges are not
 runtime dependencies or semantic drift. Parse failures stay explicit in
 `old_parse_failures` and `new_parse_failures` in the manifest. `mesh_refs`
 means executable-position `mesh-*` tokens only, not ordinary documentation

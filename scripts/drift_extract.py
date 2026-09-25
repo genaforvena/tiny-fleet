@@ -34,6 +34,11 @@ def inventory(repo, commit, side, out):
         header, rel_bytes = item.split(b"\t", 1)
         mode, kind, blob, size = header.decode().split()
         rel = rel_bytes.decode("utf-8")
+        if mode == "160000" and kind == "commit":
+            rows.append({"path": rel, "blob_sha256": "", "bytes": 0, "units": 0,
+                         "language": LANGUAGE.get(Path(rel).suffix.lower(), "other"),
+                         "status": "excluded", "reason": "gitlink", "git_object": blob})
+            continue
         data = git(repo, "cat-file", "blob", blob)
         reason = None
         if set(Path(rel).parts) & EXCLUDED_PARTS:
@@ -48,15 +53,17 @@ def inventory(repo, commit, side, out):
         row = {"path": rel, "blob_sha256": hashlib.sha256(data).hexdigest(),
                "bytes": len(data), "units": text.count("\n") if reason is None else 0,
                "language": LANGUAGE.get(Path(rel).suffix.lower(), "other"),
-               "status": "excluded" if reason else "included", "reason": reason or ""}
+               "status": "excluded" if reason else "included", "reason": reason or "",
+               "git_object": blob}
         rows.append(row)
         if reason is None:
             corpus.append(f"### {rel}\n{text}")
             if rel.endswith(".py"):
                 python_sources[rel] = text
     rows.sort(key=lambda row: row["path"])
-    (out / f"{side}-files.tsv").write_text("path\tblob_sha256\tbytes\tunits\tlanguage\tstatus\treason\n" +
-        "\n".join("\t".join(str(row[key]) for key in ("path", "blob_sha256", "bytes", "units", "language", "status", "reason")) for row in rows) + "\n")
+    columns = ("path", "blob_sha256", "bytes", "units", "language", "status", "reason", "git_object")
+    (out / f"{side}-files.tsv").write_text("\t".join(columns) + "\n" +
+        "\n".join("\t".join(str(row[key]) for key in columns) for row in rows) + "\n")
     (out / f"{side}-corpus.txt").write_text("\n".join(corpus))
     return {"commit": commit, "rows": rows, "excluded_paths": sum(row["status"] == "excluded" for row in rows),
             "included_paths": sum(row["status"] == "included" for row in rows),

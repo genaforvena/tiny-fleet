@@ -37,10 +37,11 @@ the side, source/target paths, and each endpoint's Git blob SHA256 from the
 matching included file inventory. The old/new edge lists are retained beside
 the manifest. These AST-derived static edges are not runtime dependencies or
 semantic drift; dynamic imports and non-Python dependencies are not observed.
-It excludes binary or invalid UTF-8 blobs and paths under `generated`,
-`vendor`, `node_modules`, `runs`, `adapters`, and `corpus`; excluded paths
-remain counted in the manifest. These are **descriptive structural
-measurements**, not a semantic or generative drift score.
+It excludes gitlinks (`160000` tree entries) before reading blob data, binary
+or invalid UTF-8 blobs, and paths under `generated`, `vendor`, `node_modules`,
+`runs`, `adapters`, and `corpus`; excluded paths remain counted in the manifest.
+These are **descriptive structural measurements**, not a semantic or
+generative drift score.
 Documentation is included, so path growth does not by itself imply an
 architectural change.
 
@@ -136,6 +137,11 @@ Read `manifest.json`, `structural.tsv`, `python-edge-delta.tsv`, and
 `old-files.tsv` / `new-files.tsv` together. The delta table has `change`
 (`added` or `removed`), `side` (`new` or `old`), `source`, `target`,
 `source_blob_sha256`, and `target_blob_sha256`; empty deltas retain the header.
+The file inventories retain their existing columns and append `git_object`,
+the exact tree-entry object ID. For gitlinks, `reason=gitlink` and
+`blob_sha256` is empty: a gitlink targets a commit, not a local blob, whether
+or not its target is available. Gitlinks contribute no corpus text or text
+delta; missing ordinary blobs still fail extraction.
 Manifest edge counts match table rows, while `old_parse_failures` and
 `new_parse_failures` name Python sources not parsed. The cross-repository
 protocol in `docs/cross-repository-drift-protocol.md` requires independent
