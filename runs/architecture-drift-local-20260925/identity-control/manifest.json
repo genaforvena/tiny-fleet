@@ -1,0 +1,41 @@
+{
+  "architecture": {
+    "added_local_import_edges": 0,
+    "new_local_import_edges": 1,
+    "new_parse_failures": [],
+    "new_python_modules": 79,
+    "old_local_import_edges": 1,
+    "old_parse_failures": [],
+    "old_python_modules": 79,
+    "removed_local_import_edges": 0
+  },
+  "delta": {
+    "added_text_paths": 0,
+    "changed_text_paths": 0,
+    "deleted_text_paths": 0,
+    "renamed_text_paths": 0
+  },
+  "new": {
+    "commit": "b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d",
+    "excluded_paths": 467,
+    "included_paths": 306
+  },
+  "old": {
+    "commit": "b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d",
+    "excluded_paths": 467,
+    "included_paths": 306
+  },
+  "schema": "tiny-fleet.drift-extract/v1",
+  "structural": {
+    "added_text_paths": 0,
+    "changed_text_paths": 0,
+    "deleted_text_paths": 0,
+    "new_bytes": 1454580,
+    "new_mesh_refs": 16,
+    "new_paths": 306,
+    "old_bytes": 1454580,
+    "old_mesh_refs": 16,
+    "old_paths": 306,
+    "renamed_text_paths": 0
+  }
+}

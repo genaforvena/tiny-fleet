@@ -88,16 +88,40 @@ constitute broad generalisation by themselves.
 
 ## Structural and lexical measurements
 
-The dependency-free `scripts/drift_extract.py` is the pinned corpus extractor. Invoke it with
-`--repo PATH --old <40-hex> --new <40-hex> --run-dir PATH`; it reads only `git ls-tree` and
-`git cat-file` objects, never mutable `HEAD` or a private mesh installation. It writes
-`old-files.tsv`, `new-files.tsv`, `old-corpus.txt`, `new-corpus.txt`, `structural.tsv`, and
-`manifest.json`. Paths containing `generated`, `vendor`, or `node_modules`, binary blobs, and
-malformed UTF-8 are retained as excluded metadata and counted, never copied into the corpus.
-Renames are identified by equal blob hashes and are not counted as added semantic content.
-`units` means newline count; `mesh_refs` means executable-position `mesh-*` tokens only, not
-ordinary documentation mentions. Identical commit inputs must produce zero path delta.
+The dependency-free `scripts/drift_extract.py` is a descriptive Git-object
+extractor, not the full registered cross-repository runner. Reproduce the
+focused fixture and pinned tiny-fleet comparison with:
 
+```bash
+python3 scripts/test_drift_edge_delta.py
+python3 scripts/drift_extract.py --repo . \
+  --old 4e87f2ee3644f53e2a9665195b9d6ddb933aa1d8 \
+  --new b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d \
+  --run-dir runs/architecture-drift-local-20260925
+```
+
+It reads only `git ls-tree` and `git cat-file` objects, never mutable `HEAD`
+or a private mesh installation. It writes `old-files.tsv`, `new-files.tsv`,
+`old-corpus.txt`, `new-corpus.txt`, `old-python-edges.tsv`,
+`new-python-edges.tsv`, `python-edge-delta.tsv`, `structural.tsv`, and
+`manifest.json`. The delta table is sorted by change (`added`, then
+`removed`) and source/target path; its `side` selects the `new` or `old`
+included inventory for both `source_blob_sha256` and `target_blob_sha256`.
+Manifest added/removed edge counts equal the corresponding table row counts.
+Paths under `generated`, `vendor`, `node_modules`, `runs`, `adapters`, or
+`corpus`, binary blobs, and malformed UTF-8 are retained as excluded metadata
+and counted, never copied into the corpus. Identical-blob renames are matched
+one-to-one; changed paths compare blob content at the same pathname. The
+Python edge set parses static `import` and `from` statements and retains only
+targets mapped to included local Python files; dynamic imports, runtime
+resolution, and other languages are out of scope. These AST edges are not
+runtime dependencies or semantic drift. Parse failures stay explicit in
+`old_parse_failures` and `new_parse_failures` in the manifest. `mesh_refs`
+means executable-position `mesh-*` tokens only, not ordinary documentation
+mentions. Identical commit inputs must produce zero path and edge delta.
+This extractor does not enforce repository-specific license or secret filters,
+split manifests, native behavior, or generative controls: its output alone
+cannot pass the full study gate.
 Compute the same language-agnostic metrics for every snapshot: included files, bytes, median
 and p95 file size, extensions/languages, unit count, and changed-path counts. Add a
 repository-native metric only with its parser and definition recorded. For example,

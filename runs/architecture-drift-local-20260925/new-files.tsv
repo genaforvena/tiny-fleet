@@ -1,0 +1,774 @@
+path	blob_sha256	bytes	units	language	status	reason
+.gitignore	4cad133d4f0a6cf4bba15f1b8bbae48d6a55f20b94f75487c51a93cc6a5af59f	26	3	other	included	
+LICENSE	2ad640fb792e4637759f6e9d6eac29886abcfa5a9c6a0786090b35ab57c28d91	7078	124	other	included	
+README.md	2eecb88c8f7985841443ca3cf19ebec84062517635ba25160657fecabe56eec4	16580	360	markdown	included	
+adapters/lora-guitar/README.md	057f52c937598ea8280d2697c708afc74e62f29471110396b0a363debeaeebde	5371	0	markdown	excluded	generated-or-vendor-path
+adapters/lora-guitar/adapter_config.json	42c08d46b90568c8eb5032f527b4b2f0916b91775d5ae83817418b7310b2b92c	1168	0	json	excluded	generated-or-vendor-path
+adapters/lora-guitar/adapter_model.safetensors	68697b792b847d53945b43f502802735fb9243630c609cae16ef21f00505ebc1	34793120	0	other	excluded	generated-or-vendor-path
+adapters/lora-sourdough/README.md	057f52c937598ea8280d2697c708afc74e62f29471110396b0a363debeaeebde	5371	0	markdown	excluded	generated-or-vendor-path
+adapters/lora-sourdough/adapter_config.json	42c08d46b90568c8eb5032f527b4b2f0916b91775d5ae83817418b7310b2b92c	1168	0	json	excluded	generated-or-vendor-path
+adapters/lora-sourdough/adapter_model.safetensors	ca02ca12cd773003a5b45be6f1a9fbf9dc10a614302f1723e3078f491cdd25be	34793120	0	other	excluded	generated-or-vendor-path
+adapters/persona-code-code/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+adapters/persona-code-code/adapter_config.json	4c6d3008c06f3e0f9e5cde0ff340bc4ac6a6c05c562146d56d8a1432f77e4045	1168	0	json	excluded	generated-or-vendor-path
+adapters/persona-code-code/adapter_model.safetensors	ec7d2b941f16ce62c971b80e3ef90b014646523a12f0facadb7d9a0d5eb8bbc0	34793120	0	other	excluded	generated-or-vendor-path
+adapters/persona-code-persona/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+adapters/persona-code-persona/adapter_config.json	fcfcf97d0b63190261aac48ad36fcb45029ecb8287a6fc63b6ff946b1fc37a41	1168	0	json	excluded	generated-or-vendor-path
+adapters/persona-code-persona/adapter_model.safetensors	14f33b81f395b1af5a1f87a1a350e7494f675992fdf76b19b71023ebec75552e	34793120	0	other	excluded	generated-or-vendor-path
+corpus/applications/command-intents/manifest.json	0dbc474634d358413068ec54ea76320a44f47805bf77a692694742c4fbcd2bef	38475	0	json	excluded	generated-or-vendor-path
+corpus/applications/duplicate-incidents/manifest.json	333182515d1011a50749c32d941d7da7e3b2a32bab2e3675567e5ab3aa208aff	1659	0	json	excluded	generated-or-vendor-path
+corpus/applications/log-normalization/manifest.json	a8f8ee5747c8d124e70ab7e1496d7d20b5f2a21e7700be2e13e3ba60fe397707	3257	0	json	excluded	generated-or-vendor-path
+corpus/applications/noisy-text-correction/manifest.json	17879f42f885b18ed5e0638a6620ff745200ddb79d9a3004a20fa22933ea0997	1786	0	json	excluded	generated-or-vendor-path
+corpus/applications/redaction-assistance/manifest.json	c13695a68ddee326bf1e312a9ac776a3ccd0b436bb41a9574809161af95cc4d2	4779	0	json	excluded	generated-or-vendor-path
+corpus/applications/runbook-retrieval/manifest.json	ccea4572ffa535a36ec41774d4c16769c4c7291026af96f5fdeba70c920beefa	1238	0	json	excluded	generated-or-vendor-path
+corpus/applications/support-routing/manifest.json	0a56497d645cb715aa3338ffa59af3417cf62db055df036bc6eaa509e555d87a	7455	0	json	excluded	generated-or-vendor-path
+corpus/applications/ticket-extraction/manifest.json	7b539de4d1d123ae3975cbbcc70192965f852cca15e46e6f5ecea5ac80a9f866	127619	0	json	excluded	generated-or-vendor-path
+corpus/applications/transliteration/manifest.json	dd2eede7b64d2e5c314a027933fd7e879c52dc3b6acea0279369c313c6a45adf	1901	0	json	excluded	generated-or-vendor-path
+corpus/board-dispatch-v1/cases.jsonl	8d46c88be72edb4726e6304e10563c7c9c041578a226604270b88be350a288e7	6481	0	other	excluded	generated-or-vendor-path
+corpus/code-adversarial.jsonl	8380c26a06e66fabd265672ff70fa221d1fc603a36f1e2cf46e67da1cc24adbd	5179	0	other	excluded	generated-or-vendor-path
+corpus/code-heldout.jsonl	2b118d7009339e5c5384f6ff7272625d06e9a69012fc6806fb0c6e38781b38f0	1488	0	other	excluded	generated-or-vendor-path
+corpus/code-train.jsonl	130c0ddd373724e6d9ac6e53fd57777fc1cbe3765a20ed87746ad494c0a83d46	4558	0	other	excluded	generated-or-vendor-path
+corpus/guitar-test.jsonl	de267523eddd0668d35811d11eb2f76be148c7c3745d6f64d77a85dd3662f42e	9638	0	other	excluded	generated-or-vendor-path
+corpus/guitar-train.jsonl	00a349055c32f3b2995f9073b7a9ba2a51ebe1763b36e2a4706d8af6c767a285	37078	0	other	excluded	generated-or-vendor-path
+corpus/mood-adversarial.jsonl	fd6422e68c47b662bc8ecd0facf8c9009ed1608fbf9ca299036c9ce9fbff56bf	1939	0	other	excluded	generated-or-vendor-path
+corpus/mood-heldout.jsonl	24c0d00aa8023cf94ba6a3b8a284eddfa3ab40b203f8591a5ffac3b3f15ab7ac	3890	0	other	excluded	generated-or-vendor-path
+corpus/mood-train.jsonl	cdac0a63a54423e9cc634f473eb66c34762940bbf1966a6f6cab9768d7fe7291	17475	0	other	excluded	generated-or-vendor-path
+corpus/operator-adversarial.jsonl	ad0c657fb848592c80d50e205da35bd51ff757dc6993926b043e84dc49a1d1e9	2862	0	other	excluded	generated-or-vendor-path
+corpus/operator-test.jsonl	f6aa6760dba978d0578b720356e715b7a0af4fadf8d6db6d34ef190f3434cc24	12231	0	other	excluded	generated-or-vendor-path
+corpus/operator-train.jsonl	5eb340d5e3aadf380c21d28c57fc138358503c84196ac8dc96a5104b7162fc44	32974	0	other	excluded	generated-or-vendor-path
+corpus/persona-adversarial.jsonl	3b6c42fe5c67fbb3ac3dbfbbe9cd391b887c1e84a6920cf7d3220f921ca547e8	5305	0	other	excluded	generated-or-vendor-path
+corpus/persona-heldout.jsonl	3fe342268a542a766f01e76326de9450394086c3c0ce0566486a40ff3fc90632	1516	0	other	excluded	generated-or-vendor-path
+corpus/persona-train.jsonl	140a4bb1f7e37e7262dd6bec617dfe025b9e85b3b79657613525e50804c32055	4714	0	other	excluded	generated-or-vendor-path
+corpus/sourdough-test.jsonl	13c5fb7b82018f0af8230af8583a47cc5f635e23c37377b80511c4244705f000	9563	0	other	excluded	generated-or-vendor-path
+corpus/sourdough-train.jsonl	9a7221ea798ad719029cd26602421f3e7a4539bfcccc2fe226534b2aba968e8d	38513	0	other	excluded	generated-or-vendor-path
+corpus/study-v1/adversarial.jsonl	d57dcfcda2691d63f68727b08fc4ce2b06b40a203327da71103672578001b213	353328	0	other	excluded	generated-or-vendor-path
+corpus/study-v1/heldout.jsonl	e509d767dab388fa99c4e1e117843db76d8403f6203ce2c2a62c97216d786040	343728	0	other	excluded	generated-or-vendor-path
+corpus/study-v1/manifest.json	2259fad8ba4fc3134d9de5ff4885e4898ae82192d10b4a2ca90aead7d8726dbc	1167	0	json	excluded	generated-or-vendor-path
+corpus/study-v1/train.jsonl	b208a7dab05a34494e9672facb27341ec70d512b4f7b6f1df02d7d72b4188f4f	338928	0	other	excluded	generated-or-vendor-path
+corpus/study-v1/validation.jsonl	8212842b2f0619c2557c4a3d3f9ab4c19c6470fabbfd87d5183cb0c7ff602e46	350928	0	other	excluded	generated-or-vendor-path
+docs/applications.md	e87ab7af5400bf4cdcd2df7fd44709d9bfaf28b9437e27dd65f79fcb6994889e	12512	94	markdown	included	
+docs/applications/command-intents.md	bc9d933cf3484631adddaa3f5947c97e0fb0aded26c1a640562d54492d69e378	2464	47	markdown	included	
+docs/applications/duplicate-incidents.md	ee97b154525c5209b3db8375c3ab9f147ba6b58a03f45fdd4d3d180dbfffb6f2	2417	43	markdown	included	
+docs/applications/log-normalization.md	11047017f764c3d9c5060611bde162e997fb7afa57a6bd8b7e0e6c5e3e8ca54c	1508	29	markdown	included	
+docs/applications/noisy-text-correction.md	8aa72f52ce48eeedd88ffe65b33c3c6379cb0df06313b0f08c5917b4823d41b5	1792	34	markdown	included	
+docs/applications/redaction-assistance.md	8d30d417c16ffba2a642c3336f9ad90ae42fe1329ee25dcba467873731bce836	1887	35	markdown	included	
+docs/applications/runbook-retrieval.md	a2d69d7c624762efa02672d86595804fa8be29e791489b278597464fca2e6a62	1331	26	markdown	included	
+docs/applications/support-routing.md	9a47814577c7cf5099c3137f8ae970610d479f334799d3db84e526a8d7a34689	2152	44	markdown	included	
+docs/applications/ticket-extraction.md	ede49e641c56965c0430e751d495c749d711c1ba5e3517ff75db67f10978a93d	2419	47	markdown	included	
+docs/applications/transliteration.md	e831d7b85bb519091f6a5307e54f6cb650ed5ee0287b8e0a4fdb8f9a8283aa2f	1782	36	markdown	included	
+docs/architectural-drift-baseline-audit-2026-09-06.md	b75bd65f24f62b2a5c86123fbf1a38c7ca5d93c427dba6427377f7a977c09e5c	2972	52	markdown	included	
+docs/audit-current-repo-2026-09-06.md	01048b50ad5d9cef93e8171407f6beae49eb6bd7895866eb91ff677b69d61d59	4465	76	markdown	included	
+docs/bbywvy-360m-notes.md	5c599158ac1176652c009e0923feec3fbf00f33e4978af0337408d9be5a1e37a	2685	55	markdown	included	
+docs/board-dispatch-study.md	421c68d6ed69fceeb0768bb6b18985391edf65200d8599654db6fa2e92d79db9	1329	23	markdown	included	
+docs/concepts-v1.json	60f4896d38d1fe0062f77ca404c6e502c2e51a92659f0b718f7245bccf28271c	712	14	json	included	
+docs/confirmatory-v1-reader-conclusions-20260914.md	a376c97beb40ca5ed8718abe223045ad47c6bcfdb1317081dea0cffb5191e54d	4650	61	markdown	included	
+docs/cross-repository-drift-protocol.md	76b62091b80109bfd8fd0002882b2b297a2fdb0cfff14f7347bbedb529b97466	12104	216	markdown	included	
+docs/deep-evaluation-contract.md	69ae18c3c1d00126d98ff5dd7e81873ed8dd47a7be0bac7ec8a3118210b7cd32	9177	158	markdown	included	
+docs/deep-evaluation-validator-verification-2026-09-06.md	3e9dae5effeaaaac6ed5b28ff630580c8b7a97869534d954e02e1e683c338a62	980	27	markdown	included	
+docs/drift-generative-v2-runner-contract.md	425eb80e6cfbee1df1d8973417fef9372fa7aab4df273d4a151d8a84afe878cc	2566	11	markdown	included	
+docs/drift-validation-registration-v2.md	de8717cae2cc9b68b474d9c40391969c425e9d6cd925efa7cc46160bec1d34d4	3019	15	markdown	included	
+docs/drift-validation-registration.md	6ccbfdf799e3182299c905a41edd6140bb12eb85ed894a0a8bc0d88e5799f90b	2756	49	markdown	included	
+docs/evaluation-methodology.md	d819654c8d2408e5e3e0001f18d9f2c6a76c5a749041cdc7918e24cb18b1edda	6614	99	markdown	included	
+docs/evidence-status.tsv	ce678317df38fe0e7384e8058e443c28aff090812d327d1a5ecc81bc4d0c0a64	7455	20	tsv	included	
+docs/full-reaudit-20260907.md	77987875643efd905d95bad19b2589e44c5f9398c77ae31c6f72f2fa1e9557c3	4095	59	markdown	included	
+docs/ledger-reconciliation-20260908.md	cc239fa7595795ae757e6378633f642f7c04f789615cb60ece1dcd981c4ffd77	4257	40	markdown	included	
+docs/ledger-registration-20260908.json	f9e6456ead22bf07a4228bef727cf3310505bba93cc0ad351e06362167f664a7	14254	452	json	included	
+docs/mood-corpus-2026-09-06.md	67b8eed1f57aba296e2eeb6a5f6db308d2b6a4f367c218d7b95dde6481cb6480	1222	30	markdown	included	
+docs/persona-and-code-plan-2026-09-07.md	ac8b9df5d21faadcbf7d5911b177928bd8dd45ae2a81a4e4234c214dc7cf4dcf	5765	123	markdown	included	
+docs/plans/applications-20260908.tsv	5106361e8283c541f0659cabf9475f7ef2b25820314ee569b3aa3e0e2ab99655	28136	23	tsv	included	
+docs/plans/board-dispatch-20260908.tsv	cd439ff373a7ece3fac2f135eb4c59b5a860400e5f7d0ad04a12b366ccc287f2	9532	9	tsv	included	
+docs/plans/drift-confirmatory-prerequisites-20260913.tsv	57440736145e22244b9139691af4d273699bf4d2b2c97599555b3e7914540a27	1815	5	tsv	included	
+docs/plans/drift-science-20260908.tsv	c767991144054e827fd808259cd5a1a3ff550a42867f760be37d434b613504c9	9510	9	tsv	included	
+docs/plans/publication-science-20260908.tsv	31dd80cd6253228e70b432f3c78b1691f533308ef628cf322e4c700be8c8b27a	48877	43	tsv	included	
+docs/plans/tinyfleet-confirmatory-v1-comparison-20260914.tsv	080d59327bb95c8671dfea46905ff8f770625796f6a493c053ad5227b8297a5c	1923	3	tsv	included	
+docs/plans/tinyfleet-confirmatory-v1-scorer-binding-fix-20260914.tsv	e66383f7352613b0a01cfbbeb8fb9d68a79fe556a99b2512ca07e56d5b28a154	877	2	tsv	included	
+docs/plans/tinyfleet-confirmatory-v1-scorer-compat-20260914.tsv	09603096728e13f80bfa2e7b0891006a9811de3bcf253a1e761df33fc35a56ec	1149	3	tsv	included	
+docs/publication-review-20260908.md	67c4c9df6fcc8c0a83308b54e4663943d6aa1839d79ebe34f09e05baeec3fbe0	12759	105	markdown	included	
+docs/related-work.md	8c3910d8fa3ecfc79917269af2b78ac0f8eb6cf2091c20a14215e61eece0abd0	1354	19	markdown	included	
+docs/review-eval-method-2026-09-06.md	0360271f7364b422063c6ff7e153d78cd959d162b9a89a5cde68361e93b4113d	1931	50	markdown	included	
+docs/review-verification-20260908.md	8e42ab3168d5938ca50c5b2b0360ab8aa82907f0fd8fabd2d55071a07e4de2c8	4471	82	markdown	included	
+docs/scoring-rubric.md	bbc315e33d1d62c9ab3fbc7f4ae4543d30f18658481d917a91f9a177f9f34c0b	1149	18	markdown	included	
+docs/study-registration.md	7dd204ac20774a87756fd064363a3a67768ad2236d6396caabee92bd6b6bad0a	2719	43	markdown	included	
+docs/superpowers/plans/2026-09-08-publication-science.md	fd01440bba804dcdbcdf1a1e25e315ccb357053785b18859b546d0debd53abe6	157728	1608	markdown	included	
+docs/superpowers/plans/2026-09-09-noisy-text-correction.md	15295bd15234316427a3e78fa9d524c282d09a7ae3b84dfd4187e00db97a1270	3319	47	markdown	included	
+docs/superpowers/plans/2026-09-11-validate-derived-reports.md	3d46dc8808f90a741e72eb085c2314c45c68a0ebcd7d3376ab110e4029c41ae1	2420	34	markdown	included	
+docs/task-receipts/03-haunt-tinyfleet-receipt-20260908.md	abfe6a5e2716b22d420e49a9c76fe4b32449bdc4fffa868e77a7634d69dbd876	1202	28	markdown	included	
+docs/task-receipts/A00-check-20260908.txt	c22f3a854dcae8cef52a7feaf3ee5c2664c0060efeceefcc35367f3254620aeb	1141	12	text	included	
+docs/task-receipts/A00-implementation.md	8c55cfc08953e94b7ce185b0ee06ff71d92d95d0aede1ec4cba5daf399ee11dc	2291	55	markdown	included	
+docs/task-receipts/A00-verification.md	d02eb0304b396ce6c014ee7d17f335aebad7e58f74cf3c3b8f6ed1d3dc9b4893	3338	63	markdown	included	
+docs/task-receipts/A01-check-20260908.txt	d1b72ce42cfd1df4c3900549070f8ce83790347381b130ae4da60eb03a876483	1125	12	text	included	
+docs/task-receipts/A01-implementation.md	6b69abf91efc87e61ca3dda4754c8e51bbb869a5eab5cc4af4e6bc8cad432b94	2406	47	markdown	included	
+docs/task-receipts/A01-verification.md	ad1773b1e6f448ce7560f816a89674863563dd102785de844429ac91c1500e46	2021	51	markdown	included	
+docs/task-receipts/A02-check-20260908.txt	97cbab94bff09f1fe36f3f5b84f42a159f51356e5f54ccbceb8700007b198797	944	12	text	included	
+docs/task-receipts/A02-implementation.md	44b587ed5e9592faae1f87e8a78fc137211170a86e9460d0858b300ae54bc315	2189	50	markdown	included	
+docs/task-receipts/A02-v-env-20260909.md	d92ab3bd236ab58a8e973369f2167f4dcfba35757fd76d7c3fe875274008bbd0	3150	96	markdown	included	
+docs/task-receipts/A02-verification.md	d8067adb7725e7af41916109f7ab0a5f7d7a90357cc2ac6037d19ac16c920779	2190	47	markdown	included	
+docs/task-receipts/A03-check-20260909.txt	418ca94d21f147826196dfe1f74f126cf50188066d0dee524cdf5485eb49aa52	370	7	text	included	
+docs/task-receipts/A03-implementation.md	d9f215ef3d0f96aa6307e21144e24591e117a3e49e48cbfad2f12b5c9081d540	2336	44	markdown	included	
+docs/task-receipts/A04-implementation.md	58720c6443dca5d452c48b248b8ba1ea2a97466affd2782adb408c41acd6e398	2801	50	markdown	included	
+docs/task-receipts/A04-verification.md	edc09ada5d106fa5f8ec1977b9f12694bf909c8ea48e577e584698b3314347a8	3256	71	markdown	included	
+docs/task-receipts/A05-check-20260909.txt	4b1f0be4c49f6f7b42d9fecb4e7359d1ba782c7497336d6d5dd17e67e9095865	1266	23	text	included	
+docs/task-receipts/A05-implementation.md	b0ef18d08057432c54314d29895e7c4bda1eaceb3aafdcccfbb07612853e756d	3603	61	markdown	included	
+docs/task-receipts/A05-verification.md	6ecaa9e70faf7201bfbe534aa856787d731cb474818de007c932e1a775a44cbc	4786	90	markdown	included	
+docs/task-receipts/A06-check-20260909.txt	2ad38f3d3816d9c90da9095985213ea9bf03c494c193094b1ba3bc466f8ab7e4	828	12	text	included	
+docs/task-receipts/A06-implementation.md	7bc88889b8f978585b3e6988751d3f2f091931c0b3726bd68408615d8dce4980	2605	51	markdown	included	
+docs/task-receipts/A06-verification.md	0cc32296456c5a942d6be05eb6a5066da8da478313096cb845ad2617abccaa27	3221	72	markdown	included	
+docs/task-receipts/A07-check-20260909.txt	4a85cf83318c4dbc3df7484ff2ffa94d6f93bbda65d3061e4352e8420a31ef2c	907	16	text	included	
+docs/task-receipts/A07-implementation.md	3b07ec82be9b3ac38674e8abeaf872b5d87fb12654a717b9e64ef90993ad02dd	2853	51	markdown	included	
+docs/task-receipts/A07-verification.md	62e22b750961607d175c92ece45d3a2eeddfd5624186e106cdbec87dba50d202	2640	64	markdown	included	
+docs/task-receipts/A08-implementation.md	7d56732f5f8c1ef7b61dcd165526e4840fa857624a2554697e92e3406fbc3201	2227	56	markdown	included	
+docs/task-receipts/A08-verification.md	d9a5372ad2b8ab760985e979a2351c25facf02e3ed46da93d27390a0846fd663	3227	72	markdown	included	
+docs/task-receipts/A09-V-reconciliation-20260909.md	fe05f8f3796700714005557baaae90f8f51ece685c6e1a33d993c26872b8b8fa	1644	37	markdown	included	
+docs/task-receipts/A09-implementation.md	9856e32e34581f8700a7a302c26baad4757d33e59f91fe0979b4b371b2c49c28	2007	46	markdown	included	
+docs/task-receipts/A09-receipt-hash-correction.md	b6ee474a911ea04fca32b1f6e7847f35ce32ca423a43bf7466f121bc97f7fd92	1171	37	markdown	included	
+docs/task-receipts/A09-verification.md	9476dcfa2c4348fe78634fdd088ffe1ed6b0419535f399090bcf758e6a3235e4	2419	62	markdown	included	
+docs/task-receipts/B01-implementation.md	ee6623601ff5f9e6737356ff854ddcb57a7c61b96595d4a317ee11df94a4102e	1509	37	markdown	included	
+docs/task-receipts/B01-verification.md	d69c0a5680bd64fd54fd6d2d41d3cf1743ac2270101a588b79303882d131fc34	1952	37	markdown	included	
+docs/task-receipts/B02-implementation.md	8f59e5013d54c8ec054ba3823c8977e8de1e6bc3c3c28d96594ac0d48bc89fb0	2364	52	markdown	included	
+docs/task-receipts/B02-verification.md	e6b1340411332bbb8b27496cbff1645c91af91ecb63192066084e75d2cf5822a	1509	31	markdown	included	
+docs/task-receipts/B03-resource-block-20260912.md	e107d19fcebf9ed1b855431254fe99e1384e07f387574be56caf44a4431def77	2937	47	markdown	included	
+docs/task-receipts/C01-check-20260908.txt	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	text	included	
+docs/task-receipts/C01-implementation.md	83b313a18cf8252b2ea9a1a095ed400b81f75e91c372e16d410b37540f3cfa64	2259	52	markdown	included	
+docs/task-receipts/C02-implementation.md	dfd9412ee3162afb358f07deb78896e06d48f88d9c35d5a9e7e23f7952916be0	1417	38	markdown	included	
+docs/task-receipts/C02-verification.md	fc8f10377912eedb34406ef44e7b39fb9ba14c0c61862f684f85572250894b92	2832	72	markdown	included	
+docs/task-receipts/C03-haunt-routing-20260911.md	627735033314d463a82703c86a774c7fee660e2a5ce831defb8a873e36ebeee6	1443	31	markdown	included	
+docs/task-receipts/C03-implementation.md	2a2c9ec6b4faddcc20d2265c64e213ccd5c437d822b393a2bec7e14e9357b597	1929	39	markdown	included	
+docs/task-receipts/C03-verification.md	76d82f5a94df93a8501733c1a64558f11d1a98ceeb8c99d09d70d68ec0b6db5c	3606	68	markdown	included	
+docs/task-receipts/C04-implementation.md	1e17e732a779a922353b20fe925afd313be297686f7028d6efdafaf862478043	2048	46	markdown	included	
+docs/task-receipts/C04-verification.md	8d1b2b7ab6e57ce88f3e73c7aa5094245c11e2fe973cc7753160a1d320db5491	1866	42	markdown	included	
+docs/task-receipts/C05-implementation.md	1d8818286842ece67f04b71e8313912a8e69a6693f1b0a5a13c4dfa64b94883a	2074	54	markdown	included	
+docs/task-receipts/C05-verification.md	260a8e287035735f326f9954b976752cd23f097124a85ac774bf45f98b361a4a	3261	62	markdown	included	
+docs/task-receipts/C06-implementation.md	39267c45f3a67c0dd7193cbda3a20faf0d3003510664782ab574474803cb6899	2257	48	markdown	included	
+docs/task-receipts/C06-verification.md	158711b5d09a976bb926e30747e01c782dc8b630701ac048f946c9475babd7af	2534	56	markdown	included	
+docs/task-receipts/C07-implementation.md	580b13780feaf3bc24fcc5650716e3791611fecf11863eec0288e3b3ef469e47	2314	51	markdown	included	
+docs/task-receipts/C07-verification.md	087ae993f7b92eea7f5a7caa05eb030f8b504d5070b314a82fb273d264d73f86	3307	57	markdown	included	
+docs/task-receipts/C08-implementation.md	670756a3a9624f6f7cf977d6debe12cff6b04101269487dfd9c00453bd180d21	2489	54	markdown	included	
+docs/task-receipts/C08-verification.md	e8302395c5b69c30c06f2b3d99474abf7c3f4e94dec89593814e34a6611c6e37	1987	50	markdown	included	
+docs/task-receipts/D01-implementation.md	71f65c8c53a53cba9df6c17a8f3d85b52532b9ed40435aa75d8e7600c390bbfb	1362	36	markdown	included	
+docs/task-receipts/D01-verification.md	545ad926f368f3b907df278d5ecf31b3ee2c6861a3f8d660b1067cfa69de9762	2430	40	markdown	included	
+docs/task-receipts/D02-implementation.md	50db19598f007a5a07a58008e0cb33d5767284419cf32f96c75973abe811f400	1756	32	markdown	included	
+docs/task-receipts/D02-verification.md	b4e2c53e048475369bdf850bc54bb9bfb0d360e9c32e6a4e8ee4a8f54313572d	2722	69	markdown	included	
+docs/task-receipts/D03-implementation.md	68c97eec4d17ae6fdbfb2ec9532c0fb2263f1452d3cb2046beff9a32adf1d8be	2101	45	markdown	included	
+docs/task-receipts/D04-V-verification.md	9f00aee8ccf3dcdbceb22a4a0873f147e97a2ce6c0e67c836e08a9214cd517e5	2548	53	markdown	included	
+docs/task-receipts/D04-implementation.md	215579f890ffe707ccc3c2402f83d353fbaa7362745bd36578a06efc40d7ad76	2228	52	markdown	included	
+docs/task-receipts/S01-implementation.md	80e000271ad78271857ef80bb7a81db6b24165785ffaaba7ad55558ad9566dc0	1666	38	markdown	included	
+docs/task-receipts/S01-verification.md	248bf02f479c678cf609dda1e00242aa9ebdf0b911c7334479d0a93ee974b162	2949	69	markdown	included	
+docs/task-receipts/S02-implementation.md	68eaf167064168f0164a195536aa03dbea0f71d7a23381071aea76cab6d21a53	2691	60	markdown	included	
+docs/task-receipts/S02-verification-r2.md	1a11b4ee00dab7c50ea7e35fe9a9546cf530604cbd5d9f411b66dd8a75ea17db	2402	49	markdown	included	
+docs/task-receipts/S02-verification.md	3a9f1bff53a587459430358eb178dcae14567664d7c818a2e44636d7962bba80	3688	83	markdown	included	
+docs/task-receipts/S03-implementation.md	b9d63f95e402739398f9fd14e89eae60b5017c9786484ed9969039db202f6b57	3183	65	markdown	included	
+docs/task-receipts/S04-implementation.md	d985159444a0c1ec52cfdd6fabba29618812537f436440a00e64277447e9b5fb	2079	51	markdown	included	
+docs/task-receipts/S04-verification.md	6beb136211ea819a09d3851b524e646648fb267a72a7e169416681d4437c74df	2115	49	markdown	included	
+docs/task-receipts/S05-implementation.md	a29ffee9a9c9fd70657671e34cdafb9ed42cb04180154b61c5474d895c54fb8e	2530	55	markdown	included	
+docs/task-receipts/S05-verification.md	166a32fbd2c640e4045aba272ee7e36f608e3d8af492557ea63f20a7f80cbe29	3576	66	markdown	included	
+docs/task-receipts/S06-implementation-20260922.md	6b8fe2b16619ea3f8fb755073c9ce770ecccd02a6847f82383485f663d9fae3a	3489	79	markdown	included	
+docs/task-receipts/S06-verification-20260922.md	372f1c88a0b86c40c2be9631fc849d167939a34fbcd24726334cb1729a15dacf	3117	77	markdown	included	
+docs/task-receipts/haunt-a08-scope-amendment-20260912.md	dc3258137018f05c1912dd29e165d77e44a26f0acf2b86f208d3a11e44053bcf	3279	57	markdown	included	
+docs/task-receipts/haunt-architecture-drift-preregistration-unblock-20260913.md	605cfafc4f0d7a8a418c51f801329a5bb47648a15ff88cfc6ab7026da8693b7f	5710	86	markdown	included	
+docs/task-receipts/haunt-architecture-drift-prerequisites-20260913.tsv	0b8822b19f29ed468d5fee8bd51f493c777b28c3fc4a77f4bb32175ffc9017be	1964	5	tsv	included	
+docs/task-receipts/haunt-architecture-drift-sample-freeze-20260913.md	0159fee580e9c11a87f6f2a14510b2bd1b88581719ac1907a39254e8a5a6f251	2710	44	markdown	included	
+docs/task-receipts/haunt-architecture-drift-sample-freeze-checks-20260913.stdout	198a03677bf494b54ff0767763fd3cb643b34cb58a565c4008f7b60dc72880bd	1890	32	other	included	
+docs/task-receipts/haunt-behavioral-preflight-v2-20260913.md	59621df0c3c221fa6478c8741f9e8779f0c5394988e822f3ef1bcf1dea039ded	5225	51	markdown	included	
+docs/task-receipts/haunt-behavioral-snapshot-gates-v3-20260913.md	316555531af8ea8245e408b6afa3206b02974554ba63d850274135bd6ad59321	3656	67	markdown	included	
+docs/task-receipts/haunt-closeout-sequenced-20260912.md	be1aece99a4a50f009fe15b333ab786159eca256d8356a4f5dbf702fe1638bea	1433	24	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-behavioral-gate-closure-20260913.md	8ce3fd6f5f54c83a678289c5990e032417912b60b74a8f56f66c284da49b01c6	6172	84	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-behavioral-preflight-20260913.md	867603f4bf93153de0dfd26fcc08ec4e201cd9342f0afe6c9db24757bb1846be	3311	47	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-corpus-and-adapter-preflight-20260913.md	8a369f817961a62ae34741947f956545175e2d28e397aba43ecebc809deb120d	4612	44	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-final-gate-audit-20260914.md	4cc1b70038abcc93f0cc1e05a30d70b40bc693ec3a17d78cae7fb895deb73fe5	4039	67	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-gate-plan-20260913.tsv	2c8ab4ba74201011fa6951cd95331b3d14494bf19ca50fcf6886727fb16e50f9	1155	3	tsv	included	
+docs/task-receipts/haunt-confirmatory-v1-generative-inputs-20260913.md	59ac2460094612a51e1ac49a919e1e0385d24f7151f0048599b9f8f0148e8a44	4273	63	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-generative-matrix-20260914.md	d1f39eee95e9482ace22926eaea41b6e9517e77a5f15fe42c657339e962660c2	3519	60	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-generative-matrix-progress-20260914.md	57c477ce5a3589418e6c5f3c45fe2e8c9cf5b7a98804d23724d773f3b371840f	3289	52	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-paired-closeout-20260914.md	7935c2a4bca0bd9873cc50397a4874ed20dfb0262b2cfefd441be670a3eabe20	3069	53	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-scorer-amendment-20260914.md	a557e148e04255a2c7bf542a0f7077f82504a7fb1ff494461af407648bef8b53	2437	41	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-scorer-blocker-20260914.md	c18edefc59ed906d50e2010aa9a3e44cce04a588950152b9b276c183731ccace	2631	40	markdown	included	
+docs/task-receipts/haunt-confirmatory-v1-scorer-validator-binding-20260914.md	f8968a96abf3632fc992b51d7cc5dd693f08317214312a9a97ee3fc26fcb69a9	2430	45	markdown	included	
+docs/task-receipts/haunt-drift-v2-adapter-training-20260913.md	43be23960503ef68b03b323aed2f4c8c0681e26133f45b89f15e5aba7a5feea7	2668	38	markdown	included	
+docs/task-receipts/haunt-drift-v2-adapter-training-preflight-20260913.md	db6d0252ab58d40205c7553f75770778bda0655159d7d468166c7e0c025724cd	3221	42	markdown	included	
+docs/task-receipts/haunt-drift-v2-heldout-scorer-20260913.md	fcce4fa85d33694f0d0657531f91dcb3eaa0ba9c448c6ac57f6ee8fcb22ff8fc	2906	44	markdown	included	
+docs/task-receipts/haunt-drift-v2-runner-provenance-20260913.md	48adf5cc4236e4327ff7f6c8e65da2ff0d68048123e597be060cf116d90fe9e5	2862	24	markdown	included	
+docs/task-receipts/haunt-final-confirmatory-gate-audit-20260913.md	6119d4cfb1dec352f1264c273246c06e97a6dfc402e2d39f3f79f09ad32a0c07	4237	61	markdown	included	
+docs/task-receipts/haunt-final-confirmatory-gate-audit-20260914.md	a0e8c42180927b0f499f1facbacebceb9806021c7ead2c440b8e9c390636fa52	3395	54	markdown	included	
+docs/task-receipts/haunt-final-confirmatory-gate-reaudit-20260913.md	53943fdcd27363d02029317a08e5fc61ddb67c1da2ac12283815540933525fd1	3809	62	markdown	included	
+docs/task-receipts/haunt-final-v2-gate-audit-20260913.md	737ac9654c008544777c9453771f01409e0b1a5d099d5561dfeb4db0b67cf987	3892	52	markdown	included	
+docs/task-receipts/haunt-freeze-unseen-confirmatory-sample-20260913.md	841cb1bb014db35ee9f14cdc28f6977fd9dea8d0032566b69857bab1f2326822	4235	66	markdown	included	
+docs/task-receipts/haunt-generative-v2-preregistration-blocked-20260913.md	a6cc96d5ec90947b374f4863d3d9ed6ce48b9bcef9ff6e036ddad0030d9b40eb	2531	41	markdown	included	
+docs/task-receipts/haunt-ground-truth-v2-objective-only-20260913.md	322ba6f776d687612a8a49075d40b49012b5db2ae4a435233e4dc2ce1f9aed64	3001	20	markdown	included	
+docs/task-receipts/haunt-install-unblock-20260908-generative-output.txt	86ca31e69f15883e1ec36fbdca97c5c1aaf3d822203a47b2b98c7a3a52d550f0	1728	44	text	included	
+docs/task-receipts/haunt-install-unblock-20260908.md	52ff050e581f3a3f3e537ff21f64d7cfad7a4425becdea376d702ab1e0707c8b	2836	72	markdown	included	
+docs/task-receipts/haunt-install-unblock-20260909.md	0999024b62d6674bb4596fd87aac7d9768505fe778caffe708df48c8baa734f1	1321	29	markdown	included	
+docs/task-receipts/haunt-publishable-closeout-readme-correction-20260911.md	babc6e142aa486396cf8c5d99d421334773fd22ac7e3e53800e7c03b76518192	1161	33	markdown	included	
+docs/task-receipts/haunt-reader-registration-status-disclosure-20260914.md	f66520a1cd7c2469bfc95d5d1e97aeb928501e7b76f206a4922771a1858de349	1246	22	markdown	included	
+docs/task-receipts/haunt-reader-sample-scope-disclosure-20260914.md	c2b2d146966731eb83cfcd10765581976bf019cd1eddcd63aa0a8f34a9294627	1658	24	markdown	included	
+docs/task-receipts/haunt-unblock-2cc164a3-triage-20260913.md	7575712dff9d090874018d022f5c0c313b9c5df2f37c52b653c327dfb133b249	1750	28	markdown	included	
+docs/task-receipts/haunt-unblock-5df9f86095d1bf5e-resolve-20260913.md	506f9c3679791b5ea7e655c55cb6a9cc4b4b163085cbaead29a3c403d08e406a	3945	60	markdown	included	
+docs/task-receipts/haunt-unblock-a199dc7c2601cb7f-20260909.md	fa2dd46b227c8ba06ca1631fed53135ff54378e4ae27080a7cdc6a906b67519b	1897	46	markdown	included	
+docs/task-receipts/haunt-unblock-d777001dbb8844aa-20260909.md	8ca97ed288645ec7d7e88d2d21d0074644be6557bf538852b694a3345508c314	2082	41	markdown	included	
+docs/task-receipts/haunt-unblock-vpn-67238de3eb987139-20260911-r2.md	df5445ee52b6a90382701f967e4487d2c26fa38cea3d139833ae4462325a5f34	1529	37	markdown	included	
+docs/task-receipts/recreated-rejected-20260908-10-20260908T085150Z-retry.txt	ecc42de83efb6b35f0b16f77b0e22bfb1fa6019274b31703fe80abd122ce24c5	3163	73	text	included	
+docs/task-receipts/recreated-rejected-20260908-10.md	ddc69ce1061c5bd8137d4675b1ad088ec66bebd6a08ea8cfe4a2a8351718cd11	1549	38	markdown	included	
+docs/task-receipts/tinyfleet-operator-ideas-verify-bbywvy-baseline-20260912.md	0725dfd82293d45549af146d92a2b0f40b2992ce1e18371c9ae0c19af403fab8	3915	70	markdown	included	
+docs/task-receipts/unblock-adint-4f1b25c11bcea743-20260911.md	0158eac7190e0ae21a62cb0c5755fa8d8a5b4473c78ba2a4e1b2a4bf4b486747	2363	57	markdown	included	
+docs/task-receipts/unblock-haunt-00559dad400ae1aa-resolve-20260912.md	04df7a0c9e41a21bd23f85a920ca9453786ecb36fc06cfd80a82baaccc4e5edb	3416	53	markdown	included	
+docs/task-receipts/unblock-haunt-01fdec883ff0475d-20260911.md	7cbff34216ce7f892275d7650860a033fb8a19bfb5a7107d36ec80fe14a8be87	2673	57	markdown	included	
+docs/task-receipts/unblock-haunt-153c03064dc3e1ca-20260911.md	8541a240228da734fbf293df0f20da190ef3a0977434a7bc008c903f6b5a9798	1688	44	markdown	included	
+docs/task-receipts/unblock-haunt-2e1cbcd2f8380a3b-resolve-20260914.md	b1046fb8fcdfcb46985f7ad46716bebaac444ae206f80e461d5e3603f626d906	2490	41	markdown	included	
+docs/task-receipts/unblock-haunt-4d510ef47034d468-20260911.md	6d6c2ebe18018979409b90b3e6378bd646fa53ae36b3290f6faa4349500b8752	2335	54	markdown	included	
+docs/task-receipts/unblock-haunt-69db9419928a4a06-20260911.md	cd61eca82027e0db6688d39559c0be5ee8e8a6fa4fcb827c572fbdb3be723e70	2508	54	markdown	included	
+docs/task-receipts/unblock-haunt-77d4894fe9ec510c-resolve-20260912.md	464f43df6a9fea7166533f7399f7f836d7b99ba0b80893428db5a2b1f11faebd	3316	63	markdown	included	
+docs/task-receipts/unblock-haunt-7879be9cfd90708b-20260911.md	a8d78d8425b71458300db38e27cc67fafcf3ba07780ea62bafaba4580f6db5c0	1811	49	markdown	included	
+docs/task-receipts/unblock-haunt-a8c15381384a62a2-20260911.md	e87b65b69ce9214ad4076ded56092a9ef1182ab9f41e35e209fd3a310aaeec58	1622	36	markdown	included	
+docs/task-receipts/unblock-haunt-b20b00c3789684f5-resolve-20260911.md	00ecacba292a6c9f80381ae1083fe82ab56b9750862b95178673933391c42b4c	983	23	markdown	included	
+docs/task-receipts/unblock-haunt-b70faed864d60d11-resolve-20260912.md	a41e865ae5df55190174ea4d252613a062e04d40deca03c574d33b66d2a63d92	3098	62	markdown	included	
+docs/task-receipts/unblock-haunt-bdf0bd563436ad74-resolve-20260913-r2.md	1ddd270f6383f9c0faf2076ce30e29cc7ecd22a0e74caeeb680f49f49303cb4f	3972	55	markdown	included	
+docs/task-receipts/unblock-haunt-bdf0bd563436ad74-resolve-20260913.md	68f5c81f67e13d72deb3fcf93573080bcdc66dd6fa80b5703acff01bdb249de0	3714	56	markdown	included	
+docs/task-receipts/unblock-haunt-beff14c22d6d6cde-resolve-20260912.md	a138108cd92de673f30e22821c407d94f8c3bcd2e41e5f3958d6cd10895021b5	1742	32	markdown	included	
+docs/task-receipts/unblock-haunt-c2b458c5951d307d-resolve-20260914.md	1fa634d73d52b5c2bad670ff0c61759d5f5377d5efffdfca499b389b74cbc30c	3150	46	markdown	included	
+docs/task-receipts/unblock-haunt-df95bf7b4125c078-resolve-20260913.md	35cb2132c9b3a9b3f95c4eebc3ed92a8a8243e2bccbdc3dbba80b102026ce9a5	5417	81	markdown	included	
+docs/task-receipts/unblock-haunt-e2435cee8ec460ac-resolve-20260912.md	0297afed69f6b74ba321b52b76fc7f100aa06b2afb40ad7110c7b4a45fdd9b9c	2189	39	markdown	included	
+docs/task-receipts/unblock-haunt-eb293e460f9aa5c5-resolve-20260912.md	bcd82b5807c130b500faedd0edd05e72000165a5154170fc0f225daf6ddce0f0	2529	47	markdown	included	
+docs/task-receipts/unblock-haunt-queue-audit-20260911.md	ff30a3a1a78b3f0762887f3fc36b05b526d8fd44d943f0cf7e57cde26b8f51a3	2352	54	markdown	included	
+docs/task-receipts/unblock-vpn-a6e8c936f0c0e817-resolve-20260911.md	56fa3c18b3be4f6281a0f907a3fd5c1795e42092b22a0bc8d98ee5a321578b51	2495	51	markdown	included	
+docs/task-receipts/vpn-confirmatory-v1-independent-gate-verification-20260914.md	dfa53f3d7062ae7e95e7050c7bb9c0afa89ddaccefa65d025b9766c495c2c2f1	2099	23	markdown	included	
+docs/task-receipts/vpn-ground-truth-v2-independent-verification-20260913.md	eaa78c63c40c26f3b1a071b68919411e5bd004a81200b1c0658f881bcc989e0e	3856	25	markdown	included	
+docs/task-receipts/vpn-verify-unseen-sample-registration-20260913.md	45c8104ac05855a1a76b6be9c42288ac6038408f143cabdbf55118a2dba8e6de	5253	73	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/01-repo-mesh-audit.md	f89ad3da627b5bdcf35aad02b8b34f812ae7eca5f8f872a4875591fcc56cb83c	7042	123	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/README.md	40ea7378bf1c456a114d87a6e5c784c1ed82c8f48f146dd17548f480e8eb18fc	1650	28	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/availability.md	61197849e34da5a5a39d6adbf2bedbb82fcb220de153c5bae068c7a236667f42	1846	28	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json	07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59	10003	102	json	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample/README.md	5d4a9255cad68c43ca8423df8433b24b8e22d487baf5ebe53d143a1da56e3906	1781	42	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample/availability.md	aaa8ba7cbcbbb0a327b738591030b715e2bad0a51d66e0a211a0025b659dbbb4	1057	16	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample/sample-manifest.json	c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7	3762	48	json	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/README.md	71d2b22089b94f1db8a822fc76211bafa8e42cd9ee760b801b389c9e158019f7	2403	42	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/behavioral.tsv	76d7d162a8948fe3397da716afb6ca74d9192dfb8910317df77fb9681e7d6590	580	3	tsv	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/checksums.sha256	f693ad4827ad61847d81ce10ec4c2af99de438dc87e27c768e5a0d0ec7331b72	1030	11	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/command-capture.tsv	8f8fe60bf6be4014b9c4ac7c93e75eff8b5729d579c28833f938a974ff704224	2010	7	tsv	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/decision.md	512e476bdd35b210741e8565385fc95a6dff7a40011efaa041f737f78ccb2f1a	1636	25	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/environment.txt	2e411a726f35aa5c8dcac609d7194e90a3548131f048809e6f3ce61af843172a	691	11	text	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/generative.tsv	09c7b3cbb08992ecf351cd847d657b08dc6b47746e64e5ad9ea84885a81a9129	242	2	tsv	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/lexical.tsv	36ddca30eeda1da96fc55347f586570f13f72374d24ac30f6e6996422e6a3f64	245	2	tsv	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/outputs/new-mesh-task.stdout	47de3cbf9dba8bb57684fbf2b1f3a3f7f492fabe6bf6a95835e28711ce57e45c	135	1	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/outputs/new-test-board-check-container.stdout	8cb6245073a82c41e9f6018c85def9528e45a484550bc66afc47e5ca6c9c1426	104	2	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/outputs/new-test-mesh-board.stdout	33b5f519e3416873e48f4051fd70d9551d69b4c33b9005fead2cfd5acb357c37	54	1	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/outputs/old-mesh-task.stdout	47de3cbf9dba8bb57684fbf2b1f3a3f7f492fabe6bf6a95835e28711ce57e45c	135	1	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/outputs/old-test-board-check-container.stdout	8cb6245073a82c41e9f6018c85def9528e45a484550bc66afc47e5ca6c9c1426	104	2	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/outputs/old-test-mesh-board.stderr	830dec412e903f66b88ea51f1ca41e0277c18f064de9c67260711e5a21ba3345	65	1	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/predicates.tsv	5c1030d237dec679279921db5515afa075ccc77deaa84b2747859b698fb929a9	1213	8	tsv	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/raw-input.json	786984dd7402db83929e21dafd4021d463c7e694921018b441c62847c79f621d	1013	17	json	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/run-config.json	22369596577f8c22fb5c8c171a416f6258b6a4b61aa6adb46b6fbb1bf11c6a33	1271	21	json	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/runtime-lock.json	5b5b63358525efb556a17cc08c19e96e5f52ddd18976a6413e6969a865c5dbca	797	11	json	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/03-analysis/structural.tsv	d50127f92e186e5eb11b3ac4efb560e6ea34637822a175c3f2c3979328c16113	446	4	tsv	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/04-conclusions/README.md	bc09e1acb22d29d237934fe7b28ee95e062b092c9a996836ba8482b58c6d50e8	2103	39	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/04-conclusions/checksums.sha256	c5cd99ed492b2c61b1b04b1692c4d348ff65a06b549d6fb3df7b09f0f474c037	1772	19	other	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/04-conclusions/conclusions.md	94eee5d1099ea82c22a9d2bdfe2a2920ff298f1660ddea6a71e87705d7ed46ff	1099	24	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/04-conclusions/cross-repository-report.md	235975d1db629269510e3a72171fe8228542fef6755ba6c0660fb511b4f51cf3	1382	36	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/04-conclusions/limitations.md	121836db9d1d2e75092cf68ef6f67f4e4b7bb7ed19cd1ed40d2b7c2515a64aab	1064	20	markdown	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/04-conclusions/repository-manifest.json	841bbfbf9089b6c0f44ec026340acf28ea1f32a2951e60a40427abb85a864794	951	20	json	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/04-conclusions/verification-ledger.tsv	725de65724474cc61d67f9434fc7ba545e99e3ca8c00d99eec38b7f26c086576	1317	11	tsv	included	
+docs/tiny-fleet-artifacts-20260907/architecture-drift/05-continuation-audit-20260907.md	a54ca6fd8d3d6a3380797f46b5d1b3be63baa9b812449a6511e3e6cf0d04221a	2362	56	markdown	included	
+docs/tiny-fleet-drift-report.md	72c9972bcc7dde53a8283af1d0c3f0559683de90cd9bb86037ac56b1b72a3df3	7092	176	markdown	included	
+docs/tiny-fleet-reaudit-20260907-haunt.md	76cdf99922c3f5d93108b51d175c5c843f8cb0eb66b17c04105134041375bea5	1633	40	markdown	included	
+models/operator-policy.json	90cb89c91e89e31caa78cfe2b26c9772568d2af74627f6b3b5d51a5a2283a1a1	7977	234	json	included	
+requirements-eval.txt	6686fb131440a3db9a1cbf8bd89efc0dd5ab550fbef144d504a381188d018dcb	88	3	text	included	
+runs/applications/command-intents/baseline-20260908/regex-grammar-raw.jsonl	260b45ad1e2435aaae91cb4e7bf1d3d688c16394a9393ea5f7c6464327bf7aff	39739	0	other	excluded	generated-or-vendor-path
+runs/applications/command-intents/baseline-20260908/summary.json	b7c501c2858831d65236bf9c76aadd750eb26ff0ec519139a838907ae9b71f5f	388	0	json	excluded	generated-or-vendor-path
+runs/applications/duplicate-incidents/bm25-raw.jsonl	fae2c57bbe3e49e6ae69379bf5d609bd72d9cd1677392280793cd61d72e5f116	72066	0	other	excluded	generated-or-vendor-path
+runs/applications/duplicate-incidents/character-ngram-raw.jsonl	0e032154eeac9f234efa48a35cecc6e38e6713e9df0abc9dbf13e1a46bc97683	71626	0	other	excluded	generated-or-vendor-path
+runs/applications/duplicate-incidents/normalized-hash-raw.jsonl	ddf34d546572020a1e89118973c55a679c30067ae9a29736cd7d32701d29221d	63374	0	other	excluded	generated-or-vendor-path
+runs/applications/duplicate-incidents/summary.json	081346815da1b858d66983257ab45e9da30fa63d6d96f2bcb8f98876ce626603	2701	0	json	excluded	generated-or-vendor-path
+runs/applications/log-normalization/regex-template-raw.jsonl	2116f3cbe57226df74265e4a6c8fa108cb798a20a3e9067792b84e403a7ab46e	94064	0	other	excluded	generated-or-vendor-path
+runs/applications/log-normalization/summary.json	a69fd8df1ae28fdc7add04b6100deefd2726502af441760862f4dffc82797282	615	0	json	excluded	generated-or-vendor-path
+runs/applications/noisy-text-correction/baseline-20260909/raw.jsonl	555f1ab7808d5d01324c770e58fc594b48ea17ff55364d6a4214e4aed8b988fd	128828	0	other	excluded	generated-or-vendor-path
+runs/applications/noisy-text-correction/baseline-20260909/summary.json	193f897e5df3d7f333e49ab64213911db5c76e25422b2bbd66e533bc4cf74848	2005	0	json	excluded	generated-or-vendor-path
+runs/applications/redaction-assistance/regex-raw.jsonl	b9eec6416a1dfbc0caae9da431e0c43ecf03ef557f0228915f621da69d9eae31	37335	0	other	excluded	generated-or-vendor-path
+runs/applications/redaction-assistance/summary.json	474f2819f1fa4d74b9f66eb05f9aa3be1adab0fa2501f05f9945b1610ba12cd5	2799	0	json	excluded	generated-or-vendor-path
+runs/applications/registry.json	8d47199baddc4d2d7e78a2975a524e482526c6de38ad506a52a13e733930088b	15016	0	json	excluded	generated-or-vendor-path
+runs/applications/runbook-retrieval/bm25-raw.jsonl	199639828a2927b77e01513253da2e0c04ff9c9f2c6ca71094a02fd5583b07d7	61901	0	other	excluded	generated-or-vendor-path
+runs/applications/runbook-retrieval/summary.json	b416a05d41cf8353ccb6fc04f43d797d388608e5931e20d0b16ef4888c84cbab	665	0	json	excluded	generated-or-vendor-path
+runs/applications/support-routing/nearest-centroid-raw.jsonl	85978bebdf857da2cbd1522c7e6c07b1706e463d2fb0f170069eafb4a795d1d8	46563	0	other	excluded	generated-or-vendor-path
+runs/applications/support-routing/summary.json	df23715ea7ff102b9df43df5da2d205513c5564a6ce764c1113fe51ec78f3009	825	0	json	excluded	generated-or-vendor-path
+runs/applications/support-routing/tfidf-logistic-raw.jsonl	8cb740e53e27da5defaedf814f739a58d4d0e97e464306c7ccd214d2b92112b7	47344	0	other	excluded	generated-or-vendor-path
+runs/applications/ticket-extraction/baseline-20260908/regex-dictionary-raw.jsonl	bf76823764f36a0a94351aee9dcbbd76161cca320fcad4084bb09cb9535650b3	79642	0	other	excluded	generated-or-vendor-path
+runs/applications/ticket-extraction/baseline-20260908/summary.json	0837c47a02e3a3255268e2c7d584d71e01dc89e1f693c2a8ec0efb5fbf29cf3c	519	0	json	excluded	generated-or-vendor-path
+runs/applications/transliteration/baseline-20260909/raw.jsonl	bf7b5e768d07dbb7bad309226d6dcced00fe8bc1833ac08b1a62c521bcb16b5c	120436	0	other	excluded	generated-or-vendor-path
+runs/applications/transliteration/baseline-20260909/summary.json	76a272b3ad1a8ec5178b0adb5707d0d6c189a971b56edf4083e1ea69430a3d23	1949	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-paired-closeout-20260914.json	fd36f832d08601ba21debc3735bc8f6489a33a0d4415ba91485850de1c1800f5	7737	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-anyio49-trio0261/freeze.txt	4e3fdafd78d5e1d76c754c26e811336d9b544bb52a779e36c7b240abb86d7a7e	1466	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-anyio49-trio0261/full-pytest.log	6a77147fb35f9fe2345b13a03584fd0e8d60dfa8a6166170879098ace7f34423	1818	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-anyio49-trio0261/python-version.txt	5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366	14	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-anyio49-trio0261/requirements.freeze.txt	7effa87c8bb0d96c9e4a233667cdcec3f0b26bd5f608ca2befb1f54b4653fef9	1535	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-anyio49-trio0261/targeted-pytest.log	4237eb8d30ab4e25d028ca343d50bfba364b7f76a907b73390b9601a16e46fe1	98	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio028/freeze.txt	6caa3d1e10e7704f5031f0d21676540da290db65ae1195abbd7e8ac811718990	1617	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio028/pytest.log	6b2204cd10f328f7d9ccb4ae50755da63ab69f1892969e31951aae719dfacf4f	5178	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio032/freeze.txt	9d36ad937f2dfc4f33fe3d447ba07c2b3cc8e0da280180e7781b202a07f73d7a	1467	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio032/python-version.txt	5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366	14	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio032/requirements.freeze.txt	e1287ea065007ac0ed1e524e998b742794b181f61ca97355af8c78291f3a729a	1536	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio032/targeted-pytest.log	4dd45560317b0fa0acde856f7aa208ca55ef20776c3004db8faf7add38cec59a	4642	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new/full-freeze.txt	1038e80150053496bdf3a1640f20af46465ebc20042fcf4183cb62815592dfe2	1617	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-py312/httpx-new/full-pytest.log	08cc32d5099dcafdb5365f59d6535d2e48ee25f8022cca0e96b4323d2cd0771a	8908	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/README.md	21e814782d2ce5098a89aa751ac0dafad0a00b41885038b804d451bcea33f3ab	3238	0	markdown	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/attrs-new.freeze.txt	d7e9def7e06bc66858a04778637c978c5b0f53130e6dba987ed9111c6fd6f013	645	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/attrs-new.runtime.txt	7c9a9a1e235b816e3cfcd52b2cc512fc72af5cc22ec7fb0e1c9109a122c0cc48	87	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/attrs-old.freeze.txt	2696da8de345e8f75e8ee7431409a3c54c8c1f2b6222c5ccc5ef52fe6725032b	397	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/attrs-old.runtime.txt	7c9a9a1e235b816e3cfcd52b2cc512fc72af5cc22ec7fb0e1c9109a122c0cc48	87	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/httpx-new.freeze.txt	0f7b8145dda76c6cde85fcb9140cb30640ab5d9ecb135304f4c4fcf57918d288	1561	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/httpx-new.runtime.txt	7c9a9a1e235b816e3cfcd52b2cc512fc72af5cc22ec7fb0e1c9109a122c0cc48	87	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/httpx-old.freeze.txt	4b9dd803e6016573a6e140818985c4e76895796c1f86b06f5a509218733bc0ef	1691	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/httpx-old.runtime.txt	7c9a9a1e235b816e3cfcd52b2cc512fc72af5cc22ec7fb0e1c9109a122c0cc48	87	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/pytest-new.freeze.txt	34ac33f764aec645cd7547f3d6a38f44ce780a23b8177220394cb496af5969ce	29	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/pytest-new.runtime.txt	7c9a9a1e235b816e3cfcd52b2cc512fc72af5cc22ec7fb0e1c9109a122c0cc48	87	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/pytest-old.freeze.txt	34ac33f764aec645cd7547f3d6a38f44ce780a23b8177220394cb496af5969ce	29	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/environments/pytest-old.runtime.txt	7c9a9a1e235b816e3cfcd52b2cc512fc72af5cc22ec7fb0e1c9109a122c0cc48	87	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/attrs-new.log.gz	65d2bfd526f7bb193c16255e3cbaf1a59d67d7f41cb7bb159b86ce9f60bce626	1967	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/attrs-new.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/attrs-old.log.gz	607238eee48061cb2042e176cf79edd7ebd1d8b9318989cb1dfe2e1fa564dfe5	1407	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/attrs-old.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/httpx-new.log.gz	66490c7ca519b20b120c15cd1d89f8baa07ba43826f8e6f9d6e2ecdffda73e16	4660	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/httpx-new.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/httpx-old.log.gz	e442d589d07813fffa277139984bba07713b8eaccd04982bd333dc4e46d4c29b	5508	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/httpx-old.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/pytest-new.log.gz	e8bdd60ab5d2f58dcf0d6832c1b77e4a56d467e71c9ecaf4dd58b9ac7b7582dd	1533	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/pytest-new.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/pytest-old.log.gz	9a08faf3d485c6250b0e0184145626aeb8a94109a78b48063bafadfd57bc53b3	1611	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/install/pytest-old.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/outcomes/attrs-new.json	9195b86944c4d1c437fd44ae776ab272513990f98aaa5f54943357b0a091d3ab	93	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/outcomes/attrs-old.json	6f9517079b79501e7da8ce54c0fe549f13833a61bc250580007636fc9445b757	93	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/outcomes/httpx-new.json	22f372ffcea886fb4d87c79604ce1bfe9b8476f2e2fb6b9ffc7ec7a7ed59e397	93	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/outcomes/httpx-old.json	7eb5dd7e1b63ec35c79cdc3ecce8b1333f21a433ce645e652a30cf79d7e61bd7	93	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/outcomes/pytest-new.json	66f0dc734e0c38603314ee79c64dd057657acc378e80d136e2bdb492ee5bdbd0	97	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/outcomes/pytest-old.json	6b3d3be3e604f2a029d20f97ea7d8275ac236ab64f4d655ebedd9784baaee23a	97	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/pytest/attrs-new.log.gz	4093776eb14e3dedfd05698b6aadf543730f344f101fa3d3d92786b37a476e9e	4851	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/pytest/attrs-old.log.gz	2986e9a5e961b8406cfab4891dd2f14253de8c72dabd61c267639f29b28c5b39	378	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/pytest/httpx-new.log.gz	1e8203e10a2e49678726c273f52337f819c30c1cc3337ed0b2daa58d6b6cea7e	2509	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/pytest/httpx-old.log.gz	68e1b7fca91d139646fafb989367f25ea1d65dda6660bd1b57003ea86f7557d0	1166	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/results.json	39e7c1c3b42f0f08a77686b5bc3693720295a9d8bb777696c3daa98217ff57a6	8150	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/environments/attrs-new.freeze.txt	d7e9def7e06bc66858a04778637c978c5b0f53130e6dba987ed9111c6fd6f013	645	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/environments/attrs-new.runtime.txt	2559727b0cf51e54ab4937e667eddd9c0976e59c91ea45b458f76daf77b04269	15	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/environments/pytest-new.freeze.txt	70ab9315562ba0314d410f025482025c002a07d694a6c4cbf0e748fcd255e39c	399	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/environments/pytest-old.freeze.txt	cb0f49536c98b66e5b6f2089e05cbc01b3f2098b1eed3d1587748083f9340f43	411	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/install/pytest-new.log.gz	2503f338d090a4124eb93ef649aa438cd63fb5ddf4b2a62ef11385243966fa45	1236	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/install/pytest-new.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/install/pytest-old.log.gz	76586ed7aae5e003f68193f456950541f1a5a84280363058ed7962a8ff6f2ef4	1431	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/install/pytest-old.venv.log.gz	59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2	20	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/outcomes/attrs-new.json	e94e6009427e44b97d7cba43c3d2eea9550643b744efa46b25e7139c1c58a1dc	119	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/outcomes/pytest-new.json	abf28abffa90974cc5b27148338e7bad1b6712876d3585d6ca0685ca06454420	161	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/outcomes/pytest-old.json	22bf1f6140e506489584faca3ad0def5cd46f3184c58cebcc0bb2e54d0742179	161	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/pytest/attrs-new.log.gz	9b3687bf9bfbc0f8dbcb5dc1a2cb5bb9443532de4d33ad1d197326c10224da84	3380	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/pytest/pytest-new.log.gz	43f661826921311fb8a0ae775211ca7d841032af4df5bb785294c3c548a7c1ed	3514	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retries/pytest/pytest-old.log.gz	350e36cca35595e4888b6bbe031b71eb159ffb6d561df803afd125ba8bd11140	31236	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/attrs-new-mypy113/freeze.txt	1bc79a150b7573d52cef54693aad36ec638d2e357982a42353345d1564951682	646	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/attrs-new-mypy113/full-pytest.log	b379f4420df90229e999bd50de352c6d3f9d1d5f7508e2218e03424c8bb2bed5	2234	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/httpx-new-copy/freeze.txt	64e5ff683db28c221b94f779b40230c096922c5d7c4f212af2eb37b4f6d6bed8	1561	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/httpx-new-copy/pytest.log	f06a332f74e7adae9bdfa218bc10b0a3001cd9a86993b17645b3b20dd901a5e8	6193	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/httpx-old/freeze.txt	911c6480090a8fc2ea092d5209538759865e5a836b065865153b062781bfb2be	1691	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/httpx-old/pytest.log	41133e82f9970e6968ddc6c30768e0797102584da96bda9d048a6bdb9c70bbd7	821	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/pytest-new-supported/freeze.txt	e72978d1158cb12826bae11a71b6650cfb31733a9271b88c6532002d4b26d274	399	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/pytest-new-supported/pytest.log	071a1b9be2dfc371de1ce47981a002dec164212ef513ce8f18d5587c52df3860	4569	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/pytest-old-supported/freeze.txt	66fd2c197e685637a27a688c08369d41a78069c78373f80d4d9b2ac9e3c6063c	411	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry-pinned-click/pytest-old-supported/pytest.log	3305d19a4797372ee83511bb54cd984c1dc5079b15ca11647157620f94e90e5d	3818	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry_setup.sh	fb0818e87c34f1f2e9c4957a99d2a5da0ce898a207274611946b9d0d4c80c272	462	0	shell	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/retry_setup_inner.sh	3f29b455de23f755d81045ff9895f7b1bc43facc20a423ad705fb658c3cf7705	2166	0	shell	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/run_matrix.sh	1ca61f4643c239a5ad42dd897737a49b7bea687a02f8a0b314797920c6dac04d	738	0	shell	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/run_one.sh	28188088da4414081ffd2802db0551667bcd495504c6260b6e97d60ed77765cb	1647	0	shell	excluded	generated-or-vendor-path
+runs/behavioral-preflight-confirmatory-v1-python311/summarize.py	a1a67588544cd27760ed0dad52f688594e126a11f3750bec4700398f387a67ea	3573	0	python	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/environments/flask-new.txt	ce57221b997d94273ecdcc574d87745a99cc6cd29fc35a30da1f620821d0ae00	299	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/environments/flask-old.txt	f857e7de4773d2b8452f56a9b38f565ca151bb7a16881b76a03c0fe2313c8bf6	257	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/environments/pydantic-new.txt	0b71afd8c2eaf2b79d8698f5112e69a084cac1695c4b039d7909c498d84e8a8d	922	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/environments/pydantic-old.txt	52bd27d95ea2e5cc5871d3afdff3004e6f9ded73c9d1e05506b298abb97b80b7	405	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/environments/requests-new.txt	5ef3350fac47dc6f705a3a36ccd59f1c710afc91f33c565c60e50d4869d9ecdb	601	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/environments/requests-old.txt	e8b59cfc07b5fbc0ac3432f58d7c6f0d36019f03f114e024cca5a0cc40c75cc3	637	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/pytest/flask-new.log	fc6dd5818752e522ee02c1d56d825f06f384d5a60d450dd1bee99dfa8fd0a08a	40693	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/pytest/flask-old.log	d3978c1d90bea52a683118880860372da212283f288df9142e57bf3fe85de4bc	570	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/pytest/pydantic-new.log	100258894a36f322230c79cc920c324e9d69c24431136ae1d02a85f5f46c92d2	6874	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/pytest/pydantic-old.log	2e56adec695cdf3f6d3c2aa0c7cf1e5061ca0cf33195307aede901701f371d5f	1062	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/pytest/requests-new.log	ecc19b8f778fe182feb85bccf04103c89efe1734406bbf6a38edec8b06084066	18565	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v2/pytest/requests-old.log	38a118762db132dfb5a0f8ae1aa1967c3dd107c3b038fe22df2c89b0efd333b0	105440	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/README.md	efb79f87c205400d454ee635bf5120383ff1f150fa4ca0344a5e3275df21e4a0	1527	0	markdown	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environment-captures/flask-new.txt	ce57221b997d94273ecdcc574d87745a99cc6cd29fc35a30da1f620821d0ae00	299	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environment-captures/flask-old.txt	f857e7de4773d2b8452f56a9b38f565ca151bb7a16881b76a03c0fe2313c8bf6	257	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environment-captures/pydantic-new.txt	0b71afd8c2eaf2b79d8698f5112e69a084cac1695c4b039d7909c498d84e8a8d	922	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environment-captures/pydantic-old.txt	52bd27d95ea2e5cc5871d3afdff3004e6f9ded73c9d1e05506b298abb97b80b7	405	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environment-captures/requests-new.txt	5ef3350fac47dc6f705a3a36ccd59f1c710afc91f33c565c60e50d4869d9ecdb	601	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environment-captures/requests-old.txt	e8b59cfc07b5fbc0ac3432f58d7c6f0d36019f03f114e024cca5a0cc40c75cc3	637	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environments/flask-new.freeze.txt	9394584b694364848c5b539bb6d80a5826931bc4aff8659dfbd203d85d6c80f4	276	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environments/flask-old.freeze.txt	5cfe777cc24246048ea235cdfd75d430ab1ac02fb496aa9d7d977cae766b61cf	330	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environments/pydantic-new.freeze.txt	4cc2802ddc94505166023c34f5aa07baad33cbfd58fa1bd9b5e045bd69693ecf	945	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environments/pydantic-old.freeze.txt	bb1113a4097868ef905790a36e22a91bbe684e214fe3a09c02101706bc3d8a29	382	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environments/requests-new.freeze.txt	b0035a5a149179d941caae0aa82f524add447483e577399b7ec273be901f4bc6	564	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/environments/requests-old.freeze.txt	85eb0035b71b522c239820248f30c5c4c414a49c5860525a4e0e73510d6c95c7	600	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/overlays/requests-new-client.pem	1323192105e8111761fb80f9fda74d5c63a458595a582cea830130098eb10c2b	2453	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/pytest/flask-new-pytest.log	d0cbf3e7adfbbb9fcb2a6b9871496990b98c4afa95551803652ed2be796c8123	591	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/pytest/flask-old-pytest.log	b53143b95fe0ee8d88fd382fcd963154263d7c28d4c5366a001cdcb9888ccbea	591	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/pytest/pydantic-new-pytest.log	4f6701b7efa8d367163a0ff851d61ef272cb0c07790e6476195e4557c40626b0	6874	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/pytest/pydantic-old-pytest.log	802bb24101bae0e7a1e0c01dc5262f1549197b91e8641fe422455f468ce0be14	2913	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/pytest/requests-new-pytest.log	66a931e270817749cd1809be9c27b517adcd629e1b9a2d364427db292b49005d	5051	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/pytest/requests-old-pytest.log	470da4bffa9a7d837288b3f778d862652bce1e6fadc4d6aa561475088567d032	1190	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/requirements/flask-new.txt	acdef89a00534ba116e2266cc8e4dd8032b522984a7a706a82c36aa5025bac39	228	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/requirements/flask-old.txt	d94b2721c08eebcf9038db00373eed1ca6a1091941fdc18a55595f1fe98171b0	282	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/requirements/pydantic-new.txt	96e8b4d6c5886614377605a2ea6245885b6b92a664223f4baa72bc0fd12035df	902	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/requirements/pydantic-old.txt	9e5f7116e4c147f2ce500700fcc701bcedb18103a8a8673324fe22dd986c09c0	330	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/requirements/requests-new.txt	d2bd29052a1d0253a3ffcc86cce9db8c460a9cc46b64537b6efdf181e164ac4d	526	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/requirements/requests-old.txt	126b8bf5d15507a91573fa244380f7b083ee1f2a8dd28b91d5a8a69cf905d708	562	0	text	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/results.json	d4c5dba53259a6a045592bc9906e80a5d3dcac56e0c7e237eccd734c9e23b966	9419	0	json	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/run_matrix.py	2579446a8e9a48f7670ecb60b5975cf68b61371c1464280503575f861d905d23	3980	0	python	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/source-archives/flask-new.tar	1ab1e67fb5c9e05d226e3cd94734e46009e012b269e29794f29151ef341feb06	1771520	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/source-archives/flask-old.tar	9cab061d3c8b1fcc156b1ebb247d0a6caa73864fb096e1ebcdb369d2b3fbaefc	1771520	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/source-archives/pydantic-new.tar	d8c26a1987494e70b3ee903a19ed7a75d37ea907358ed124d1567b7fa63b2df4	7464960	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/source-archives/pydantic-old.tar	d47f96f734030506f57bf3868314f2e3ccfcf34be323422a4ac645eb99c04585	2478080	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/source-archives/requests-new.tar	02db3918a45a7707a9eba6e240a7d3cde2ad5be23fc293dbe218d263662453dd	5314560	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/source-archives/requests-old.tar	5b95d48511eaaad22b4bfe0ba42d12dcce08c97fb587aa9cfd17dab0399868b9	5222400	0	other	excluded	generated-or-vendor-path
+runs/behavioral-preflight-v3-python311/source-sample-manifest.json	07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59	10003	0	json	excluded	generated-or-vendor-path
+runs/board-dispatch-v1/baselines/results.json	3c92696b3bc01c6a839173f91ae7735542f6c628f2dd06beefbb144ff17f0db0	4408	0	json	excluded	generated-or-vendor-path
+runs/board-dispatch-v1/registration.json	bc3e70173084cb14933eb987a44d0870729624abaa7d146b9f09cc2aad911b63	771	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/access-chronology.jsonl	298b02d42691845976d3e96fcbc73a6479bb0d81b83bdb900ea4a400b007d397	5281	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapter-registration.json	aca4c62e360b92d27223707f86a340d471113bcfb9042658426e121be47cfc6a	3400	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/attrs-new/README.md	936902814594f6251f7b8ce8febff1db20686c0bbaa17f8131ede28f01018ec0	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/attrs-new/adapter_config.json	9c3c774f659b7c94413183d21a05e9ed72d4dfeab32f59b4ae1c08b75b0e062e	1113	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/attrs-new/adapter_model.safetensors	0de3e0b514d08950da8105a0e748d8eab4bbd2e2cd03a7e9330e7cecdbf75b82	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/attrs-old/README.md	936902814594f6251f7b8ce8febff1db20686c0bbaa17f8131ede28f01018ec0	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/attrs-old/adapter_config.json	5c60ef848595839586aed1367e1f337ea2059984964c59416e448ca20e344f05	1113	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/attrs-old/adapter_model.safetensors	deb195aa5842280655f1141a807414744491a1f3f3f5373a0b60a37befea12c4	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/httpx-new/README.md	936902814594f6251f7b8ce8febff1db20686c0bbaa17f8131ede28f01018ec0	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/httpx-new/adapter_config.json	01e07136958ee99f361b70297eec4274d3e75cb05efe13d9acfa7ac2c71011e9	1113	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/httpx-new/adapter_model.safetensors	5ed403311ec891cc8f894f5c15ad8df35b5a442bab314a8cedb4676639d79698	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/httpx-old/README.md	936902814594f6251f7b8ce8febff1db20686c0bbaa17f8131ede28f01018ec0	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/httpx-old/adapter_config.json	e6d246633019a4bd56700a812fc78724a27c045f4024c304a0b56953fa207cb9	1113	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/httpx-old/adapter_model.safetensors	515588b7cd99119694cad26d071cb5812e4db3229f550dc7e80d6501e8ffbe4f	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/pytest-new/README.md	936902814594f6251f7b8ce8febff1db20686c0bbaa17f8131ede28f01018ec0	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/pytest-new/adapter_config.json	afd8400b096e7cb3998bad5b98a8be4a09605a28fab5f9f52eb49583788989ce	1113	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/pytest-new/adapter_model.safetensors	6c3484ce978ffb12b8fc865150e7b1df549cb9c47c043f1f24e0046607240c0a	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/pytest-old/README.md	936902814594f6251f7b8ce8febff1db20686c0bbaa17f8131ede28f01018ec0	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/pytest-old/adapter_config.json	94e20eae30446bf81b13bf760bece0d62f92f86dcec2fe71465a892aaa9b0c43	1113	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/adapters/pytest-old/adapter_model.safetensors	c34af4ed2c6e9c81d246de8eb8a9ea3651be99e6c5389d01f80924a85115e091	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/decision.md	f5f02d0a80e129fd92541806c9090ab70a4c4309773360b7351325a78513e06a	1690	0	markdown	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/execution-confirmatory-v1/generative-v2.jsonl	b691c04b3a053c0fff8b6aefbc336fd0e61bd01de03453a76415c53e216bab5b	435568	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/execution-confirmatory-v1/manifest-v2.json	77c70b6c381d486a341722d2cddddd2b56fd031a062157a35e5bfca42f68aafc	28218	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/execution-confirmatory-v1/scores-v1.json	f45c9436755740f650c1fd66fd648070ae31f7ff9a39081023595d2423f159da	94745	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/execution-confirmatory-v1/scoring-amendment-v1.json	f92f9acf77c18d629bb2f5b9ebbbfc34c609dd38a6e6bb9b61fdb8796b8e8eb7	2461	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/generative-registration.json	157fb3351366e656760ff17bb1a1379607fcc8d14fdc3a83037dbc338c265de7	28130	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/heldout-excerpts/attrs-new.txt	749ef392dd5e8db75357006149ad359fd32bd3b2a62b61a025223f58e2adb4ae	1794	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/heldout-excerpts/attrs-old.txt	4c0bf8271af64cf021dc39942eb050fee8858473d42a88b86e4782a34025ac21	1037	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/heldout-excerpts/heldout-excerpts.json	d37c62534a429d7659b78d44f4f7bc2e6ca2d56ee14a1eb101b81e00d245c83a	20663	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/heldout-excerpts/httpx-new.txt	0449aafd1341e37cb2b6a487b74e2f360472b5c3b183268411b31eb99cd42b31	2237	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/heldout-excerpts/httpx-old.txt	9dc8f1becdac20ecd311a23700f3dbc18d8af8246c36eafe2b3cb7e5e86f9581	3046	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/heldout-excerpts/pytest-new.txt	a94ef81902f32ddce1e2361b927b2f5a5a4722142febdc3eb44400d450b88bf8	2418	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/heldout-excerpts/pytest-old.txt	b58c549b7544331352fe60faa92b45964a4b1e98ebbda55381fdece7ca796315	2442	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/labels.jsonl	8bbb3047ebe375d5d0077e563b72d6d74578dfb21e1805fb6df1865038aeb5db	4676	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/licenses/attrs-new-LICENSE	882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f	1109	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/licenses/attrs-old-LICENSE	882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f	1109	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/licenses/httpx-new-LICENSE	4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d	1508	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/licenses/httpx-old-LICENSE	4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d	1508	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/licenses/pytest-new-LICENSE	ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b	1091	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/licenses/pytest-old-LICENSE	ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b	1091	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/registration.json	f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8	7118	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/repository-metadata.json	54e7757dde5b9d017b397c34604e5103733b29c23901b2699a05d1960e59c19c	739	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/selection.json	a50a3a8e288188d930e6432704a7414dbb0f8acaf4eca37460e828775c696a30	57634	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/snapshots/attrs-new.tar	d3d1264c17c2161794eef66f6b1e958f4104157ee7cdc2926cb4e46befe2988b	1607680	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/snapshots/attrs-old.tar	15ed2bb657cf9d4e00c690978f5787c1f2c9be6a49106ad4df6a8c0723b3b80b	890880	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/snapshots/httpx-new.tar	a0bee0b5081ad8aba0d45b3bebc7d7b835ba43bf9d62f1a2734c64db29c94ca6	5314560	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/snapshots/httpx-old.tar	3b72f973d801b5551bd2f34c1f29a7410a66c0c69f119f2c96bbf8a6ef928084	3072000	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/snapshots/pytest-new.tar	c19a5d8554bc4eeb9b5bd741d3387cb1d7caf1fabd27e790a5eebd431c8b3b30	6277120	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/snapshots/pytest-old.tar	63ea92035356ff82a56d01293f0d2e3fe7b9d8caeb9f70380d092a2fd0a37696	5324800	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-new/LICENSE.txt	882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f	1109	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-new/inventory.jsonl	084f87eba714b1eae3ad9c09689a4516b98cd01c9362c1e4fc4ffdd57cd91786	26426	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-new/manifest.json	7d441983ed5a7aae756ddb7658821a85fd61c95d0f6b7d6bb6e915f7ee0c5583	2588	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-new/train.jsonl	565ce2e59b26569b5c45e999b34c4631da502bb0d0676382e74a9d6d16881188	160056	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-new/validation.jsonl	2160151d5b95e0164b45aaf5af49e2ac33e5ff7fed6a6a078053b933c8a51b67	23514	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-old/LICENSE.txt	882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f	1109	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-old/inventory.jsonl	e4e12e26a975a173812da28359931e6ab5ae0b2b07b2d649acccf6a8f15e03eb	24131	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-old/manifest.json	60b4fd56f04f2b2bb4c484bafd760a11a09d0fd5992eed8c3dd5d2ef480fe330	2588	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-old/train.jsonl	0bf6f529a31910a01e4e04a15e44ed5090f8ce21d55b04b7c0c4e4521df9e2d6	157925	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/attrs-old/validation.jsonl	66f0b256e4e353cdcd60636b3fef1c974d62a3503e7631c4ea74695844076872	9829	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-new/LICENSE.txt	4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d	1508	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-new/inventory.jsonl	9f6720f1547649a6e92a8cffd6406ac3b46375d4c47d612e8248743a32aad597	26966	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-new/manifest.json	9245209fa3004bd1ead47347d86f7b77923846d6db6d9478317589e1ac025cfc	2591	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-new/train.jsonl	78688b3a942e9054de3ec7490cb7a926bdd2863b0fdc50a6fc8c854d0af1ecf1	272588	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-new/validation.jsonl	5935728e4d96787fd892b7007fd2cdb4b40b95421e7e9470f89eb322d2261f25	16458	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-old/LICENSE.txt	4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d	1508	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-old/inventory.jsonl	3133e3c074ae2e8d8798089d604e32fa433c70ae187ea6b1cb600ca95dc42c97	24856	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-old/manifest.json	3229c1a34b2291793afa9890d7df31a7c0cb691c5778d82dd74f0c28b110f657	2590	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-old/train.jsonl	4a134f083eb1bc866f0190b3017249178cc5c72a5d93fa2d16bc30893cb0fb1e	250784	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/httpx-old/validation.jsonl	a2eacfa1cda103a0c51c65852e220494fafdbc5e5d0de312c2c2996e4521053a	32141	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-new/LICENSE.txt	ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b	1091	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-new/inventory.jsonl	e9912ef448efe200e8f666e6b10a3a8ada0ed9a0292b478de21feffee60e2927	138210	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-new/manifest.json	f87276a0d38004e3e098c59b9b1db091055849870dec956f713aab2f448f868e	2600	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-new/train.jsonl	4c3a8bcb405a3fff0ce37feba69883679f9178c510a47b33d05dfd62b9aa0c06	981089	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-new/validation.jsonl	121f14a8882fd5913872bf17761980d68513aa7cda0ef657160c41f889c28f72	172251	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-old/LICENSE.txt	ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b	1091	0	text	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-old/inventory.jsonl	73438aa05ee9e8348c411687e86e8cf4f1b0a0d733c693ab48c1c2c0eafee236	129169	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-old/manifest.json	d3fe08994511f0acc550d34b6bf6afb7956c8f1ccefce9fe25bdb75c79cb175c	2600	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-old/train.jsonl	136ee97d5397c05115dd1d2789edb1c940fa62e1044357eb3ba52592073d6c39	968702	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/pytest-old/validation.jsonl	485b2babe27091c5f9759f4f074c3b5bbd533404cdbbfc12c46097470ab78485	91497	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/resource-preflight.json	6e07c13e696485a2fc157de7c50b68086e0d073b5682ebda70bb37d8ab9b9881	11958	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-corpora/training-plan.json	6d256ef9cf0c67f76e0898ef7d557062559fd129e52decbf8f65a1c8a68b693d	7838	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attempt-system-python-attrs-new/mesh-heavy-run.stderr.log	79b4089c353ab140c174a103d4de7500508067dc75d117e5a5a1a9842b501ccc	475	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attempt-system-python-attrs-new/mesh-heavy-run.stdout.log	1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c	142	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attempt-system-python-attrs-new/run.json	fe92e20149640c8abb8673012428f63219b6f8ea57aa817ad57433fec5138997	3987	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attempt-system-python-attrs-new/training.log	189c82dda77f07af20e82da2e6239f6fff25f5e7fa071d9accab5ab3c6b29223	365	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-new/mesh-heavy-run.stderr.log	3f73a8104d6aef435b89fd802e9362b79ac8791751a34b19c013d5e77bf305e5	595	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-new/mesh-heavy-run.stdout.log	1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c	142	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-new/run.json	a5b7d313c3e3550258313c81a65adbda24618c8340f4bf623479b04e95bc78e9	6160	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-new/training.log	0715db3555a4ef16954fee812c5b717bcaccdfadf36216b8a439f20c68790849	1028	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-old/mesh-heavy-run.stderr.log	741855aed9fc5e956d5f6a0588f4a35aee0b3c244e3ee114753d181114572e15	368	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-old/mesh-heavy-run.stdout.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-old/run.json	defe4e88be3603659f3bd70abeba68b96baced1f3b238ca225204539b2737b69	5054	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/attrs-old/training.log	6a6a1c6cc528d01bd781e96b79a14cd14ebf03f8e6be2aa773827d821de51805	663	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-new/mesh-heavy-run.stderr.log	e4bc87dd7a21f3156e826c433f53c32b63c6688bb8bd906a667eb09fc3e6ca38	366	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-new/mesh-heavy-run.stdout.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-new/run.json	2b030a5b4e9292520a5745ae62daffcb30faa37dc3647e3746a9a10bb4aeec3b	5054	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-new/training.log	a1685d1db0006b7e4a44837f01c138c3f30a468c12470604b40e1bf69742bb23	662	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-old/mesh-heavy-run.stderr.log	54323b4480dc4546977bf15979e14462ecdd545ae2dd411065f8f337f7a553f2	368	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-old/mesh-heavy-run.stdout.log	1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c	142	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-old/run.json	d7157afcaf68bc9d160d0e8b72aae272ccc5f9005075f138a55ffae6a6ef9e8b	6159	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/httpx-old/training.log	ad7addf2136556128493e64bebcd5beb05a76b9a65ad0d1f4ad7ccc92538719d	663	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-new/mesh-heavy-run.stderr.log	1a60b9b3da7b9b33a69d1c4748def5772baa2900d98bd4fe32bc58cd4bd13db9	366	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-new/mesh-heavy-run.stdout.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-new/run.json	316a3fa9ced7c6e9ebb57402ba9f6ac2b4c55c8dfff828fa1867b87b22121589	5061	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-new/training.log	3e6c9a13588f5c630939d1b075ae278d69ac4bb4299b59660e12c5ee7461a3c8	664	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-old/mesh-heavy-run.stderr.log	0e0d1c1d2a28fc379aaf2831086a13058e0bf09e8d4601b02cd83bc2053c1c4e	370	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-old/mesh-heavy-run.stdout.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-old/run.json	7a3723e1f7b3b26e42e5cd7526c6ce0a6658dd8a0412326e19173b7b2f0a7e2a	5058	0	json	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/pytest-old/training.log	917d98fae092d5c150174ae1309446b390a09a03aa8cc164a9f8a3e046641306	663	0	other	excluded	generated-or-vendor-path
+runs/drift-confirmatory-v1/training-runs/training-progress.json	8bc568f2d69515d6b7ea13c72beb7c85a78de42c028281949b9dc4419442c58b	5431	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapter-registration.json	3896fd9fd5df55775caf37fc6432d420ce97658967a8b7a3cce42b2c97671db7	3229	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/flask-new/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/flask-new/adapter_config.json	a871dcf8e9c66412ebcb32f35d9c2f4be006f4f7897b07c6528df35811cbb03d	1167	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/flask-new/adapter_model.safetensors	d09320f13d883cea29a7b01b3e3fef829045c320e48f839a732ac6d1aa0de46a	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/flask-old/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/flask-old/adapter_config.json	2c2b4895fe370e66c787a1b49f230c0ab7f7326010c98bbd140e20ede902cb04	1167	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/flask-old/adapter_model.safetensors	786acf90e8317a1fc218753ed2a67540798ce3a51db9c93ceb8660331108d430	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/pydantic-new/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/pydantic-new/adapter_config.json	61f3292694d4137337c8f32f42fe390a1715da12255b0f8ffcceb0ebc44e25b2	1167	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/pydantic-new/adapter_model.safetensors	da14b3042b34f00d3d27c1a2ea80a17dce4ebdd592fec3ac595e26d3dbcf9003	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/pydantic-old/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/pydantic-old/adapter_config.json	adc08319c832ab8424f3d105230249389ac337490bdd196e903cd0dcf462e3bd	1167	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/pydantic-old/adapter_model.safetensors	27375d4462ee311767f5cdd677e41461694feaa899c0af5698176187234f7ae9	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/requests-new/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/requests-new/adapter_config.json	15dfb173f0069e3fd421e95e4d0e29f25de09c87eea394c3e3a85787c720486e	1167	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/requests-new/adapter_model.safetensors	3265af09ac77627fffb64fc76a114e81930809194e058a9c981e0fa7dca41018	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/requests-old/README.md	210b99f8d516cc427b975631aec6f6731b419264a641e9862c4039fb638faf48	5224	0	markdown	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/requests-old/adapter_config.json	32216f6377f7c83bb5eca61c67dee1ffeeb5ae37cc0b03356a4b7badfc2684b3	1167	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/adapters/requests-old/adapter_model.safetensors	67b1b23927d7506fc9378954aad970eb55359e68d821b6ca6c387e570a492bba	17425352	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/decision.md	f68ffd8cee33e3b77fb2b4bd382c6ab459494ea232e96cf51cde19bff3db3ffd	2964	0	markdown	excluded	generated-or-vendor-path
+runs/drift-generative-v2/embedding-backend-smoke.json	201863b2b2dde3bd70d61e7aa2233204e1b1a633915347aef348f354dfde5bfb	585	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/environment.txt	4bf04a6c879bcee5cc309a926e0fe3611dfbe572e29940335d9081045a0df4e5	988	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/execution-scorer.json	d914993163725123e76b09c30d78c534dfdd75cdca33c1e4f5e5eeb9f5013027	2926	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/excerpts/flask-new.txt	9318d35bd7959e7afb59ba46b5cb28740f0f4dfbee0cb4a7be6105e4d4eb1f05	2205	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/excerpts/flask-old.txt	5c40e7141b710dde328c06e80260dce3df9b13df8d2e159de1e80cb0b9cc13fa	2380	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/excerpts/pydantic-new.txt	94cff7ca286f3e80077318c834cd7cc1f626caba8094dbdcb06f9ead031de71c	2596	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/excerpts/pydantic-old.txt	932c00e50696cbbd1ab1134e45173a73dd4c11d10dffe19f4798abf7c973db90	2425	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/excerpts/requests-new.txt	fc49490ad8e66ae5cfa5f3e262118764560882f294a4606699b9097144f32f97	2467	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/excerpts/requests-old.txt	fc49490ad8e66ae5cfa5f3e262118764560882f294a4606699b9097144f32f97	2467	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/heldout-excerpts.json	ef117c462697932c461645c356302907ad3ab9275d49ab0be5ccf52b358ccba6	22492	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/licenses/flask-new-LICENSE.txt	489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea	1475	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/licenses/flask-old-LICENSE.txt	489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea	1475	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/licenses/pydantic-new-LICENSE.txt	a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3	1129	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/licenses/pydantic-old-LICENSE.txt	9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387	1127	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/licenses/requests-new-LICENSE.txt	09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b	10142	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/heldout-excerpts/licenses/requests-old-LICENSE.txt	09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b	10142	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/registration.json	df8c67e0c2f4dd31fc673b8af1438d6c3496f79d90a436521b945a304d44fe02	4097	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/runner-implementation/backend-smoke.json	b9a8e8b5ea4d4285d314f7cd654effe5c40b25f983f3d58519bb1bca333ec2dc	345	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/runner-implementation/test_drift_generate.log	53024539b0bd1b5165087aa8fb517600459f0879d4f4d2c025149a5be08c48db	926	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-new/LICENSE.txt	489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea	1475	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-new/inventory.jsonl	d7886988f502e154a85a5f07541e1308edacec21078053032ec4447ffb042cd5	69818	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-new/manifest.json	7cf04ab6bc54ce2f354d64f406b313c7b1792c038c74fa02e6a4c6037101ef61	2230	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-new/train.jsonl	9c99161068468e65c859ce4a256545fb608ff3c1a8038b6a592b9fa281512282	250966	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-new/validation.jsonl	b32765f5fe869a76600e94589b87fa9d19ae2bce56fdeebd3c42ab51ea700b12	63641	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-old/LICENSE.txt	489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea	1475	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-old/inventory.jsonl	eec9071e4f27e08e4ddca557c1f029eedb53ea5bcddc3ff32607c804ef1ac922	67753	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-old/manifest.json	c2826506d82f7dd80c839c5fae0d845e7876a4236abc36b45fe655d84086cef1	2230	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-old/train.jsonl	c9ac1739920d841cf6f47bdb1658f4af3620eed1e3315f0f4264de4bd093a768	204919	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/flask-old/validation.jsonl	95e3c8541eb430026c6ae20a319e707832cf464b2aa98396b0a4df777f76001a	118319	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-new/LICENSE.txt	a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3	1129	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-new/inventory.jsonl	37f8cb7b85c7f882cf50c5f8d2fa65ec2ac993b0ef5bfc2dddcead0e01ac48b5	133426	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-new/manifest.json	a996a9183252dd28bda3b38b47e6c2e174079e522b164560ee263a101d76d6ff	2235	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-new/train.jsonl	02eecbce80bc19244d78f55f800caef0693f7071171cffc025c1d68548e39609	1411437	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-new/validation.jsonl	db2ba5922d7a54fa754c38d164c1350bbbf5870bb206f144dc316a6aa5350ac9	282296	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-old/LICENSE.txt	9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387	1127	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-old/inventory.jsonl	f5ca717e5d6dd8aa31d5f30e113a80bf390c9bc8c342ffd1809df2ab42798fa7	94992	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-old/manifest.json	b1b146fa9856c30ab8cb983199628867adf99da1ab25dd424322339ca1b86e99	2233	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-old/train.jsonl	2151e40014f0cda63d2a9e5820d5a846f889184d8e5e930633807e696b9d5dbb	407608	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/pydantic-old/validation.jsonl	c85ac0f5a00fdf0d6f787d8e526e6b83aa93ef0b62edad961007c88d1b119dc7	60753	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-new/LICENSE.txt	09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b	10142	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-new/inventory.jsonl	c3ad16f7729cd06f9d28f79bf9406d1409b2fa346e21163eced7a2676c68e26f	36049	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-new/manifest.json	e9c958418ccaa3ed82dad74747271de0647893ce9332cac7e44efc83f3d2ce36	2252	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-new/train.jsonl	a9e2f0d1676d596e2d0a3d031c07b800c4ad42f7e86d5d1e13442180e0860821	136575	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-new/validation.jsonl	6e892e9e3be1cc5d4ac302b184620a6bc6cc5c5aca1ec7fb150b0a3e1d1abece	60392	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-old/LICENSE.txt	09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b	10142	0	text	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-old/inventory.jsonl	3ae23597e61f432e1396d30146fb4b0389d50d66ff2230a492f29e13a6046075	27164	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-old/manifest.json	01b4b0978adda5a82394ab8aaceaa8ef4b25ec4b9457d308a3c5ff20561f6499	2243	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-old/train.jsonl	06fa91a35e3fd1ef3ff9403a8ea844e364284a426885970ef186c88ceab004bb	179233	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/requests-old/validation.jsonl	c1b5d23d29c54cf31f513597ff30c645d4d6c69e851629170b2759fb5529dc89	9116	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-corpora/training-plan.json	e82978c938be4c51ed8924e18ee1fcc45a51558cecd88cd1e6319c2670ae5c39	18654	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-new/mesh-heavy-run.stderr.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-new/mesh-heavy-run.stdout.log	1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c	142	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-new/run.json	011916eb173d46b73abe7dea4603992f47690134ba1dde6562a73bdb29dea272	6156	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-new/training.log	94a54d794125fccd7d3450bb9d12ac28132e6a2640581ac8e37661c9657f024f	663	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-old/mesh-heavy-run.stderr.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-old/mesh-heavy-run.stdout.log	1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c	142	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-old/run.json	5f32631a1eeba13d8ec75ff78db7e18ecd8bf2e18d01d4085b0f0e3eefd86647	6115	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/flask-old/training.log	23d1b1a4259495787a6d6a95a69035b23481079a9416172145b8cf069fa0f998	662	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-new/mesh-heavy-run.stderr.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-new/mesh-heavy-run.stdout.log	1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c	142	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-new/run.json	728192d47a4e800e15fd5603b333bcb4d65b3f53282a03be513a723c5ac8019f	6174	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-new/training.log	3f39911868df5626db4957ea28fc957872b43a9bae6eba8606c478ec9e39c311	666	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-old/mesh-heavy-run.stderr.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-old/mesh-heavy-run.stdout.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-old/run.json	b85855c45d20c42346b3be686ebb27bcf119b8b232fef8c32bac002951d0f7af	5066	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/pydantic-old/training.log	e0666e6d3788e47ead29f185b482555d1768013e33020722226b6621ec4b2ea9	666	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-new/mesh-heavy-run.stderr.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-new/mesh-heavy-run.stdout.log	1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c	142	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-new/run.json	f754bced6061b0720e93add1a3ff1e83cc1dc87c7fad51262ed809fc584ca00e	6172	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-new/training.log	acba8bbb9f5472a7a8f3b5cf46e669053037cd58b69a522992b61e35100b604d	666	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-old/mesh-heavy-run.stderr.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-old/mesh-heavy-run.stdout.log	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-old/run.json	2789c047db7375d0a0a347e6afaed8e377e57b463cd9f87572c00c5a1abafd9e	5061	0	json	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/requests-old/training.log	76457950da25561397f39798a4223d83c752648bc9af17ce065d3dc57d40f582	666	0	other	excluded	generated-or-vendor-path
+runs/drift-generative-v2/training-runs/training-progress.json	3bf7f41fef57f28f00cace673554e461d4a2f8a54e1435f9fddfa7e9b46583c1	5436	0	json	excluded	generated-or-vendor-path
+runs/drift-validation-v1/decision.md	35aa7ee2fa18394d694ab4f6bc70c1856c83e4704efe578acb45600a78525545	277	0	markdown	excluded	generated-or-vendor-path
+runs/drift-validation-v1/labels.jsonl	0f887cbadf43eab8d5fec5b00a34e84e130d684e2777557d1e4a991e17a9db9a	903	0	other	excluded	generated-or-vendor-path
+runs/drift-validation-v1/registration.json	052a18bb79d2e17f9e8c3a706d023f832b5fa8223859077e9cab52852a64e27d	1284	0	json	excluded	generated-or-vendor-path
+runs/drift-validation-v1/test_drift_validate.out	7481316c728b8b6c2fcbc3737ace7c3ae4910dea6c43945684751fcc1458497d	672	0	other	excluded	generated-or-vendor-path
+runs/drift-validation-v1/validation.json	a8bd1654331c5149e2a005f79235ef2d20024c2ad50a6602c216187772a96868	614	0	json	excluded	generated-or-vendor-path
+runs/drift-validation-v2/decision.md	5a7c9740e53c863bfbc04def616773f6331498e03053b1aa00f861484acb5b2c	833	0	markdown	excluded	generated-or-vendor-path
+runs/drift-validation-v2/labels.jsonl	51c2c0cb4c1976c4e5a4e013bb28d0d2e5b1e9cef8bf8be5e7693c40189a7b72	3362	0	other	excluded	generated-or-vendor-path
+runs/drift-validation-v2/registration.json	fef38fc39cdef05fdf2a1f916920b0bb70256ab70eaff6ada41df90ee0bc85fb	3783	0	json	excluded	generated-or-vendor-path
+runs/drift-validation-v2/test_drift_validate.log	504fd3299a5deac557266695f21195fd5b1a8554b3dd7e897e38b99c4e7b8429	1177	0	other	excluded	generated-or-vendor-path
+runs/drift-validation-v2/unit-map.json	4e06420d52012230ca9dc755de246256e83e28a1ff9bd83711390c10bd694380	1110	0	json	excluded	generated-or-vendor-path
+runs/drift-validation-v2/validation.json	5d949126e8f590576e24585518d7dc33a04f91d995c7f49cf667bc0047cf0c48	689	0	json	excluded	generated-or-vendor-path
+runs/drift-validation-v2/validation.stdout.log	2c33a861367012d7fe10d47a14338369d5b8d65841e2536ab23148030fd6b8aa	609	0	other	excluded	generated-or-vendor-path
+runs/fleet-study-v1/config.json	d0557595ff072eac2dc826d744022afbd1adc66438e689ea3a5f530f438cd1d3	970	0	json	excluded	generated-or-vendor-path
+runs/fleet-study-v1/datasets.json	0f63aebb1d0e413600dfbe0ca382f9851754264497460e1531f37b0cfed2d050	1638	0	json	excluded	generated-or-vendor-path
+runs/fleet-study-v1/registration.json	2498cc3146b673751f15106d39c31b059188c9af60668dfa6998e00eb5e230ba	5210	0	json	excluded	generated-or-vendor-path
+runs/fleet-study-v1/router.json	042b3a43b087aff7f6a6bd8971053cee292b7309ab32ee3e08d3854fec933ef9	7832	0	json	excluded	generated-or-vendor-path
+runs/operator-selected-dictionary-v1/resolver-preflight-20260914/raw.jsonl	555f1ab7808d5d01324c770e58fc594b48ea17ff55364d6a4214e4aed8b988fd	128828	0	other	excluded	generated-or-vendor-path
+runs/operator-selected-dictionary-v1/resolver-preflight-20260914/summary.json	6107aec6c67aeb9397fcb623222b8d426f6d6491ef38f063d2ce7be5c9d15ad1	2012	0	json	excluded	generated-or-vendor-path
+runs/persona-code/eval-all.json	78ac26803f49d54cec3e62ef408d6ceff210884039525bbbfdf368896782ba1e	52218	0	json	excluded	generated-or-vendor-path
+runs/persona-code/manifest.json	f3bb0c51d9ed6e30670c5fd6829b737b282854197fe8263e0f60bb5e9d7f0ae1	2882	0	json	excluded	generated-or-vendor-path
+runs/persona-code/measure.json	a675aa0167ba48624cd1b2759bb2042479363f07cf142e5925a6874ad0226beb	823	0	json	excluded	generated-or-vendor-path
+runs/persona-code/train-code.json	0fbd4805a26f8563720275739035019a1b61b848e5e5c0e20fd0c6c82b3d60ce	349	0	json	excluded	generated-or-vendor-path
+runs/persona-code/train-persona.json	3cd9f9e158449ef595aed32a10e23b8786c0430d717d7eccc5c38ded97426014	354	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/base/config.json	20652a7989a0cd24576a3d80884d7254a1f593fed6e3917f196329acc37db645	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/base/predictions-base.jsonl	aba55ce1f9c330c16554d520e25e67923bef9b3ca5eaf0023ee8a66d35cc92c3	1792	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/base/summary-base.json	478960b7ddae194317ed56bb4b5be68f79b95351cf8c238dca9ff4eccef6f89b	355	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/pooled_adapter/config.json	34c8661ab5ca2dfbcea13928001f62b0095cd9481d346618725c53b1eb00f4b4	546	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/pooled_adapter/predictions-pooled-lora.jsonl	4a8aff8a7a60c05434928348ad83766c0f65b8fcc27c7da6ea10b352d92efa99	1820	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/pooled_adapter/summary-pooled-lora.json	c9e7afa7b4bcc354c6fdf8ab9043fef736d56b88658ecad9faf9c77cbb59aacf	389	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/prompt_only/config.json	12aa6f35c78b6e92fabb96ea0693e410420b775e1427d959cf246e328517a652	546	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/prompt_only/predictions-prompt-only.jsonl	237f856ab0b42d9cb491f79e50f37c6bf9bc6aafff0675cd0378d646ef2bfa6d	2674	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/prompt_only/summary-prompt-only.json	2061238b9f7b90fc7853f6e3e1264cba14756219b5f35f8339d76a1f28e314c9	383	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/routed_specialists/config.json	20652a7989a0cd24576a3d80884d7254a1f593fed6e3917f196329acc37db645	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/routed_specialists/predictions-base.jsonl	fb71be723730ab27dff15d917c1fbc0eeee449b35c2aee8f0b32a4420a4a3c36	1792	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/routed_specialists/summary-base.json	bcc7ef1749cb982ed43cebfd3a61606b5ea7657ed6fc22e316926de3936681f2	383	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/simple_router/config.json	20652a7989a0cd24576a3d80884d7254a1f593fed6e3917f196329acc37db645	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/simple_router/predictions-base.jsonl	ca0036cae99f7e673ba05813042fea3381356e0dbd7e2606fba61ec7527f9a36	1792	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-17/simple_router/summary-base.json	ca583f731e581a235997f105437b9c7ea40a1de9db4ccccd4c1d9d3bbb5cb1f3	373	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/base/config.json	f1c2fbe94e5d0924e362357489e3e150fb1b51c2260b24bc82e4a24ef76f5ef8	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/base/predictions-base.jsonl	5c2fd45ebb0f18627c4ebef4b96442e9d09381d2b836045c70d93f55ca55dd1c	1792	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/base/summary-base.json	39e97dfea46ea35e6a06147d5e8334b14bb2f0e5e50953f28ae44cf2a5c9ea70	355	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/pooled_adapter/config.json	dce867da0c7d3942e7125082fa665bd51c1ba1a907e888d54d47b32537732a7b	546	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/pooled_adapter/predictions-pooled-lora.jsonl	417bd5d68c8ccf86f608574e8761c2b0d758a6948735347792fec66ac9c0a32d	1820	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/pooled_adapter/summary-pooled-lora.json	6de9788e93b970e6a26439cde3443d26c5892f4af6bb969ce4f2df4bd030f54f	389	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/prompt_only/config.json	4ab476338f4f75aa722b625b2a119f793a9705987529206727755e7a9ed18313	546	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/prompt_only/predictions-prompt-only.jsonl	5801d7c381233551402ec0863c3791db7d0b0a7b277c7a55ca0fe74f3086ba44	2674	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/prompt_only/summary-prompt-only.json	811c10814de1c2d3477e2cb64f3a4947841a29afa0a6e479593afa0fd24dae14	383	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/routed_specialists/config.json	f1c2fbe94e5d0924e362357489e3e150fb1b51c2260b24bc82e4a24ef76f5ef8	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/routed_specialists/predictions-base.jsonl	fc9b5538bdc82839f2a6b7b426dfd99269b86ea73804b4a7d4051838e9c0087c	1791	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/routed_specialists/summary-base.json	7985b2028601ea20a9555c153a111244709dd178fe0c3537ad629014eb001cff	383	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/simple_router/config.json	f1c2fbe94e5d0924e362357489e3e150fb1b51c2260b24bc82e4a24ef76f5ef8	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/simple_router/predictions-base.jsonl	2f65d6e8e3a4f60a39756be3f7ac8001b860281be66b4433e5132b05b99e7b7f	1791	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-29/simple_router/summary-base.json	d35aed03e0b59ce4cb46396239d306368762c933e2b446358e873035c7933381	373	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/base/config.json	8de09456f19675fa4e81477a012509d7a89a47837202d056f13b38dfb59873fa	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/base/predictions-base.jsonl	bd64d69067a408215e5cb9eb81065520cab314fa7987b2c54e4bc9d4f5f68f81	1792	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/base/summary-base.json	3a6ad26413a803f675ba8d525c28609f01246f1f0123bed8fcc73d99a3e7980c	355	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/pooled_adapter/config.json	e25dbd63a787fa866d4df3622f143d36fa49f73c85e9fea489b490ddd5d5b420	546	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/pooled_adapter/predictions-pooled-lora.jsonl	d743ed51c8b478f2728ac23be2627d9ec9586d07e0351cfb0fc65ec918eec2d3	1820	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/pooled_adapter/summary-pooled-lora.json	3a80ee64913cc19595b4ea0b79f67cfc9b0a9ad2a7fbfb97fe42fb37a5ac3197	389	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/prompt_only/config.json	494d1383f083d130e8896a623fea7ac9d84bc4d0e8cc6a0c0a6d239f3461e7fc	546	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/prompt_only/predictions-prompt-only.jsonl	f2f02a16585ecfa37cc13dd77a62eef64fb1ea9acfb2d9400748480f87ee953e	2674	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/prompt_only/summary-prompt-only.json	1fdcd74186a43679347242505f38ec87c08fe20e49eca4134513dc1bbd68d790	383	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/routed_specialists/config.json	8de09456f19675fa4e81477a012509d7a89a47837202d056f13b38dfb59873fa	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/routed_specialists/predictions-base.jsonl	45efc45b310754f9d801e105eadfd14be7818b40aa3b70881b39c8a7eabaae3a	1792	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/routed_specialists/summary-base.json	13d92d9a60f5b6660febbe62e7041ffa0285f8665f0fdc4b05eb963d1afcf4ef	383	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/simple_router/config.json	8de09456f19675fa4e81477a012509d7a89a47837202d056f13b38dfb59873fa	539	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/simple_router/predictions-base.jsonl	b02432182e100f547e6d9df2896dad503e5c880a9b806e425cde73d6f1facef5	1792	0	other	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/seed-43/simple_router/summary-base.json	a9763c23fd43b051f60cdd08c734f444dec60bb99e60a8db7630493860b772c6	373	0	json	excluded	generated-or-vendor-path
+runs/verification-s06-20260922/smoke-summary.json	999f1b945ac166f1fe28277ff7acacf874b180c421b462ce758ab1663357c1e7	7819	0	json	excluded	generated-or-vendor-path
+scripts/application_screen.py	e18909d757b574b780ce2f6e228a031c1f9c69541aa2950fdce87350f4345483	7731	153	python	included	
+scripts/applications/build_command_intent_corpus.py	ae274beda0108fb7e707d37a21e2066176ea95abebecea8ef32643eb82d9dd39	2717	51	python	included	
+scripts/applications/build_ticket_corpus.py	53bd06420d258e0222d6db4fa288d8adff8c4e7cd75d9712cd97e2b094fafc02	2519	44	python	included	
+scripts/applications/command_intents.py	aa486804dd247b334f3d9b48b3197e981bc00f0c8e1a6a054050e3c4fc2a8ac5	7628	150	python	included	
+scripts/applications/duplicate_incidents.py	76a9adfe7a04d702f866a623ac655e03df4227628f9eac912f6dec658f3a3e2b	15606	279	python	included	
+scripts/applications/log_normalization.py	ca9188badcb04d207971d58c30893323bd32e9b11ae40e7326aaaa31b58cac23	7376	154	python	included	
+scripts/applications/noisy_text_correction.py	69330b7803f0844198c84f07d54cc89e822d4df9abc63ddfb58b6c3c921c60db	9572	166	python	included	
+scripts/applications/redaction_assistance.py	3d0fbdac61078be79a64f578b3b1fd13b78faaf1a8e95cf496b343760ac1722e	12534	253	python	included	
+scripts/applications/runbook_retrieval.py	2e95f704eb18d663ebc93838dd76ce7aaa6f10eb40af6d032d509bd95e572aab	10759	205	python	included	
+scripts/applications/support_routing.py	d37885885d54de9a13c141bbcf4973e20ca4d69f76fffd3d69272af9c2a09e2f	14161	261	python	included	
+scripts/applications/ticket_extraction.py	d8b58207619db14b2fab232550ee3b4f7e27eb65b22203421c9d3b230fe1f28f	7533	148	python	included	
+scripts/applications/transliteration.py	9c641987459666df12439ac7cd19aeab96ace3c4aacc4884f6736e554f587780	9077	133	python	included	
+scripts/bbywvy_test.py	377521b04612de877b18caf046157d772293e23539f8d11817ee771cad598a8a	2389	49	python	included	
+scripts/build_drift_confirmatory_corpus.py	71eaa0a013c38ab97914f4cd22a6e6fa39f13ca8c3eab018447a94e62761bad1	13083	201	python	included	
+scripts/build_drift_train_corpus.py	f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b	14661	262	python	included	
+scripts/build_study_corpus.py	aaec85b8d995fa85983b9e4943b7aeb40b617df04c1ee20582a711a73e3307ae	4899	125	python	included	
+scripts/calibrate_router.py	f3a3a4cd04d6a40a9a127123a03cc08ecc5c3f6589a632f0a113476c4f928697	10938	203	python	included	
+scripts/deep_evaluation.py	af42174c5803b0ca7af4ec1c021a1e3f2b1f66a219ba77c5574a22cd90d29e27	16842	335	python	included	
+scripts/dispatch_baselines.py	0cc7bf2e1ef5339d8df4c7f559c52caa9de80f496bc1634dce5e3835b719f67a	8909	184	python	included	
+scripts/drift_extract.py	fccc55793c553641fc7f90d7fd74d3bdc9eeb365ceebafef3156643a1db0fde9	4891	105	python	included	
+scripts/drift_generate.py	adc416a6e5d47b464c82b13d07b1cfffd0cd5e03c6a45a9f7772e51cfe4632c7	23052	427	python	included	
+scripts/drift_lexical.py	328fe95efa9da42edd608f10a9843c82bc61c440253bcf32d07e5de34aafa6e1	7203	176	python	included	
+scripts/drift_score.py	54142ae236a6a55ff4452e360e2c6867e219b356d56f0ff4c589cd6fb8b8e127	9267	207	python	included	
+scripts/drift_score_confirmatory_v1.py	f5f01e9620c6073f3128b8c15a26a5e87bbebfcd1e08de6de510094f7b9c9114	8992	190	python	included	
+scripts/drift_validate.py	dc402c1104d5af45a76962c267d1087371658318b1267c3d1627df72287c43f5	10939	153	python	included	
+scripts/fleet_benchmark.py	f5e5de46ee6a99109e1d4a3a3c5abb7f367e7df4c293e7948deef7838b8e49ac	6033	154	python	included	
+scripts/freeze_confirmatory_v1_excerpts.py	f9d20e1d89b5aee3b0173decf2170aa7326bafe5afc0e77a98dbad5f64aa5f55	7559	166	python	included	
+scripts/freeze_drift_excerpts.py	ee0b997e8517b8a78b2a6026984c7197efc32fd287261aa4ed21d286384c9106	7912	172	python	included	
+scripts/loss_metrics.py	3077626b714778af681f4f6796bd775a46c0844e6caff9a35f0d47d0b63d193c	1736	44	python	included	
+scripts/mk_mood_corpus.py	4ce1964139a107bd4d9f0c442cd47efcbc0c8b8f3f8e5a7f52af8a843deb501e	9476	112	python	included	
+scripts/mkcorpus.py	044039eeacfc173cc1962f3bfeddad20f13c799f4e13dcfcded069b141784e3c	3893	94	python	included	
+scripts/operator_policy.py	60c72ae3b574b6088a1f6b31c2f1e0d28b36dca2c91fc5204ea6bc051b4a7218	23461	500	python	included	
+scripts/persona_code.py	409d073ee94628d11c53447d7bba8c4077b746c526182baaa2045b881b6b4140	22218	308	python	included	
+scripts/policy_consumer.py	7fb00e52efd8e398883810d29c45d8bf4ebe184746f39eae0573229660d8881c	1551	47	python	included	
+scripts/report_contract.py	38db7b0d525324f0c6670ae688586d02e4ff87b91c9e99e73578c89e18dbd80c	9708	224	python	included	
+scripts/router.py	544037eb33b34016316c593f703e87ddd1332c0201ad997798248a03fc408c36	8437	216	python	included	
+scripts/run_manifest.py	3d4074f952a9cfcde68bd5029da36c1f698cee36e408bf07b5146cdd0f17e294	7759	187	python	included	
+scripts/run_study_matrix.py	956c0cb3c972af94559f421b8da6d0f0b585924b4adee03c3e1a4d8fb33d373b	15431	310	python	included	
+scripts/score_study.py	89096c3fda5213deb6253ce77fc590c2ae7febe0d2b7c9f8859eef7265f19213	9665	174	python	included	
+scripts/select_drift_confirmatory_snapshots.py	b8b286e3e47ab0dcad2130afcc8f77f85889693c055b31303222bbf0dad7a3d6	5866	134	python	included	
+scripts/study_runner.py	5fb47afe4555f42984520ab80a1334ea3121edd6afbc48f17e18cd83c382efce	9754	202	python	included	
+scripts/test_app_command_intents.py	0431e08c18da1cabd30f44d7a2898a1f846e72b3863ded9604a91219d3b30efa	4550	89	python	included	
+scripts/test_app_duplicate_incidents.py	1b25e082f09969ae274cefeb7bc44f53579b833772588ba00c0858fb84160aa7	3835	70	python	included	
+scripts/test_app_log_normalization.py	61997840280bba5804f78c777f7609b712078eb18e5bcc87a25a2565ae1010dc	2508	53	python	included	
+scripts/test_app_noisy_text_correction.py	4b7148e7cdaa3e30647fab3cec20a9ab18b6b3bb274f768722c94fbf3311cc83	3579	73	python	included	
+scripts/test_app_redaction_assistance.py	93f1a3f6829d976111f8289a072179465427488e4a073645b7a1e6d4d69dce7e	3212	74	python	included	
+scripts/test_app_runbook_retrieval.py	c4b945f96e9b5508cce3a8105a1ba708b4be0e21b87e66bd668cb6e3c7920a6b	2584	58	python	included	
+scripts/test_app_support_routing.py	1f4324dfce62159aade5ed0eee66549a62732cb00dcc5c38af501f7a4da49325	2684	60	python	included	
+scripts/test_app_ticket_extraction.py	bdb7560d6ff8728636f870e6a76d72f87c0d37f69956de4f8a415b0bf32af3ce	2448	47	python	included	
+scripts/test_app_transliteration.py	bc9acfe5bcbf32bd8e3d71305e5d07a29b40bf6ff2e502d45a115c990812df37	3020	66	python	included	
+scripts/test_application_screen.py	7119d6641c0b0387907c2d632cbff138cd6ea934ea711dfe15542ac9c568aaa8	3708	96	python	included	
+scripts/test_build_drift_confirmatory_corpus.py	891f12af8a0a3463fc056f3a4bcb8b18536026a07ecce5a5a72e6fe534a20469	4401	86	python	included	
+scripts/test_build_drift_train_corpus.py	d5098de2b4993e75bd6f78d82c2e184d8b202d841dd089f8b22c596a6a546299	2737	57	python	included	
+scripts/test_calibrate_router.py	6fd85731247b1837084db8a24487de68af6135f3c0103595f1304ff87e7c04c7	3770	63	python	included	
+scripts/test_deep_evaluation.py	1a186b3be026379e540bd7cc1f272fd5d9243023b59cdc2cf832e1ffd2a7a875	13854	258	python	included	
+scripts/test_dispatch_baselines.py	3692179a7a3869ee080ecc0c8c76724d4998d1c096351efa2417d18584217924	2959	74	python	included	
+scripts/test_dispatch_corpus.py	927bc8d075e0eaff80d0d5862b62cb716c45012dbbcd3aa811b091f0281333ed	2940	65	python	included	
+scripts/test_drift_extract.py	4ae855cb66b33301c4eb40f4520c7d5305519c3805cd06f774890b7c47a62150	2412	51	python	included	
+scripts/test_drift_generate.py	8f1980be537438f5cb214dfc5648d100de5d401bbd2fa6300153046f7a5e268a	8737	168	python	included	
+scripts/test_drift_lexical.py	7ed65ca8658ffb17e686f5b5ded5d5689dce4045148fd9708a8bf348ea2cdf51	4003	80	python	included	
+scripts/test_drift_score.py	e932c208bab2a29b439ca05c08cb3066f65edbf16d8365158354181724e06794	3471	76	python	included	
+scripts/test_drift_score_confirmatory_v1.py	6e4e109078523815d5285bb8809656ae20a03bcd7eca76499471b7df6c2f69fe	5988	117	python	included	
+scripts/test_drift_validate.py	45fe74b55d58b864a05fdd58e0931c2d7852c5e34c201b9c465abf7f75ce9113	8908	181	python	included	
+scripts/test_freeze_drift_excerpts.py	a8621d22d35644352ad19f03e3621e07aab24174f2b5fd6da6f4619a4e5f9ddc	1178	24	python	included	
+scripts/test_loss_metrics.py	4d2eb73c2c11313475be07d005c9deb3a8ae5d7b87d2ffb9654be5c94d92f993	2286	50	python	included	
+scripts/test_persona_code.py	89256b3ab1567dd93f6e4fd64a38e6148e612133e01baad5370801daa7260093	1616	44	python	included	
+scripts/test_policy_consumer.py	d034c0ff5acf726701598f63725d48dd61491b67029d4a3e70717e07ff979939	2762	77	python	included	
+scripts/test_report_contract.py	73fed2f944721a3527adf28b3dd983e04a5e959af2bf9bcffcd3c1c470b977d2	6310	145	python	included	
+scripts/test_router.py	87bd7e7286b7fa154eae9333ba61bb3e678372b318a51c2260283e1ff88215ab	3882	92	python	included	
+scripts/test_run_manifest.py	aeeea7c850dfba7b2f42e32124f296e1a3ab53fdaf1c17da5a343ee22f13d8ee	3681	77	python	included	
+scripts/test_run_study_matrix.py	934b11cdbccdc7fea69981e7bbf90c2f704d308d0ef58858423a9108ed9e0da9	10425	195	python	included	
+scripts/test_score_study.py	df9bf3adb7d3dbb77d0d82ec605ba0f184331d67b2879e12416e95dfeef73f75	3994	85	python	included	
+scripts/test_study_corpus.py	73c69c574a3d631a3da5ed0cd989ed10b1fa85e47015cc446b477be866c8dfbe	6804	162	python	included	
+scripts/test_study_runner.py	b11a1326297a1847c2e0081472d00046224915a5894786788469173ede5143d6	3115	59	python	included	
+scripts/test_train_drift_adapters.py	b8484473876248ef71f54414bb1f9a841a4215b68f4880c64ad650d8c136eac5	3224	54	python	included	
+scripts/train_drift_adapters.py	b02606262acdeb4b7f9556229c2efc864d08c3c9b0b8ad2dc300678a61c7c8a7	27562	480	python	included	
+scripts/train_eval.py	dd051df9b8985e354028958199e9b0723fa005a069f94d8d474c8fee4931341b	6579	158	python	included	
+scripts/train_study_adapters.py	f6f6dfcb803ea8ebf03e34efef7d97affccc3964c12d807df454bb8f0f48c4dc	6889	136	python	included	
+scripts/verify_drift_confirmatory_freeze.py	aab02fc8a10694b87ee2565f2bc489ad07df807e1d2f902d02342ef8db47658e	6277	125	python	included	

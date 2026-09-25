@@ -1,0 +1,8 @@
+metric	old	new	delta
+paths	12	306	294
+bytes	82150	1454580	1372430
+mesh_refs	8	16	8
+added_text_paths			294
+deleted_text_paths			0
+renamed_text_paths			0
+changed_text_paths			4

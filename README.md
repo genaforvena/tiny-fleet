@@ -27,21 +27,43 @@ as current evidence.
 
 ---
 
-## Architectural drift — measuring how a codebase evolves
+## Architectural drift — reproducible structural slice
 
-The fleet's latest experiment: **can two tiny models, trained on different
-snapshots of the same codebase, express the architectural drift between those
-snapshots?**
+`scripts/drift_extract.py` compares two immutable Git commits without reading
+the working tree. It reports included text paths and bytes, changed paths,
+one-to-one identical-blob renames, executable-position `mesh-*` mentions,
+and static local Python import edges. The added/removed edge table includes
+the side, source/target paths, and each endpoint's Git blob SHA256 from the
+matching included file inventory. The old/new edge lists are retained beside
+the manifest. These AST-derived static edges are not runtime dependencies or
+semantic drift; dynamic imports and non-Python dependencies are not observed.
+It excludes binary or invalid UTF-8 blobs and paths under `generated`,
+`vendor`, `node_modules`, `runs`, `adapters`, and `corpus`; excluded paths
+remain counted in the manifest. These are **descriptive structural
+measurements**, not a semantic or generative drift score.
+Documentation is included, so path growth does not by itself imply an
+architectural change.
+
+The pinned local comparison in
+`runs/architecture-drift-local-20260925/manifest.json` measured tiny-fleet
+`4e87f2ee3644f53e2a9665195b9d6ddb933aa1d8` against
+`b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d`: 12 → 306 included
+paths, 82,150 → 1,454,580 bytes, 294 added paths, four changed paths,
+zero removed paths, and zero identical-blob renames. Python modules grew
+6 → 79, but the measured local import edge remained one (zero edge churn).
+The identical-new-commit control returned zero path and edge deltas. The
+counts do not establish changed behavior or that a model learned the newer
+architecture.
 
 The repository previously reported the following exploratory comparison. Its
 supporting evidence is marked `historical-unreproduced` or `failed-control` in
 `docs/evidence-status.tsv`; no architectural or semantic drift finding is
-claimed here.
+claimed from those model scores.
 
-We took two snapshots of [lte-workstation](https://github.com/genaforvena/lte-workstation)
-(June 15 vs September 3, 2026 — 807 → 4,276 commits), extracted version-specific
-system prompts + few-shot examples, and compared what each model produces for
-the same incomplete input. The difference **is** the drift, expressed generatively.
+Two snapshots of [lte-workstation](https://github.com/genaforvena/lte-workstation)
+(June 15 vs September 3, 2026 — 807 → 4,276 commits) were conditioned by
+version-specific system prompts and few-shot examples, **not separately trained
+weights**. Their output difference alone cannot identify architectural drift.
 
 ### Historical exploratory result (not a current finding)
 
@@ -99,18 +121,55 @@ retro-computing layer that didn't exist in v1.
 and appends to `~/.mesh/tiny-fleet/drift-series.jsonl`. Tracks file count,
 vocabulary size, and 23 key concept frequencies over time.
 
-### Reproduce the drift analysis
+### Reproduce the structural slice
 
 ```bash
-# On a node with ollama + GPU:
-mesh-tiny-fleet extract     # pull snapshots + build training data
-mesh-tiny-fleet train       # create ollama models
-mesh-tiny-fleet compare     # run comparison prompts
-mesh-tiny-fleet drift       # full analysis
-
-# Or just the structural analysis (no GPU needed):
-./scripts/mesh-tiny-fleet drift
+python3 scripts/test_drift_extract.py
+python3 scripts/test_drift_edge_delta.py
+python3 scripts/drift_extract.py --repo . \
+  --old 4e87f2ee3644f53e2a9665195b9d6ddb933aa1d8 \
+  --new b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d \
+  --run-dir runs/architecture-drift-local-20260925
 ```
+
+Read `manifest.json`, `structural.tsv`, `python-edge-delta.tsv`, and
+`old-files.tsv` / `new-files.tsv` together. The delta table has `change`
+(`added` or `removed`), `side` (`new` or `old`), `source`, `target`,
+`source_blob_sha256`, and `target_blob_sha256`; empty deltas retain the header.
+Manifest edge counts match table rows, while `old_parse_failures` and
+`new_parse_failures` name Python sources not parsed. The cross-repository
+protocol in `docs/cross-repository-drift-protocol.md` requires independent
+external repositories, native behavioral checks, and separate generative
+controls before a broader claim. The local structural slice satisfies none
+of those additional arms.
+
+### Publish a local drift bundle with crash reconciliation
+
+`scripts/drift_result.py` is an opt-in local artifact sink, not a production
+task or model judge. Give it an existing result root and immutable commits:
+
+```bash
+mkdir -p /tmp/tiny-fleet-drift-results
+python3 scripts/drift_result.py --repo . \
+  --old 4e87f2ee3644f53e2a9665195b9d6ddb933aa1d8 \
+  --new b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d \
+  --root /tmp/tiny-fleet-drift-results
+# Returns eligible before publication, settled with a verified receipt afterward:
+python3 scripts/drift_result.py --repo . \
+  --old 4e87f2ee3644f53e2a9665195b9d6ddb933aa1d8 \
+  --new b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d \
+  --root /tmp/tiny-fleet-drift-results --publish
+python3 scripts/test_drift_result.py
+```
+
+The key binds repository path, both commits, and extractor bytes. The sink
+stages the complete bundle and receipt, then atomically renames it into the
+keyed result directory. Repeating `--publish` verifies and returns the same
+receipt; changed contents, an ambiguous partial stage, or invalid provenance
+return UNKNOWN instead of overwriting. `--kill-after-rename` is a fault
+injection for isolated runs only. This makes the **local bundle** idempotent;
+it does not make model invocations, task completion, Git landing, or external
+delivery exactly-once.
 
 ### Reproduce the offline contract benchmark
 
