@@ -58,8 +58,8 @@ evict GPU workloads, download models implicitly or amend older registrations.
 `--prepare` records the repository revision it was prepared at, and `--run`
 refuses to start if any bound input or implementing-source hash changed
 afterwards. The measurement reported in this repository was prepared at commit
-`9624641`; the delivery revision adds only the CI step that runs the
-dependency-free analysis tests.
+`9624641`; later revisions add only the CI step that runs the dependency-free
+analysis tests and documentation wording.
 
 ```bash
 python3 -m venv .venv
