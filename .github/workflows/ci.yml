@@ -20,3 +20,5 @@ jobs:
           python-version: '3.11'
       - name: Check existing evaluation integrity contract
         run: python3 scripts/test_deep_evaluation.py
+      - name: Check terminology-drift inference boundaries
+        run: python3 tests/test_model_terminology_drift_analysis.py
