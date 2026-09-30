@@ -25,6 +25,12 @@ the action example are not publishable findings at this revision. They are
 labelled as historical, untested, or failed-control below rather than presented
 as current evidence.
 
+The [study gap analysis](docs/study-gap-analysis.md) compares relevant research
+and reports a reproducible all-domain split/overlap audit; it does not establish
+registered generalization or a routing win. The
+[Mishe transfer design](docs/mishe-transfer.md) applies the evaluation lessons
+to a separately registered shadow trial, not a production model change.
+
 ---
 
 ## Architectural drift — reproducible structural slice
