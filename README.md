@@ -3,16 +3,109 @@
 Can you build a **fleet of tiny specialist models** — each one knowing
 something well — plus a router that knows which one knows what?
 
-This repo says yes, with numbers, at the smallest practical scale:
-a shared 360M base ([SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)),
-one LoRA adapter per specialty, and an embedding-centroid router with an
-abstain path. The whole thing trains in minutes on one RTX 3060.
+This repository investigates that question with a shared 360M base
+([SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)),
+specialist LoRA adapters, and a router with abstention.
+**Routed-specialist superiority is not an established result.**
 
 It started from testing
 **[BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m)**
 (see `docs/bbywvy-360m-notes.md`) — a 360M model tuned for one chat
-identity on a narrow corpus. The question was whether that recipe
-extrapolates to a fleet. It does.
+identity on a narrow corpus. Whether that recipe generalizes to a useful fleet
+remains an empirical question.
+
+## Research conclusions — 2026-09-30
+
+**Specialization improved reference likelihood on the toy passage task, but did
+not establish useful generation, routing superiority, or deployment safety.**
+These are interim exploratory measurements of saved seed-17 checkpoints, not
+the registered three-training-seed replication.
+
+Four completed CPU/fp32 arms contain **3,200 validated outputs**, 800 per arm:
+100 cases in each of four domains in each held-out/adversarial split. Three
+specialist arms are still running and are excluded from this snapshot.
+
+| Execution arm | Held-out passage reference PPL (100 cases) ↓ | Code expressions passing fixed fixtures (200 cases) | Empty outputs / 800 | 256-token cap hits / 800 | Whole-arm minutes |
+|---|---:|---:|---:|---:|---:|
+| Base | 3.841820 | 0 / 200 | 264 | 438 | 96.51 |
+| Prompt-only | 4.187572 | 0 / 200 | 393 | 314 | 83.32 |
+| Pooled LoRA | 2.551908 | 0 / 200 | 0 | 800 | 146.11 |
+| Passage specialist | 2.283509 | 0 / 200 | 0 | 619 | 137.90 |
+
+The passage specialist's reference PPL is **40.56% below base** and **10.52%
+below pooled** on these fixed template cases. Lower PPL is not a generated-answer
+quality score: repetition and capped completions persist, and every code output
+in these four arms fails expression parsing. No output-prefix stripping or
+favorable line extraction was used. All four arms have zero recorded model
+runtime/likelihood failures; unsuccessful task outputs remain in the denominator.
+
+Authored template variants are not independent substantive source families.
+Saved adapters do not establish independent training seeds 17/29/43 or complete
+historical resource accounting. Style is **UNSCORED** without independent human
+ratings. Safety/route false-accept risk and useful coverage are **UNMEASURED**:
+canary-refusal explanations are not observed router decisions. Off-domain
+reference likelihood is auxiliary, not code correctness, style quality, or
+harmfulness. Wall times include loading/overhead and are not controlled latency
+benchmarks; memory is cumulative process high-water, not adapter overhead.
+
+### Inspect the measured evidence
+
+The [aggregate result snapshot](runs/checkpoint-panel-interim-20260930/analysis.json)
+contains all 32 arm/split/domain metric rows, costs, raw-tape hashes, input-protocol
+binding and limitations. Its SHA256 is
+`5bc3bc1cd3e8a1972c6ff111cdff6cf85c707184e3ccfd57cf610506f7716d87`.
+Analysis revision: `659222052f0c340a653fbac6e23e3dc72192cc28`;
+protocol revision: `0c271da49d6c4354fefb153158fe45751e4cb05a`.
+An independent resident witness checked hashes and accepted only this partial
+interpretation, not full-study completion.
+
+```bash
+python3 - <<'PY'
+import hashlib, json
+from pathlib import Path
+p = Path("runs/checkpoint-panel-interim-20260930/analysis.json")
+assert hashlib.sha256(p.read_bytes()).hexdigest() == "5bc3bc1cd3e8a1972c6ff111cdff6cf85c707184e3ccfd57cf610506f7716d87"
+r = json.loads(p.read_text())
+assert r["validated_rows"] == 3200
+for m in r["metrics"]:
+    if m["split"] == "heldout" and m["domain"] == "toy_passage_ppl":
+        print(m["arm"], m["cases"], m["conditional_ppl"])
+PY
+```
+
+This inspects the published summary; it does not rerun model inference. Raw
+checkpoint tapes and local protocol dependencies are not bundled here, so a
+fresh clone cannot independently reproduce the model run from this summary.
+
+### Completion plan and distribution
+
+| Workstream | Execution owner | Required experiments / acceptance | Current prerequisite |
+|---|---|---|---|
+| Existing exploratory CPU panel | genome; witness reviews | Finish seven arms / 5,600 outputs; validate exact inputs, raw hashes, all denominators, code fixtures and costs; preserve failures | Running evaluator and event-driven finalizer; no restart or decoding changes |
+| Original frozen fleet study | genome; discover audits provenance | Reconcile training seeds and cumulative budgets, source dependence and missing route tapes; retain negative/inconclusive findings | Do not silently repair a frozen design by replacing corpus or adapters |
+| Separate fleet v2 replication | genome; discover audits source families; senses checks bindings | Freeze reviewed corpus/router/source; pooled plus four specialists × training seeds 17/29/43; compare base, prompt-only, pooled, candidate and metadata routing; validate 7,500 prescribed exports, paired source-group contrasts, risk and coverage | Independent **human sandbox review** before freeze/training; then one training job at a time, at most 15 trainings, 12 cumulative GPU-hours / 24 model-execution wall-hours |
+| Blinded style scoring | Two independent human raters; witness accepts | Randomized blinded 1–5 sheets, independence attestations, agreement and missingness analysis | Real rating sheets; automated/self-ratings cannot substitute |
+| Architectural drift | genome; discover handles source/license/unit inventory; witness accepts | Registered Flask/Requests/Pydantic old/new snapshots: structural, lexical, paired native behavior, 162-record gated generative matrix; identity/shuffle/leak/missing-artifact controls | Archive measurement path, pinned paired probes, complete reviewed execution manifest and resource admission |
+| Publication | genome author; independent witness/reviewer | README conclusions, claim-specific limitations, reproducible evidence and commands, exact-revision review, GitHub delivery and exact-commit CI status | Partial publication is not scientific completion; missing required arms stay open |
+
+The separate v2 corpus admission and validation-only router calibration are
+complete locally, but its registration is **not frozen**, no v2 models have been
+trained, and no held-out routed result exists. New v2 results must remain separate
+from the original study and this exploratory panel. No unrelated GPU job may be
+evicted and failed attempts must never reset the resource ledger.
+
+The Mishe operational-transfer proposal is a separate shadow study, not evidence
+of a deployed fleet; any operational trial needs its own registration and
+authorization. Full research remains **open** through required experiments,
+human gates, independent acceptance and reviewed delivery. Negative results are
+valid conclusions; missing evidence is not a passing result.
+
+## Historical material — not current scientific acceptance
+
+The older narrative below is retained for provenance. Its affirmative fleet and
+semantic-drift claims, training-cost guarantees and deployment descriptions have
+not been established by the current controlled research and must not override
+the conclusions and limitations above.
 
 ---
 
