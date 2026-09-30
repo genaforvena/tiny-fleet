@@ -1,0 +1,15 @@
+# D04 objective interface registration v2
+
+Status: `preliminary`; independent D04-V review is pending. This registration covers one source-verifiable public-interface change in each of the three immutable repository pairs already frozen in `docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json`. The exact preregistration and score-blind labels are `runs/drift-validation-v2/registration.json` and `runs/drift-validation-v2/labels.jsonl`.
+
+The reviewer rule remains two independent blinded reviewers for main semantic comparisons. No reviewers are claimed for this objective-only subset, and `semantic_generalization` is false. The three labels are interface additions/changes evidenced by each new snapshot's release note and source diff. This subset makes no behavioral, dependency-change, semantic, or cross-repository association claim. Behavioral suite outcomes and their three Python 3.12 compatibility blocks are separately recorded in the preflight receipt. No model scores were computed or revealed.
+
+| Repository | Objective interface unit | Release-note source at frozen commit |
+|---|---|---|
+| Flask | `Request.max_content_length` per-request override | [CHANGES.rst at `ab814966`](https://github.com/pallets/flask/blob/ab8149664182b662453a563161aa89013c806dc9/CHANGES.rst) |
+| Requests | `HTTPAdapter.get_connection_with_tls_context` public API | [HISTORY.md at `0e322af`](https://github.com/psf/requests/blob/0e322af87745eff34caffe4df68456ebc20d9068/HISTORY.md) |
+| Pydantic | `FieldInfo.default_factory_takes_validated_data` | [HISTORY.md at `5bd3a65`](https://github.com/pydantic/pydantic/blob/5bd3a6507b749fcd4833173fba88b3690ff77170/HISTORY.md) |
+
+Each label row binds the exact old/new commits, source paths, changed public symbol, release-note text, and SHA256 of the old source, new source, and release-note files. Flask and Pydantic also bind the relevant native test source and test name. Requests' new API has no matching named native test in the frozen test tree; its row therefore makes no test assertion. All three full native test suites were independently run in the behavioral preflight, but blocked arms are not converted to labels.
+
+The versioned unit map is `runs/drift-validation-v2/unit-map.json` (SHA256 `4e06420d52012230ca9dc755de246256e83e28a1ff9bd83711390c10bd694380`); the validator checks its hash and requires each label's repository, source paths, and symbol to match it. The validator reports `3` interface labels across `3` repositories, `0` independently reviewed units, and `semantic_generalization: false`. The raw label hash is `51c2c0cb4c1976c4e5a4e013bb28d0d2e5b1e9cef8bf8be5e7693c40189a7b72`; the registration hash is `fef38fc39cdef05fdf2a1f916920b0bb70256ab70eaff6ada41df90ee0bc85fb`. The validation output stays `preliminary` until vpn independently verifies these exact files and source hashes. The generative gate also remains separately blocked, so this label artifact does not authorize the original comparison run.

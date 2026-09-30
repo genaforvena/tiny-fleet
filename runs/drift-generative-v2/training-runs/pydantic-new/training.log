@@ -1,0 +1,7 @@
+2026-09-13 15:30:49,213 INFO starting run=eab447155fe1e72506ec repo=pydantic snapshot=new gpu=NVIDIA GeForce RTX 3060 free_mib=11911
+2026-09-13 15:31:06,070 INFO progress chunks=16/65 mean_loss=1.85950
+2026-09-13 15:31:15,812 INFO progress chunks=32/65 mean_loss=1.87156
+2026-09-13 15:31:21,611 INFO progress chunks=48/65 mean_loss=1.85252
+2026-09-13 15:31:30,743 INFO progress chunks=64/65 mean_loss=1.78671
+2026-09-13 15:31:31,261 INFO progress chunks=65/65 mean_loss=1.78988
+2026-09-13 15:31:37,601 INFO complete adapter_sha256=e0e23af43fac2f5001e23c1ee033c76a54ad658b415cf45949679d9c15a1d4bf train_loss=1.78988 validation_before=1.89331 validation_after=1.85366

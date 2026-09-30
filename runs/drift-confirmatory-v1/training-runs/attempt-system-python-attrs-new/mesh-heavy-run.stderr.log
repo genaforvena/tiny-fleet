@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/mesh-home/tiny-fleet/scripts/train_drift_adapters.py", line 480, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/mesh-home/tiny-fleet/scripts/train_drift_adapters.py", line 475, in main
+    train_one(args.plan, args.repo, args.snapshot)
+  File "/home/mesh-home/tiny-fleet/scripts/train_drift_adapters.py", line 240, in train_one
+    import torch
+ModuleNotFoundError: No module named 'torch'

@@ -1,18 +1,18 @@
 # tiny-fleet
 
-Can you build a **fleet of tiny specialist models** — each one knowing
-something well — plus a router that knows which one knows what?
+Can a shared **360M base model**, small specialist LoRA adapters, and a router
+improve task quality at bounded cost?
 
-This repository investigates that question with a shared 360M base
-([SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)),
-specialist LoRA adapters, and a router with abstention.
-**Routed-specialist superiority is not an established result.**
+This repository investigates that question using
+[SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct),
+toy guitar/sourdough specialists, an embedding-centroid router with abstention,
+and a separate deterministic operator-policy baseline. It also studies changes
+between pinned repository snapshots. **Neither routed-specialist superiority nor
+semantic architectural drift is an established result here.**
 
-It started from testing
-**[BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m)**
-(see `docs/bbywvy-360m-notes.md`) — a 360M model tuned for one chat
-identity on a narrow corpus. Whether that recipe generalizes to a useful fleet
-remains an empirical question.
+The original inspiration was
+[BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m);
+[behavior notes](docs/bbywvy-360m-notes.md) record the narrow-model experiment.
 
 ## Research conclusions — 2026-09-30
 
@@ -107,323 +107,253 @@ semantic-drift claims, training-cost guarantees and deployment descriptions have
 not been established by the current controlled research and must not override
 the conclusions and limitations above.
 
----
+## Start here: evidence and study status
 
-## Architectural drift — measuring how a codebase evolves
+| Work | What is supported | What remains open |
+|---|---|---|
+| Offline fleet contract | **24/24** fixture checks: 14 adversarial operator cases, four routing cases, two adapter inventory checks, four safety decisions | Not live routing accuracy, model quality, or deployment safety |
+| Operator policy | **41/41** synthetic held-out cases, **14/14** adversarial cases, **8/8** structured decisions | Lexical coverage and uncalibrated confidence; no robust real-world safety claim |
+| Local structural drift | Immutable Git-object extraction and an identical-commit control | Descriptive path/byte/static-import changes only; no semantic inference |
+| Registered fleet study | Frozen paired-comparison design and a reproducible overlap audit | Independent source units, training provenance/budgets, actual held-out routing, blinded style ratings and scientific acceptance |
+| Architectural drift study | Frozen external sample and working measurement/inference components | Full four-estimand execution, controls, authorization reconciliation and independent acceptance; completion task remains open |
+| Mishe transfer | Prospective shadow-evaluation design | No executed operational trial or production model change |
 
-The fleet's latest experiment: **can two tiny models, trained on different
-snapshots of the same codebase, express the architectural drift between those
-snapshots?**
+[The evidence ledger](docs/evidence-status.tsv) records claim-specific verdicts
+and measured revisions. Historical values are not silently promoted by a new
+fixture pass. See the [fleet registration](docs/study-registration.md),
+[study gap analysis](docs/study-gap-analysis.md), and
+[Mishe transfer design](docs/mishe-transfer.md) for requirements and limitations.
 
-Yes. And the results are striking.
+## Quick start: offline checks
 
-We took two snapshots of [lte-workstation](https://github.com/genaforvena/lte-workstation)
-(June 15 vs September 3, 2026 — 807 → 4,276 commits), extracted version-specific
-system prompts + few-shot examples, and compared what each model produces for
-the same incomplete input. The difference **is** the drift, expressed generatively.
-
-### The headline: the codebase didn't just grow — it developed a theory of itself
-
-Over 3 months, the code grew **22x** in size. But its *conceptual vocabulary*
-grew **231x**. The system invented words for concepts it didn't need when it
-was simple, and those words became load-bearing:
-
-| Concept | June 15 | Sep 3 | Multiplier | What it means |
-|---------|--------:|------:|-----------:|---------------|
-| `coverage` | 6 | 1,383 | **231x** | "how much of the window did we actually sample?" |
-| `cadence` | 22 | 2,077 | **94x** | "how often does this reflex fire?" |
-| `arm` | 5 | 2,289 | **458x** | "which edge of the detector/actuator/alert loop?" |
-| `ledger` | 9 | 2,729 | **303x** | "show me the double-entry bookkeeping" |
-| `verdict` | 131 | 7,672 | **58x** | "what did the measurement actually say?" |
-| `gate` | 137 | 7,872 | **57x** | "does this pass the guard before it proceeds?" |
-| `staleness` | 2 | 188 | **94x** | "how old is this reading?" |
-
-v1 thinks in: `check`, `error`, `warn`, `info` — basic operational primitives.
-v2 thinks in: `gate`, `verdict`, `cadence`, `coverage`, `arm`, `ledger` — a
-self-monitoring ontology where every tool has a measurement story, every
-measurement has a coverage bound, and every verdict cites its evidence.
-
-### Drift scores
-
-Same prompts → M₁ (v1 system) vs M₂ (v2 system) → embedding similarity:
-
-| Base model | Avg similarity | Drift score | What it measures |
-|------------|---------------:|------------:|------------------|
-| **smollm2:135m** | 0.495 | **0.505** | vocabulary drift (what words the code uses) |
-| **qwen2.5:3b** | 0.800 | **0.200** | conceptual drift (what ideas the code expresses) |
-
-The 135m model amplifies vocabulary differences because its limited capacity
-makes it more dependent on the system prompt. The 3b model draws on pre-trained
-knowledge to produce more similar outputs regardless. **Both are valid** — they
-measure different things.
-
-The "health to board" prompt produced the most dramatic divergence: **0.168
-similarity** — because v1 has no concept of a "board" at all.
-
-### Structural growth
-
-| Metric | v1 (June 15) | v2 (Sep 3) | Growth |
-|--------|-------------:|------------:|-------:|
-| Files | 232 | 1,439 | 6.2x |
-| Total size | 1.3 MB | 29.5 MB | 22x |
-| Vocabulary | 11,011 | 88,724 | 8.1x |
-| `mesh-*` references | 3,189 | 30,326 | 9.5x |
-
-New file types appeared: `.c` (43), `.rom` (26), `.tal` (25) — a
-retro-computing layer that didn't exist in v1.
-
-### Weekly tracking
-
-`mesh-tiny-fleet-snapshot` captures structural metrics every Sunday at 03:00 UTC
-and appends to `~/.mesh/tiny-fleet/drift-series.jsonl`. Tracks file count,
-vocabulary size, and 23 key concept frequencies over time.
-
-### Reproduce the drift analysis
-
-```bash
-# On a node with ollama + GPU:
-mesh-tiny-fleet extract     # pull snapshots + build training data
-mesh-tiny-fleet train       # create ollama models
-mesh-tiny-fleet compare     # run comparison prompts
-mesh-tiny-fleet drift       # full analysis
-
-# Or just the structural analysis (no GPU needed):
-./scripts/mesh-tiny-fleet drift
-```
-
-### Reproduce the offline contract benchmark
-
-The benchmark has a small dependency floor and should run in an isolated environment on Debian/Ubuntu
-systems whose system Python is PEP 668 managed:
+Run from the repository root. Use an isolated environment on systems with
+PEP 668-managed Python:
 
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-eval.txt
 .venv/bin/python scripts/fleet_benchmark.py --test
+.venv/bin/python scripts/operator_policy.py --test
+.venv/bin/python scripts/test_policy_consumer.py
 ```
 
-The expected fixture result is `fleet benchmark: 24/24`; this exercises operator-first policy,
-specialist routing, abstention, adversarial decisions, and adapter inventory.
+Expected results: `fleet benchmark: 24/24`, `held-out policy: 41/41`,
+`adversarial: 14/14`, `safety decisions: 8/8`, and `policy consumer: 4/4`.
+The fleet fixture uses synthetic routing inputs and checks available specialist
+weights; it does not run live model inference. These commands require no GPU,
+Ollama server, or model download. Installing dependencies may require network
+access. All counts describe bounded repository fixtures, not generalization.
 
-### Validate a deep-evaluation run
+## Architectural drift study
 
-The dependency-free contract validator checks a frozen run manifest, dataset hashes and counts,
-split/leakage boundaries, required report artifacts, and prediction cardinality before any score is
-treated as publishable:
+**Planned, assigned, and started; not complete.**
+[The execution and completion plan](docs/architectural-drift-execution.md)
+provides frozen inputs, runnable preflight/reproduction commands, dependency-ordered
+work, acceptance gates, blockers and retry rules. **Genome owns completion;
+witness owns independent acceptance.** The resident obligation is
+`tiny-fleet-architectural-drift-completion-20260930`, kept open through report
+review and delivery, not closed by writing this plan.
+
+The [cross-repository protocol](docs/cross-repository-drift-protocol.md) requires
+four distinct estimands:
+
+1. **Structural:** paths, bytes, native units and dependency structure.
+2. **Lexical:** normalized token/concept frequencies, stratified by path class.
+3. **Behavioral:** common paired native probes in pinned environments.
+4. **Generative:** frozen paired outputs for base, prompt-only and genuine LoRA
+   arms, with pinned scoring, costs, controls and uncertainty.
+
+The registered external sample is **Flask, Requests and Pydantic**, with six
+immutable snapshots in the
+[sample manifest](docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json).
+The separate HTTPX/attrs/pytest run is
+[descriptive generative evidence](docs/confirmatory-v1-reader-conclusions-20260914.md),
+not a replacement registered sample or a publishable four-estimand result.
+
+### Completion sequence
+
+| Stage | Required outcome |
+|---|---|
+| Input/gate reconciliation — next resident step | Verify six archive hashes; bind model, excerpts, adapters and scorer; reconcile current review, blind-order and execution authorization |
+| External structural/lexical measurement | Measure all six registered snapshots with license/exclusion accounting, frozen unit maps and lexical definitions |
+| Paired native behavior | Resolve pinned environments and measure common old/new probes; suite pass counts alone are not drift |
+| Generative execution | Independently approve a complete v2 manifest and resource admission before running the 162-record real-model matrix |
+| Controls and interpretation | Retain raw failures, costs, paired scores, intervals, shuffled-label/leak/missing-artifact controls and per-arm decisions |
+| Independent review and delivery | Reviewed four-estimand report, evidence-ledger/README update and recorded delivery; blocked required arms remain open |
+
+On 2026-09-30, the six available external archives matched their registered
+SHA256 values. The local structural comparison and identical-commit control
+also ran successfully. Full-study gaps remain: archive-capable measurement and
+bundle validation, paired behavioral estimates, a complete admissible generative
+manifest/matrix, and independent scientific acceptance. The proposed
+`cross-repo-drift` orchestration CLI is **not implemented**; do not treat its
+protocol examples as runnable commands. The execution plan assigns these gaps
+rather than hiding them behind a placeholder runner or a promised result/date.
+
+### Reproduce the local structural slice
+
+This standard-library path needs Python 3, Git and the two commit objects. Use a
+fresh output directory: the extractor itself does not protect an existing run
+from overwrite. This shell snippet creates separate comparison/control outputs:
 
 ```bash
-.venv/bin/python scripts/test_deep_evaluation.py
-.venv/bin/python scripts/deep_evaluation.py --run-dir runs/<run-id>
+RUN=$(mktemp -d /tmp/tiny-fleet-drift.XXXXXX)
+OLD=4e87f2ee3644f53e2a9665195b9d6ddb933aa1d8
+NEW=b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d
+python3 scripts/drift_extract.py --repo . --old "$OLD" --new "$NEW" \
+  --run-dir "$RUN/comparison"
+python3 scripts/drift_lexical.py --run-dir "$RUN/comparison"
+python3 scripts/drift_extract.py --repo . --old "$NEW" --new "$NEW" \
+  --run-dir "$RUN/identity-control"
+python3 scripts/drift_lexical.py --run-dir "$RUN/identity-control"
+printf 'Results: %s\n' "$RUN"
 ```
 
-The test harness accepts one complete fixture and deliberately rejects case/source leakage,
-cutoff violations, missing artifacts, hash/count mismatches, and orphan or incomplete predictions.
+The pinned comparison measures **12 → 306 included text paths** and
+**82,150 → 1,454,580 bytes**: 294 added paths, four changed paths, no removed
+paths or identical-blob renames. Python modules grow 6 → 79; the measured local
+import edge stays at one, with zero edge churn. The identical-commit control has
+zero path/edge deltas and zero lexical concept delta.
 
----
+Read `manifest.json`, `structural.tsv`, `python-edge-delta.tsv` and both file
+inventories together. Edge rows bind source/target paths to their side's blob
+SHA256. The extractor reads Git objects, not the working tree; it excludes
+`generated`, `vendor`, `node_modules`, `runs`, `adapters`, `corpus`, binary or
+invalid UTF-8 blobs, and gitlinks. Exclusions and Python parse failures remain
+explicit. Static local Python imports are **not runtime dependencies**; dynamic
+imports and non-Python dependencies are unobserved. Documentation is included,
+so path growth alone does not identify architecture change. The lexical tool
+records tokenizer/dictionary hashes; its counts are not semantic ground truth.
 
-## Results: specialist fleet (measured, RTX 3060 12GB)
+The optional [local artifact sink](scripts/drift_result.py) publishes a keyed
+bundle atomically and verifies repeated publication without overwriting ambiguous
+or changed results. Inspect `python3 scripts/drift_result.py --help` and run
+`python3 scripts/test_drift_result.py` before adopting it. Local bundle idempotence
+does not imply exactly-once inference, task completion or external delivery.
 
-Two toy specialists: `guitar` (beginner guitar) and `sourdough`
-(sourdough baking). Corpus: 60 passages/domain synthesized by a local
-qwen3.5:4b teacher, split 48 train / 12 test. LoRA r=16 on all
-attention+MLP linears (~8.7M trainable params, 2.3%), 5 epochs, lr 2e-4.
+Earlier LTE vocabulary/cosine headlines and weekly `mesh-*` tracking are
+historical or unverified. Their [historical report](docs/tiny-fleet-drift-report.md)
+and [baseline audit](docs/architectural-drift-baseline-audit-2026-09-06.md) are
+retained for provenance, not as current architectural or semantic findings.
 
-Held-out perplexity — clean diagonal win (each adapter best on its own
-domain, both beat base everywhere):
+## Operator policy: bounded middleware, not an LLM safety oracle
 
-| model          | guitar test | sourdough test |
-|----------------|------------:|---------------:|
-| base           |        18.2 |           19.4 |
-| lora-guitar    |    **11.5** |           15.5 |
-| lora-sourdough |        13.8 |       **12.2** |
-
-Router (embedding centroids via `all-minilm`, cosine): **24/24 = 100%**
-on held-out passages, mean margin 0.42. Off-domain probes
-("capital of France?", "explain quantum entanglement") land near
-*neither* centroid (margin ~0.04 vs 0.17–0.37 in-domain) — that margin is
-the abstain signal: below 0.10, escalate instead of routing.
-
-The operator route is checked before specialist routing. The offline contract
-benchmark passes **24/24**: **14/14** adversarial operator cases, **4/4**
-operator-first/specialist/abstain routing cases, **2/2** specialist weight
-integrity checks, and **4/4** structured safety-decision cases. The real
-specialist perplexity benchmark remains the diagonal win above: base
-`18.2/19.4`, guitar `11.5/15.5`, and sourdough `13.8/12.2` for
-guitar/sourdough test sets respectively.
-
----
-
-## Use case: agent safety middleware
-
-The bounded operator model is not a chat model — it is a **policy gate** for
-agent pipelines. It sits between a user prompt and any downstream action,
-returning a machine-readable decision that a pipeline can enforce:
+`models/operator-policy.json` contains lexical feature weights, precedence rules
+and safe response templates. It runs deterministically without a GPU; confidence
+is uncalibrated and latency is finite. It does not execute tools or prove that a
+prompt is safe. Applications must retain their own authorization boundary.
 
 ```python
-from scripts.operator_policy import load_model, safety_decision
+from scripts.operator_policy import load_model, respond, safety_decision
+from scripts.policy_consumer import dispatch_decision
 
-def run_agent(prompt, allow_auto=False):
-    decision = safety_decision(prompt, load_model())
-    if decision["action"] == "block":
-        return f"Blocked: {decision['message']}"
-    if decision["require_approval"]:
-        return f"Needs approval: {decision['message']}"
-    if decision["action"] == "escalate":
-        return delegate_to_specialist(prompt)
-    # action == review or allow
-    return execute_task(prompt)
+policy = load_model()
+print(respond("A probe failed and returned zero.", policy))
+decision = safety_decision("Delete the database from the only active session.", policy)
+result = dispatch_decision(
+    decision,
+    execute=lambda d: "would execute an independently authorized action",
+    review=lambda d: "queued for human review",
+    escalate=lambda d: "queued for a specialist or human",
+)
+assert result == {"status": "held", "reason": "blocked"}
 ```
 
-Why this is useful:
+The callbacks above are inert examples, not approval or real execution.
+`dispatch_decision` rejects malformed decisions and holds `block` decisions.
+Only valid `allow` with `require_approval=False` calls `execute`; `review` and
+`escalate` call their corresponding callbacks, never `execute`. The current
+operator classes do not emit `allow`. Queueing a review is not permission to
+perform the proposed action.
 
-- **Zero GPU, zero latency.** The entire model is a JSON file with a handful of
-  feature weights. Inference is a dict lookup, not a matrix multiply.
-- **Deterministic.** Same input always produces the same decision. No temperature,
-  no sampling, no drift.
-- **Auditable.** The feature table, precedence rules, and decision map are all
-  human-readable JSON. You can read exactly why a prompt was blocked.
-- **Testable.** The full held-out set (`41/41`), adversarial set (`14/14`),
-  and decision contract (`8/8`) are all in the repo and run in under a second.
-- **Composable.** The structured output plugs directly into any agent framework:
-  check `action`, check `require_approval`, route by `escalation`.
+The centroid router checks the operator policy first, then selects a specialist
+only above its coded margin threshold (`0.10`); otherwise it abstains. Live
+centroid construction requires Ollama with `all-minilm`. The offline fixture
+result is not an accuracy estimate for that live path.
 
-The model classifies prompts into 12 operator policy categories and maps each
-one to a safe downstream action. Safety-critical prompts (`SAFETY`, `ACTUATOR`,
-`PRIVACY`) are always `block` with `require_approval=True`. Outside the
-operator domain, it abstains and routes to the appropriate specialist or human.
+## Model experiments and historical results
 
----
+The original toy setup uses 60 synthesized passages per domain (48 train / 12
+test), LoRA rank 16 on attention/MLP projections, five epochs and learning rate
+`2e-4`. The previously reported guitar/sourdough perplexities are historical,
+not reproduced findings at this revision:
 
-## Honest caveats
+| Model | Guitar test | Sourdough test |
+|---|---:|---:|
+| Base | 18.2 | 19.4 |
+| Guitar LoRA | 11.5 | 15.5 |
+| Sourdough LoRA | 13.8 | 12.2 |
 
-- Specialization is a **tilt, not a partition**: the sourdough adapter
-  still answers a guitar question sensibly. Routing buys you the *best*
-  answer, not the *only* answer — the router matters more than the
-  specialists.
-- 360M reasons poorly (see the math faceplant in `docs/`). Specialists
-  should own facts/style/persona, not deep reasoning — keep a bigger
-  model as fallback.
-- The operator policy model is deliberately constrained. It is a tested policy
-  selector and response contract, not a replacement for human judgment or a
-  general-purpose reasoning model.
-- Toy corpora, toy domains. The claim is "the loop works and is cheap",
-  not "these two adapters are useful".
-- The drift measurement uses Modelfile system prompts (changes behavior,
-  not weights). True LoRA fine-tuning on each snapshot would show even more
-  divergence.
+Do not infer a routing win, generalization, training cost guarantee, or larger
+semantic drift from these values. Specialization and fallback quality require
+controlled measurement, not an asserted rule about small models.
 
-## Layout
+The [registered fleet study](docs/study-registration.md) compares base,
+prompt-only, pooled LoRA and routed specialists on identical cases, with grouped
+uncertainty, safety coverage and resource accounting. Its frozen design and
+budgets are separate from exploratory checkpoint measurements.
+[The gap analysis](docs/study-gap-analysis.md) documents measured template
+sharedness; distinct case IDs do not establish independent source units.
 
+Live experiments are **opt-in**, not part of quick start:
+
+- `scripts/mkcorpus.py` needs a local Ollama teacher and writes toy corpora;
+  do not run it over frozen study inputs.
+- `scripts/train_eval.py train` needs PyTorch/Transformers/PEFT and GPU capacity;
+  registered training additionally requires its manifest/run-dir/seed inputs.
+  Preserve prior adapters/runs and reconcile budgets before any training.
+- `scripts/train_eval.py eval` loads the base and saved toy adapters on CUDA.
+- `scripts/router.py` and `scripts/fleet_benchmark.py --live-router` require a
+  running Ollama server and the `all-minilm` embedding model.
+
+No unrelated GPU workload should be evicted to reproduce this repository.
+Model caches, compatible dependency versions, admission and measured costs must
+be recorded by the specific experiment; a bare package-install line is not an
+immutable scientific environment.
+
+## Evaluation contracts and layout
+
+```text
+scripts/operator_policy.py       deterministic policy train/eval and decisions
+scripts/policy_consumer.py       callback dispatch with explicit execution boundary
+scripts/router.py               operator-first centroid routing and abstention
+scripts/fleet_benchmark.py       offline fixture / optional live-router checks
+scripts/train_eval.py            toy LoRA training and perplexity evaluation
+scripts/audit_study_independence.py  hash-bound all-domain overlap diagnostic
+scripts/drift_extract.py         immutable Git-object structural measurement
+scripts/drift_lexical.py         descriptive lexical measurements and controls
+scripts/drift_generate.py        fixture and real-model versioned generative paths
+scripts/drift_result.py          opt-in local bundle publication/reconciliation
+corpus/                         toy/operator and registered study inputs
+models/operator-policy.json     tracked policy artifact
+adapters/                       local/checkpoint-dependent LoRA artifacts
+runs/                           frozen registrations, outputs and decisions
+docs/                           protocols, evidence, receipts and conclusions
 ```
-scripts/bbywvy_test.py   # BbyWVY-360m behavior spot-checks (docs/bbywvy-360m-notes.md)
-scripts/mkcorpus.py      # synthesize the two toy corpora with a local teacher
-scripts/train_eval.py    # train LoRA specialists (train) / perplexity table (eval)
-scripts/router.py        # centroid router plus operator-first routing
-scripts/operator_policy.py # train/evaluate the bounded operator model
-scripts/fleet_benchmark.py # offline operator, router, and specialist benchmark (24/24)
-corpus/                  # specialist corpora plus operator train/held-out/adversarial cases
-models/operator-policy.json # tracked, reproducible policy artifact
-adapters/lora-{guitar,sourdough}/  # trained weights (34 MB each, ready to load)
-docs/bbywvy-360m-notes.md
-```
 
-## Reproduce
+Validate run integrity before interpreting scores:
 
 ```bash
-pip install torch transformers peft accelerate safetensors numpy
-# corpus (needs ollama + any local instruct model, see scripts/mkcorpus.py)
-python scripts/mkcorpus.py
-# train (~minutes/domain on a 3060; free VRAM first — ollama residents OOM it)
-python scripts/train_eval.py train
-python scripts/train_eval.py eval
-# router (needs ollama + `ollama pull all-minilm`)
-python scripts/router.py
-# operator model: no GPU or third-party runtime required
-python scripts/operator_policy.py train
-python scripts/operator_policy.py --test
-# offline fleet benchmark: no GPU, model download, or network required
-python scripts/fleet_benchmark.py --test
-# optional live centroid benchmark (requires Ollama + all-minilm)
-python scripts/fleet_benchmark.py --live-router
+python3 scripts/test_deep_evaluation.py
+# Replace this path with an existing complete run, not an empty new directory:
+python3 scripts/deep_evaluation.py --run-dir /path/to/complete-run
 ```
 
-The operator gate checks `41/41` held-out synthetic cases, train/test separation,
-corpus hash, serialized precedence rules, deterministic replay, unknown-input
-abstention, public-corpus privacy, and that adversarial prompts never produce
-shell commands. The test intentionally drives a mutation of the precedence rules
-red before reporting green. The additional adversarial matrix covers destructive
-requests, stale evidence, credential-shaped text, policy overlap, and specialist
-handoff; it currently passes `14/14`. The structured safety contract tests
-`block`/`review`/`escalate` decisions with correct escalation targets and
-require-approval flags. The fleet router checks the operator policy first, then
-routes to a specialist only when its embedding margin clears `0.10`; otherwise
-it returns `[ABSTAIN]` for escalation. The offline fleet benchmark currently
-passes `24/24`; the live specialist benchmark reproduces the perplexity table
-above and requires the cached base model plus GPU.
+[The deep-evaluation contract](docs/deep-evaluation-contract.md) checks dataset
+hashes/counts, split boundaries, required artifacts and prediction cardinality.
+It rejects leakage, missing artifacts and inconsistent provenance; passing is
+an integrity gate, not proof of scientific validity or deployment readiness.
 
-The bounded operator model is intentionally a policy classifier plus safe
-templates, not an autonomous LLM. It ships two interfaces:
+## Further reading
 
-**Simple text interface** (backward-compatible):
+- [Architectural drift execution and completion](docs/architectural-drift-execution.md)
+- [Cross-repository drift protocol](docs/cross-repository-drift-protocol.md)
+- [Confirmatory-v1 scope and reader conclusions](docs/confirmatory-v1-reader-conclusions-20260914.md)
+- [Fleet study registration](docs/study-registration.md)
+- [Measured study gaps](docs/study-gap-analysis.md)
+- [Mishe shadow-transfer design](docs/mishe-transfer.md)
+- [Claim-specific evidence ledger](docs/evidence-status.tsv)
 
-```python
-from scripts.operator_policy import load_model, respond
-print(respond("A probe failed and returned zero.", load_model()))
-# [POLICY:UNCERTAINTY] The evidence is unknown or stale, ...
-print(respond("What is the capital of France?", load_model()))
-# [ABSTAIN] This is outside the operator policy model; escalate ...
-```
-
-**Structured safety interface** (recommended for pipelines):
-
-```python
-from scripts.operator_policy import load_model, safety_decision
-d = safety_decision("Delete the database from inside the only active session.", load_model())
-# d == {
-#   'policy': 'SAFETY',
-#   'confidence': 1.0,
-#   'action': 'block',
-#   'escalation': 'human',
-#   'require_approval': True,
-#   'reasons': ['Classified as SAFETY with confidence 1.0000.'],
-#   'message': '[POLICY:SAFETY] I hold the change until an external rollback path ...',
-#   'is_operator': True,
-# }
-```
-
-The `action` field is the pipeline gate:
-- `block` = stop, require human approval before any downstream action
-- `review` = require review before execution, no auto-approval
-- `escalate` = not enough operator evidence, hand to specialist or human
-- `allow` = safe to proceed (reserved for future use; no operator class maps here today)
-
-Fleet routing uses the same explicit boundary:
-
-```python
-from scripts.router import make_centroids, route_query
-route, result = route_query("The sensor test needs a real hardware read.", make_centroids())
-# route == "operator"
-route, result = route_query("What is the capital of France?", make_centroids())
-# route == "abstain"
-```
-
-Inference with an adapter:
-
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import PeftModel
-tok = AutoTokenizer.from_pretrained("HuggingFaceTB/SmolLM2-360M-Instruct")
-base = AutoModelForCausalLM.from_pretrained(
-    "HuggingFaceTB/SmolLM2-360M-Instruct", dtype="auto", device_map="cuda")
-model = PeftModel.from_pretrained(base, "adapters/lora-guitar")
-```
-
-## Links
-
-- Architectural drift report: [`docs/tiny-fleet-drift-report.md`](docs/tiny-fleet-drift-report.md)
-- Original inspiration: [StarpowerTechnology/BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m)
-  ([author's post](https://www.reddit.com/r/LocalLLaMA/comments/1w5u9w8/comment/p7i3wqd/?context=1))
-- Shared base: [HuggingFaceTB/SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)
-
-License: CC0 1.0 Universal. This project is dedicated to the public domain
-permanently, to the fullest extent permitted by law; see `LICENSE`.
+License: [CC0 1.0 Universal](LICENSE). This project's dedication does not
+relicense third-party models, repository snapshots or datasets; retain their
+own license and redistribution requirements.

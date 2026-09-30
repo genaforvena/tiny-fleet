@@ -1,0 +1,51 @@
+{
+  "corpus_builder": {
+    "path": "scripts/build_drift_train_corpus.py",
+    "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+  },
+  "inventory": {
+    "excluded": 83,
+    "included": 17,
+    "path": "runs/drift-generative-v2/training-corpora/requests-old/inventory.jsonl",
+    "rows": 100,
+    "sha256": "3ae23597e61f432e1396d30146fb4b0389d50d66ff2230a492f29e13a6046075"
+  },
+  "license": {
+    "saved_path": "runs/drift-generative-v2/training-corpora/requests-old/LICENSE.txt",
+    "saved_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+    "source_path": "LICENSE",
+    "source_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+    "spdx": "Apache-2.0"
+  },
+  "package_root": "requests",
+  "repo": "requests",
+  "schema": "tiny-fleet.drift-training-corpus/v1",
+  "selection": {
+    "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+    "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+    "exclude": [
+      "outside native package",
+      "tests directories and test_*.py/*_test.py files",
+      "generated/vendor trees",
+      "non-Python files",
+      "symlinks and non-regular objects",
+      "binary or malformed UTF-8",
+      "selected held-out source module"
+    ],
+    "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+    "heldout_source_excluded": "requests/structures.py",
+    "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+  },
+  "snapshot": "old",
+  "source_commit": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b",
+  "train": {
+    "path": "runs/drift-generative-v2/training-corpora/requests-old/train.jsonl",
+    "rows": 15,
+    "sha256": "06fa91a35e3fd1ef3ff9403a8ea844e364284a426885970ef186c88ceab004bb"
+  },
+  "validation": {
+    "path": "runs/drift-generative-v2/training-corpora/requests-old/validation.jsonl",
+    "rows": 2,
+    "sha256": "c1b5d23d29c54cf31f513597ff30c645d4d6c69e851629170b2759fb5529dc89"
+  }
+}

@@ -1,0 +1,9 @@
+test_cosmetic_and_no_change_cannot_be_architecture_change (__main__.DriftValidationTests.test_cosmetic_and_no_change_cannot_be_architecture_change) ... ok
+test_label_leakage_is_rejected (__main__.DriftValidationTests.test_label_leakage_is_rejected) ... ok
+test_reviewer_disagreement_is_retained_and_requires_adjudication (__main__.DriftValidationTests.test_reviewer_disagreement_is_retained_and_requires_adjudication) ... ok
+test_valid_fixture_is_preliminary_without_model_scores (__main__.DriftValidationTests.test_valid_fixture_is_preliminary_without_model_scores) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK

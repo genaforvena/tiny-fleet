@@ -1,0 +1,7 @@
+2026-09-13 15:28:33,905 INFO starting run=73d9efee14edf02e2393 repo=flask snapshot=new gpu=NVIDIA GeForce RTX 3060 free_mib=11911
+2026-09-13 15:28:49,145 INFO progress chunks=16/65 mean_loss=1.89208
+2026-09-13 15:28:53,390 INFO progress chunks=32/65 mean_loss=1.92257
+2026-09-13 15:28:56,607 INFO progress chunks=48/65 mean_loss=1.91890
+2026-09-13 15:28:59,929 INFO progress chunks=64/65 mean_loss=1.92970
+2026-09-13 15:29:00,145 INFO progress chunks=65/65 mean_loss=1.92581
+2026-09-13 15:29:03,850 INFO complete adapter_sha256=ba7bae9ab2e561fe56765350b8258d11acc10a259a5858f475958b17a3ab47fa train_loss=1.92581 validation_before=1.82940 validation_after=1.77080

@@ -1,0 +1,69 @@
+{
+  "schema": "tiny-fleet.drift-validation-registration/v1",
+  "run_id": "drift-validation-v2",
+  "registered_utc": "2026-09-13",
+  "claim": "Freeze score-blind, source-verifiable public-interface changes for three external repository snapshot pairs.",
+  "estimands": ["structural", "lexical", "generative", "behavioral"],
+  "sample_manifest": "docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json",
+  "sample_manifest_sha256": "07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59",
+  "unit_map": "unit-map.json",
+  "unit_map_sha256": "4e06420d52012230ca9dc755de246256e83e28a1ff9bd83711390c10bd694380",
+  "score_reveal": false,
+  "semantic_generalization": false,
+  "review_status": "not independently reviewed; pending vpn D04-V",
+  "label_policy": "Objective interface subset only. Two independent reviewers are still required for main semantic comparisons; none are claimed here. Do not infer behavioral or semantic labels, or any cross-repository metric association.",
+  "label_schema": {
+    "labels": ["no_change", "cosmetic", "interface_change", "dependency_change", "behavior_change"],
+    "reviewers_required": 2,
+    "objective_only": true,
+    "model_scores_allowed": false,
+    "objective_rule": "A public interface label requires an immutable old/new source pair, a named changed public symbol, commit-diff evidence, and the new snapshot's release-note entry. Evidence file SHA256 values bind the sources."
+  },
+  "repositories": [
+    {
+      "repo_id": "flask",
+      "identity": "https://github.com/pallets/flask",
+      "source_family": "pallets",
+      "license": "BSD-3-Clause",
+      "old": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3",
+      "new": "ab8149664182b662453a563161aa89013c806dc9",
+      "old_tag": "2.2.2",
+      "new_tag": "3.1.0",
+      "archive_sha256": {
+        "old": "9cab061d3c8b1fcc156b1ebb247d0a6caa73864fb096e1ebcdb369d2b3fbaefc",
+        "new": "1ab1e67fb5c9e05d226e3cd94734e46009e012b269e29794f29151ef341feb06"
+      },
+      "behavioral_preflight": "new passed (490 passed, 2 skipped); old blocked at collection by Python 3.12 ast.Str deprecation under warnings-as-errors; see docs/task-receipts/haunt-behavioral-preflight-v2-20260913.md"
+    },
+    {
+      "repo_id": "requests",
+      "identity": "https://github.com/psf/requests",
+      "source_family": "psf",
+      "license": "Apache-2.0",
+      "old": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b",
+      "new": "0e322af87745eff34caffe4df68456ebc20d9068",
+      "old_tag": "v2.28.1",
+      "new_tag": "v2.32.3",
+      "archive_sha256": {
+        "old": "5b95d48511eaaad22b4bfe0ba42d12dcce08c97fb587aa9cfd17dab0399868b9",
+        "new": "02db3918a45a7707a9eba6e240a7d3cde2ad5be23fc293dbe218d263662453dd"
+      },
+      "behavioral_preflight": "old blocked in two HTTPS tests because pytest-httpbin calls removed ssl.wrap_socket; new blocked in one mTLS test due expired fixture certificate; see docs/task-receipts/haunt-behavioral-preflight-v2-20260913.md"
+    },
+    {
+      "repo_id": "pydantic",
+      "identity": "https://github.com/pydantic/pydantic",
+      "source_family": "pydantic",
+      "license": "MIT",
+      "old": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d",
+      "new": "5bd3a6507b749fcd4833173fba88b3690ff77170",
+      "old_tag": "v1.10.4",
+      "new_tag": "v2.10.4",
+      "archive_sha256": {
+        "old": "d47f96f734030506f57bf3868314f2e3ccfcf34be323422a4ac645eb99c04585",
+        "new": "d8c26a1987494e70b3ee903a19ed7a75d37ea907358ed124d1567b7fa63b2df4"
+      },
+      "behavioral_preflight": "new passed (5135 passed, 954 skipped, 17 xfailed); old blocked at collection by Python 3.12 ast.Str deprecation in pinned Hypothesis; see docs/task-receipts/haunt-behavioral-preflight-v2-20260913.md"
+    }
+  ]
+}

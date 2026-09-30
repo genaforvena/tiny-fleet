@@ -1,0 +1,306 @@
+{
+  "adapter_registration": {
+    "path": "runs/drift-confirmatory-v1/adapter-registration.json",
+    "sha256": "aca4c62e360b92d27223707f86a340d471113bcfb9042658426e121be47cfc6a"
+  },
+  "generation_scoring_comparison": "not run; generative-registration remains blocked-before-generation",
+  "heldout_excerpt_ledger": {
+    "path": "runs/drift-confirmatory-v1/heldout-excerpts/heldout-excerpts.json",
+    "sha256": "d37c62534a429d7659b78d44f4f7bc2e6ca2d56ee14a1eb101b81e00d245c83a"
+  },
+  "resource_decision": {
+    "failed_system_interpreter_attempt": {
+      "failure": "ModuleNotFoundError: No module named torch",
+      "path": "runs/drift-confirmatory-v1/training-runs/attempt-system-python-attrs-new/run.json",
+      "retry_environment": "existing /home/mesh-home/.venv-ai virtual environment; no package installation performed"
+    },
+    "highest_admitted_free_vram_mib": 11911,
+    "initial_observed_free_vram_mib": 424,
+    "managed_services_initially_active": [
+      "mesh-voice-clone.service",
+      "mesh-room-gigaam.service",
+      "ollama.service"
+    ],
+    "memory_available_mib_at_initial_probe": 23918,
+    "required_free_vram_mib": 8192,
+    "restoration_checks": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "restoration_pass_count": 6
+  },
+  "runs": [
+    {
+      "adapter_digest": "bb47fd26c057d345ff82009e2d6603a7a16e938956ce767ca7146352f71404de",
+      "adapter_path": "adapters/attrs-new",
+      "corpus_manifest_sha256": "7d441983ed5a7aae756ddb7658821a85fd61c95d0f6b7d6bb6e915f7ee0c5583",
+      "gpu_preflight": {
+        "free_mib_at_admission": 11911,
+        "minimum_free_mib": 8192,
+        "restoration_check": {
+          "lease_released": true,
+          "passed": true,
+          "service_states_after": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_before": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_match_baseline": true
+        },
+        "services_stopped": [
+          "mesh-voice-clone.service",
+          "mesh-room-gigaam.service",
+          "ollama.service"
+        ]
+      },
+      "repo": "attrs",
+      "run_path": "runs/drift-confirmatory-v1/training-runs/attrs-new/run.json",
+      "run_sha256": "a5b7d313c3e3550258313c81a65adbda24618c8340f4bf623479b04e95bc78e9",
+      "runtime": {
+        "cuda": "13.0",
+        "device": "NVIDIA GeForce RTX 3060",
+        "peft": "0.19.1",
+        "python": "3.12.3",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.14.1"
+      },
+      "snapshot": "new",
+      "status": "complete",
+      "train_corpus_sha256": "565ce2e59b26569b5c45e999b34c4631da502bb0d0676382e74a9d6d16881188",
+      "validation_corpus_sha256": "2160151d5b95e0164b45aaf5af49e2ac33e5ff7fed6a6a078053b933c8a51b67"
+    },
+    {
+      "adapter_digest": "c180cd1efcf012d91057c76d1dea5c0635ecab0a966b33831fc118ad3977090d",
+      "adapter_path": "adapters/attrs-old",
+      "corpus_manifest_sha256": "60b4fd56f04f2b2bb4c484bafd760a11a09d0fd5992eed8c3dd5d2ef480fe330",
+      "gpu_preflight": {
+        "free_mib_at_admission": 11107,
+        "minimum_free_mib": 8192,
+        "restoration_check": {
+          "lease_released": true,
+          "passed": true,
+          "service_states_after": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_before": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_match_baseline": true
+        },
+        "services_stopped": []
+      },
+      "repo": "attrs",
+      "run_path": "runs/drift-confirmatory-v1/training-runs/attrs-old/run.json",
+      "run_sha256": "defe4e88be3603659f3bd70abeba68b96baced1f3b238ca225204539b2737b69",
+      "runtime": {
+        "cuda": "13.0",
+        "device": "NVIDIA GeForce RTX 3060",
+        "peft": "0.19.1",
+        "python": "3.12.3",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.14.1"
+      },
+      "snapshot": "old",
+      "status": "complete",
+      "train_corpus_sha256": "0bf6f529a31910a01e4e04a15e44ed5090f8ce21d55b04b7c0c4e4521df9e2d6",
+      "validation_corpus_sha256": "66f0b256e4e353cdcd60636b3fef1c974d62a3503e7631c4ea74695844076872"
+    },
+    {
+      "adapter_digest": "38bccff100199c2e92aae4f2fe907bf52a63bb41826ea8395f67f1f9030d3778",
+      "adapter_path": "adapters/httpx-new",
+      "corpus_manifest_sha256": "9245209fa3004bd1ead47347d86f7b77923846d6db6d9478317589e1ac025cfc",
+      "gpu_preflight": {
+        "free_mib_at_admission": 9006,
+        "minimum_free_mib": 8192,
+        "restoration_check": {
+          "lease_released": true,
+          "passed": true,
+          "service_states_after": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_before": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_match_baseline": true
+        },
+        "services_stopped": []
+      },
+      "repo": "httpx",
+      "run_path": "runs/drift-confirmatory-v1/training-runs/httpx-new/run.json",
+      "run_sha256": "2b030a5b4e9292520a5745ae62daffcb30faa37dc3647e3746a9a10bb4aeec3b",
+      "runtime": {
+        "cuda": "13.0",
+        "device": "NVIDIA GeForce RTX 3060",
+        "peft": "0.19.1",
+        "python": "3.12.3",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.14.1"
+      },
+      "snapshot": "new",
+      "status": "complete",
+      "train_corpus_sha256": "78688b3a942e9054de3ec7490cb7a926bdd2863b0fdc50a6fc8c854d0af1ecf1",
+      "validation_corpus_sha256": "5935728e4d96787fd892b7007fd2cdb4b40b95421e7e9470f89eb322d2261f25"
+    },
+    {
+      "adapter_digest": "6edc191006c7b51366ab3af95f09d1797d3b557d91e6ef481e68861fb0fab052",
+      "adapter_path": "adapters/httpx-old",
+      "corpus_manifest_sha256": "3229c1a34b2291793afa9890d7df31a7c0cb691c5778d82dd74f0c28b110f657",
+      "gpu_preflight": {
+        "free_mib_at_admission": 11911,
+        "minimum_free_mib": 8192,
+        "restoration_check": {
+          "lease_released": true,
+          "passed": true,
+          "service_states_after": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_before": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_match_baseline": true
+        },
+        "services_stopped": [
+          "mesh-voice-clone.service",
+          "mesh-room-gigaam.service",
+          "ollama.service"
+        ]
+      },
+      "repo": "httpx",
+      "run_path": "runs/drift-confirmatory-v1/training-runs/httpx-old/run.json",
+      "run_sha256": "d7157afcaf68bc9d160d0e8b72aae272ccc5f9005075f138a55ffae6a6ef9e8b",
+      "runtime": {
+        "cuda": "13.0",
+        "device": "NVIDIA GeForce RTX 3060",
+        "peft": "0.19.1",
+        "python": "3.12.3",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.14.1"
+      },
+      "snapshot": "old",
+      "status": "complete",
+      "train_corpus_sha256": "4a134f083eb1bc866f0190b3017249178cc5c72a5d93fa2d16bc30893cb0fb1e",
+      "validation_corpus_sha256": "a2eacfa1cda103a0c51c65852e220494fafdbc5e5d0de312c2c2996e4521053a"
+    },
+    {
+      "adapter_digest": "8c3d48d75ffd8760877c3b235801f991ac74b573f7ff4995f42e2a0030d287c9",
+      "adapter_path": "adapters/pytest-new",
+      "corpus_manifest_sha256": "f87276a0d38004e3e098c59b9b1db091055849870dec956f713aab2f448f868e",
+      "gpu_preflight": {
+        "free_mib_at_admission": 11107,
+        "minimum_free_mib": 8192,
+        "restoration_check": {
+          "lease_released": true,
+          "passed": true,
+          "service_states_after": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_before": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_match_baseline": true
+        },
+        "services_stopped": []
+      },
+      "repo": "pytest",
+      "run_path": "runs/drift-confirmatory-v1/training-runs/pytest-new/run.json",
+      "run_sha256": "316a3fa9ced7c6e9ebb57402ba9f6ac2b4c55c8dfff828fa1867b87b22121589",
+      "runtime": {
+        "cuda": "13.0",
+        "device": "NVIDIA GeForce RTX 3060",
+        "peft": "0.19.1",
+        "python": "3.12.3",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.14.1"
+      },
+      "snapshot": "new",
+      "status": "complete",
+      "train_corpus_sha256": "4c3a8bcb405a3fff0ce37feba69883679f9178c510a47b33d05dfd62b9aa0c06",
+      "validation_corpus_sha256": "121f14a8882fd5913872bf17761980d68513aa7cda0ef657160c41f889c28f72"
+    },
+    {
+      "adapter_digest": "640881b4de8a24b60a4b6fe0e73a367513a5ef791acd9783032ee526303ea089",
+      "adapter_path": "adapters/pytest-old",
+      "corpus_manifest_sha256": "d3fe08994511f0acc550d34b6bf6afb7956c8f1ccefce9fe25bdb75c79cb175c",
+      "gpu_preflight": {
+        "free_mib_at_admission": 9006,
+        "minimum_free_mib": 8192,
+        "restoration_check": {
+          "lease_released": true,
+          "passed": true,
+          "service_states_after": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_before": {
+            "mesh-room-gigaam.service": "active",
+            "mesh-voice-clone.service": "active",
+            "ollama.service": "active"
+          },
+          "service_states_match_baseline": true
+        },
+        "services_stopped": []
+      },
+      "repo": "pytest",
+      "run_path": "runs/drift-confirmatory-v1/training-runs/pytest-old/run.json",
+      "run_sha256": "7a3723e1f7b3b26e42e5cd7526c6ce0a6658dd8a0412326e19173b7b2f0a7e2a",
+      "runtime": {
+        "cuda": "13.0",
+        "device": "NVIDIA GeForce RTX 3060",
+        "peft": "0.19.1",
+        "python": "3.12.3",
+        "torch": "2.13.0+cu130",
+        "transformers": "5.14.1"
+      },
+      "snapshot": "old",
+      "status": "complete",
+      "train_corpus_sha256": "136ee97d5397c05115dd1d2789edb1c940fa62e1044357eb3ba52592073d6c39",
+      "validation_corpus_sha256": "485b2babe27091c5f9759f4f074c3b5bbd533404cdbbfc12c46097470ab78485"
+    }
+  ],
+  "runtime_environment": {
+    "cuda": "13.0",
+    "gpu": "NVIDIA GeForce RTX 3060",
+    "peft": "0.19.1",
+    "python": "3.12.3",
+    "safetensors": "0.8.0",
+    "torch": "2.13.0+cu130",
+    "transformers": "5.14.1"
+  },
+  "sample_registration": {
+    "path": "runs/drift-confirmatory-v1/registration.json",
+    "sha256": "f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8"
+  },
+  "schema": "tiny-fleet.drift-confirmatory-training-preflight/v1",
+  "status": "six-adapters-trained; behavioral-gate-closure-still-blocked",
+  "training_plan": {
+    "path": "runs/drift-confirmatory-v1/training-corpora/training-plan.json",
+    "sha256": "6d256ef9cf0c67f76e0898ef7d557062559fd129e52decbf8f65a1c8a68b693d"
+  },
+  "training_progress": {
+    "path": "runs/drift-confirmatory-v1/training-runs/training-progress.json",
+    "sha256": "8bc568f2d69515d6b7ea13c72beb7c85a78de42c028281949b9dc4419442c58b"
+  }
+}

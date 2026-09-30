@@ -1,0 +1,79 @@
+import typing
+from contextlib import contextmanager
+
+from ._client import Client
+from ._config import DEFAULT_TIMEOUT_CONFIG
+from ._models import Response
+from ._types import (
+    AuthTypes,
+    CertTypes,
+    CookieTypes,
+    HeaderTypes,
+    ProxiesTypes,
+    QueryParamTypes,
+    RequestContent,
+    RequestData,
+    RequestFiles,
+    TimeoutTypes,
+    URLTypes,
+    VerifyTypes,
+)
+
+
+def request(
+    method: str,
+    url: URLTypes,
+    *,
+    params: typing.Optional[QueryParamTypes] = None,
+    content: typing.Optional[RequestContent] = None,
+    data: typing.Optional[RequestData] = None,
+    files: typing.Optional[RequestFiles] = None,
+    json: typing.Optional[typing.Any] = None,
+    headers: typing.Optional[HeaderTypes] = None,
+    cookies: typing.Optional[CookieTypes] = None,
+    auth: typing.Optional[AuthTypes] = None,
+    proxies: typing.Optional[ProxiesTypes] = None,
+    timeout: TimeoutTypes = DEFAULT_TIMEOUT_CONFIG,
+    follow_redirects: bool = False,
+    verify: VerifyTypes = True,
+    cert: typing.Optional[CertTypes] = None,
+    trust_env: bool = True,
+) -> Response:
+    """
+    Sends an HTTP request.
+
+    **Parameters:**
+
+    * **method** - HTTP method for the new `Request` object: `GET`, `OPTIONS`,
+    `HEAD`, `POST`, `PUT`, `PATCH`, or `DELETE`.
+    * **url** - URL for the new `Request` object.
+    * **params** - *(optional)* Query parameters to include in the URL, as a
+    string, dictionary, or sequence of two-tuples.
+    * **content** - *(optional)* Binary content to include in the body of the
+    request, as bytes or a byte iterator.
+    * **data** - *(optional)* Form data to include in the body of the request,
+    as a dictionary.
+    * **files** - *(optional)* A dictionary of upload files to include in the
+    body of the request.
+    * **json** - *(optional)* A JSON serializable object to include in the body
+    of the request.
+    * **headers** - *(optional)* Dictionary of HTTP headers to include in the
+    request.
+    * **cookies** - *(optional)* Dictionary of Cookie items to include in the
+    request.
+    * **auth** - *(optional)* An authentication class to use when sending the
+    request.
+    * **proxies** - *(optional)* A dictionary mapping proxy keys to proxy URLs.
+    * **timeout** - *(optional)* The timeout configuration to use when sending
+    the request.
+    * **follow_redirects** - *(optional)* Enables or disables HTTP redirects.
+    * **verify** - *(optional)* SSL certificates (a.k.a CA bundle) used to
+    verify the identity of requested hosts. Either `True` (default CA bundle),
+    a path to an SSL certificate file, an `ssl.SSLContext`, or `False`
+    (which will disable verification).
+    * **cert** - *(optional)* An SSL certificate used by the requested host
+    to authenticate the client. Either a path to an SSL certificate file, or
+    two-tuple of (certificate file, key file), or a three-tuple of (certificate
+    file, key file, password).
+    * **trust_env** - *(optional)* Enables or disables usage of environment
+    variables for configuration.

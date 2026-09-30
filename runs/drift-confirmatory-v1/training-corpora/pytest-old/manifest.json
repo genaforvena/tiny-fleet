@@ -1,0 +1,62 @@
+{
+  "corpus_builder": {
+    "path": "scripts/build_drift_confirmatory_corpus.py",
+    "source_sha256": "71eaa0a013c38ab97914f4cd22a6e6fa39f13ca8c3eab018447a94e62761bad1"
+  },
+  "heldout_excerpt_ledger": {
+    "path": "runs/drift-confirmatory-v1/heldout-excerpts/heldout-excerpts.json",
+    "sha256": "d37c62534a429d7659b78d44f4f7bc2e6ca2d56ee14a1eb101b81e00d245c83a",
+    "source_file_sha256": "e5e65ddef6c92d4d9cc40e3d1263767c7469d2b7f7802f611e5cf40d5c178824",
+    "source_path_excluded": "src/_pytest/fixtures.py"
+  },
+  "inventory": {
+    "excluded": 495,
+    "included": 66,
+    "path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/inventory.jsonl",
+    "rows": 561,
+    "sha256": "73438aa05ee9e8348c411687e86e8cf4f1b0a0d733c693ab48c1c2c0eafee236"
+  },
+  "license": {
+    "saved_path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/LICENSE.txt",
+    "sha256": "ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b",
+    "source_path": "LICENSE",
+    "spdx": "MIT"
+  },
+  "package_root": "src/_pytest",
+  "repo": "pytest",
+  "run_id": "drift-confirmatory-v1",
+  "sample_registration": {
+    "path": "runs/drift-confirmatory-v1/registration.json",
+    "sha256": "f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8"
+  },
+  "schema": "tiny-fleet.drift-confirmatory-training-corpus/v1",
+  "selection": {
+    "allow": "regular UTF-8 Python source under package_root covered by the verified root license",
+    "corpus_scope": "adaptation training only; every archive member file is listed in the inventory",
+    "exclude": [
+      "tests",
+      "test_*.py and *_test.py",
+      "generated/vendor trees",
+      "non-Python files",
+      "symlinks and non-regular objects",
+      "binary or malformed UTF-8",
+      "selected held-out module"
+    ],
+    "validation_split": "ceil(10% of eligible files), deterministic SHA256(repo + NUL + snapshot + NUL + path) ranking"
+  },
+  "snapshot": "old",
+  "source_archive": "runs/drift-confirmatory-v1/snapshots/pytest-old.tar",
+  "source_archive_sha256": "63ea92035356ff82a56d01293f0d2e3fe7b9d8caeb9f70380d092a2fd0a37696",
+  "source_commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
+  "source_tag": "7.2.0",
+  "train": {
+    "path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/train.jsonl",
+    "rows": 59,
+    "sha256": "136ee97d5397c05115dd1d2789edb1c940fa62e1044357eb3ba52592073d6c39"
+  },
+  "validation": {
+    "path": "runs/drift-confirmatory-v1/training-corpora/pytest-old/validation.jsonl",
+    "rows": 7,
+    "sha256": "485b2babe27091c5f9759f4f074c3b5bbd533404cdbbfc12c46097470ab78485"
+  }
+}

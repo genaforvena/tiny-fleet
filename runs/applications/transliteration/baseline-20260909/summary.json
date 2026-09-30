@@ -1,0 +1,63 @@
+{
+  "ambiguous_n": 0,
+  "application_id": "A09",
+  "cost": {
+    "gpu_minutes": 0,
+    "paid_api_calls": 0
+  },
+  "exact_word_gain_vs_identity": 1.0,
+  "gate": {
+    "exact_word_gain_minimum": 0.05,
+    "protected_spans_unchanged": true,
+    "uncertainty": "source-family intervals are not estimable for synthetic singleton families; verdict remains INCONCLUSIVE"
+  },
+  "heldout_n": 120,
+  "mean_latency_ms": 0.9412954999980253,
+  "metrics": {
+    "deterministic_transliterator_lexicon": {
+      "exact_word_n": 540,
+      "exact_word_rate": 1.0,
+      "protected_total_n": 120,
+      "protected_unchanged_n": 120,
+      "scored_word_n": 540
+    },
+    "identity": {
+      "exact_word_n": 0,
+      "exact_word_rate": 0.0,
+      "protected_total_n": 120,
+      "protected_unchanged_n": 120,
+      "scored_word_n": 540
+    }
+  },
+  "model_arms": {
+    "ByT5-small": {
+      "reason": "dependency gates C02-C08 and S01-S05 not independently verified",
+      "status": "unavailable"
+    },
+    "base_360m": {
+      "reason": "dependency gates C02-C08 and S01-S05 not independently verified",
+      "status": "unavailable"
+    },
+    "lora_360m": {
+      "reason": "dependency gates C02-C08 and S01-S05 not independently verified",
+      "status": "unavailable"
+    }
+  },
+  "pilot": {
+    "reason": "model arms unavailable and deterministic baseline leaves no justified pilot headroom",
+    "status": "not-run"
+  },
+  "provenance": {
+    "data_policy": "synthetic-only",
+    "license": "CC0-1.0",
+    "precedent": {
+      "role": "feasibility precedent only; no Tiny Fleet model claim",
+      "title": "ByT5: Towards a token-free future with pre-trained byte-to-byte models",
+      "url": "https://arxiv.org/abs/2105.13626"
+    }
+  },
+  "raw_output": "runs/applications/transliteration/baseline-20260909/raw.jsonl",
+  "raw_sha256": "bf7b5e768d07dbb7bad309226d6dcced00fe8bc1833ac08b1a62c521bcb16b5c",
+  "validation_n": 20,
+  "verdict": "INCONCLUSIVE"
+}

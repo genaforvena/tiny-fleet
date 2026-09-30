@@ -1,0 +1,18 @@
+{
+  "arm": "base",
+  "backend": "fake-v1",
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "corpus_manifest_sha256": "2259fad8ba4fc3134d9de5ff4885e4898ae82192d10b4a2ca90aead7d8726dbc",
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 16
+  },
+  "reference_policy": "reference is scorer-only and must not enter rendered_input",
+  "schema": "tiny-fleet.study-run-config/v1",
+  "seed": 17,
+  "study_id": "fleet-study-v1",
+  "timeout_s": 120.0
+}

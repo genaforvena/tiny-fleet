@@ -1,0 +1,71 @@
+{
+  "adapters": [
+    {
+      "adapter_digest": "bb47fd26c057d345ff82009e2d6603a7a16e938956ce767ca7146352f71404de",
+      "adapter_path": "adapters/attrs-new",
+      "corpus_manifest_sha256": "7d441983ed5a7aae756ddb7658821a85fd61c95d0f6b7d6bb6e915f7ee0c5583",
+      "repo": "attrs",
+      "snapshot": "new",
+      "source_commit": "598494a618410490cfbe0c896b7a544f6d23e0d9",
+      "training_run_sha256": "a5b7d313c3e3550258313c81a65adbda24618c8340f4bf623479b04e95bc78e9"
+    },
+    {
+      "adapter_digest": "c180cd1efcf012d91057c76d1dea5c0635ecab0a966b33831fc118ad3977090d",
+      "adapter_path": "adapters/attrs-old",
+      "corpus_manifest_sha256": "60b4fd56f04f2b2bb4c484bafd760a11a09d0fd5992eed8c3dd5d2ef480fe330",
+      "repo": "attrs",
+      "snapshot": "old",
+      "source_commit": "a9960de98d0f58ccb2880d03c97dafba3fc1111c",
+      "training_run_sha256": "defe4e88be3603659f3bd70abeba68b96baced1f3b238ca225204539b2737b69"
+    },
+    {
+      "adapter_digest": "38bccff100199c2e92aae4f2fe907bf52a63bb41826ea8395f67f1f9030d3778",
+      "adapter_path": "adapters/httpx-new",
+      "corpus_manifest_sha256": "9245209fa3004bd1ead47347d86f7b77923846d6db6d9478317589e1ac025cfc",
+      "repo": "httpx",
+      "snapshot": "new",
+      "source_commit": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+      "training_run_sha256": "2b030a5b4e9292520a5745ae62daffcb30faa37dc3647e3746a9a10bb4aeec3b"
+    },
+    {
+      "adapter_digest": "6edc191006c7b51366ab3af95f09d1797d3b557d91e6ef481e68861fb0fab052",
+      "adapter_path": "adapters/httpx-old",
+      "corpus_manifest_sha256": "3229c1a34b2291793afa9890d7df31a7c0cb691c5778d82dd74f0c28b110f657",
+      "repo": "httpx",
+      "snapshot": "old",
+      "source_commit": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
+      "training_run_sha256": "d7157afcaf68bc9d160d0e8b72aae272ccc5f9005075f138a55ffae6a6ef9e8b"
+    },
+    {
+      "adapter_digest": "8c3d48d75ffd8760877c3b235801f991ac74b573f7ff4995f42e2a0030d287c9",
+      "adapter_path": "adapters/pytest-new",
+      "corpus_manifest_sha256": "f87276a0d38004e3e098c59b9b1db091055849870dec956f713aab2f448f868e",
+      "repo": "pytest",
+      "snapshot": "new",
+      "source_commit": "53f8b4e634c5066c4f797a87b20060edbb086240",
+      "training_run_sha256": "316a3fa9ced7c6e9ebb57402ba9f6ac2b4c55c8dfff828fa1867b87b22121589"
+    },
+    {
+      "adapter_digest": "640881b4de8a24b60a4b6fe0e73a367513a5ef791acd9783032ee526303ea089",
+      "adapter_path": "adapters/pytest-old",
+      "corpus_manifest_sha256": "d3fe08994511f0acc550d34b6bf6afb7956c8f1ccefce9fe25bdb75c79cb175c",
+      "repo": "pytest",
+      "snapshot": "old",
+      "source_commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
+      "training_run_sha256": "7a3723e1f7b3b26e42e5cd7526c6ce0a6658dd8a0412326e19173b7b2f0a7e2a"
+    }
+  ],
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "sample_registration": {
+    "path": "runs/drift-confirmatory-v1/registration.json",
+    "sha256": "f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8"
+  },
+  "schema": "tiny-fleet.drift-confirmatory-adapter-registration/v1",
+  "seed": 17,
+  "status": "six-adapters-trained",
+  "temporal_limit": "adaptation artifacts only; no generation, scoring, or comparison was run",
+  "training_plan_sha256": "6d256ef9cf0c67f76e0898ef7d557062559fd129e52decbf8f65a1c8a68b693d"
+}

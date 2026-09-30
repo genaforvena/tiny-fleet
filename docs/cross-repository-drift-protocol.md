@@ -1,6 +1,6 @@
 # Cross-repository architectural-drift protocol
 
-Status: protocol v1, pilot registration 2026-09-06
+Status: protocol v1, portable extractor registered 2026-09-11
 
 This protocol measures architectural change across repositories without treating one
 repository's vocabulary, tooling, or prompt as a universal definition of drift. It was
@@ -31,7 +31,11 @@ zero. A comparison is publishable only if its data and runtime gates pass.
 
 ## Repository and snapshot selection
 
-Select at least two materially different repositories before analysis. Record for each:
+For the registered architectural-drift study, freeze at least **three independent external
+repositories** before analysis. The study's own repository (`tiny-fleet`) is not an external
+repository. The earlier two-repository local pilot and its `lte-workstation` sample are retained
+as historical artifacts; they do not satisfy or count toward this external-repository gate. Record
+for each external repository:
 
 | field | requirement |
 |---|---|
@@ -84,6 +88,46 @@ constitute broad generalisation by themselves.
 
 ## Structural and lexical measurements
 
+The dependency-free `scripts/drift_extract.py` is a descriptive Git-object
+extractor, not the full registered cross-repository runner. Reproduce the
+focused fixture and pinned tiny-fleet comparison with:
+
+```bash
+python3 scripts/test_drift_edge_delta.py
+python3 scripts/drift_extract.py --repo . \
+  --old 4e87f2ee3644f53e2a9665195b9d6ddb933aa1d8 \
+  --new b23fbf708b954cbf5462ebcd2d7ef50036a3fb1d \
+  --run-dir runs/architecture-drift-local-20260925
+```
+
+It reads immutable `git ls-tree` entries and `git cat-file` for blobs, never
+mutable `HEAD` or a private mesh installation. Gitlinks (mode `160000`, kind
+`commit`) are excluded from blob reads even when the target exists locally.
+It writes `old-files.tsv`, `new-files.tsv`,
+`old-corpus.txt`, `new-corpus.txt`, `old-python-edges.tsv`,
+`new-python-edges.tsv`, `python-edge-delta.tsv`, `structural.tsv`, and
+`manifest.json`. The delta table is sorted by change (`added`, then
+`removed`) and source/target path; its `side` selects the `new` or `old`
+included inventory for both `source_blob_sha256` and `target_blob_sha256`.
+Manifest added/removed edge counts equal the corresponding table row counts.
+Paths under `generated`, `vendor`, `node_modules`, `runs`, `adapters`, or
+`corpus`, binary blobs, malformed UTF-8, and gitlinks are retained as excluded
+metadata and counted, never copied into the corpus. Inventory TSVs retain
+their existing columns and append `git_object` with the exact tree-entry
+object ID; for gitlinks `reason=gitlink`, `blob_sha256` is empty, and no blob
+bytes or text delta are attributed to the commit target. Missing ordinary
+blobs fail extraction rather than being classified as gitlinks. Identical-blob
+renames are matched one-to-one; changed paths compare blob content at the same
+pathname. The Python edge set parses static `import` and `from` statements
+and retains only targets mapped to included local Python files; dynamic imports,
+runtime resolution, and other languages are out of scope. These AST edges are not
+runtime dependencies or semantic drift. Parse failures stay explicit in
+`old_parse_failures` and `new_parse_failures` in the manifest. `mesh_refs`
+means executable-position `mesh-*` tokens only, not ordinary documentation
+mentions. Identical commit inputs must produce zero path and edge delta.
+This extractor does not enforce repository-specific license or secret filters,
+split manifests, native behavior, or generative controls: its output alone
+cannot pass the full study gate.
 Compute the same language-agnostic metrics for every snapshot: included files, bytes, median
 and p95 file size, extensions/languages, unit count, and changed-path counts. Add a
 repository-native metric only with its parser and definition recorded. For example,
@@ -145,18 +189,22 @@ missing-artifact case; the gates must detect all three. The decision must distin
 - `preliminary`: structural/lexical or behavioral evidence exists, but a declared arm is absent;
 - `blocked`: a required artifact, dependency, provenance, or control failed.
 
-## Registered pilot
+## Historical local pilot and registered external sample
 
-The first pilot uses two materially different local repositories:
+The earlier two-repository pilot is retained for historical reproducibility only: `tiny-fleet`
+(`4e87f2e` on 2026-09-03, with its new commit to be frozen by that pilot's own runner) and
+`lte-workstation` (`2dc867eed5d128beeb69ca2e818f291ab76ea895` to
+`82c096be8bffc04aa56867c12d6292134f338662`). The original
+`02-external-sample/sample-manifest.json` is not edited by this amendment. Neither local repository
+counts toward the separate requirement for three independent external repositories.
 
-| repo | role | old snapshot | new snapshot | rationale |
-|---|---|---|---|---|
-| `tiny-fleet` | small-model evaluation and corpus tooling | `4e87f2e` (2026-09-03) | next preregistered commit after protocol review | evaluation/code/data mix; Python/JSONL |
-| `lte-workstation` | distributed mesh substrate and shell tools | `2dc867e` (2026-09-06) | `82c096b` (2026-09-06) | operational shell/docs/tooling mix; materially different domain |
-
-The table leaves the new `tiny-fleet` commit unclaimed until the pilot runner freezes it. The
-protocol artifact records the observed commits so a runner can reject a moving target. The pilot
-must not reuse the old report's June-vs-September pair as if it were a new result.
+For that requirement, freeze and use all three entries in
+`02-external-sample-v2/sample-manifest.json`: `pallets/flask`, `psf/requests`, and
+`pydantic/pydantic`. The manifest defines the stable-tag cutoff rule, commit IDs, license evidence,
+snapshot windows, inclusion policy, and canonical archive SHA-256 for every pinned snapshot. It is
+the sole input registry for the external sample; do not substitute `HEAD`, add repositories, or
+change a pair after examining comparison results. A required unavailable input blocks only its
+declared arm and must be named in the run decision.
 
 ## Reproduction command contract
 
@@ -164,8 +212,9 @@ The eventual runner accepts explicit paths and commits and writes only inside a 
 
 ```bash
 cross-repo-drift register --run-dir runs/<run-id> \
-  --repo tiny-fleet=/path/to/tiny-fleet@<commit> \
-  --repo lte-workstation=/path/to/lte-workstation@<commit>
+  --repo flask=/path/to/flask@ab8149664182b662453a563161aa89013c806dc9 \
+  --repo requests=/path/to/requests@0e322af87745eff34caffe4df68456ebc20d9068 \
+  --repo pydantic=/path/to/pydantic@5bd3a6507b749fcd4833173fba88b3690ff77170
 cross-repo-drift corpus --run-dir runs/<run-id>
 cross-repo-drift split --run-dir runs/<run-id>
 cross-repo-drift measure --run-dir runs/<run-id> --arm structural,lexical,behavioral
@@ -184,3 +233,14 @@ validator remains the gate for per-model train/validation/heldout/adversarial ro
 protocol adds repository identity, snapshot provenance, cross-repo split controls, and
 cross-repo comparability. The baseline audit remains evidence about what the old report could
 not prove, not a result produced by this protocol.
+
+## Offline generative fixture runner
+
+`scripts/drift_generate.py` is the bounded fixture runner for the generative arm. Its frozen
+manifest names repository/snapshot/prompt identity, the three required arms (`base`, `prompt-only`,
+`lora`), seeds, repetitions, model digest, and scorer digest. It writes one raw
+`generative.jsonl` record for every `(repo, snapshot, arm, prompt_id, seed, repetition)` key and
+validates input hashes and provenance before accepting the matrix. Missing arms, duplicate keys,
+snapshot-label swaps, and prompt contamination fail closed. The default fixture backend is
+dependency-free and does not execute generated commands or access the network; real inference is
+an explicitly separate, pinned run.

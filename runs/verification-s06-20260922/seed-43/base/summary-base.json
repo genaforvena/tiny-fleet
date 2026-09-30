@@ -1,0 +1,10 @@
+{
+  "arm": "base",
+  "config": "runs/verification-s06-20260922/seed-43/base/config.json",
+  "failed": 0,
+  "ok": 2,
+  "predictions": "runs/verification-s06-20260922/seed-43/base/predictions-base.jsonl",
+  "records": 2,
+  "records_sha256": "bd64d69067a408215e5cb9eb81065520cab314fa7987b2c54e4bc9d4f5f68f81",
+  "schema": "tiny-fleet.study-run-summary/v1"
+}

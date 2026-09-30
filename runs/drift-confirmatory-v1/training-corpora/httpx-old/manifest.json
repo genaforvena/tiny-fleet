@@ -1,0 +1,62 @@
+{
+  "corpus_builder": {
+    "path": "scripts/build_drift_confirmatory_corpus.py",
+    "source_sha256": "71eaa0a013c38ab97914f4cd22a6e6fa39f13ca8c3eab018447a94e62761bad1"
+  },
+  "heldout_excerpt_ledger": {
+    "path": "runs/drift-confirmatory-v1/heldout-excerpts/heldout-excerpts.json",
+    "sha256": "d37c62534a429d7659b78d44f4f7bc2e6ca2d56ee14a1eb101b81e00d245c83a",
+    "source_file_sha256": "71553d12bcda5ef7b9aeaa0fa121ebf7225ba2f1ed202adcc51ef206835278ec",
+    "source_path_excluded": "httpx/_api.py"
+  },
+  "inventory": {
+    "excluded": 94,
+    "included": 22,
+    "path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/inventory.jsonl",
+    "rows": 116,
+    "sha256": "3133e3c074ae2e8d8798089d604e32fa433c70ae187ea6b1cb600ca95dc42c97"
+  },
+  "license": {
+    "saved_path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/LICENSE.txt",
+    "sha256": "4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d",
+    "source_path": "LICENSE.md",
+    "spdx": "BSD-3-Clause"
+  },
+  "package_root": "httpx",
+  "repo": "httpx",
+  "run_id": "drift-confirmatory-v1",
+  "sample_registration": {
+    "path": "runs/drift-confirmatory-v1/registration.json",
+    "sha256": "f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8"
+  },
+  "schema": "tiny-fleet.drift-confirmatory-training-corpus/v1",
+  "selection": {
+    "allow": "regular UTF-8 Python source under package_root covered by the verified root license",
+    "corpus_scope": "adaptation training only; every archive member file is listed in the inventory",
+    "exclude": [
+      "tests",
+      "test_*.py and *_test.py",
+      "generated/vendor trees",
+      "non-Python files",
+      "symlinks and non-regular objects",
+      "binary or malformed UTF-8",
+      "selected held-out module"
+    ],
+    "validation_split": "ceil(10% of eligible files), deterministic SHA256(repo + NUL + snapshot + NUL + path) ranking"
+  },
+  "snapshot": "old",
+  "source_archive": "runs/drift-confirmatory-v1/snapshots/httpx-old.tar",
+  "source_archive_sha256": "3b72f973d801b5551bd2f34c1f29a7410a66c0c69f119f2c96bbf8a6ef928084",
+  "source_commit": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
+  "source_tag": "0.23.1",
+  "train": {
+    "path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/train.jsonl",
+    "rows": 19,
+    "sha256": "4a134f083eb1bc866f0190b3017249178cc5c72a5d93fa2d16bc30893cb0fb1e"
+  },
+  "validation": {
+    "path": "runs/drift-confirmatory-v1/training-corpora/httpx-old/validation.jsonl",
+    "rows": 3,
+    "sha256": "a2eacfa1cda103a0c51c65852e220494fafdbc5e5d0de312c2c2996e4521053a"
+  }
+}

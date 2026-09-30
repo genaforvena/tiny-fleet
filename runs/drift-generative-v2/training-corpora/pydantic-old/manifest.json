@@ -1,0 +1,51 @@
+{
+  "corpus_builder": {
+    "path": "scripts/build_drift_train_corpus.py",
+    "source_sha256": "f33ff6fac0e3a17eee38bd0fba8f34b0424f894c7703e5deb685b7d1eec2329b"
+  },
+  "inventory": {
+    "excluded": 309,
+    "included": 25,
+    "path": "runs/drift-generative-v2/training-corpora/pydantic-old/inventory.jsonl",
+    "rows": 334,
+    "sha256": "f5ca717e5d6dd8aa31d5f30e113a80bf390c9bc8c342ffd1809df2ab42798fa7"
+  },
+  "license": {
+    "saved_path": "runs/drift-generative-v2/training-corpora/pydantic-old/LICENSE.txt",
+    "saved_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+    "source_path": "LICENSE",
+    "source_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+    "spdx": "MIT"
+  },
+  "package_root": "pydantic",
+  "repo": "pydantic",
+  "schema": "tiny-fleet.drift-training-corpus/v1",
+  "selection": {
+    "allow": "regular UTF-8 Python source under the native package root, covered by the verified root license",
+    "corpus_scope": "training adaptation corpus, not a complete repository archive; every tracked path is hash-accounted in inventory.jsonl",
+    "exclude": [
+      "outside native package",
+      "tests directories and test_*.py/*_test.py files",
+      "generated/vendor trees",
+      "non-Python files",
+      "symlinks and non-regular objects",
+      "binary or malformed UTF-8",
+      "selected held-out source module"
+    ],
+    "file_level_license": "include only absent SPDX markers or markers exactly equal to the root SPDX identifier; otherwise exclude",
+    "heldout_source_excluded": "pydantic/config.py",
+    "validation_split": "ceil(10% of eligible files), chosen by ascending SHA256(repo + NUL + snapshot + NUL + path); file groups stay intact"
+  },
+  "snapshot": "old",
+  "source_commit": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d",
+  "train": {
+    "path": "runs/drift-generative-v2/training-corpora/pydantic-old/train.jsonl",
+    "rows": 22,
+    "sha256": "2151e40014f0cda63d2a9e5820d5a846f889184d8e5e930633807e696b9d5dbb"
+  },
+  "validation": {
+    "path": "runs/drift-generative-v2/training-corpora/pydantic-old/validation.jsonl",
+    "rows": 3,
+    "sha256": "c85ac0f5a00fdf0d6f787d8e526e6b83aa93ef0b62edad961007c88d1b119dc7"
+  }
+}

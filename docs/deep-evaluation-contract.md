@@ -1,7 +1,7 @@
 # Deep-evaluation contract
 
 Status: design gate for `tinyfleet-specialists/design-deep-evals`  
-Version: `1`  
+Version: `2`  
 Owner: `tinyfleet-specialists`
 
 This contract turns `docs/evaluation-methodology.md` into a frozen hand-off between corpus
@@ -14,16 +14,21 @@ exists, hashes resolve, and the negative controls fail closed.
 
 ```json
 {
-  "schema": "tiny-fleet.deep-eval.manifest/v1",
+  "schema": "tiny-fleet.deep-eval.manifest/v2",
   "run_id": "2026-09-06-guitar-001",
   "git_commit": "<40-hex commit>",
   "base_model": {"id": "<pinned model id>", "revision": "<immutable revision>"},
   "candidate": {"id": "<adapter or model id>", "revision": "<sha256>"},
   "controls": ["base", "reference"],
   "seed": 17,
+  "prediction_matrix": {"models": ["base", "reference", "<adapter or model id>"], "seeds": [17], "repetitions": [0]},
+  "raw_output_schema": "tiny-fleet.predictions/v1",
+  "migration_report": {"status": "none"},
+  "rendering": {"template_sha256": "<64-hex>", "config_sha256": "<64-hex>"},
   "config_sha256": "<64-hex sha256>",
   "created_at": "2026-09-06T00:00:00Z",
   "cutoff": "2026-08-01T00:00:00Z",
+  "temporal": {"train_end": "2026-07-01T00:00:00Z", "heldout_start": "2026-07-15T00:00:00Z"},
   "datasets": {
     "train": {"path": "corpus/guitar-train.jsonl", "rows": 0, "sha256": "<64-hex>"},
     "validation": {"path": "corpus/guitar-validation.jsonl", "rows": 0, "sha256": "<64-hex>"},
@@ -52,12 +57,20 @@ Each JSONL row must have these fields, with `split` matching its manifest datase
   "split": "heldout",
   "expected_route": "specialist:guitar",
   "expected_action": "answer",
+  "prompt": "What chord is this?",
+  "reference": "The answer text",
+  "source_family": "book-03",
   "provenance": {"kind": "licensed|synthetic|internal", "source": "...", "redacted": true}
 }
 ```
 
-`case_id` and `source_id` must be unique within their respective namespaces. The split is assigned
-before normalization. No source or time bucket may occur in both train and heldout/adversarial.
+`case_id` must be unique within each split. `prompt` and `reference` are actual typed strings;
+prompt leakage is checked after Unicode NFKC, case-folding, and collapsed whitespace. `source_family`
+is independent of split names and may not overlap train/validation or validation/heldout. All paths
+are resolved before containment checks, so symlink escapes are rejected without opening the target.
+Timestamps must be timezone-aware; `cutoff` is a maximum inclusion time, while `train_end` and
+`heldout_start` define the temporal holdout window. Version 1 remains readable only for archival
+inspection and is never publication-ready.
 
 ## Report bundle
 
@@ -79,6 +92,14 @@ The scorer writes these exact files under the same run directory:
 Raw predictions are append-only inputs. Scores and decision files are derived in a separate,
 deterministic pass; editing a prediction requires a new run id and new manifest hash.
 
+Each prediction has the key `(case_id, model, seed, repetition)` and must include the dataset
+prompt hash, the exact rendered-input text and hash, output, route, action, confidence and its
+declared kind, latency, and status. The manifest's prediction matrix is authoritative; duplicate,
+unknown, missing, or extra keys are rejected. Status is `ok`, `timeout`, or `error`; failed rows
+retain raw output when available and use null for unavailable confidence/latency values with an
+explicit reason. Prompt and rendered-input hashes are checked independently, and references may
+not be placed in rendered input without an explicit fixture justification.
+
 ## Deliberate negative controls
 
 The validator/test harness must execute these fixtures on every contract change:
@@ -95,6 +116,10 @@ The validator/test harness must execute these fixtures on every contract change:
    `REJECT manifest-mismatch` with expected and observed hash/count.
 5. **Orphan-prediction control:** add a prediction for an unknown `case_id` or omit one expected
    model/case pair. Expected result: `REJECT prediction-cardinality` before aggregate scores.
+6. **Boundary controls:** duplicate an ID within a split, overlap a `source_family` across adjacent
+   splits, use a malformed typed field, leave a required split empty, and point a dataset through a
+   symlink outside the run root. Expected results are stable `manifest-mismatch`, `split-boundary`,
+   or `leakage` rejections; the escaped target is never opened.
 
 Negative controls are successful only when they fail closed with a stable error category and a
 non-zero process exit. A green contract test therefore includes both valid-fixture acceptance and
@@ -108,8 +133,26 @@ calibration, routing, adversarial, and cost tables; then write the decision. A l
 the earlier path and hash and may not regenerate missing inputs. Until this bundle exists, the
 current offline `24/24` benchmark remains a contract smoke test, not a specialist result.
 
-## Next implementation step
+## Derived-report validation
 
-Implement a dependency-free validator with `--manifest` and `--run-dir`, using the rejection
-categories above, and add its valid-fixture plus five negative-control cases to the offline test
-path before `mood-corpus` creates new RU/EN data.
+`report_contract.validate_reports(run_dir)` validates the derived bundle after the raw tape has
+passed `deep_evaluation.validate_run`. It parses `scores.json`, all TSV tables, and the required
+fields in `decision.md`; empty/existence-only checks are not sufficient.
+
+The report schemas are intentionally small and typed:
+
+- `scores.json` (`tiny-fleet.deep-eval.scores/v1`) records `result_status`, total/scored/correct
+  prediction counts, accuracy, and false accepts. Primary counts are recomputed from raw outputs.
+- `slices.tsv` has `slice`, `value`, `count`, `scored`, `correct`, and `accuracy`.
+- `calibration.tsv` has `bin`, `count`, `confidence_sum`, `correct`, `ece`, and `brier`.
+- `routing.tsv` has one row per raw prediction key and records expected route, actual route, and
+  action decision.
+- `adversarial.tsv` has one row per adversarial raw prediction key and records expected/actual
+  action, forbidden-output status, and review status.
+- `cost.tsv` has `metric`, finite nonnegative `value`, `unit`, and nonnegative `count`.
+- `decision.md` declares `result_status`, `routing_eligible`, and numeric `coverage`.
+
+`artifact_valid` is independent of experiment success. A complete failed or negative experiment
+may validate as an artifact while remaining ineligible for routing. An all-abstain report cannot
+claim routing usefulness. The executable contract tests include malformed, missing, tampered,
+unsafe-action, omitted-case, and all-abstain controls.

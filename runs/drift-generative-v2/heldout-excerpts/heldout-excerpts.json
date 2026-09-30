@@ -1,0 +1,155 @@
+{
+  "licenses": [
+    {
+      "repo": "flask",
+      "saved_path": "licenses/flask-old-LICENSE.txt",
+      "snapshot": "old",
+      "source_path": "LICENSE.rst",
+      "source_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+      "spdx": "BSD-3-Clause"
+    },
+    {
+      "repo": "flask",
+      "saved_path": "licenses/flask-new-LICENSE.txt",
+      "snapshot": "new",
+      "source_path": "LICENSE.txt",
+      "source_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+      "spdx": "BSD-3-Clause"
+    },
+    {
+      "repo": "pydantic",
+      "saved_path": "licenses/pydantic-old-LICENSE.txt",
+      "snapshot": "old",
+      "source_path": "LICENSE",
+      "source_sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+      "spdx": "MIT"
+    },
+    {
+      "repo": "pydantic",
+      "saved_path": "licenses/pydantic-new-LICENSE.txt",
+      "snapshot": "new",
+      "source_path": "LICENSE",
+      "source_sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+      "spdx": "MIT"
+    },
+    {
+      "repo": "requests",
+      "saved_path": "licenses/requests-old-LICENSE.txt",
+      "snapshot": "old",
+      "source_path": "LICENSE",
+      "source_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "spdx": "Apache-2.0"
+    },
+    {
+      "repo": "requests",
+      "saved_path": "licenses/requests-new-LICENSE.txt",
+      "snapshot": "new",
+      "source_path": "LICENSE",
+      "source_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "spdx": "Apache-2.0"
+    }
+  ],
+  "lines_per_excerpt": 80,
+  "prompt_template": "Using only the supplied snapshot excerpt, describe the module's documented public responsibility and explicit behavioral guarantees. Cite the supplied path. Do not infer changes outside the excerpt; say 'not stated' when evidence is absent.",
+  "prompt_template_sha256": "bccdd3aa0cf0e9ee2d486b83ceed12e62a00fc86702106c2053276369f4eeb78",
+  "prompts": [
+    {
+      "excerpt_path": "excerpts/flask-old.txt",
+      "lora_adapter": null,
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "flask",
+      "selection_key_sha256": "01d76b5d4607e49eae8d9397ec9c1c6741c63fb08569d78ded35589a175004b4",
+      "snapshot": "old",
+      "snapshot_excerpt": "from __future__ import annotations\n\nimport ast\nimport inspect\nimport os\nimport platform\nimport re\nimport sys\nimport traceback\nimport typing as t\nfrom functools import update_wrapper\nfrom operator import attrgetter\n\nimport click\nfrom click.core import ParameterSource\nfrom werkzeug import run_simple\nfrom werkzeug.serving import is_running_from_reloader\nfrom werkzeug.utils import import_string\n\nfrom .globals import current_app\nfrom .helpers import get_debug_flag\nfrom .helpers import get_load_dotenv\n\nif t.TYPE_CHECKING:\n    from .app import Flask\n\n\nclass NoAppException(click.UsageError):\n    \"\"\"Raised if an application cannot be found or loaded.\"\"\"\n\n\ndef find_best_app(module):\n    \"\"\"Given a module instance this tries to find the best possible\n    application in the module or raises an exception.\n    \"\"\"\n    from . import Flask\n\n    # Search for the most common names first.\n    for attr_name in (\"app\", \"application\"):\n        app = getattr(module, attr_name, None)\n\n        if isinstance(app, Flask):\n            return app\n\n    # Otherwise find the only object that is a Flask instance.\n    matches = [v for v in module.__dict__.values() if isinstance(v, Flask)]\n\n    if len(matches) == 1:\n        return matches[0]\n    elif len(matches) > 1:\n        raise NoAppException(\n            \"Detected multiple Flask applications in module\"\n            f\" '{module.__name__}'. Use '{module.__name__}:name'\"\n            \" to specify the correct one.\"\n        )\n\n    # Search for app factory functions.\n    for attr_name in (\"create_app\", \"make_app\"):\n        app_factory = getattr(module, attr_name, None)\n\n        if inspect.isfunction(app_factory):\n            try:\n                app = app_factory()\n\n                if isinstance(app, Flask):\n                    return app\n            except TypeError as e:\n                if not _called_with_wrong_args(app_factory):\n                    raise\n\n                raise NoAppException(\n                    f\"Detected factory '{attr_name}' in module '{module.__name__}',\"\n                    \" but could not call it without arguments. Use\"\n                    f\" '{module.__name__}:{attr_name}(args)'\"\n                    \" to specify arguments.\"\n                ) from e\n\n    raise NoAppException(\n        \"Failed to find Flask application or factory in module\"\n        f\" '{module.__name__}'. Use '{module.__name__}:name'\"",
+      "snapshot_excerpt_sha256": "5c40e7141b710dde328c06e80260dce3df9b13df8d2e159de1e80cb0b9cc13fa",
+      "source_commit": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3",
+      "source_family": "pallets",
+      "source_file_sha256": "7e82e50fc362217731a71326450bef9593db54cf29c4e6891b7b1ae7c73d7400",
+      "source_path": "src/flask/cli.py"
+    },
+    {
+      "excerpt_path": "excerpts/flask-new.txt",
+      "lora_adapter": null,
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "flask",
+      "selection_key_sha256": "01d76b5d4607e49eae8d9397ec9c1c6741c63fb08569d78ded35589a175004b4",
+      "snapshot": "new",
+      "snapshot_excerpt": "from __future__ import annotations\n\nimport ast\nimport collections.abc as cabc\nimport importlib.metadata\nimport inspect\nimport os\nimport platform\nimport re\nimport sys\nimport traceback\nimport typing as t\nfrom functools import update_wrapper\nfrom operator import itemgetter\nfrom types import ModuleType\n\nimport click\nfrom click.core import ParameterSource\nfrom werkzeug import run_simple\nfrom werkzeug.serving import is_running_from_reloader\nfrom werkzeug.utils import import_string\n\nfrom .globals import current_app\nfrom .helpers import get_debug_flag\nfrom .helpers import get_load_dotenv\n\nif t.TYPE_CHECKING:\n    import ssl\n\n    from _typeshed.wsgi import StartResponse\n    from _typeshed.wsgi import WSGIApplication\n    from _typeshed.wsgi import WSGIEnvironment\n\n    from .app import Flask\n\n\nclass NoAppException(click.UsageError):\n    \"\"\"Raised if an application cannot be found or loaded.\"\"\"\n\n\ndef find_best_app(module: ModuleType) -> Flask:\n    \"\"\"Given a module instance this tries to find the best possible\n    application in the module or raises an exception.\n    \"\"\"\n    from . import Flask\n\n    # Search for the most common names first.\n    for attr_name in (\"app\", \"application\"):\n        app = getattr(module, attr_name, None)\n\n        if isinstance(app, Flask):\n            return app\n\n    # Otherwise find the only object that is a Flask instance.\n    matches = [v for v in module.__dict__.values() if isinstance(v, Flask)]\n\n    if len(matches) == 1:\n        return matches[0]\n    elif len(matches) > 1:\n        raise NoAppException(\n            \"Detected multiple Flask applications in module\"\n            f\" '{module.__name__}'. Use '{module.__name__}:name'\"\n            \" to specify the correct one.\"\n        )\n\n    # Search for app factory functions.\n    for attr_name in (\"create_app\", \"make_app\"):\n        app_factory = getattr(module, attr_name, None)\n\n        if inspect.isfunction(app_factory):\n            try:\n                app = app_factory()\n\n                if isinstance(app, Flask):\n                    return app\n            except TypeError as e:\n                if not _called_with_wrong_args(app_factory):\n                    raise\n\n                raise NoAppException(",
+      "snapshot_excerpt_sha256": "9318d35bd7959e7afb59ba46b5cb28740f0f4dfbee0cb4a7be6105e4d4eb1f05",
+      "source_commit": "ab8149664182b662453a563161aa89013c806dc9",
+      "source_family": "pallets",
+      "source_file_sha256": "5dd9a4043ef84a74f48ebb7682ac87ac4f685c675695c753ac9411fa2e5a0296",
+      "source_path": "src/flask/cli.py"
+    },
+    {
+      "excerpt_path": "excerpts/pydantic-old.txt",
+      "lora_adapter": null,
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "pydantic",
+      "selection_key_sha256": "0005868df9e65bb662eee3003bf178e469454a69d98ecfe78f518b2763d77c4b",
+      "snapshot": "old",
+      "snapshot_excerpt": "import json\nfrom enum import Enum\nfrom typing import TYPE_CHECKING, Any, Callable, Dict, ForwardRef, Optional, Tuple, Type, Union\n\nfrom typing_extensions import Literal, Protocol\n\nfrom .typing import AnyArgTCallable, AnyCallable\nfrom .utils import GetterDict\nfrom .version import compiled\n\nif TYPE_CHECKING:\n    from typing import overload\n\n    from .fields import ModelField\n    from .main import BaseModel\n\n    ConfigType = Type['BaseConfig']\n\n    class SchemaExtraCallable(Protocol):\n        @overload\n        def __call__(self, schema: Dict[str, Any]) -> None:\n            pass\n\n        @overload\n        def __call__(self, schema: Dict[str, Any], model_class: Type[BaseModel]) -> None:\n            pass\n\nelse:\n    SchemaExtraCallable = Callable[..., None]\n\n__all__ = 'BaseConfig', 'ConfigDict', 'get_config', 'Extra', 'inherit_config', 'prepare_config'\n\n\nclass Extra(str, Enum):\n    allow = 'allow'\n    ignore = 'ignore'\n    forbid = 'forbid'\n\n\n# https://github.com/cython/cython/issues/4003\n# Will be fixed with Cython 3 but still in alpha right now\nif not compiled:\n    from typing_extensions import TypedDict\n\n    class ConfigDict(TypedDict, total=False):\n        title: Optional[str]\n        anystr_lower: bool\n        anystr_strip_whitespace: bool\n        min_anystr_length: int\n        max_anystr_length: Optional[int]\n        validate_all: bool\n        extra: Extra\n        allow_mutation: bool\n        frozen: bool\n        allow_population_by_field_name: bool\n        use_enum_values: bool\n        fields: Dict[str, Union[str, Dict[str, str]]]\n        validate_assignment: bool\n        error_msg_templates: Dict[str, str]\n        arbitrary_types_allowed: bool\n        orm_mode: bool\n        getter_dict: Type[GetterDict]\n        alias_generator: Optional[Callable[[str], str]]\n        keep_untouched: Tuple[type, ...]\n        schema_extra: Union[Dict[str, object], 'SchemaExtraCallable']\n        json_loads: Callable[[str], object]\n        json_dumps: AnyArgTCallable[str]\n        json_encoders: Dict[Type[object], AnyCallable]\n        underscore_attrs_are_private: bool\n        allow_inf_nan: bool\n        copy_on_model_validation: Literal['none', 'deep', 'shallow']\n        # whether dataclass `__post_init__` should be run after validation\n        post_init_call: Literal['before_validation', 'after_validation']\n\nelse:\n    ConfigDict = dict  # type: ignore\n\n\nclass BaseConfig:\n    title: Optional[str] = None",
+      "snapshot_excerpt_sha256": "932c00e50696cbbd1ab1134e45173a73dd4c11d10dffe19f4798abf7c973db90",
+      "source_commit": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d",
+      "source_family": "pydantic",
+      "source_file_sha256": "0deeb505b14d5e7024f8493b43287f63a04f7376610f7e84415844e985865d28",
+      "source_path": "pydantic/config.py"
+    },
+    {
+      "excerpt_path": "excerpts/pydantic-new.txt",
+      "lora_adapter": null,
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "pydantic",
+      "selection_key_sha256": "0005868df9e65bb662eee3003bf178e469454a69d98ecfe78f518b2763d77c4b",
+      "snapshot": "new",
+      "snapshot_excerpt": "\"\"\"Configuration for Pydantic models.\"\"\"\n\nfrom __future__ import annotations as _annotations\n\nfrom re import Pattern\nfrom typing import TYPE_CHECKING, Any, Callable, Dict, List, Type, TypeVar, Union\n\nfrom typing_extensions import Literal, TypeAlias, TypedDict\n\nfrom ._migration import getattr_migration\nfrom .aliases import AliasGenerator\nfrom .errors import PydanticUserError\n\nif TYPE_CHECKING:\n    from ._internal._generate_schema import GenerateSchema as _GenerateSchema\n    from .fields import ComputedFieldInfo, FieldInfo\n\n__all__ = ('ConfigDict', 'with_config')\n\n\nJsonValue: TypeAlias = Union[int, float, str, bool, None, List['JsonValue'], 'JsonDict']\nJsonDict: TypeAlias = Dict[str, JsonValue]\n\nJsonEncoder = Callable[[Any], Any]\n\nJsonSchemaExtraCallable: TypeAlias = Union[\n    Callable[[JsonDict], None],\n    Callable[[JsonDict, Type[Any]], None],\n]\n\nExtraValues = Literal['allow', 'ignore', 'forbid']\n\n\nclass ConfigDict(TypedDict, total=False):\n    \"\"\"A TypedDict for configuring Pydantic behaviour.\"\"\"\n\n    title: str | None\n    \"\"\"The title for the generated JSON schema, defaults to the model's name\"\"\"\n\n    model_title_generator: Callable[[type], str] | None\n    \"\"\"A callable that takes a model class and returns the title for it. Defaults to `None`.\"\"\"\n\n    field_title_generator: Callable[[str, FieldInfo | ComputedFieldInfo], str] | None\n    \"\"\"A callable that takes a field's name and info and returns title for it. Defaults to `None`.\"\"\"\n\n    str_to_lower: bool\n    \"\"\"Whether to convert all characters to lowercase for str types. Defaults to `False`.\"\"\"\n\n    str_to_upper: bool\n    \"\"\"Whether to convert all characters to uppercase for str types. Defaults to `False`.\"\"\"\n\n    str_strip_whitespace: bool\n    \"\"\"Whether to strip leading and trailing whitespace for str types.\"\"\"\n\n    str_min_length: int\n    \"\"\"The minimum length for str types. Defaults to `None`.\"\"\"\n\n    str_max_length: int | None\n    \"\"\"The maximum length for str types. Defaults to `None`.\"\"\"\n\n    extra: ExtraValues | None\n    \"\"\"\n    Whether to ignore, allow, or forbid extra attributes during model initialization. Defaults to `'ignore'`.\n\n    You can configure how pydantic handles the attributes that are not defined in the model:\n\n    * `allow` - Allow any extra attributes.\n    * `forbid` - Forbid any extra attributes.\n    * `ignore` - Ignore any extra attributes.\n\n    ```python\n    from pydantic import BaseModel, ConfigDict\n\n    class User(BaseModel):\n        model_config = ConfigDict(extra='ignore')  # (1)!\n\n        name: str\n\n    user = User(name='John Doe', age=20)  # (2)!\n    print(user)",
+      "snapshot_excerpt_sha256": "94cff7ca286f3e80077318c834cd7cc1f626caba8094dbdcb06f9ead031de71c",
+      "source_commit": "5bd3a6507b749fcd4833173fba88b3690ff77170",
+      "source_family": "pydantic",
+      "source_file_sha256": "888f6c1225503f05ba2ec84b5336f14dc372683c9e3819bb2ac9a0361ca597b5",
+      "source_path": "pydantic/config.py"
+    },
+    {
+      "excerpt_path": "excerpts/requests-old.txt",
+      "lora_adapter": null,
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "requests",
+      "selection_key_sha256": "00df56ce0cd1388a341a89f0760e5d8d8ac4fcd2d1ef2b8f11861c10673c1214",
+      "snapshot": "old",
+      "snapshot_excerpt": "\"\"\"\nrequests.structures\n~~~~~~~~~~~~~~~~~~~\n\nData structures that power Requests.\n\"\"\"\n\nfrom collections import OrderedDict\n\nfrom .compat import Mapping, MutableMapping\n\n\nclass CaseInsensitiveDict(MutableMapping):\n    \"\"\"A case-insensitive ``dict``-like object.\n\n    Implements all methods and operations of\n    ``MutableMapping`` as well as dict's ``copy``. Also\n    provides ``lower_items``.\n\n    All keys are expected to be strings. The structure remembers the\n    case of the last key to be set, and ``iter(instance)``,\n    ``keys()``, ``items()``, ``iterkeys()``, and ``iteritems()``\n    will contain case-sensitive keys. However, querying and contains\n    testing is case insensitive::\n\n        cid = CaseInsensitiveDict()\n        cid['Accept'] = 'application/json'\n        cid['aCCEPT'] == 'application/json'  # True\n        list(cid) == ['Accept']  # True\n\n    For example, ``headers['content-encoding']`` will return the\n    value of a ``'Content-Encoding'`` response header, regardless\n    of how the header name was originally stored.\n\n    If the constructor, ``.update``, or equality comparison\n    operations are given keys that have equal ``.lower()``s, the\n    behavior is undefined.\n    \"\"\"\n\n    def __init__(self, data=None, **kwargs):\n        self._store = OrderedDict()\n        if data is None:\n            data = {}\n        self.update(data, **kwargs)\n\n    def __setitem__(self, key, value):\n        # Use the lowercased key for lookups, but store the actual\n        # key alongside the value.\n        self._store[key.lower()] = (key, value)\n\n    def __getitem__(self, key):\n        return self._store[key.lower()][1]\n\n    def __delitem__(self, key):\n        del self._store[key.lower()]\n\n    def __iter__(self):\n        return (casedkey for casedkey, mappedvalue in self._store.values())\n\n    def __len__(self):\n        return len(self._store)\n\n    def lower_items(self):\n        \"\"\"Like iteritems(), but with all lowercase keys.\"\"\"\n        return ((lowerkey, keyval[1]) for (lowerkey, keyval) in self._store.items())\n\n    def __eq__(self, other):\n        if isinstance(other, Mapping):\n            other = CaseInsensitiveDict(other)\n        else:\n            return NotImplemented\n        # Compare insensitively\n        return dict(self.lower_items()) == dict(other.lower_items())\n\n    # Copy is required\n    def copy(self):\n        return CaseInsensitiveDict(self._store.values())\n\n    def __repr__(self):\n        return str(dict(self.items()))",
+      "snapshot_excerpt_sha256": "fc49490ad8e66ae5cfa5f3e262118764560882f294a4606699b9097144f32f97",
+      "source_commit": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b",
+      "source_family": "psf",
+      "source_file_sha256": "f886e6855cf4e92fb968f499b94b6167afba0fd5ce8d1b935c739a6d8d38d573",
+      "source_path": "requests/structures.py"
+    },
+    {
+      "excerpt_path": "excerpts/requests-new.txt",
+      "lora_adapter": null,
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "requests",
+      "selection_key_sha256": "00df56ce0cd1388a341a89f0760e5d8d8ac4fcd2d1ef2b8f11861c10673c1214",
+      "snapshot": "new",
+      "snapshot_excerpt": "\"\"\"\nrequests.structures\n~~~~~~~~~~~~~~~~~~~\n\nData structures that power Requests.\n\"\"\"\n\nfrom collections import OrderedDict\n\nfrom .compat import Mapping, MutableMapping\n\n\nclass CaseInsensitiveDict(MutableMapping):\n    \"\"\"A case-insensitive ``dict``-like object.\n\n    Implements all methods and operations of\n    ``MutableMapping`` as well as dict's ``copy``. Also\n    provides ``lower_items``.\n\n    All keys are expected to be strings. The structure remembers the\n    case of the last key to be set, and ``iter(instance)``,\n    ``keys()``, ``items()``, ``iterkeys()``, and ``iteritems()``\n    will contain case-sensitive keys. However, querying and contains\n    testing is case insensitive::\n\n        cid = CaseInsensitiveDict()\n        cid['Accept'] = 'application/json'\n        cid['aCCEPT'] == 'application/json'  # True\n        list(cid) == ['Accept']  # True\n\n    For example, ``headers['content-encoding']`` will return the\n    value of a ``'Content-Encoding'`` response header, regardless\n    of how the header name was originally stored.\n\n    If the constructor, ``.update``, or equality comparison\n    operations are given keys that have equal ``.lower()``s, the\n    behavior is undefined.\n    \"\"\"\n\n    def __init__(self, data=None, **kwargs):\n        self._store = OrderedDict()\n        if data is None:\n            data = {}\n        self.update(data, **kwargs)\n\n    def __setitem__(self, key, value):\n        # Use the lowercased key for lookups, but store the actual\n        # key alongside the value.\n        self._store[key.lower()] = (key, value)\n\n    def __getitem__(self, key):\n        return self._store[key.lower()][1]\n\n    def __delitem__(self, key):\n        del self._store[key.lower()]\n\n    def __iter__(self):\n        return (casedkey for casedkey, mappedvalue in self._store.values())\n\n    def __len__(self):\n        return len(self._store)\n\n    def lower_items(self):\n        \"\"\"Like iteritems(), but with all lowercase keys.\"\"\"\n        return ((lowerkey, keyval[1]) for (lowerkey, keyval) in self._store.items())\n\n    def __eq__(self, other):\n        if isinstance(other, Mapping):\n            other = CaseInsensitiveDict(other)\n        else:\n            return NotImplemented\n        # Compare insensitively\n        return dict(self.lower_items()) == dict(other.lower_items())\n\n    # Copy is required\n    def copy(self):\n        return CaseInsensitiveDict(self._store.values())\n\n    def __repr__(self):\n        return str(dict(self.items()))",
+      "snapshot_excerpt_sha256": "fc49490ad8e66ae5cfa5f3e262118764560882f294a4606699b9097144f32f97",
+      "source_commit": "0e322af87745eff34caffe4df68456ebc20d9068",
+      "source_family": "psf",
+      "source_file_sha256": "f886e6855cf4e92fb968f499b94b6167afba0fd5ce8d1b935c739a6d8d38d573",
+      "source_path": "src/requests/structures.py"
+    }
+  ],
+  "sample_manifest_path": "docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json",
+  "sample_manifest_sha256": "07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59",
+  "schema": "tiny-fleet.drift-heldout-excerpts/v1",
+  "selection_policy": {
+    "candidate_set": "common native Python modules under each repository's top-level package roots, excluding test trees",
+    "excerpt": "first 80 source lines from the selected common module at each exact commit",
+    "label_score_access": "selector reads only the frozen sample manifest and source trees; it never opens label or score artifacts",
+    "ranking": "minimum SHA256(repo_id + NUL + normalized module path)"
+  },
+  "temporal_limit": {
+    "consequence": "use this excerpt ledger for audit and implementation validation only; any confirmatory comparison requires a newly frozen unseen sample or explicit independent review",
+    "reason": "the objective D04 labels were frozen before this selection task was dispatched, and a non-experimental pinned-model smoke ran earlier; neither artifact was consumed by this deterministic selector, but the temporal order cannot be represented as pre-label/pre-inference",
+    "status": "strict blind-order precondition unmet"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "tiny-fleet.board-dispatch.registration/v1",
+  "study_id": "board-dispatch-v1",
+  "frozen_at": "2026-09-11T17:30:00Z",
+  "source": "authored sanitized fixtures; independent review labels",
+  "corpus": "corpus/board-dispatch-v1/cases.jsonl",
+  "corpus_sha256": "8d46c88be72edb4726e6304e10563c7c9c041578a226604270b88be350a288e7",
+  "splits": {"train": 2, "validation": 2, "heldout": 8},
+  "label_policy": "historical eventual owner is not a gold label; ambiguous cases retain needs_clarification",
+  "as_of_policy": "observed_at is the sole state timestamp; no future receipt or private log is an input",
+  "metrics": ["macro_f1", "suitable_owner_accuracy", "routing_coverage", "severe_constraint_violations", "latency_ms", "cost"],
+  "advisory_only": true
+}

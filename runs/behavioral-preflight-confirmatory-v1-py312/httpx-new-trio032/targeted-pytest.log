@@ -1,0 +1,86 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________________________ test_write_timeout[trio] ___________________________
+
+cls = <class '_pytest.runner.CallInfo'>
+func = <function call_and_report.<locals>.<lambda> at 0x7b795e867380>
+when = 'call'
+reraise = (<class '_pytest.outcomes.Exit'>, <class 'KeyboardInterrupt'>)
+
+    @classmethod
+    def from_call(
+        cls,
+        func: Callable[[], TResult],
+        when: Literal["collect", "setup", "call", "teardown"],
+        reraise: type[BaseException] | tuple[type[BaseException], ...] | None = None,
+    ) -> CallInfo[TResult]:
+        """Call func, wrapping the result in a CallInfo.
+    
+        :param func:
+            The function to call. Called without arguments.
+        :type func: Callable[[], _pytest.runner.TResult]
+        :param when:
+            The phase in which the function is called.
+        :param reraise:
+            Exception or exceptions that shall propagate if raised by the
+            function, instead of being wrapped in the CallInfo.
+        """
+        excinfo = None
+        start = timing.time()
+        precise_start = timing.perf_counter()
+        try:
+>           result: TResult | None = func()
+
+../venv/lib/python3.12/site-packages/_pytest/runner.py:341: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../venv/lib/python3.12/site-packages/_pytest/runner.py:242: in <lambda>
+    lambda: runtest_hook(item=item, **kwds), when=when, reraise=reraise
+../venv/lib/python3.12/site-packages/pluggy/_hooks.py:512: in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+../venv/lib/python3.12/site-packages/pluggy/_manager.py:120: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+../venv/lib/python3.12/site-packages/_pytest/threadexception.py:92: in pytest_runtest_call
+    yield from thread_exception_runtest_hook()
+../venv/lib/python3.12/site-packages/_pytest/threadexception.py:68: in thread_exception_runtest_hook
+    yield
+../venv/lib/python3.12/site-packages/_pytest/unraisableexception.py:95: in pytest_runtest_call
+    yield from unraisable_exception_runtest_hook()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def unraisable_exception_runtest_hook() -> Generator[None]:
+        with catch_unraisable_exception() as cm:
+            try:
+                yield
+            finally:
+                if cm.unraisable:
+                    if cm.unraisable.err_msg is not None:
+                        err_msg = cm.unraisable.err_msg
+                    else:
+                        err_msg = "Exception ignored in"
+                    msg = f"{err_msg}: {cm.unraisable.object!r}\n\n"
+                    msg += "".join(
+                        traceback.format_exception(
+                            cm.unraisable.exc_type,
+                            cm.unraisable.exc_value,
+                            cm.unraisable.exc_traceback,
+                        )
+                    )
+>                   warnings.warn(pytest.PytestUnraisableExceptionWarning(msg))
+E                   pytest.PytestUnraisableExceptionWarning: Exception ignored in: <async_generator object ByteStream.__aiter__ at 0x7b795de58e80>
+E                   
+E                   Traceback (most recent call last):
+E                     File "/home/mesh-home/tiny-fleet/runs/behavioral-preflight-confirmatory-v1-py312/httpx-new-trio032/venv/lib/python3.12/site-packages/trio/_core/_asyncgens.py", line 122, in finalizer
+E                       warnings.warn(
+E                   ResourceWarning: Async generator 'httpx._content.ByteStream.__aiter__' was garbage collected before it had been exhausted. Surround its use in 'async with aclosing(...):' to ensure that it gets cleaned up as soon as you're done using it.
+
+../venv/lib/python3.12/site-packages/_pytest/unraisableexception.py:85: PytestUnraisableExceptionWarning
+---------------------------- Captured stderr setup -----------------------------
+INFO:     Started server process [3845834]
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+----------------------------- Captured stdout call -----------------------------
+INFO:     127.0.0.1:43908 - "PUT /slow_response HTTP/1.1" 200 OK
+--------------------------- Captured stderr teardown ---------------------------
+INFO:     Shutting down
+INFO:     Waiting for background tasks to complete. (CTRL+C to force quit)
+INFO:     Finished server process [3845834]
+1 failed in 1.24s

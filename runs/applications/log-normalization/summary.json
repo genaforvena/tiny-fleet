@@ -1,0 +1,16 @@
+{
+  "application_id": "A03",
+  "baseline": "regex_template_parser",
+  "heldout_exact_n": 120,
+  "heldout_exact_rate": 1.0,
+  "heldout_n": 120,
+  "known_format_exact_rate": 1.0,
+  "known_format_n": 104,
+  "mean_latency_ms": 0.019645041686003208,
+  "model_arms": "unavailable: C02-C08 and S01-S05 not verified",
+  "pilot_verdict": "NO_GO_BASELINE_DOMINANT",
+  "raw_output": "runs/applications/log-normalization/regex-template-raw.jsonl",
+  "raw_sha256": "2116f3cbe57226df74265e4a6c8fa108cb798a20a3e9067792b84e403a7ab46e",
+  "source_family_unit": "one unique source_family per case",
+  "unsupported_field_rate": 0.0
+}

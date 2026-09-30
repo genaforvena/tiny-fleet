@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "application_id": "A03",
+  "data_license": "CC0-1.0",
+  "model_provenance": {
+    "NuExtract-tiny": {
+      "model_id": "numind/NuExtract-tiny",
+      "revision": "main-2026-09-09-recorded",
+      "license": "Apache-2.0",
+      "source_url": "https://huggingface.co/numind/NuExtract-tiny"
+    }
+  },
+  "case_blueprints": [
+    {"prefix": "dev", "split": "development", "count": 24, "templates": [
+      {"text": "2026-01-01T00:00:00Z component=api error=EAPI01 operation=read", "reference": {"component": "api", "error_code": "EAPI01", "operation": "read", "timestamp": "2026-01-01T00:00:00Z", "evidence_span": "2026-01-01T00:00:00Z component=api error=EAPI01 operation=read"}},
+      {"text": "component=db code=EDB02 operation=write at 2026-01-02T00:00:00Z", "reference": {"component": "db", "error_code": "EDB02", "operation": "write", "timestamp": "2026-01-02T00:00:00Z", "evidence_span": "db code=EDB02 operation=write at 2026-01-02T00:00:00Z"}}
+    ]},
+    {"prefix": "val", "split": "validation", "count": 24, "templates": [
+      {"text": "2026-02-01T00:00:00Z component=cache error=ECACHE03 operation=evict", "reference": {"component": "cache", "error_code": "ECACHE03", "operation": "evict", "timestamp": "2026-02-01T00:00:00Z", "evidence_span": "2026-02-01T00:00:00Z component=cache error=ECACHE03 operation=evict"}},
+      {"text": "component=worker code=EWORK04 operation=retry at 2026-02-02T00:00:00Z", "reference": {"component": "worker", "error_code": "EWORK04", "operation": "retry", "timestamp": "2026-02-02T00:00:00Z", "evidence_span": "worker code=EWORK04 operation=retry at 2026-02-02T00:00:00Z"}}
+    ]},
+    {"prefix": "heldout-known", "split": "heldout", "count": 96, "templates": [
+      {"text": "2026-03-01T00:00:00Z component=api error=EAPI01 operation=read", "reference": {"component": "api", "error_code": "EAPI01", "operation": "read", "timestamp": "2026-03-01T00:00:00Z", "evidence_span": "2026-03-01T00:00:00Z component=api error=EAPI01 operation=read"}},
+      {"text": "component=db code=EDB02 operation=write at 2026-03-02T00:00:00Z", "reference": {"component": "db", "error_code": "EDB02", "operation": "write", "timestamp": "2026-03-02T00:00:00Z", "evidence_span": "db code=EDB02 operation=write at 2026-03-02T00:00:00Z"}},
+      {"text": "2026-03-03T00:00:00Z component=cache error=ECACHE03 operation=evict", "reference": {"component": "cache", "error_code": "ECACHE03", "operation": "evict", "timestamp": "2026-03-03T00:00:00Z", "evidence_span": "2026-03-03T00:00:00Z component=cache error=ECACHE03 operation=evict"}}
+    ]},
+    {"prefix": "heldout-ood", "split": "heldout", "count": 24, "templates": [
+      {"text": "warning: maintenance completed; no structured event was emitted", "reference": {"component": null, "error_code": null, "operation": null, "timestamp": null, "evidence_span": null}},
+      {"text": "component=api message=benign warning without an error code", "reference": {"component": "api", "error_code": null, "operation": null, "timestamp": null, "evidence_span": "api"}},
+      {"text": "malformed payload component= error= operation=", "reference": {"component": null, "error_code": null, "operation": null, "timestamp": null, "evidence_span": null}}
+    ]}
+  ]
+}

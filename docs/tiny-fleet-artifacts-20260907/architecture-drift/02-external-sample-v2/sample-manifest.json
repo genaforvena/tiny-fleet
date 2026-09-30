@@ -1,0 +1,102 @@
+{
+  "schema": "cross-repo-drift.external-sample/v2",
+  "study": "tinyfleet-architecture-drift-review-20260907",
+  "freeze_utc": "2026-09-13T12:53:23Z",
+  "status": "frozen-before-comparison",
+  "selection": {
+    "sample_kind": "purposive fixed set; not a random sample",
+    "minimum": 3,
+    "independence_rule": "Three distinct canonical GitHub repositories, each with a distinct owner namespace; each repository API record reported fork=false and archived=false on freeze date. No repository is tiny-fleet or lte-workstation. This is a bounded sample, not a claim of population representativeness.",
+    "selection_basis": "Before comparison, choose one established Python project from each of three distinct upstream owner namespaces and roles: web framework (Pallets), HTTP client (Python Software Foundation), and data validation (Pydantic). Pin these exact canonical upstreams; no score-based ranking or post-result substitution.",
+    "snapshot_rule": "For each named repository independently, consider only stable semantic-version release tags matching ^v?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$ with no prerelease/build suffix. Resolve annotated or lightweight tags to commits and use the commit's committer timestamp. For each anchor date, select the eligible tag with the greatest commit timestamp not later than the anchor; ties are resolved by greatest numeric (major, minor, patch), then lexical tag name, then commit ID. Require the old-to-new snapshots to be at least 365 days apart. Never use HEAD.",
+    "anchors_utc": ["2023-01-01T00:00:00Z", "2025-01-01T00:00:00Z"],
+    "comparison_window": "Each pair spans the selected stable release commits at the two fixed anchors. This captures approximately two years of repository history and is not a comparison of arbitrary HEADs. Exact commit times and elapsed whole days are recorded per repository.",
+    "inclusion_policy": "At each pinned commit include tracked regular UTF-8 text files allowed by the root license or an explicit file-level license. Apply identical filters to every repo/snapshot: exclude generated/build/dist/cache/coverage output, vendored or third-party copies, binary or malformed UTF-8 blobs, secrets/credentials/private local state, and files with incompatible or unresolved terms. Record excluded path, reason, blob ID, and hash only; do not copy excluded contents. Include source, tests, project configuration, and documentation that pass these rules. Count and hash every included and excluded row when corpus construction begins; no corpus counts are claimed by this freeze.",
+    "unit_map_rule": "Freeze one unit per repository-native top-level package/module or application component using a versioned mapping file before tokenization; retain unmapped included files as explicit units. Do not infer semantic labels from comparison scores.",
+    "comparison_firewall": "Freeze-only operations performed: repository acquisition, ref-to-commit resolution, metadata/license verification, and exact-commit archive hashing. No snapshot diff, corpus metric, test outcome comparison, label, model output, or comparison score was computed.",
+    "preserved_legacy_manifest": {
+      "path": "../02-external-sample/sample-manifest.json",
+      "sha256": "c432cb6e3dabb4b7b0cfc4584fb5f55054cb8b7c8958173d0578d1e374b37dc7",
+      "treatment": "byte-for-byte preserved; its lte-workstation sample is historical local-pilot evidence and does not count toward the three external repositories"
+    }
+  },
+  "repositories": [
+    {
+      "repo_id": "flask",
+      "identity": "https://github.com/pallets/flask",
+      "owner_namespace": "pallets",
+      "role": "Python web framework",
+      "api_metadata_checked_utc": "2026-09-13",
+      "api_full_name": "pallets/flask",
+      "api_fork": false,
+      "api_archived": false,
+      "license": {
+        "spdx": "BSD-3-Clause",
+        "source": "root license text at each pinned commit; GitHub repository API also reports BSD-3-Clause",
+        "snapshots": [
+          {"commit": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3", "path": "LICENSE.rst", "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea"},
+          {"commit": "ab8149664182b662453a563161aa89013c806dc9", "path": "LICENSE.txt", "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea"}
+        ]
+      },
+      "acquisition": {"method": "git clone --bare --filter=blob:none over HTTPS, then fetch tags and required commit objects", "url": "https://github.com/pallets/flask.git"},
+      "snapshots": [
+        {"label": "old", "tag": "2.2.2", "commit": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3", "commit_time": "2022-08-08T16:24:25-07:00", "parents": ["e9af7c23ae19fcc50781b7711f4672c113636892", "43d2fff317aec64a000604a764b8ab2dc751c753"], "tree": "2d61b72a9eb82bef5f81c73ec869ff51811bac22", "archive": {"format": "git archive --format=tar <commit>", "bytes": 1771520, "sha256": "9cab061d3c8b1fcc156b1ebb247d0a6caa73864fb096e1ebcdb369d2b3fbaefc"}},
+        {"label": "new", "tag": "3.1.0", "commit": "ab8149664182b662453a563161aa89013c806dc9", "commit_time": "2024-11-13T10:20:07-08:00", "parents": ["70602a196a6da90eb0d34cdfe5d4d16a99606279"], "tree": "ac9687dbcc33f4c02c708197038d45d26cd97392", "archive": {"format": "git archive --format=tar <commit>", "bytes": 1771520, "sha256": "1ab1e67fb5c9e05d226e3cd94734e46009e012b269e29794f29151ef341feb06"}}
+      ],
+      "window_days": 827
+    },
+    {
+      "repo_id": "requests",
+      "identity": "https://github.com/psf/requests",
+      "owner_namespace": "psf",
+      "role": "Python HTTP client",
+      "api_metadata_checked_utc": "2026-09-13",
+      "api_full_name": "psf/requests",
+      "api_fork": false,
+      "api_archived": false,
+      "license": {
+        "spdx": "Apache-2.0",
+        "source": "root LICENSE text at each pinned commit; GitHub repository API also reports Apache-2.0",
+        "snapshots": [
+          {"commit": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b", "path": "LICENSE", "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"},
+          {"commit": "0e322af87745eff34caffe4df68456ebc20d9068", "path": "LICENSE", "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"}
+        ]
+      },
+      "acquisition": {"method": "git clone --bare --filter=blob:none over HTTPS, then fetch tags and required commit objects", "url": "https://github.com/psf/requests.git"},
+      "snapshots": [
+        {"label": "old", "tag": "v2.28.1", "commit": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b", "commit_time": "2022-06-29T09:09:11-06:00", "parents": ["16b418b44a04981ec452df607730079a6178a804"], "tree": "6f8c850e3ccbf5468b6814eee8f46ad12c375cc0", "archive": {"format": "git archive --format=tar <commit>", "bytes": 5222400, "sha256": "5b95d48511eaaad22b4bfe0ba42d12dcce08c97fb587aa9cfd17dab0399868b9"}},
+        {"label": "new", "tag": "v2.32.3", "commit": "0e322af87745eff34caffe4df68456ebc20d9068", "commit_time": "2024-05-29T08:36:10-07:00", "parents": ["e18879932287c2bf4bcee4ddf6ccb8a69b6fc656"], "tree": "9474485f84c7244930abc1b8023f847486572091", "archive": {"format": "git archive --format=tar <commit>", "bytes": 5314560, "sha256": "02db3918a45a7707a9eba6e240a7d3cde2ad5be23fc293dbe218d263662453dd"}}
+      ],
+      "window_days": 700
+    },
+    {
+      "repo_id": "pydantic",
+      "identity": "https://github.com/pydantic/pydantic",
+      "owner_namespace": "pydantic",
+      "role": "Python data validation library",
+      "api_metadata_checked_utc": "2026-09-13",
+      "api_full_name": "pydantic/pydantic",
+      "api_fork": false,
+      "api_archived": false,
+      "license": {
+        "spdx": "MIT",
+        "source": "root LICENSE text at each pinned commit; GitHub repository API also reports MIT",
+        "snapshots": [
+          {"commit": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d", "path": "LICENSE", "sha256": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387"},
+          {"commit": "5bd3a6507b749fcd4833173fba88b3690ff77170", "path": "LICENSE", "sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3"}
+        ]
+      },
+      "acquisition": {"method": "git clone --bare --filter=blob:none over HTTPS, then fetch tags and required commit objects", "url": "https://github.com/pydantic/pydantic.git"},
+      "snapshots": [
+        {"label": "old", "tag": "v1.10.4", "commit": "63c683d9fc7b494bf81e964f97ec2f9b78b8e09d", "commit_time": "2022-12-30T09:53:51+00:00", "parents": ["2106f1cb4fd5702f7602730cb58c620faf7d62d6"], "tree": "20c6b4ea2552254eb0c261a55d7312351725facc", "archive": {"format": "git archive --format=tar <commit>", "bytes": 2478080, "sha256": "d47f96f734030506f57bf3868314f2e3ccfcf34be323422a4ac645eb99c04585"}},
+        {"label": "new", "tag": "v2.10.4", "commit": "5bd3a6507b749fcd4833173fba88b3690ff77170", "commit_time": "2024-12-18T11:56:15-05:00", "parents": ["46f094569a071a99b313ec21b36568ceb1615635"], "tree": "81c5d0455d1df1f479af7fc7fcbf3dd39209eeab", "archive": {"format": "git archive --format=tar <commit>", "bytes": 7464960, "sha256": "d8c26a1987494e70b3ee903a19ed7a75d37ea907358ed124d1567b7fa63b2df4"}}
+      ],
+      "window_days": 719
+    }
+  ],
+  "unavailable_inputs": [
+    {"arm": "behavioral", "state": "not_preflighted", "missing": "clean pinned test environments for both commits of each external repository; no preflight receipt exists", "action": "block the behavioral arm until all six environments have pinned runtime/dependency receipts"},
+    {"arm": "generative", "state": "not_registered", "missing": "frozen prompts, model and adapter digests, scorer revision, seed/repetition schedule, and raw paired-output tape", "action": "block the generative arm; no generative comparison or claim"},
+    {"arm": "ground-truth", "state": "not_started", "missing": "score-blind preregistered change-label ledger for the frozen repositories", "action": "keep D04 downstream until a label ledger is frozen without model scores"}
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "adapter_path": "adapters/attrs-new",
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "corpus_manifest_sha256": "7d441983ed5a7aae756ddb7658821a85fd61c95d0f6b7d6bb6e915f7ee0c5583",
+  "failure": "No module named 'torch'",
+  "failure_type": "ModuleNotFoundError",
+  "heavy_run": {
+    "command": [
+      "mesh-heavy-run",
+      "8192",
+      "--",
+      "train_drift_adapters.py",
+      "--one",
+      "attrs",
+      "new"
+    ],
+    "gpu_lease_ttl_seconds": 1800,
+    "gpu_min_free_mib": 8192,
+    "gpu_preempt": true,
+    "lease_stderr_sha256": "79b4089c353ab140c174a103d4de7500508067dc75d117e5a5a1a9842b501ccc",
+    "lease_stdout_sha256": "1a90ee2f5d50e33c271c27195d43fcd402f62699130d460b3ca5779da772f76c",
+    "returncode": 1,
+    "stderr_path": "runs/drift-confirmatory-v1/training-runs/attrs-new/mesh-heavy-run.stderr.log",
+    "stdout_path": "runs/drift-confirmatory-v1/training-runs/attrs-new/mesh-heavy-run.stdout.log"
+  },
+  "hyperparameters": {
+    "batch_size": 1,
+    "epochs": 1,
+    "gradient_accumulation": 4,
+    "learning_rate": 0.0002,
+    "lora": {
+      "alpha": 16,
+      "dropout": 0.05,
+      "rank": 8,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "max_gradient_norm": 1.0,
+    "max_sequence_length": 256,
+    "train_token_budget_per_adapter": 16384,
+    "validation_token_budget_per_adapter": 4096,
+    "weight_decay": 0.01
+  },
+  "repo": "attrs",
+  "resource_after_run": {
+    "gpu_free_mib": 11911,
+    "gpu_lease": null,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 22780,
+    "resource_guard_summary": "node: avail 22147MB/32019MB, swap free 6730MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "swap_free_mib": 6730
+  },
+  "resource_at_start": {
+    "gpu_free_mib": 11911,
+    "gpu_lease": {
+      "acquired_at": 1789329940,
+      "acquired_free_mb": 11911,
+      "created_at": 1789329852,
+      "expires_at": 1789331652,
+      "host": "mesh-home",
+      "initial_free_mb": 424,
+      "last_stopped": "ollama.service",
+      "required_free_mb": 8192,
+      "restore_services": [
+        "mesh-voice-clone.service",
+        "mesh-room-gigaam.service",
+        "ollama.service"
+      ],
+      "stopped_services": [
+        "mesh-voice-clone.service",
+        "mesh-room-gigaam.service",
+        "ollama.service"
+      ],
+      "version": 1
+    },
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_total_mib": 12288,
+    "memory_available_mib": 23773,
+    "resource_guard_summary": "node: avail 22872MB/32019MB, swap free 6730MB/8191MB \u2014 OK",
+    "services": {
+      "mesh-room-gigaam.service": "failed",
+      "mesh-voice-clone.service": "failed",
+      "ollama.service": "inactive"
+    },
+    "swap_free_mib": 6730
+  },
+  "restoration_check": {
+    "lease_released": true,
+    "passed": true,
+    "service_states_after": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "service_states_before": {
+      "mesh-room-gigaam.service": "active",
+      "mesh-voice-clone.service": "active",
+      "ollama.service": "active"
+    },
+    "service_states_match_baseline": true
+  },
+  "run_id": "1bc5fbed5b10732a0c53",
+  "schema": "tiny-fleet.drift-adapter-training-run/v1",
+  "seed": 17,
+  "snapshot": "new",
+  "source_commit": "598494a618410490cfbe0c896b7a544f6d23e0d9",
+  "status": "failed",
+  "train_corpus_sha256": "565ce2e59b26569b5c45e999b34c4631da502bb0d0676382e74a9d6d16881188",
+  "training_plan_sha256": "6d256ef9cf0c67f76e0898ef7d557062559fd129e52decbf8f65a1c8a68b693d",
+  "validation_corpus_sha256": "2160151d5b95e0164b45aaf5af49e2ac33e5ff7fed6a6a078053b933c8a51b67"
+}

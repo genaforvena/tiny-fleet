@@ -1,0 +1,73 @@
+{
+  "all_MiniLM": {
+    "reason": "model scoring gated until C02-C08 and S01-S05 verification",
+    "status": "unavailable"
+  },
+  "application_id": "A05",
+  "baselines": {
+    "bm25": {
+      "abstention_n": 0,
+      "abstention_rate": 0.0,
+      "baseline": "bm25",
+      "candidate_retrieval_recall": 1.0,
+      "false_accept_n": 20,
+      "false_accept_rate": 1.0,
+      "mean_latency_ms": 0.030895431832918388,
+      "n": 120,
+      "negative_n": 20,
+      "pair_accuracy": 0.8333333333333334,
+      "pair_correct_n": 100,
+      "pair_precision": 0.8333333333333334,
+      "pair_recall": 1.0,
+      "positive_n": 100,
+      "raw_output": "runs/applications/duplicate-incidents/bm25-raw.jsonl",
+      "raw_sha256": "fae2c57bbe3e49e6ae69379bf5d609bd72d9cd1677392280793cd61d72e5f116",
+      "source_family_unit": "one independently authored incident-family/time-period ticket per case"
+    },
+    "character-ngram": {
+      "abstention_n": 0,
+      "abstention_rate": 0.0,
+      "baseline": "character-ngram",
+      "candidate_retrieval_recall": 1.0,
+      "false_accept_n": 20,
+      "false_accept_rate": 1.0,
+      "mean_latency_ms": 0.04652363636661462,
+      "n": 120,
+      "negative_n": 20,
+      "pair_accuracy": 0.8333333333333334,
+      "pair_correct_n": 100,
+      "pair_precision": 0.8333333333333334,
+      "pair_recall": 1.0,
+      "positive_n": 100,
+      "raw_output": "runs/applications/duplicate-incidents/character-ngram-raw.jsonl",
+      "raw_sha256": "0e032154eeac9f234efa48a35cecc6e38e6713e9df0abc9dbf13e1a46bc97683",
+      "source_family_unit": "one independently authored incident-family/time-period ticket per case"
+    },
+    "normalized-hash": {
+      "abstention_n": 40,
+      "abstention_rate": 0.3333333333333333,
+      "baseline": "normalized-hash",
+      "candidate_retrieval_recall": 1.0,
+      "false_accept_n": 0,
+      "false_accept_rate": 0.0,
+      "mean_latency_ms": 0.01352540909989109,
+      "n": 120,
+      "negative_n": 20,
+      "pair_accuracy": 0.8333333333333334,
+      "pair_correct_n": 100,
+      "pair_precision": 1.0,
+      "pair_recall": 0.8,
+      "positive_n": 100,
+      "raw_output": "runs/applications/duplicate-incidents/normalized-hash-raw.jsonl",
+      "raw_sha256": "ddf34d546572020a1e89118973c55a679c30067ae9a29736cd7d32701d29221d",
+      "source_family_unit": "one independently authored incident-family/time-period ticket per case"
+    }
+  },
+  "model_arms": "unavailable: C02-C08 and S01-S05 not verified",
+  "pilot_verdict": "INCONCLUSIVE",
+  "provenance": {
+    "license": "Gemma Terms of Use; candidate only, not scored",
+    "model_id": "google/embeddinggemma-300m",
+    "revision": "57c266a740f537b4dc058e1b0cda161fd15afa75"
+  }
+}

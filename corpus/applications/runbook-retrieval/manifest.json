@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "application_id": "A04",
+  "data_license": "CC0-1.0",
+  "manual_blueprints": [
+    {"prefix": "manual", "count": 160, "topic": "service operations"},
+    {"prefix": "devmanual", "count": 1, "topic": "service operations"},
+    {"prefix": "valmanual", "count": 1, "topic": "service operations"}
+  ],
+  "case_blueprints": [
+    {"prefix": "answerable", "manual_prefix": "manual", "count": 100, "split": "heldout", "topic": "service operations", "answerable": true},
+    {"prefix": "no-answer", "manual_prefix": "manual", "start": 100, "count": 60, "split": "heldout", "topic": "service operations", "answerable": false},
+    {"prefix": "dev", "manual_prefix": "devmanual", "count": 1, "split": "development", "topic": "service operations", "answerable": true},
+    {"prefix": "validation", "manual_prefix": "valmanual", "count": 1, "split": "validation", "topic": "service operations", "answerable": true}
+  ],
+  "model_provenance": {
+    "EmbeddingGemma": {
+      "model_id": "google/embeddinggemma-300m",
+      "revision": "not-downloaded-gated-2026-09-09",
+      "license": "Gemma Terms of Use; candidate only, not scored",
+      "source_url": "https://deepmind.google/models/gemma/embeddinggemma/"
+    }
+  }
+}

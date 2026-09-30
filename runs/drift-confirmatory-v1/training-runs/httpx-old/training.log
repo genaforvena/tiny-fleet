@@ -1,0 +1,7 @@
+2026-09-13 20:12:38,935 INFO starting run=0a71533ac173619c1201 repo=httpx snapshot=old gpu=NVIDIA GeForce RTX 3060 free_mib=11911
+2026-09-13 20:12:50,611 INFO progress chunks=16/69 mean_loss=1.61712
+2026-09-13 20:12:53,283 INFO progress chunks=32/69 mean_loss=1.65005
+2026-09-13 20:12:56,254 INFO progress chunks=48/69 mean_loss=1.61638
+2026-09-13 20:12:59,075 INFO progress chunks=64/69 mean_loss=1.57023
+2026-09-13 20:13:00,008 INFO progress chunks=69/69 mean_loss=1.56474
+2026-09-13 20:13:03,672 INFO complete adapter_sha256=6edc191006c7b51366ab3af95f09d1797d3b557d91e6ef481e68861fb0fab052 train_loss=1.56474 validation_before=1.57367 validation_after=1.54057

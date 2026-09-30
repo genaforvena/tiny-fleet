@@ -1,0 +1,20 @@
+argcomplete==3.7.2
+attrs==24.3.0
+certifi==2026.7.22
+charset-normalizer==3.5.1
+elementpath==5.1.4
+hypothesis==6.168.0
+idna==3.19
+iniconfig==2.3.0
+mock==5.2.0
+packaging==26.3
+pip==24.0
+pluggy==1.5.0
+Pygments==2.18.0
+# Editable install with no version control (pytest==8.3.4)
+-e /study/retries/work/pytest-new
+requests==2.34.2
+setuptools==65.5.0
+sortedcontainers==2.4.0
+urllib3==2.7.0
+xmlschema==4.3.2

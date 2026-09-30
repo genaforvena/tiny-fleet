@@ -1,0 +1,320 @@
+{
+  "adapter_registration": {
+    "path": "runs/drift-confirmatory-v1/adapter-registration.json",
+    "sha256": "aca4c62e360b92d27223707f86a340d471113bcfb9042658426e121be47cfc6a"
+  },
+  "adapters": [
+    {
+      "digest": "c180cd1efcf012d91057c76d1dea5c0635ecab0a966b33831fc118ad3977090d",
+      "path": "adapters/attrs-old",
+      "repo": "attrs",
+      "snapshot": "old",
+      "status": "trained-confirmatory-sample"
+    },
+    {
+      "digest": "bb47fd26c057d345ff82009e2d6603a7a16e938956ce767ca7146352f71404de",
+      "path": "adapters/attrs-new",
+      "repo": "attrs",
+      "snapshot": "new",
+      "status": "trained-confirmatory-sample"
+    },
+    {
+      "digest": "6edc191006c7b51366ab3af95f09d1797d3b557d91e6ef481e68861fb0fab052",
+      "path": "adapters/httpx-old",
+      "repo": "httpx",
+      "snapshot": "old",
+      "status": "trained-confirmatory-sample"
+    },
+    {
+      "digest": "38bccff100199c2e92aae4f2fe907bf52a63bb41826ea8395f67f1f9030d3778",
+      "path": "adapters/httpx-new",
+      "repo": "httpx",
+      "snapshot": "new",
+      "status": "trained-confirmatory-sample"
+    },
+    {
+      "digest": "640881b4de8a24b60a4b6fe0e73a367513a5ef791acd9783032ee526303ea089",
+      "path": "adapters/pytest-old",
+      "repo": "pytest",
+      "snapshot": "old",
+      "status": "trained-confirmatory-sample"
+    },
+    {
+      "digest": "8c3d48d75ffd8760877c3b235801f991ac74b573f7ff4995f42e2a0030d287c9",
+      "path": "adapters/pytest-new",
+      "repo": "pytest",
+      "snapshot": "new",
+      "status": "trained-confirmatory-sample"
+    }
+  ],
+  "arm_contract": {
+    "base": "prompt template only; no repository excerpt",
+    "lora": "prompt template only; snapshot-specific adapter required",
+    "prompt-only": "same template plus the exact sample-bound held-out excerpt for that repository and snapshot"
+  },
+  "arms": [
+    "base",
+    "prompt-only",
+    "lora"
+  ],
+  "base_model": {
+    "model_id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "blockers": [
+    {
+      "exact": "The paired six-snapshot behavioral preflight now has six PASS outcomes across its pinned and supported retry environments. No current independent PASS covers the exact refreshed behavioral evidence and bound generation registration.",
+      "id": "behavioral-and-independent-gates-open",
+      "retry_event": "Obtain independent PASS over the final behavioral closeout and generation-registration hashes before any comparison or matrix."
+    }
+  ],
+  "comparison_authorized": false,
+  "corpora": [
+    {
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/attrs-old/manifest.json",
+      "repo": "attrs",
+      "snapshot": "old",
+      "source_archive": "runs/drift-confirmatory-v1/snapshots/attrs-old.tar",
+      "source_archive_sha256": "15ed2bb657cf9d4e00c690978f5787c1f2c9be6a49106ad4df6a8c0723b3b80b",
+      "source_commit": "a9960de98d0f58ccb2880d03c97dafba3fc1111c",
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "0bf6f529a31910a01e4e04a15e44ed5090f8ce21d55b04b7c0c4e4521df9e2d6",
+      "validation_sha256": "66f0b256e4e353cdcd60636b3fef1c974d62a3503e7631c4ea74695844076872"
+    },
+    {
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/attrs-new/manifest.json",
+      "repo": "attrs",
+      "snapshot": "new",
+      "source_archive": "runs/drift-confirmatory-v1/snapshots/attrs-new.tar",
+      "source_archive_sha256": "d3d1264c17c2161794eef66f6b1e958f4104157ee7cdc2926cb4e46befe2988b",
+      "source_commit": "598494a618410490cfbe0c896b7a544f6d23e0d9",
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "565ce2e59b26569b5c45e999b34c4631da502bb0d0676382e74a9d6d16881188",
+      "validation_sha256": "2160151d5b95e0164b45aaf5af49e2ac33e5ff7fed6a6a078053b933c8a51b67"
+    },
+    {
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/httpx-old/manifest.json",
+      "repo": "httpx",
+      "snapshot": "old",
+      "source_archive": "runs/drift-confirmatory-v1/snapshots/httpx-old.tar",
+      "source_archive_sha256": "3b72f973d801b5551bd2f34c1f29a7410a66c0c69f119f2c96bbf8a6ef928084",
+      "source_commit": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "4a134f083eb1bc866f0190b3017249178cc5c72a5d93fa2d16bc30893cb0fb1e",
+      "validation_sha256": "a2eacfa1cda103a0c51c65852e220494fafdbc5e5d0de312c2c2996e4521053a"
+    },
+    {
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/httpx-new/manifest.json",
+      "repo": "httpx",
+      "snapshot": "new",
+      "source_archive": "runs/drift-confirmatory-v1/snapshots/httpx-new.tar",
+      "source_archive_sha256": "a0bee0b5081ad8aba0d45b3bebc7d7b835ba43bf9d62f1a2734c64db29c94ca6",
+      "source_commit": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "78688b3a942e9054de3ec7490cb7a926bdd2863b0fdc50a6fc8c854d0af1ecf1",
+      "validation_sha256": "5935728e4d96787fd892b7007fd2cdb4b40b95421e7e9470f89eb322d2261f25"
+    },
+    {
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/pytest-old/manifest.json",
+      "repo": "pytest",
+      "snapshot": "old",
+      "source_archive": "runs/drift-confirmatory-v1/snapshots/pytest-old.tar",
+      "source_archive_sha256": "63ea92035356ff82a56d01293f0d2e3fe7b9d8caeb9f70380d092a2fd0a37696",
+      "source_commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "136ee97d5397c05115dd1d2789edb1c940fa62e1044357eb3ba52592073d6c39",
+      "validation_sha256": "485b2babe27091c5f9759f4f074c3b5bbd533404cdbbfc12c46097470ab78485"
+    },
+    {
+      "corpus_manifest": "runs/drift-confirmatory-v1/training-corpora/pytest-new/manifest.json",
+      "repo": "pytest",
+      "snapshot": "new",
+      "source_archive": "runs/drift-confirmatory-v1/snapshots/pytest-new.tar",
+      "source_archive_sha256": "c19a5d8554bc4eeb9b5bd741d3387cb1d7caf1fabd27e790a5eebd431c8b3b30",
+      "source_commit": "53f8b4e634c5066c4f797a87b20060edbb086240",
+      "status": "built-for-confirmatory-sample",
+      "train_sha256": "4c3a8bcb405a3fff0ce37feba69883679f9178c510a47b33d05dfd62b9aa0c06",
+      "validation_sha256": "121f14a8882fd5913872bf17761980d68513aa7cda0ef657160c41f889c28f72"
+    }
+  ],
+  "expected_record_count": 162,
+  "generation": {
+    "do_sample": true,
+    "max_new_tokens": 128,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "heldout_excerpt_ledger": {
+    "count": 6,
+    "path": "runs/drift-confirmatory-v1/heldout-excerpts/heldout-excerpts.json",
+    "sha256": "d37c62534a429d7659b78d44f4f7bc2e6ca2d56ee14a1eb101b81e00d245c83a"
+  },
+  "no_inference_smoke_scoring_or_comparison": "This registration step created no model output, did not initialize a model or embedding service, did not invoke the scorer, and did not compare snapshots.",
+  "objective_label_ledger": {
+    "count": 3,
+    "path": "runs/drift-confirmatory-v1/labels.jsonl",
+    "scope": "objective public-interface labels only; not model input, semantic ground truth, or a behavioral label",
+    "sha256": "8bbb3047ebe375d5d0077e563b72d6d74578dfb21e1805fb6df1865038aeb5db"
+  },
+  "prompt_template": "Using only the supplied snapshot excerpt, describe the module's documented public responsibility and explicit behavioral guarantees. Cite the supplied path. Do not infer changes outside the excerpt; say 'not stated' when evidence is absent.",
+  "prompt_template_sha256": "bccdd3aa0cf0e9ee2d486b83ceed12e62a00fc86702106c2053276369f4eeb78",
+  "prompts": [
+    {
+      "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/attrs-old.txt",
+      "lora_adapter": {
+        "digest": "c180cd1efcf012d91057c76d1dea5c0635ecab0a966b33831fc118ad3977090d",
+        "path": "adapters/attrs-old"
+      },
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "attrs",
+      "selection_key_sha256": "15d6201db2bba02a19998c4b8f7f98751f6430926ee93976d0fc80a2c4557a25",
+      "snapshot": "old",
+      "snapshot_excerpt": "# SPDX-License-Identifier: MIT\n\n\"\"\"\nCommonly useful filters for `attr.asdict`.\n\"\"\"\n\nfrom ._make import Attribute\n\n\ndef _split_what(what):\n    \"\"\"\n    Returns a tuple of `frozenset`s of classes and attributes.\n    \"\"\"\n    return (\n        frozenset(cls for cls in what if isinstance(cls, type)),\n        frozenset(cls for cls in what if isinstance(cls, Attribute)),\n    )\n\n\ndef include(*what):\n    \"\"\"\n    Include *what*.\n\n    :param what: What to include.\n    :type what: `list` of `type` or `attrs.Attribute`\\\\ s\n\n    :rtype: `callable`\n    \"\"\"\n    cls, attrs = _split_what(what)\n\n    def include_(attribute, value):\n        return value.__class__ in cls or attribute in attrs\n\n    return include_\n\n\ndef exclude(*what):\n    \"\"\"\n    Exclude *what*.\n\n    :param what: What to exclude.\n    :type what: `list` of classes or `attrs.Attribute`\\\\ s.\n\n    :rtype: `callable`\n    \"\"\"\n    cls, attrs = _split_what(what)\n\n    def exclude_(attribute, value):\n        return value.__class__ not in cls and attribute not in attrs\n\n    return exclude_",
+      "snapshot_excerpt_sha256": "4c0bf8271af64cf021dc39942eb050fee8858473d42a88b86e4782a34025ac21",
+      "source_commit": "a9960de98d0f58ccb2880d03c97dafba3fc1111c",
+      "source_family": "python-attrs",
+      "source_file_sha256": "6997a9e7887cfb86585799666770f1da6a9e407e1c331eadb82982ca52cd6c45",
+      "source_path": "src/attr/filters.py"
+    },
+    {
+      "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/attrs-new.txt",
+      "lora_adapter": {
+        "digest": "bb47fd26c057d345ff82009e2d6603a7a16e938956ce767ca7146352f71404de",
+        "path": "adapters/attrs-new"
+      },
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "attrs",
+      "selection_key_sha256": "15d6201db2bba02a19998c4b8f7f98751f6430926ee93976d0fc80a2c4557a25",
+      "snapshot": "new",
+      "snapshot_excerpt": "# SPDX-License-Identifier: MIT\n\n\"\"\"\nCommonly useful filters for `attrs.asdict` and `attrs.astuple`.\n\"\"\"\n\nfrom ._make import Attribute\n\n\ndef _split_what(what):\n    \"\"\"\n    Returns a tuple of `frozenset`s of classes and attributes.\n    \"\"\"\n    return (\n        frozenset(cls for cls in what if isinstance(cls, type)),\n        frozenset(cls for cls in what if isinstance(cls, str)),\n        frozenset(cls for cls in what if isinstance(cls, Attribute)),\n    )\n\n\ndef include(*what):\n    \"\"\"\n    Create a filter that only allows *what*.\n\n    Args:\n        what (list[type, str, attrs.Attribute]):\n            What to include. Can be a type, a name, or an attribute.\n\n    Returns:\n        Callable:\n            A callable that can be passed to `attrs.asdict`'s and\n            `attrs.astuple`'s *filter* argument.\n\n    .. versionchanged:: 23.1.0 Accept strings with field names.\n    \"\"\"\n    cls, names, attrs = _split_what(what)\n\n    def include_(attribute, value):\n        return (\n            value.__class__ in cls\n            or attribute.name in names\n            or attribute in attrs\n        )\n\n    return include_\n\n\ndef exclude(*what):\n    \"\"\"\n    Create a filter that does **not** allow *what*.\n\n    Args:\n        what (list[type, str, attrs.Attribute]):\n            What to exclude. Can be a type, a name, or an attribute.\n\n    Returns:\n        Callable:\n            A callable that can be passed to `attrs.asdict`'s and\n            `attrs.astuple`'s *filter* argument.\n\n    .. versionchanged:: 23.3.0 Accept field name string as input argument\n    \"\"\"\n    cls, names, attrs = _split_what(what)\n\n    def exclude_(attribute, value):\n        return not (\n            value.__class__ in cls\n            or attribute.name in names\n            or attribute in attrs\n        )\n\n    return exclude_",
+      "snapshot_excerpt_sha256": "749ef392dd5e8db75357006149ad359fd32bd3b2a62b61a025223f58e2adb4ae",
+      "source_commit": "598494a618410490cfbe0c896b7a544f6d23e0d9",
+      "source_family": "python-attrs",
+      "source_file_sha256": "64188a58ba774742df099b2aed7d75a67f565fc36c952db05cce23b272ce19cf",
+      "source_path": "src/attr/filters.py"
+    },
+    {
+      "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/httpx-old.txt",
+      "lora_adapter": {
+        "digest": "6edc191006c7b51366ab3af95f09d1797d3b557d91e6ef481e68861fb0fab052",
+        "path": "adapters/httpx-old"
+      },
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "httpx",
+      "selection_key_sha256": "0cb98fda6b5bcc7226c5ce1cab143fb70f3fd47510f51e59a3903983ed16a593",
+      "snapshot": "old",
+      "snapshot_excerpt": "import typing\nfrom contextlib import contextmanager\n\nfrom ._client import Client\nfrom ._config import DEFAULT_TIMEOUT_CONFIG\nfrom ._models import Response\nfrom ._types import (\n    AuthTypes,\n    CertTypes,\n    CookieTypes,\n    HeaderTypes,\n    ProxiesTypes,\n    QueryParamTypes,\n    RequestContent,\n    RequestData,\n    RequestFiles,\n    TimeoutTypes,\n    URLTypes,\n    VerifyTypes,\n)\n\n\ndef request(\n    method: str,\n    url: URLTypes,\n    *,\n    params: typing.Optional[QueryParamTypes] = None,\n    content: typing.Optional[RequestContent] = None,\n    data: typing.Optional[RequestData] = None,\n    files: typing.Optional[RequestFiles] = None,\n    json: typing.Optional[typing.Any] = None,\n    headers: typing.Optional[HeaderTypes] = None,\n    cookies: typing.Optional[CookieTypes] = None,\n    auth: typing.Optional[AuthTypes] = None,\n    proxies: typing.Optional[ProxiesTypes] = None,\n    timeout: TimeoutTypes = DEFAULT_TIMEOUT_CONFIG,\n    follow_redirects: bool = False,\n    verify: VerifyTypes = True,\n    cert: typing.Optional[CertTypes] = None,\n    trust_env: bool = True,\n) -> Response:\n    \"\"\"\n    Sends an HTTP request.\n\n    **Parameters:**\n\n    * **method** - HTTP method for the new `Request` object: `GET`, `OPTIONS`,\n    `HEAD`, `POST`, `PUT`, `PATCH`, or `DELETE`.\n    * **url** - URL for the new `Request` object.\n    * **params** - *(optional)* Query parameters to include in the URL, as a\n    string, dictionary, or sequence of two-tuples.\n    * **content** - *(optional)* Binary content to include in the body of the\n    request, as bytes or a byte iterator.\n    * **data** - *(optional)* Form data to include in the body of the request,\n    as a dictionary.\n    * **files** - *(optional)* A dictionary of upload files to include in the\n    body of the request.\n    * **json** - *(optional)* A JSON serializable object to include in the body\n    of the request.\n    * **headers** - *(optional)* Dictionary of HTTP headers to include in the\n    request.\n    * **cookies** - *(optional)* Dictionary of Cookie items to include in the\n    request.\n    * **auth** - *(optional)* An authentication class to use when sending the\n    request.\n    * **proxies** - *(optional)* A dictionary mapping proxy keys to proxy URLs.\n    * **timeout** - *(optional)* The timeout configuration to use when sending\n    the request.\n    * **follow_redirects** - *(optional)* Enables or disables HTTP redirects.\n    * **verify** - *(optional)* SSL certificates (a.k.a CA bundle) used to\n    verify the identity of requested hosts. Either `True` (default CA bundle),\n    a path to an SSL certificate file, an `ssl.SSLContext`, or `False`\n    (which will disable verification).\n    * **cert** - *(optional)* An SSL certificate used by the requested host\n    to authenticate the client. Either a path to an SSL certificate file, or\n    two-tuple of (certificate file, key file), or a three-tuple of (certificate\n    file, key file, password).\n    * **trust_env** - *(optional)* Enables or disables usage of environment\n    variables for configuration.\n",
+      "snapshot_excerpt_sha256": "9dc8f1becdac20ecd311a23700f3dbc18d8af8246c36eafe2b3cb7e5e86f9581",
+      "source_commit": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
+      "source_family": "encode",
+      "source_file_sha256": "71553d12bcda5ef7b9aeaa0fa121ebf7225ba2f1ed202adcc51ef206835278ec",
+      "source_path": "httpx/_api.py"
+    },
+    {
+      "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/httpx-new.txt",
+      "lora_adapter": {
+        "digest": "38bccff100199c2e92aae4f2fe907bf52a63bb41826ea8395f67f1f9030d3778",
+        "path": "adapters/httpx-new"
+      },
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "httpx",
+      "selection_key_sha256": "0cb98fda6b5bcc7226c5ce1cab143fb70f3fd47510f51e59a3903983ed16a593",
+      "snapshot": "new",
+      "snapshot_excerpt": "from __future__ import annotations\n\nimport typing\nfrom contextlib import contextmanager\n\nfrom ._client import Client\nfrom ._config import DEFAULT_TIMEOUT_CONFIG\nfrom ._models import Response\nfrom ._types import (\n    AuthTypes,\n    CookieTypes,\n    HeaderTypes,\n    ProxyTypes,\n    QueryParamTypes,\n    RequestContent,\n    RequestData,\n    RequestFiles,\n    TimeoutTypes,\n)\nfrom ._urls import URL\n\nif typing.TYPE_CHECKING:\n    import ssl  # pragma: no cover\n\n\n__all__ = [\n    \"delete\",\n    \"get\",\n    \"head\",\n    \"options\",\n    \"patch\",\n    \"post\",\n    \"put\",\n    \"request\",\n    \"stream\",\n]\n\n\ndef request(\n    method: str,\n    url: URL | str,\n    *,\n    params: QueryParamTypes | None = None,\n    content: RequestContent | None = None,\n    data: RequestData | None = None,\n    files: RequestFiles | None = None,\n    json: typing.Any | None = None,\n    headers: HeaderTypes | None = None,\n    cookies: CookieTypes | None = None,\n    auth: AuthTypes | None = None,\n    proxy: ProxyTypes | None = None,\n    timeout: TimeoutTypes = DEFAULT_TIMEOUT_CONFIG,\n    follow_redirects: bool = False,\n    verify: ssl.SSLContext | str | bool = True,\n    trust_env: bool = True,\n) -> Response:\n    \"\"\"\n    Sends an HTTP request.\n\n    **Parameters:**\n\n    * **method** - HTTP method for the new `Request` object: `GET`, `OPTIONS`,\n    `HEAD`, `POST`, `PUT`, `PATCH`, or `DELETE`.\n    * **url** - URL for the new `Request` object.\n    * **params** - *(optional)* Query parameters to include in the URL, as a\n    string, dictionary, or sequence of two-tuples.\n    * **content** - *(optional)* Binary content to include in the body of the\n    request, as bytes or a byte iterator.\n    * **data** - *(optional)* Form data to include in the body of the request,\n    as a dictionary.\n    * **files** - *(optional)* A dictionary of upload files to include in the\n    body of the request.\n    * **json** - *(optional)* A JSON serializable object to include in the body\n    of the request.\n    * **headers** - *(optional)* Dictionary of HTTP headers to include in the\n    request.\n    * **cookies** - *(optional)* Dictionary of Cookie items to include in the\n    request.\n    * **auth** - *(optional)* An authentication class to use when sending the\n    request.",
+      "snapshot_excerpt_sha256": "0449aafd1341e37cb2b6a487b74e2f360472b5c3b183268411b31eb99cd42b31",
+      "source_commit": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+      "source_family": "encode",
+      "source_file_sha256": "aff660b388c8a5c3c92ea2b975b6d26b2aa8fe254c2856b164277ea0e1f12c4b",
+      "source_path": "httpx/_api.py"
+    },
+    {
+      "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/pytest-old.txt",
+      "lora_adapter": {
+        "digest": "640881b4de8a24b60a4b6fe0e73a367513a5ef791acd9783032ee526303ea089",
+        "path": "adapters/pytest-old"
+      },
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "pytest",
+      "selection_key_sha256": "0175b49e83b9a6478e4e20eebc57f88af8b7678610d5f7c53c08200fe78075c9",
+      "snapshot": "old",
+      "snapshot_excerpt": "import functools\nimport inspect\nimport os\nimport sys\nimport warnings\nfrom collections import defaultdict\nfrom collections import deque\nfrom contextlib import suppress\nfrom pathlib import Path\nfrom types import TracebackType\nfrom typing import Any\nfrom typing import Callable\nfrom typing import cast\nfrom typing import Dict\nfrom typing import Generator\nfrom typing import Generic\nfrom typing import Iterable\nfrom typing import Iterator\nfrom typing import List\nfrom typing import MutableMapping\nfrom typing import NoReturn\nfrom typing import Optional\nfrom typing import Sequence\nfrom typing import Set\nfrom typing import Tuple\nfrom typing import Type\nfrom typing import TYPE_CHECKING\nfrom typing import TypeVar\nfrom typing import Union\n\nimport attr\n\nimport _pytest\nfrom _pytest import nodes\nfrom _pytest._code import getfslineno\nfrom _pytest._code.code import FormattedExcinfo\nfrom _pytest._code.code import TerminalRepr\nfrom _pytest._io import TerminalWriter\nfrom _pytest.compat import _format_args\nfrom _pytest.compat import _PytestWrapper\nfrom _pytest.compat import assert_never\nfrom _pytest.compat import final\nfrom _pytest.compat import get_real_func\nfrom _pytest.compat import get_real_method\nfrom _pytest.compat import getfuncargnames\nfrom _pytest.compat import getimfunc\nfrom _pytest.compat import getlocation\nfrom _pytest.compat import is_generator\nfrom _pytest.compat import NOTSET\nfrom _pytest.compat import overload\nfrom _pytest.compat import safe_getattr\nfrom _pytest.config import _PluggyPlugin\nfrom _pytest.config import Config\nfrom _pytest.config.argparsing import Parser\nfrom _pytest.deprecated import check_ispytest\nfrom _pytest.deprecated import YIELD_FIXTURE\nfrom _pytest.mark import Mark\nfrom _pytest.mark import ParameterSet\nfrom _pytest.mark.structures import MarkDecorator\nfrom _pytest.outcomes import fail\nfrom _pytest.outcomes import TEST_OUTCOME\nfrom _pytest.pathlib import absolutepath\nfrom _pytest.pathlib import bestrelpath\nfrom _pytest.scope import HIGH_SCOPES\nfrom _pytest.scope import Scope\nfrom _pytest.stash import StashKey\n\n\nif TYPE_CHECKING:\n    from typing import Deque\n\n    from _pytest.scope import _ScopeName\n    from _pytest.main import Session\n    from _pytest.python import CallSpec2\n    from _pytest.python import Metafunc\n\n\n# The value of the fixture -- return/yield of the fixture function (type variable).\nFixtureValue = TypeVar(\"FixtureValue\")\n# The type of the fixture function (type variable).",
+      "snapshot_excerpt_sha256": "b58c549b7544331352fe60faa92b45964a4b1e98ebbda55381fdece7ca796315",
+      "source_commit": "3af3f569d5394bb1a18426b0d57a04a094800974",
+      "source_family": "pytest-dev",
+      "source_file_sha256": "e5e65ddef6c92d4d9cc40e3d1263767c7469d2b7f7802f611e5cf40d5c178824",
+      "source_path": "src/_pytest/fixtures.py"
+    },
+    {
+      "excerpt_path": "runs/drift-confirmatory-v1/heldout-excerpts/pytest-new.txt",
+      "lora_adapter": {
+        "digest": "8c3d48d75ffd8760877c3b235801f991ac74b573f7ff4995f42e2a0030d287c9",
+        "path": "adapters/pytest-new"
+      },
+      "prompt_id": "snapshot-component-description-v1",
+      "repo": "pytest",
+      "selection_key_sha256": "0175b49e83b9a6478e4e20eebc57f88af8b7678610d5f7c53c08200fe78075c9",
+      "snapshot": "new",
+      "snapshot_excerpt": "# mypy: allow-untyped-defs\nfrom __future__ import annotations\n\nimport abc\nfrom collections import defaultdict\nfrom collections import deque\nimport dataclasses\nimport functools\nimport inspect\nimport os\nfrom pathlib import Path\nimport sys\nimport types\nfrom typing import AbstractSet\nfrom typing import Any\nfrom typing import Callable\nfrom typing import cast\nfrom typing import Dict\nfrom typing import Final\nfrom typing import final\nfrom typing import Generator\nfrom typing import Generic\nfrom typing import Iterable\nfrom typing import Iterator\nfrom typing import Mapping\nfrom typing import MutableMapping\nfrom typing import NoReturn\nfrom typing import Optional\nfrom typing import OrderedDict\nfrom typing import overload\nfrom typing import Sequence\nfrom typing import Tuple\nfrom typing import TYPE_CHECKING\nfrom typing import TypeVar\nfrom typing import Union\nimport warnings\n\nimport _pytest\nfrom _pytest import nodes\nfrom _pytest._code import getfslineno\nfrom _pytest._code import Source\nfrom _pytest._code.code import FormattedExcinfo\nfrom _pytest._code.code import TerminalRepr\nfrom _pytest._io import TerminalWriter\nfrom _pytest.compat import _PytestWrapper\nfrom _pytest.compat import assert_never\nfrom _pytest.compat import get_real_func\nfrom _pytest.compat import get_real_method\nfrom _pytest.compat import getfuncargnames\nfrom _pytest.compat import getimfunc\nfrom _pytest.compat import getlocation\nfrom _pytest.compat import is_generator\nfrom _pytest.compat import NOTSET\nfrom _pytest.compat import NotSetType\nfrom _pytest.compat import safe_getattr\nfrom _pytest.compat import safe_isclass\nfrom _pytest.config import _PluggyPlugin\nfrom _pytest.config import Config\nfrom _pytest.config import ExitCode\nfrom _pytest.config.argparsing import Parser\nfrom _pytest.deprecated import check_ispytest\nfrom _pytest.deprecated import MARKED_FIXTURE\nfrom _pytest.deprecated import YIELD_FIXTURE\nfrom _pytest.main import Session\nfrom _pytest.mark import Mark\nfrom _pytest.mark import ParameterSet\nfrom _pytest.mark.structures import MarkDecorator\nfrom _pytest.outcomes import fail\nfrom _pytest.outcomes import skip\nfrom _pytest.outcomes import TEST_OUTCOME\nfrom _pytest.pathlib import absolutepath\nfrom _pytest.pathlib import bestrelpath\nfrom _pytest.scope import _ScopeName\nfrom _pytest.scope import HIGH_SCOPES\nfrom _pytest.scope import Scope\n\n\nif sys.version_info < (3, 11):\n    from exceptiongroup import BaseExceptionGroup\n",
+      "snapshot_excerpt_sha256": "a94ef81902f32ddce1e2361b927b2f5a5a4722142febdc3eb44400d450b88bf8",
+      "source_commit": "53f8b4e634c5066c4f797a87b20060edbb086240",
+      "source_family": "pytest-dev",
+      "source_file_sha256": "239b77a56da51da54f6cdd6b010f6c757d1add0ae9a16fd4e553fe5717a3c668",
+      "source_path": "src/_pytest/fixtures.py"
+    }
+  ],
+  "records_sha256": "b691c04b3a053c0fff8b6aefbc336fd0e61bd01de03453a76415c53e216bab5b",
+  "repetitions": [
+    0,
+    1,
+    2
+  ],
+  "runner": {
+    "checkout_revision": "2a9f04f44742fffd2b68b6196b10783b77c9a1c6",
+    "expected_record_count": 162,
+    "path": "scripts/drift_generate.py",
+    "required_schema": "tiny-fleet.drift-generative-manifest/v2",
+    "source_sha256": "adc416a6e5d47b464c82b13d07b1cfffd0cd5e03c6a45a9f7772e51cfe4632c7"
+  },
+  "sample_manifest": {
+    "path": "runs/drift-confirmatory-v1/registration.json",
+    "sha256": "f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8"
+  },
+  "sample_manifest_sha256": "f21f4b9afcce8146d4f67cc78c0f1041bcd467676ac3a5aad812476a6cbc60e8",
+  "schema": "tiny-fleet.drift-generative-manifest/v2",
+  "scorer": {
+    "digest": "54142ae236a6a55ff4452e360e2c6867e219b356d56f0ff4c589cd6fb8b8e127",
+    "embedding_model": "all-minilm:latest",
+    "embedding_model_digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef",
+    "id": "ollama-embedding-cosine-v1",
+    "metric": "cosine similarity of paired output embeddings; not semantic ground truth",
+    "path": "scripts/drift_score.py",
+    "revision": "6c8cf98adb641086384a344233a466a9e53fb040",
+    "runtime": "Ollama 0.33.2",
+    "source_sha256": "54142ae236a6a55ff4452e360e2c6867e219b356d56f0ff4c589cd6fb8b8e127"
+  },
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "snapshots": [
+    {
+      "new": "598494a618410490cfbe0c896b7a544f6d23e0d9",
+      "old": "a9960de98d0f58ccb2880d03c97dafba3fc1111c",
+      "repo": "attrs"
+    },
+    {
+      "new": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+      "old": "f11eff45b7d53a6bbd17d453380b1e0ebf494102",
+      "repo": "httpx"
+    },
+    {
+      "new": "53f8b4e634c5066c4f797a87b20060edbb086240",
+      "old": "3af3f569d5394bb1a18426b0d57a04a094800974",
+      "repo": "pytest"
+    }
+  ],
+  "status": "blocked-before-generation",
+  "study": "tinyfleet-confirmatory-v1-arm-gates-20260913",
+  "temporal_limit": "selection follows the objective-only label freeze; selection is deterministic and label-content-blind, but it is not a pre-label freeze"
+}

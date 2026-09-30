@@ -1,0 +1,205 @@
+{
+  "corpus_sha256": "8d46c88be72edb4726e6304e10563c7c9c041578a226604270b88be350a288e7",
+  "metrics": [
+    {
+      "baseline": "explicit-rule",
+      "correct": 0,
+      "cost": {
+        "gpu_minutes": 0,
+        "paid_api": false
+      },
+      "coverage": 0.0,
+      "heldout_unowned": 7,
+      "latency_ms_p50": 0.00175,
+      "latency_ms_p95": 0.00805,
+      "quality_units": 4,
+      "role_confusion": {
+        "dev->abstain": 1,
+        "discover->abstain": 3
+      },
+      "severe_constraint_violations": 0,
+      "suitable_owner_accuracy": 0.0
+    },
+    {
+      "baseline": "role-keyword",
+      "correct": 0,
+      "cost": {
+        "gpu_minutes": 0,
+        "paid_api": false
+      },
+      "coverage": 0.14285714285714285,
+      "heldout_unowned": 7,
+      "latency_ms_p50": 0.01071,
+      "latency_ms_p95": 0.01739,
+      "quality_units": 4,
+      "role_confusion": {
+        "dev->abstain": 1,
+        "discover->abstain": 2,
+        "discover->dev": 1
+      },
+      "severe_constraint_violations": 0,
+      "suitable_owner_accuracy": 0.0
+    },
+    {
+      "baseline": "tfidf-linear",
+      "correct": 1,
+      "cost": {
+        "gpu_minutes": 0,
+        "paid_api": false
+      },
+      "coverage": 0.14285714285714285,
+      "heldout_unowned": 7,
+      "latency_ms_p50": 0.01195,
+      "latency_ms_p95": 0.02104,
+      "quality_units": 4,
+      "role_confusion": {
+        "dev->abstain": 1,
+        "discover->abstain": 2,
+        "discover->discover": 1
+      },
+      "severe_constraint_violations": 0,
+      "suitable_owner_accuracy": 0.25
+    },
+    {
+      "baseline": "all-minilm-centroid",
+      "correct": 0,
+      "cost": {
+        "gpu_minutes": 0,
+        "paid_api": false
+      },
+      "coverage": 0.0,
+      "heldout_unowned": 7,
+      "latency_ms_p50": 0.00167,
+      "latency_ms_p95": 0.00346,
+      "quality_units": 4,
+      "role_confusion": {
+        "dev->abstain": 1,
+        "discover->abstain": 3
+      },
+      "severe_constraint_violations": 0,
+      "suitable_owner_accuracy": 0.0
+    },
+    {
+      "baseline": "abstain-all",
+      "correct": 0,
+      "cost": {
+        "gpu_minutes": 0,
+        "paid_api": false
+      },
+      "coverage": 0.0,
+      "heldout_unowned": 7,
+      "latency_ms_p50": 0.00158,
+      "latency_ms_p95": 0.0024,
+      "quality_units": 4,
+      "role_confusion": {
+        "dev->abstain": 1,
+        "discover->abstain": 3
+      },
+      "severe_constraint_violations": 0,
+      "suitable_owner_accuracy": 0.0
+    }
+  ],
+  "predictions": {
+    "abstain-all": {
+      "bd-001": null,
+      "bd-002": null,
+      "bd-003": null,
+      "bd-004": null,
+      "bd-005": null,
+      "bd-006": null,
+      "bd-007": [
+        "genome"
+      ],
+      "bd-008": null,
+      "bd-009": null,
+      "bd-010": null,
+      "bd-011": null,
+      "bd-012": null
+    },
+    "all-minilm-centroid": {
+      "bd-001": null,
+      "bd-002": null,
+      "bd-003": null,
+      "bd-004": null,
+      "bd-005": null,
+      "bd-006": null,
+      "bd-007": [
+        "genome"
+      ],
+      "bd-008": null,
+      "bd-009": null,
+      "bd-010": null,
+      "bd-011": null,
+      "bd-012": null
+    },
+    "explicit-rule": {
+      "bd-001": null,
+      "bd-002": null,
+      "bd-003": null,
+      "bd-004": null,
+      "bd-005": null,
+      "bd-006": null,
+      "bd-007": [
+        "genome"
+      ],
+      "bd-008": null,
+      "bd-009": null,
+      "bd-010": null,
+      "bd-011": null,
+      "bd-012": null
+    },
+    "role-keyword": {
+      "bd-001": null,
+      "bd-002": null,
+      "bd-003": [
+        "dev",
+        "discover"
+      ],
+      "bd-004": [
+        "dev",
+        "discover"
+      ],
+      "bd-005": null,
+      "bd-006": null,
+      "bd-007": [
+        "genome"
+      ],
+      "bd-008": null,
+      "bd-009": null,
+      "bd-010": null,
+      "bd-011": null,
+      "bd-012": [
+        "dev",
+        "discover"
+      ]
+    },
+    "tfidf-linear": {
+      "bd-001": [
+        "sense"
+      ],
+      "bd-002": [
+        "discover"
+      ],
+      "bd-003": null,
+      "bd-004": [
+        "discover"
+      ],
+      "bd-005": null,
+      "bd-006": null,
+      "bd-007": [
+        "genome"
+      ],
+      "bd-008": null,
+      "bd-009": null,
+      "bd-010": null,
+      "bd-011": null,
+      "bd-012": [
+        "discover"
+      ]
+    }
+  },
+  "resource": {
+    "max_rss_kb": 17536
+  },
+  "schema": "tiny-fleet.board-dispatch.baselines/v1"
+}

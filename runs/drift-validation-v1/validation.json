@@ -1,0 +1,23 @@
+{
+  "coverage": {
+    "counts": {
+      "behavior_change": 1,
+      "cosmetic": 1,
+      "interface_change": 1
+    },
+    "disagreements": 0,
+    "repositories": 3,
+    "units": 3
+  },
+  "estimands": [
+    "structural",
+    "lexical",
+    "generative",
+    "behavioral"
+  ],
+  "labels_sha256": "0f887cbadf43eab8d5fec5b00a34e84e130d684e2777557d1e4a991e17a9db9a",
+  "reason": "model scores are blinded and external association is not computed",
+  "registration_sha256": "052a18bb79d2e17f9e8c3a706d023f832b5fa8223859077e9cab52852a64e27d",
+  "schema": "tiny-fleet.drift-validation-run/v1",
+  "status": "preliminary"
+}

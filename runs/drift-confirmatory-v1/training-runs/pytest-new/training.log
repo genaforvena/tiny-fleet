@@ -1,0 +1,7 @@
+2026-09-13 20:13:12,587 INFO starting run=5fdad1c3f7181060d6df repo=pytest snapshot=new gpu=NVIDIA GeForce RTX 3060 free_mib=11107
+2026-09-13 20:13:24,137 INFO progress chunks=16/67 mean_loss=2.08125
+2026-09-13 20:13:26,880 INFO progress chunks=32/67 mean_loss=2.10153
+2026-09-13 20:13:30,002 INFO progress chunks=48/67 mean_loss=2.07084
+2026-09-13 20:13:32,939 INFO progress chunks=64/67 mean_loss=2.07766
+2026-09-13 20:13:33,498 INFO progress chunks=67/67 mean_loss=2.09293
+2026-09-13 20:13:37,106 INFO complete adapter_sha256=8c3d48d75ffd8760877c3b235801f991ac74b573f7ff4995f42e2a0030d287c9 train_loss=2.09293 validation_before=2.14906 validation_after=2.10574

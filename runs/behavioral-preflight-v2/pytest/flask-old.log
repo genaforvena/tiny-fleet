@@ -1,0 +1,12 @@
+ImportError while loading conftest '/tmp/haunt-drift-v2/work/flask-old/tests/conftest.py'.
+/usr/lib/python3.12/ast.py:407: in visit
+    return visitor(node)
+/usr/lib/python3.12/ast.py:407: in visit
+    return visitor(node)
+/usr/lib/python3.12/ast.py:407: in visit
+    return visitor(node)
+/usr/lib/python3.12/ast.py:1803: in __getattr__
+    warnings._deprecated(
+/usr/lib/python3.12/warnings.py:530: in _deprecated
+    warn(msg, DeprecationWarning, stacklevel=3)
+E   DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead

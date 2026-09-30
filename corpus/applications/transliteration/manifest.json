@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "application_id": "A09",
+  "license": "CC0-1.0",
+  "data_policy": "synthetic-only",
+  "description": "Synthetic Russian Latin/Cyrillic transliteration fixtures with protected ticket IDs.",
+  "normalization": {"case_sensitive": true, "unicode_normalization": "NFC", "protected": "ORD-YYYY-NNNN"},
+  "blueprints": [
+    {"prefix": "dev-latn", "split": "development", "language": "ru-latn", "count": 12, "source_family_prefix": "dev-latn-family", "noisy": "ORD-2026-{index:04d} klient v Moskva", "clean": "ORD-2026-{index:04d} клиент в Москва", "ambiguous": false},
+    {"prefix": "val-cyrl", "split": "validation", "language": "ru-cyrl", "count": 20, "source_family_prefix": "val-cyrl-family", "noisy": "ORD-2026-{index:04d} adres klienta i Eleny", "clean": "ORD-2026-{index:04d} адрес клиента и Елены", "ambiguous": false},
+    {"prefix": "hold-latn", "split": "heldout", "language": "ru-latn", "count": 60, "source_family_prefix": "hold-latn-family", "noisy": "ORD-2026-{index:04d} klient v Moskva poluchil posylka", "clean": "ORD-2026-{index:04d} клиент в Москва получил посылка", "ambiguous": false},
+    {"prefix": "hold-cyrl", "split": "heldout", "language": "ru-cyrl", "count": 60, "source_family_prefix": "hold-cyrl-family", "noisy": "ORD-2026-{index:04d} adres klienta i Eleny", "clean": "ORD-2026-{index:04d} адрес клиента и Елены", "ambiguous": false}
+  ],
+  "lexicon": {"klient": "клиент", "v": "в", "Moskva": "Москва", "poluchil": "получил", "posylka": "посылка", "adres": "адрес", "klienta": "клиента", "i": "и", "Eleny": "Елены"},
+  "precedent": {"title": "ByT5: Towards a token-free future with pre-trained byte-to-byte models", "url": "https://arxiv.org/abs/2105.13626", "role": "feasibility precedent only; no Tiny Fleet model claim"}
+}

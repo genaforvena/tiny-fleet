@@ -1,0 +1,2 @@
+Python 3.11.13
+pip 24.0 from /usr/local/lib/python3.11/site-packages/pip (python 3.11)

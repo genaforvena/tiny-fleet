@@ -1,0 +1,19 @@
+attrs==26.1.0
+coverage==6.4.4
+hypothesis==6.54.4
+iniconfig==2.3.0
+mypy==0.971
+packaging==26.3
+pip==24.0
+pluggy==1.6.0
+py==1.11.0
+pytest==7.1.2
+pytest-cov==3.0.0
+pytest-mock==3.8.2
+pytest-sugar==0.9.5
+sortedcontainers==2.4.0
+termcolor==3.3.0
+tomli==2.4.1
+typing_extensions==4.2.0
+mypy_extensions==0.4.3
+-e /study/work/pydantic-old

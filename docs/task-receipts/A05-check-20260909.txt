@@ -1,0 +1,23 @@
+A05 implementation checks — 2026-09-09 UTC
+
+rtk proxy .venv/bin/python scripts/test_app_duplicate_incidents.py
+exit 0; 6 tests; OK
+
+rtk proxy .venv/bin/python scripts/applications/duplicate_incidents.py --phase baseline --run-dir runs/applications/duplicate-incidents
+exit 0; verdict INCONCLUSIVE; heldout 120 (100 positive, 20 no-match)
+normalized-hash: pair_precision 1.0, pair_recall 0.8, false_accept_n 0, candidate_retrieval_recall 1.0, abstention_rate 0.3333333333333333
+character-ngram: pair_precision 0.8333333333333334, pair_recall 1.0, false_accept_n 20
+bm25: pair_precision 0.8333333333333334, pair_recall 1.0, false_accept_n 20
+all_MiniLM: unavailable; C02-C08 and S01-S05 verification gates incomplete
+
+rtk proxy .venv/bin/python scripts/application_screen.py --registry runs/applications/registry.json --validate
+exit 0; registry valid; 10 applications
+
+git diff --check
+exit 0
+
+Captured stdout/stderr hashes:
+/tmp/a05-test.out d58a865f21828cddd4aa52dd915512a821b4cf39c253d88b82cf59fae2d8800f
+/tmp/a05-baseline.out 5ad34f25570f915d3a1dd0094bce108b7ecc12bc41c98537ccdf3b615b74ffd6
+/tmp/a05-registry.out 9c3ec54de3f528c086d07902bb4901f32e0b14b4eec795d2ba80bdffde181532
+/tmp/a05-diff.out e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855

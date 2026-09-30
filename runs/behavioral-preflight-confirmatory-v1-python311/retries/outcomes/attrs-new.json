@@ -1,0 +1,1 @@
+{"snapshot":"attrs-new","attempt":"PATH-corrected","test_command":"PATH=<venv>/bin python -m pytest -q","test_exit":1}

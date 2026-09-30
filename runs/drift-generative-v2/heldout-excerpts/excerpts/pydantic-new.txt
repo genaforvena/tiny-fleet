@@ -1,0 +1,80 @@
+"""Configuration for Pydantic models."""
+
+from __future__ import annotations as _annotations
+
+from re import Pattern
+from typing import TYPE_CHECKING, Any, Callable, Dict, List, Type, TypeVar, Union
+
+from typing_extensions import Literal, TypeAlias, TypedDict
+
+from ._migration import getattr_migration
+from .aliases import AliasGenerator
+from .errors import PydanticUserError
+
+if TYPE_CHECKING:
+    from ._internal._generate_schema import GenerateSchema as _GenerateSchema
+    from .fields import ComputedFieldInfo, FieldInfo
+
+__all__ = ('ConfigDict', 'with_config')
+
+
+JsonValue: TypeAlias = Union[int, float, str, bool, None, List['JsonValue'], 'JsonDict']
+JsonDict: TypeAlias = Dict[str, JsonValue]
+
+JsonEncoder = Callable[[Any], Any]
+
+JsonSchemaExtraCallable: TypeAlias = Union[
+    Callable[[JsonDict], None],
+    Callable[[JsonDict, Type[Any]], None],
+]
+
+ExtraValues = Literal['allow', 'ignore', 'forbid']
+
+
+class ConfigDict(TypedDict, total=False):
+    """A TypedDict for configuring Pydantic behaviour."""
+
+    title: str | None
+    """The title for the generated JSON schema, defaults to the model's name"""
+
+    model_title_generator: Callable[[type], str] | None
+    """A callable that takes a model class and returns the title for it. Defaults to `None`."""
+
+    field_title_generator: Callable[[str, FieldInfo | ComputedFieldInfo], str] | None
+    """A callable that takes a field's name and info and returns title for it. Defaults to `None`."""
+
+    str_to_lower: bool
+    """Whether to convert all characters to lowercase for str types. Defaults to `False`."""
+
+    str_to_upper: bool
+    """Whether to convert all characters to uppercase for str types. Defaults to `False`."""
+
+    str_strip_whitespace: bool
+    """Whether to strip leading and trailing whitespace for str types."""
+
+    str_min_length: int
+    """The minimum length for str types. Defaults to `None`."""
+
+    str_max_length: int | None
+    """The maximum length for str types. Defaults to `None`."""
+
+    extra: ExtraValues | None
+    """
+    Whether to ignore, allow, or forbid extra attributes during model initialization. Defaults to `'ignore'`.
+
+    You can configure how pydantic handles the attributes that are not defined in the model:
+
+    * `allow` - Allow any extra attributes.
+    * `forbid` - Forbid any extra attributes.
+    * `ignore` - Ignore any extra attributes.
+
+    ```python
+    from pydantic import BaseModel, ConfigDict
+
+    class User(BaseModel):
+        model_config = ConfigDict(extra='ignore')  # (1)!
+
+        name: str
+
+    user = User(name='John Doe', age=20)  # (2)!
+    print(user)

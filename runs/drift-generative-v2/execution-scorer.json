@@ -1,0 +1,51 @@
+{
+  "schema": "tiny-fleet.cross-repository-generative-scorer-registration/v1",
+  "status": "scorer-registered-no-experimental-scores",
+  "frozen_registration": {
+    "path": "runs/drift-generative-v2/registration.json",
+    "sha256": "df8c67e0c2f4dd31fc673b8af1438d6c3496f79d90a436521b945a304d44fe02",
+    "preserved_byte_for_byte": true
+  },
+  "sample_manifest": {
+    "path": "docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json",
+    "sha256": "07c2b0b34f204b2ef549ecf1aa7c581fb7c03af1dbcb8e4a9b4581d392b3ee59"
+  },
+  "heldout_excerpt_ledger": {
+    "path": "runs/drift-generative-v2/heldout-excerpts/heldout-excerpts.json",
+    "sha256": "ef117c462697932c461645c356302907ad3ab9275d49ab0be5ccf52b358ccba6",
+    "excerpt_count": 6
+  },
+  "backend_smoke": {
+    "path": "runs/drift-generative-v2/embedding-backend-smoke.json",
+    "purpose": "generic embedding service check only; no excerpt, generation output, vector, or score retained"
+  },
+  "scorer": {
+    "id": "ollama-embedding-cosine-v1",
+    "source_path": "scripts/drift_score.py",
+    "source_revision": "6c8cf98adb641086384a344233a466a9e53fb040",
+    "source_sha256": "54142ae236a6a55ff4452e360e2c6867e219b356d56f0ff4c589cd6fb8b8e127",
+    "runtime": "Ollama 0.33.2",
+    "runtime_version_check": "GET /api/version must equal the registered version",
+    "embedding_model": "all-minilm:latest",
+    "embedding_model_digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef",
+    "embedding_dimension": 384,
+    "model_check": "GET /api/tags must contain exactly one matching name and digest",
+    "metric": "cosine similarity using finite float64 vectors, math.fsum accumulation, and result clamped to [-1, 1]",
+    "pair_key": ["repo", "arm", "prompt_id", "seed", "repetition"],
+    "accepted_records": "successful v2 records only; each pair must have exactly one old and one new output with matching base-model revision and adapter digest",
+    "interpretation_limit": "embedding similarity is not semantic ground truth"
+  },
+  "registered_generation_schedule": {
+    "seeds": [17, 29, 43],
+    "repetitions": [0, 1, 2],
+    "source": "runs/drift-generative-v2/registration.json"
+  },
+  "temporal_limit": {
+    "status": "strict-blind-order-prerequisite-unmet",
+    "reason": "score-blind D04 objective labels were frozen before this excerpt-selection task was dispatched, and a generic non-experimental model smoke preceded excerpt selection",
+    "selector_access": "the deterministic selector reads the frozen sample manifest and exact source trees only; it does not open any label or score artifact",
+    "consequence": "the current six-excerpt ledger and any resulting outputs are suitable for implementation audit or exploratory analysis only; confirmatory use requires a newly frozen unseen sample or explicit independent review"
+  },
+  "experimental_outputs": "none",
+  "scores": "none"
+}
