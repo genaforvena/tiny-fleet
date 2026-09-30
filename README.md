@@ -33,7 +33,7 @@ whether repeated fitting actually overfits and whether that helps the detector.
 |---|---|
 | Old/new adapter likelihood on excluded source modules | Whether the weights distinguish held-out snapshots |
 | Token-unigram and training-context prompt-only baselines | Whether fitting adds value over cheaper alternatives |
-| Source-free terminology/concept probes | Whether output changes align with observed source vocabulary |
+| Terminology/concept probes | Whether output changes align with observed source vocabulary. Base and LoRA arms are prompted with no source text; the prompt-only arm deliberately receives 512 tokens of *training* context, so it is not source-free |
 | Repeated identical-model probes | Reproducibility without a changed snapshot |
 | Token-order shuffle and repository-label permutations | Sequence dependence and accidental directional alignment |
 | Losses, failures, empty/capped outputs and elapsed cost | Memorization, deterioration and operational usefulness |
@@ -54,6 +54,12 @@ The runner is CPU/fp32, cache-only, sequential and no-overwrite. It freezes
 input/model/tokenizer/source hashes before execution, retains raw outputs and
 failed attempts, and enforces a six-hour model-execution wall cap. It does not
 evict GPU workloads, download models implicitly or amend older registrations.
+
+`--prepare` records the repository revision it was prepared at, and `--run`
+refuses to start if any bound input or implementing-source hash changed
+afterwards. The measurement reported in this repository was prepared at commit
+`9624641`; the delivery revision adds only the CI step that runs the
+dependency-free analysis tests.
 
 ```bash
 python3 -m venv .venv
