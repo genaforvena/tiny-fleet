@@ -1,0 +1,8 @@
+# Versions measured in the terminology-drift experiment environment.
+# For CPU-only hosts, install the matching CPU torch wheel before this file.
+torch==2.14.0
+transformers==4.57.6
+peft==0.20.0
+tokenizers==0.22.2
+safetensors==0.8.0
+numpy==2.5.3

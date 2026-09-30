@@ -1,20 +1,91 @@
-# tiny-fleet
+# tiny-fleet: small models as drift instruments
 
-Can a shared **360M base model**, small specialist LoRA adapters, and a router
-improve task quality at bounded cost?
+**Can deliberate overtraining of a small language model turn changes in a
+codebase's terminology into a useful, reproducible signal?**
 
-This repository investigates that question using
-[SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct),
-toy guitar/sourdough specialists, an embedding-centroid router with abstention,
-and a separate deterministic operator-policy baseline. It also studies changes
-between pinned repository snapshots. **Neither routed-specialist superiority nor
-semantic architectural drift is an established result here.**
-
-The original inspiration was
+That is this repository's current question. Fleet deployment, routers and the
+other applications below are historical experiments, not the project's goal.
+The inspiration was the narrowly fitted
 [BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m);
-[behavior notes](docs/bbywvy-360m-notes.md) record the narrow-model experiment.
+[the original notes](docs/bbywvy-360m-notes.md) remain available.
 
-## Research conclusions — 2026-09-30
+We treat models as **measuring instruments, not authorities**. A model naming
+different concepts after fitting old versus new code is not, by itself, evidence
+that it understands architectural change. A useful instrument must survive
+source-held-out checks, identical-model controls and shuffled labels, and add
+something beyond a cheap token-count baseline. Negative results count.
+
+## Focused experiment
+
+The experiment uses the same pinned
+[SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)
+base and six existing old/new code-snapshot LoRAs: Flask, Requests and Pydantic.
+The original adapters received one bounded training epoch; they are the
+**adaptation baseline**, not evidence of deliberate overtraining.
+
+Each adapter is fitted repeatedly on a frozen 4,096-token training subset,
+with checkpoints after **4 and 19 additional passes**. These are not 5/20
+full-corpus epochs: the historical optimizer is unavailable, so continuation
+uses a fresh optimizer. Training, validation and source-held-out losses show
+whether repeated fitting actually overfits and whether that helps the detector.
+
+| Measurement | What it checks |
+|---|---|
+| Old/new adapter likelihood on excluded source modules | Whether the weights distinguish held-out snapshots |
+| Token-unigram and training-context prompt-only baselines | Whether fitting adds value over cheaper alternatives |
+| Source-free terminology/concept probes | Whether output changes align with observed source vocabulary |
+| Repeated identical-model probes | Reproducibility without a changed snapshot |
+| Token-order shuffle and repository-label permutations | Sequence dependence and accidental directional alignment |
+| Losses, failures, empty/capped outputs and elapsed cost | Memorization, deterioration and operational usefulness |
+
+The held-out modules are excluded from both snapshots' train/validation sets.
+Prompt-only controls receive training text, never the held-out target.
+There are only **three repository pairs**, with one held-out module per snapshot
+and one training seed. The Requests held-out excerpt is byte-identical across
+snapshots: it is an unchanged-source control, not a third changed module.
+Generation seeds are not independent training replicas. Pretraining contamination
+and human semantic accuracy remain unknown. With only two changed source units,
+the exact sign-permutation test has a positive-tail floor of 1/4; this experiment
+cannot establish a general statistical superiority claim.
+
+### Run the real experiment
+
+The runner is CPU/fp32, cache-only, sequential and no-overwrite. It freezes
+input/model/tokenizer/source hashes before execution, retains raw outputs and
+failed attempts, and enforces a six-hour model-execution wall cap. It does not
+evict GPU workloads, download models implicitly or amend older registrations.
+
+```bash
+python3 -m venv .venv
+# Install a CPU torch wheel first if you do not need CUDA:
+.venv/bin/python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.14.0
+.venv/bin/python -m pip install -r requirements-model-drift.txt
+
+# If the pinned base is not cached, explicitly download it once:
+.venv/bin/python - <<'PY'
+from huggingface_hub import snapshot_download
+snapshot_download(
+    repo_id="HuggingFaceTB/SmolLM2-360M-Instruct",
+    revision="a10cc1512eabd3dde888204e902eca88bddb4951",
+    allow_patterns=["*.json", "*.safetensors", "*.model"],
+)
+PY
+# Runner calls below are offline; use unused directories.
+# Smoke performs an actual model update without changing original weights.
+.venv/bin/python scripts/model_terminology_drift.py --smoke --run-dir /tmp/model-drift-smoke
+.venv/bin/python scripts/model_terminology_drift.py --prepare --run-dir /tmp/model-drift-study
+.venv/bin/python scripts/model_terminology_drift.py --run --run-dir /tmp/model-drift-study
+.venv/bin/python scripts/analyze_model_terminology_drift.py --run-dir /tmp/model-drift-study --output /tmp/model-drift-analysis.json
+```
+
+This is a separate prospective exploratory experiment, not a repaired or renamed
+registered fleet replication. Historical results and failed/partial runs are
+preserved; they cannot settle the current question.
+
+<details>
+<summary>Historical fleet experiments, applications and earlier research plans</summary>
+
+## Historical fleet conclusions — 2026-09-30
 
 **Specialization improved reference likelihood on the toy passage task, but did
 not establish useful generation, routing superiority, or deployment safety.**
@@ -22,8 +93,10 @@ These are interim exploratory measurements of saved seed-17 checkpoints, not
 the registered three-training-seed replication.
 
 Four completed CPU/fp32 arms contain **3,200 validated outputs**, 800 per arm:
-100 cases in each of four domains in each held-out/adversarial split. Three
-specialist arms are still running and are excluded from this snapshot.
+100 cases in each of four domains in each held-out/adversarial split. This is
+the original four-arm publication snapshot, not the final stopped-run inventory.
+The operator subsequently stopped the fleet jobs to prioritize model drift;
+completed and partial evidence was retained without restarting either study.
 
 | Execution arm | Held-out passage reference PPL (100 cases) ↓ | Code expressions passing fixed fixtures (200 cases) | Empty outputs / 800 | 256-token cap hits / 800 | Whole-arm minutes |
 |---|---:|---:|---:|---:|---:|
@@ -77,7 +150,7 @@ This inspects the published summary; it does not rerun model inference. Raw
 checkpoint tapes and local protocol dependencies are not bundled here, so a
 fresh clone cannot independently reproduce the model run from this summary.
 
-### Completion plan and distribution
+### Historical completion plan and distribution — superseded as current priority
 
 | Workstream | Execution owner | Required experiments / acceptance | Current prerequisite |
 |---|---|---|---|
@@ -88,11 +161,11 @@ fresh clone cannot independently reproduce the model run from this summary.
 | Architectural drift | genome; discover handles source/license/unit inventory; witness accepts | Registered Flask/Requests/Pydantic old/new snapshots: structural, lexical, paired native behavior, 162-record gated generative matrix; identity/shuffle/leak/missing-artifact controls | Archive measurement path, pinned paired probes, complete reviewed execution manifest and resource admission |
 | Publication | genome author; independent witness/reviewer | README conclusions, claim-specific limitations, reproducible evidence and commands, exact-revision review, GitHub delivery and exact-commit CI status | Partial publication is not scientific completion; missing required arms stay open |
 
-The separate v2 corpus admission and validation-only router calibration are
-complete locally, but its registration is **not frozen**, no v2 models have been
-trained, and no held-out routed result exists. New v2 results must remain separate
-from the original study and this exploratory panel. No unrelated GPU job may be
-evicted and failed attempts must never reset the resource ledger.
+This historical plan is not a claim that either fleet experiment completed.
+The separate v2 study was later approved and frozen; five training admissions
+completed and one was interrupted when the operator stopped the jobs.
+No full v2 evaluation or routed superiority result was established.
+Old resource ledgers and all completed/partial artifacts remain preserved.
 
 The Mishe operational-transfer proposal is a separate shadow study, not evidence
 of a deployed fleet; any operational trial needs its own registration and
@@ -357,3 +430,5 @@ an integrity gate, not proof of scientific validity or deployment readiness.
 License: [CC0 1.0 Universal](LICENSE). This project's dedication does not
 relicense third-party models, repository snapshots or datasets; retain their
 own license and redistribution requirements.
+
+</details>
