@@ -1,21 +1,156 @@
-# tiny-fleet: small models as drift instruments
+# tiny-fleet: small models as predictive-compression drift instruments
 
-**Can deliberate overtraining of a small language model turn changes in a
-codebase's terminology into a useful, reproducible signal?**
+**Can a small language model act as a predictive code-length meter for repository change?**
 
-That is this repository's current question. Fleet deployment, routers and the
-other applications below are historical experiments, not the project's goal.
-The inspiration was the narrowly fitted
+At the objective level, yes: an autoregressive model's token log-loss is its
+ideal predictive code length (in bits, `-log2 p(token | context)`), and an
+arithmetic coder can turn that predictive distribution into a lossless code.
+Comparing held-out code lengths for models fitted to two repository snapshots
+can therefore measure a distribution/timepoint signal. It does **not** establish
+semantic understanding or explain why code changed. Nor is an adapter literally
+a compressed repository: real archive compression must also pay for the model,
+adapter, tokenizer/decoder and framing.
+
+The prediction/compression equivalence is established adjacent work; see
+[Language Modeling Is Compression (ICLR 2024)](https://proceedings.iclr.cc/paper_files/paper/2024/file/3cbf627fa24fb6cb576e04e689b9428b-Paper-Conference.pdf).
+Diachronic language-model methods also exist for meaning-shift tasks, including
+[TempoWiC social-media models (EvoNLP 2022)](https://aclanthology.org/2022.evonlp-1.6/).
+Those are neighboring areas, not the exact repository-specific measurement
+tested here; this README makes no novelty claim.
+
+**LTE-workstation:** the [2026-09-03 historical report](docs/tiny-fleet-drift-report.md)
+did not validate a fine-tuned compression meter. Its Ollama Modelfiles changed
+prompts and few-shot examples; LoRA was listed as future work. It used a 135M
+Ollama model; the pilot below fits a separate, pinned 360M base. The later
+Flask/Requests/Pydantic LoRA study was a different sample and says nothing about
+LTE history. The direct two-timepoint LTE measurement and its limitations are
+reported below.
+
+Fleet deployment, routers and the other applications below are historical
+experiments, not the project's goal. The inspiration was the narrowly fitted
 [BbyWVY-360m](https://huggingface.co/StarpowerTechnology/BbyWVY-360m);
 [the original notes](docs/bbywvy-360m-notes.md) remain available.
 
-We treat models as **measuring instruments, not authorities**. A model naming
-different concepts after fitting old versus new code is not, by itself, evidence
-that it understands architectural change. A useful instrument must survive
-source-held-out checks, identical-model controls and shuffled labels, and add
-something beyond a cheap token-count baseline. Negative results count.
+We treat models as **measuring instruments, not authorities**. A different
+held-out loss is a distributional signal, not evidence that a model understands
+architectural change. Negative results count.
 
-## Focused experiment
+## LTE-workstation two-timepoint pilot
+
+This is the direct test of the historical LTE claim, not a reuse of the
+Flask/Requests/Pydantic sample below. It compares LTE-workstation history at
+`5475816081b26a0f9aebb92da844493b19304eef` (2026-06-15) and
+`a8b73e01b55d06f8ae3bed8f438c7ea36c902e63` (2026-09-03). The filtered,
+UTF-8 text inventory contains 31 old files (201,592 bytes) and 589 new files
+(5,186,335 bytes); binary, private, and unregistered paths are excluded.
+
+The same pinned 360M SmolLM2-Instruct base is fitted separately on each
+snapshot with LoRA (rank 8, alpha 16), seeds 17/29/43, 4,096 training tokens
+per fit, fresh AdamW optimizers, and 19 passes over the fixed sample.
+
+The shared-host run uses CPU/fp32, one thread and non-reentrant activation
+checkpointing under `mesh-heavy-run 3072`'s cgroup memory cap; the runner also
+enforces a six-hour wall limit.
+Each snapshot also has 4,096 validation tokens. The path/exact-blob component split
+keeps versions of a path and duplicate content out of different splits.
+
+The first prepare-only hash split had four changed but zero unchanged test
+paths. Before any LTE-source model outputs, the frozen plan was amended to put
+the unique byte-identical common file with the lowest `SHA256(path)` into test;
+its deterministic, deliberately selected control is not a random sample.
+The source-held-out test has four changed paired paths and one byte-identical
+common-file control; each side uses at most 512 model input IDs (511
+next-token targets).
+
+All four changed test units are Markdown; this pilot therefore measures a
+repository-documentation signal, not a held-out executable-code change.
+
+The primary measure is crossed held-out negative log-likelihood in nats per
+token (`bits/token = nats/token ÷ ln 2`), compared against the shared base
+model, snapshot-specific training unigram, and unchanged-source control.
+Each 512-ID prefix uses its first ID as context and scores 511 next tokens;
+the reported metric is token-level only, not a full-snippet bits-per-byte
+rate. Expected tape denominators are 180 LoRA, 10 base, 20 unigram likelihood
+rows, and 132 training rows. Only aggregate measurements belong in Git; raw
+source, token IDs, inventories, checkpoints and tapes stay in the ignored local
+research site. No generations or human semantic labels are part of this pilot.
+
+### Measured LTE result
+
+The strict analyzer completed with no errors: 210/210 likelihood rows and
+132/132 training rows. The sequential CPU run took 17,583 s (4.88 h); peak
+process RSS was 2.71 GiB under the 3,072 MB cgroup cap. The score table gives
+mean token-weighted NLL over four changed held-out documents, averaged across
+three LoRA seeds; pass 0 is the shared unadapted base.
+
+A two-way crossover counts a seed only if the old adapter has lower NLL on
+old text and the new adapter has lower NLL on new text.
+
+| Checkpoint | Old fit on old text | New fit on old text | Old fit on new text | New fit on new text | Same-seed two-way crossovers |
+|---|---:|---:|---:|---:|---:|
+| Pass 0 (base) | 3.2995 | 3.2995 | 3.2209 | 3.2209 | — |
+| 4 additional passes | 3.2326 | 3.2501 | 3.1548 | 3.1735 | 0/3 |
+| 19 additional passes | 3.7369 | 3.8190 | 3.5855 | 3.8038 | 0/3 |
+
+At both fitted checkpoints, the old-snapshot adapter has lower NLL than the
+new-snapshot adapter on both timepoints for all three matched seeds. At pass
+19, both adapters also score worse than the shared base on the changed test
+documents. The byte-identical control has equal scores across its old/new
+labels, as expected.
+
+Mean across the three seeds, train/validation diagnostic NLL (pass 0 → 4 → 19):
+
+| Fit snapshot | Train NLL | Validation NLL |
+|---|---|---|
+| Old | 3.678 → 3.453 → 1.472 | 3.420 → 3.368 → 4.028 |
+| New | 3.346 → 3.151 → 1.477 | 3.711 → 3.642 → 4.340 |
+
+The late training-loss drop with a sharp validation-loss rise is consistent
+with overfitting this small fixed sample; it does not produce a new-timepoint
+preference. This LTE pilot therefore gives no evidence that the measured
+compressibility signal identifies emergent terminology. All four changed
+held-out units are Markdown, so there is no held-out executable-code result.
+
+This result is limited to one repository, two selected snapshots, four changed
+test units, one unchanged unit, one model/tokenizer, and a small training
+budget. Pretraining contamination is unknown. Predictive NLL is not semantic
+correctness; it cannot explain why terms or software changed. Model, adapter,
+tokenizer and decoder costs are excluded.
+
+### Reproduce the LTE measurement
+
+The LTE history and pinned model cache are local inputs, not bundled with this
+repository. Use a new private run directory outside the tracked worktree:
+
+```bash
+LTE_REPO=/path/to/lte-workstation
+umask 077
+mkdir -p "$HOME/.local/state"
+PRIVATE_ROOT=$(mktemp -d "$HOME/.local/state/tiny-fleet-lte.XXXXXXXX")
+RUN_DIR="$PRIVATE_ROOT/run"
+
+.venv/bin/python scripts/lte_snapshot_compression.py --prepare \
+  --repository "$LTE_REPO" \
+  --old-revision 5475816081b26a0f9aebb92da844493b19304eef \
+  --new-revision a8b73e01b55d06f8ae3bed8f438c7ea36c902e63 \
+  --run-dir "$RUN_DIR"
+
+# On the shared host, this enforces the registered 3072 MB cgroup cap.
+mesh-heavy-run 3072 -- .venv/bin/python scripts/lte_snapshot_compression.py \
+  --run --run-dir "$RUN_DIR"
+.venv/bin/python scripts/lte_snapshot_compression.py --analyze --run-dir "$RUN_DIR"
+```
+
+Preparation copies raw source and token IDs into `RUN_DIR`; keep it private and
+never commit it. The runner refuses a run directory inside the source repository
+or an unignored Git worktree path. Before running, use the CPU dependency install
+and pinned-revision download in the separate Flask/Requests/Pydantic setup section
+below; both experiments use this exact 360M model revision. Execution is offline.
+The runner verifies the effective process cgroup limit and refuses execution
+unless it can prove a cap of at most 3,072 MB; outside the shared host, provide
+an equivalent Linux cgroup limit.
+
+## Earlier, separate LoRA overfitting study
 
 The experiment uses the same pinned
 [SmolLM2-360M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct)
@@ -93,7 +228,7 @@ the private local research site, not Git. Their receipt, tape hashes, the
 prospective interpretation plan and independent result review are recorded in
 the site's evidence artifacts.
 
-### Run the real experiment
+### Reproduce the separate Flask/Requests/Pydantic study
 
 The runner is CPU/fp32, cache-only, sequential and no-overwrite. It freezes
 input/model/tokenizer/source hashes before execution, retains raw outputs and
@@ -130,9 +265,9 @@ PY
 .venv/bin/python scripts/analyze_model_terminology_drift.py --run-dir /tmp/model-drift-study --output /tmp/model-drift-analysis.json
 ```
 
-This is a separate prospective exploratory experiment, not a repaired or renamed
-registered fleet replication. Historical results and failed/partial runs are
-preserved; they cannot settle the current question.
+The Flask/Requests/Pydantic study is a separate prospective exploratory
+experiment, not a repaired or renamed LTE-history replication. Its historical
+results and failed/partial runs are preserved; they cannot settle the LTE claim.
 
 <details>
 <summary>Historical fleet experiments, applications and earlier research plans</summary>
