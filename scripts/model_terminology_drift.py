@@ -380,7 +380,7 @@ def prepare(run_dir):
                                  "optimizer": "fresh AdamW; historical optimizer unavailable"},
                     "budget": {"model_wall_seconds": 21600, "minimum_available_memory_gib": 6},
                     "runtime": {"device": "cpu", "dtype": "float32", "threads": 4, "global_lock": str(GLOBAL_LOCK), "local_files_only": True,
-                                "packages": {name: importlib.metadata.version(name) for name in ("torch", "transformers", "peft", "tokenizers", "safetensors")}},
+                                "packages": {name: importlib.metadata.version(name) for name in ("torch", "transformers", "peft", "tokenizers", "safetensors", "numpy")}},
                     "controls": {"shuffle_seed": 17, "unigram_alpha": 1.0, "prompt_context_tokens": 512,
                                  "prompt_only": "base model conditioned on first512 selected training tokens; no heldout context",
                                  "shared_reuse": "base/prompt-only/unigram evaluated once, reused explicitly at all LoRA stages",
@@ -658,6 +658,7 @@ def execute(run_dir, protocol, cases):
             raise ValueError("runtime packages changed after prospective preparation")
         write_json(run_dir / "runtime.json", {"python": sys.version, "torch": torch.__version__,
                                               "peft": peft.__version__, "transformers": transformers.__version__,
+                                              "numpy": importlib.metadata.version("numpy"),
                                               "device": "cpu", "dtype": "float32", "threads": torch.get_num_threads()})
         lookup = {(c["repo"], c["snapshot"]): c for c in cases["conditions"]}
         likelihood_rows = expected_likelihood_rows(protocol, cases)

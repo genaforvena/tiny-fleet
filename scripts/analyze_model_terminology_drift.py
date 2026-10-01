@@ -284,7 +284,7 @@ def generation_summary(rows, cases, protocol, repositories):
     return {"source_lexical_shifts": source, "paired_outputs": pairs, "sample_variability": variability,
             "identity_repeats": identities,
             "measurement": "drift_lexical.tokenize on all raw outputs and heldout source excerpts; relative-frequency new-minus-old vectors over the full union vocabulary. Cosine includes output-only terms in its norm. Coverage counts changed source terms appearing in either output; no term selection or output cleaning.",
-            "limits": "Undefined cosine and coverage remain null for zero vectors/vocabularies; failed outputs remain error records. Sampled decodes are variability probes, not independent training seeds or source units. Lexical alignment is not human semantic validity."}
+            "limits": "Cosine alignment for shared base-generation pairs is structural null because the same base output is reused for both snapshots; null is not evidence of zero base lexical drift. Most generations hit the 96-token cap, so alignment describes truncated text, not full responses. Undefined cosine and coverage remain null for zero vectors/vocabularies; failed outputs remain error records. Sampled decodes are variability probes, not independent training seeds or source units. Lexical alignment is not human semantic validity."}
 
 
 def training_summary(rows, likelihood_rows):
@@ -468,16 +468,19 @@ def validate_inputs(protocol, cases, run_dir, root, model_cache, errors):
     if prepared != expected_prepared:
         errors.append("prospective prepared protocol/cases marker mismatch")
     cache = protocol["cached_model"]
+    cache_verification_errors = []
     if not cache.get("files") or not any(name.endswith(".safetensors") for name in cache["files"]):
         errors.append("missing frozen base-model weights")
+        cache_verification_errors.append("missing frozen base-model weights")
     tokenizer = None
     if model_cache is not None:
         for name, digest in sorted(cache["files"].items()):
-            check_digest(model_cache / name, digest, f"cached model {name}", errors)
+            check_digest(model_cache / name, digest, f"cached model {name}", cache_verification_errors)
         from transformers import AutoTokenizer
         tokenizer = AutoTokenizer.from_pretrained(str(model_cache), local_files_only=True, trust_remote_code=False)
         if tokenizer_binding(tokenizer) != protocol["tokenizer"]:
-            errors.append("cached tokenizer fingerprint differs from prospective binding")
+            cache_verification_errors.append("cached tokenizer fingerprint differs from prospective binding")
+        errors.extend(cache_verification_errors)
     vocab_size = protocol["tokenizer"]["vocab_size"]
     if not positive_int(vocab_size):
         raise ValueError("invalid tokenizer vocabulary size")
@@ -668,7 +671,7 @@ def validate_inputs(protocol, cases, run_dir, root, model_cache, errors):
                 errors.append(f"{key}/{prompt_id}: prompt-only input text mismatch")
             if tokenizer is not None and prompt_id in inputs and inputs[prompt_id]["input_ids"] != chat_input(tokenizer, inputs[prompt_id]["text"]):
                 errors.append(f"{key}/{prompt_id}: training-context generation text/token-ID mismatch")
-    return source_bindings
+    return source_bindings, not cache_verification_errors
 
 
 def validate_receipt(receipt, protocol, cases, tapes, invalid_lines, run_dir, protocol_digest, errors):
@@ -821,7 +824,7 @@ def analyze(run_dir, input_root=None, model_cache=None):
             "requested": model_cache is not None, "resolved_cache": str(model_cache) if model_cache is not None else None,
             "status": "PENDING" if model_cache is not None else "NOT_CHECKED",
             "frozen_file_hashes": protocol.get("cached_model", {}).get("files", {}) if protocol else {},
-            "limitation": "Tape-only analysis verifies the frozen token-ID/hash bindings, not physical base-model/tokenizer bytes or text-to-ID re-encoding. Use --model-cache PATH to verify all cached hashes, tokenizer fingerprint and deterministic source/token mappings without a model call."},
+            "limitation": "Tape-only analysis verifies frozen token-ID/hash bindings, not physical model/tokenizer bytes or text-to-ID re-encoding. Use --model-cache PATH to verify cached model files and tokenizer fingerprint without a model call; deterministic source/token mappings are reported with input validation."},
         "cases_sha256": sha256((run_dir / "cases.json").read_bytes()) if (run_dir / "cases.json").is_file() else None,
         "receipt_sha256": sha256((run_dir / "receipt.json").read_bytes()) if (run_dir / "receipt.json").is_file() else None,
         "analysis_source_sha256": sha256(Path(__file__).read_bytes()),
@@ -850,9 +853,9 @@ def analyze(run_dir, input_root=None, model_cache=None):
         try:
             from model_terminology_drift import expected_likelihood_rows, expected_generation_rows
             validate_fixed_settings(protocol, errors)
-            report["source_bindings"] = validate_inputs(protocol, cases, run_dir, input_root, model_cache, errors)
+            report["source_bindings"], cache_verified = validate_inputs(protocol, cases, run_dir, input_root, model_cache, errors)
             if model_cache is not None:
-                report["model_cache_verification"]["status"] = "verified" if not errors else "failed"
+                report["model_cache_verification"]["status"] = "verified" if cache_verified else "failed"
             expected_likelihood = expected_likelihood_rows(protocol, cases)
             expected_generation = expected_generation_rows(protocol, cases)
             report["expected_counts"] = {"likelihood.jsonl": len(expected_likelihood), "generations.jsonl": len(expected_generation),
@@ -901,9 +904,15 @@ def analyze(run_dir, input_root=None, model_cache=None):
         final = next(cell for cell in stages if cell["stage"] == "repeat19")
         accuracies = final["arms"]
         final_training = [row for row in report["repeated_fitting"]["diagnostic_comparisons"] if row["stage"] == "repeat19"]
+        sign_flips = accuracies["lora"]["diagonal_sign_flips"]
+        generation_tape = report["observed_tapes"]["generations.jsonl"]
+        failures = report["observed_tapes"]["failures.jsonl"]["rows"]
+        costs = report["execution_costs"]
         report["direct_answer"] = (
             f"Usefulness and semantic terminology precision are not established. After19 additional selected-subset passes, changed-pair balanced snapshot accuracy was {accuracies['lora']['changed_source_pair_mean_accuracy']:.3f}, versus base {accuracies['base']['changed_source_pair_mean_accuracy']:.3f}, training-context prompt-only {accuracies['prompt-only']['changed_source_pair_mean_accuracy']:.3f} and unigram {accuracies['unigram']['changed_source_pair_mean_accuracy']:.3f}. "
+            f"The exploratory one-sided sign-flip p={sign_flips['one_sided_p']:.3f} equals the attainable floor {sign_flips['attainable_one_sided_p_floor']:.3f} over {sign_flips['nonzero_repository_units']} nonzero changed-pair units; it is not evidence of superiority. "
             f"Selected-train loss improved in {sum(row['train_improved'] for row in final_training)}/6 adapters; {sum(row['observed_overfit_to_selected_subset'] for row in final_training)}/6 showed train decrease with heldout increase. "
+            f"Generation cap hits: {generation_tape['cap_hits']}/{generation_tape['rows']}; empty outputs: {generation_tape['empty_outputs']}; retained failure rows: {failures}; model wall {costs['total_model_wall_s']:.1f}s, peak RSS {costs['peak_rss_gib']:.2f}GiB. "
             "These are descriptive source-discrimination and fitting outcomes, not human semantic precision or causal terminology effects. Requests is an unchanged-excerpt control; two changed pairs cannot establish statistical superiority. All-token lexical alignment and shuffle/control contrasts are reported without term selection."
         )
     if errors:

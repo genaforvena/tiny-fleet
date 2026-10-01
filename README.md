@@ -48,6 +48,51 @@ and human semantic accuracy remain unknown. With only two changed source units,
 the exact sign-permutation test has a positive-tail floor of 1/4; this experiment
 cannot establish a general statistical superiority claim.
 
+### Measured prospective result
+
+The frozen six-adapter run completed with all **132 likelihood, 201 generation,
+132 training rows and 12 continued checkpoints** validated; all tape rows were
+successful, with no execution failures or empty outputs. It used 12,397.6 model
+wall-seconds (3 h 26 min 38 s) and peaked at 4.09 GiB RSS.
+
+| Stage | LoRA changed-pair accuracy | Base | Training-context prompt-only | Unigram |
+|---|---:|---:|---:|---:|
+| Original adapters | 0.75 | 0.50 | 0.75 | 0.75 |
+| 4 additional passes | 0.75 | 0.50 | 0.75 | 0.75 |
+| 19 additional passes | 0.50 | 0.50 | 0.75 | 0.75 |
+
+The changed-pair denominator is only Flask and Pydantic; Requests is
+byte-identical and remains a negative control. At repeat19, the exploratory
+one-sided label sign-flip value for LoRA was 0.25, the attainable floor for the
+two nonzero changed pairs. That coarse two-unit calculation is not inferential
+evidence, and LoRA did not beat base, prompt-only or unigram. Token-shuffled
+repeat19 changed-pair scores were 0.25 for LoRA, 0.50 for prompt-only and 0.75
+for unigram; the shuffle preserves the scored token multiset.
+
+Selected-subset training loss fell in all six adapters, while held-out
+self-loss rose in all six after repeat19. This is strong fitting/overfit
+evidence, not a useful terminology-drift result. **195 of 201 generations hit
+the 96-token cap**; the sole explicit identical-input decode repeat returned
+identical raw output, but sampled decodes do not replicate training seeds.
+Truncated lexical alignment is descriptive only; human semantic terminology
+precision was not measured.
+
+For the 16 repeat19 LoRA output-pairs on the two changed modules, all 32 raw
+outputs were capped; 16/16 cosine alignments were defined, with mean
+source/output delta cosine -0.0218 (range -0.1332 to 0.0718). Changed-source
+term coverage ranged 1.52–10.95%. Prompt/decode rows are correlated repeated
+probes, not 16 independent replications; low coverage and near-zero mixed-sign
+cosines do not identify semantic correctness.
+The pre-registered usefulness criterion therefore fails: these measurements
+do not show that repeated fitting is a useful or reproducible terminology-drift instrument. The result is limited to three
+purposively chosen repositories, two changed source units, one training seed,
+and no human semantic labels; pretraining contamination remains unknown.
+
+The source-bound raw run and strict complete analyzer output are retained in
+the private local research site, not Git. Their receipt, tape hashes, the
+prospective interpretation plan and independent result review are recorded in
+the site's evidence artifacts.
+
 ### Run the real experiment
 
 The runner is CPU/fp32, cache-only, sequential and no-overwrite. It freezes
@@ -56,10 +101,11 @@ failed attempts, and enforces a six-hour model-execution wall cap. It does not
 evict GPU workloads, download models implicitly or amend older registrations.
 
 `--prepare` records the repository revision it was prepared at, and `--run`
-refuses to start if any bound input or implementing-source hash changed
-afterwards. The measurement reported in this repository was prepared at commit
-`9624641`; later revisions add only the CI step that runs the dependency-free
-analysis tests and documentation wording.
+refuses to start if any bound input or implementing-source hash changed afterwards.
+The completed measurement was prepared and source-bound to commit `9624641`.
+Later revisions add this measured result, additional inference tests, and
+reporting/runtime-verification fixes; they do not alter the frozen run or its
+source-bound analyzer output.
 
 ```bash
 python3 -m venv .venv
