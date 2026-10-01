@@ -61,13 +61,13 @@ wall-seconds (3 h 26 min 38 s) and peaked at 4.09 GiB RSS.
 | 4 additional passes | 0.75 | 0.50 | 0.75 | 0.75 |
 | 19 additional passes | 0.50 | 0.50 | 0.75 | 0.75 |
 
-The changed-pair denominator is only Flask and Pydantic; Requests is
-byte-identical and remains a negative control. At repeat19, the exploratory
-one-sided label sign-flip value for LoRA was 0.25, the attainable floor for the
-two nonzero changed pairs. That coarse two-unit calculation is not inferential
-evidence, and LoRA did not beat base, prompt-only or unigram. Token-shuffled
-repeat19 changed-pair scores were 0.25 for LoRA, 0.50 for prompt-only and 0.75
-for unigram; the shuffle preserves the scored token multiset.
+The changed-pair denominator is only Flask and Pydantic; Requests is byte-identical and remains a negative control.
+For the LoRA diagonal-preference statistic (not classifier accuracy), the
+repeat19 one-sided repository-label sign-flip p-value was 0.25, the attainable
+floor with two nonzero changed-pair units. This coarse two-unit calculation is
+not inferential evidence, and LoRA did not beat base, prompt-only or unigram.
+Token-shuffled repeat19 changed-pair accuracy was 0.25 for LoRA, 0.50 for
+prompt-only and 0.75 for unigram; the shuffle preserves the scored-token multiset.
 
 Selected-subset training loss fell in all six adapters, while held-out
 self-loss rose in all six after repeat19. This is strong fitting/overfit
