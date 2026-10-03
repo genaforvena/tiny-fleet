@@ -1,176 +1,69 @@
-# tiny-fleet: Architectural Drift Report
+# Small-model terminology-drift study: measured result
 
-**Date:** 2026-09-03
-**v1 snapshot:** 54758160 (June 15 2026, 807 commits)
-**v2 snapshot:** HEAD (Sep 3 2026, 4276 commits)
-**Base model:** smollm2:135m (via ollama Modelfile approach)
+**Status:** the exploratory usefulness criterion failed. This is not a semantic-accuracy or architectural-drift finding.
 
-## The Core Idea
+## Result
 
-Train two tiny models on different codebase snapshots, then prompt both with the same
-incomplete input. The difference between M₁ and M₂ is the **architectural drift** of the
-project, expressed generatively.
+A prospective CPU experiment repeatedly fitted six existing LoRA adapters for Flask, Requests, and Pydantic snapshots using a pinned SmolLM2-360M-Instruct base. The Requests excerpts are byte-identical across snapshots, so the changed-source comparison contains only two repository pairs (Flask and Pydantic); Requests is an unchanged control.
 
-Since we can't pip-install torch on every node, we use ollama Modelfiles with version-specific
-system prompts + few-shot examples extracted from each snapshot. The structural drift is
-measured both statistically and via embedding similarity.
+| Fitting stage | LoRA | Base | Training-context prompt-only | Unigram |
+|---|---:|---:|---:|---:|
+| Original adapters | 0.75 | 0.50 | 0.75 | 0.75 |
+| 4 additional passes | 0.75 | 0.50 | 0.75 | 0.75 |
+| 19 additional passes | 0.50 | 0.50 | 0.75 | 0.75 |
 
-## Structural Drift
+Accuracy uses the two changed pairs only. The preregistered repeat-19 criterion required LoRA to strictly outperform all three controls; it did not. The one-sided sign-flip value of 0.25 is the attainable floor for the two-unit diagonal-preference statistic, not evidence of classifier superiority. Token-shuffled repeat-19 accuracy was 0.25 for LoRA, 0.50 for prompt-only, and 0.75 for unigram.
 
-| Metric | v1 (June 15) | v2 (Sep 3) | Growth |
-|--------|-------------|------------|--------|
-| Files | 232 | 1,439 | 6.2x |
-| Total size | 1,343 KB | 29,541 KB | 22.0x |
-| Avg file size | 5.8 KB | 20.5 KB | 3.5x |
-| Vocabulary (unique terms) | 11,011 | 88,724 | 8.1x |
-| mesh-* tool references | 3,189 | 30,326 | 9.5x |
+The strict analysis validated 132/132 likelihood rows, 201/201 generation rows, 132/132 training rows, and 12/12 continued checkpoints. It recorded zero failed or empty outputs; 195/201 generations hit the 96-token cap. Runtime was 12,397.6 model-wall seconds (about 3 h 26 min 38 s), with 4.09 GiB peak RSS. Training loss decreased and held-out self-loss increased for all six adapters after repeat 19. That is evidence of fitting/overfit, not a useful drift signal.
 
-New file types appeared: `.c` (43), `.rom` (26), `.tal` (25), `.h` (15) — the uxn/Varvara
-retro-computing layer didn't exist in v1.
+Generation evidence is weak: all 32 raw outputs in the 16 repeat-19 changed-source LoRA pairs were capped; mean source/output cosine alignment was -0.0218 (range -0.1332 to 0.0718), with 1.52–10.95% changed-term coverage. These correlated probes are not independent replications. No human semantic labels were collected; semantic precision and pretraining contamination remain unknown.
 
-## Vocabulary Drift
+## Reproduce and inspect
 
-**Top new terms in v2 (freq ≥ 5):** `tape`(2643), `_td`(2366), `slug`(1777), `constant`(1172),
-`arXiv`(1058), `rom`(1006), `DEGRADED`(970), `uxn`(942), `mesh-home`(922), `ratio`(902),
-`promises`(855), `fyi`(816), `note3`(804), `episode`(764)
-
-**Fastest growing shared terms:**
-- `arm`: 5 → 2,289 (458x) — the detector/actuator/alert arm vocabulary
-- `ledger`: 9 → 2,729 (303x) — hledger-based coordination
-- `coverage`: 6 → 1,383 (231x) — the measurement coverage concept
-- `fixture`: 16 → 3,557 (222x) — test fixtures for verification
-- `floor`: 11 → 2,682 (244x) — threshold/band vocabulary
-
-**Gone terms (freq ≥ 3):** 40 terms disappeared — the early codebase had concepts that were
-superseded by the mature vocabulary.
-
-## Pattern Drift
-
-| Pattern | v1 | v2 | Change |
-|---------|----|----|--------|
-| `trap ` | 55 | 1,233 | +2,142% |
-| `ts()` | 52 | 459 | +783% |
-| `mesh-chat` | 248 | 1,526 | +515% |
-| `mesh-health` | 32 | 122 | +281% |
-| `set -euo` | 15 | 43 | +187% |
-| `readonly` | 0 | 16 | new |
-
-The `trap` explosion (+2,142%) reflects the doctrine of signal handling and process lifecycle
-management that emerged over the summer. `ts()` growth (+783%) shows the shift to timestamped
-logging across every tool.
-
-## Conceptual Drift
-
-What v2 knows that v1 barely does:
-
-| Concept | v1 count | v2 count | Multiplier |
-|---------|----------|----------|------------|
-| gate | 137 | 7,872 | 57x |
-| verdict | 131 | 7,672 | 58x |
-| board | 185 | 5,911 | 32x |
-| reflex | 208 | 4,267 | 21x |
-| organ | 155 | 2,774 | 18x |
-| cadence | 22 | 2,077 | 94x |
-| probe | 87 | 2,136 | 25x |
-| coverage | 6 | 1,383 | 231x |
-| drift | 70 | 1,213 | 17x |
-| census | 21 | 641 | 31x |
-| autopoiesis | 7 | 193 | 28x |
-| staleness | 2 | 188 | 94x |
-| homeostasis | 20 | 176 | 9x |
-| taint | 0 | 25 | ∞ |
-
-The conceptual vocabulary shifted from operational (`check`, `status`, `monitor`) to
-systemic (`gate`, `verdict`, `cadence`, `coverage`, `drift`). This is the **emergent
-ontology** of the mesh — words that weren't needed when the system was simple became
-load-bearing concepts as complexity grew.
-
-## Generative Drift (Embedding Similarity)
-
-Same prompts → M₁ (v1 system) vs M₂ (v2 system) → cosine similarity of outputs:
-
-| Prompt | Similarity | Interpretation |
-|--------|-----------|----------------|
-| Node alive check | 0.657 | Different patterns emerge |
-| Sensor freshness | 0.659 | v2 adds staleness/coverage concepts |
-| Health to board | 0.168 | MASSIVE divergence — v1 has no "board" concept |
-
-**Average similarity: 0.4946**
-**Drift score: 0.5054 — HIGH architectural drift**
-
-## What This Means
-
-The 0.50 drift score says: if you give both versions the same incomplete code and ask them
-to complete it, they produce outputs that are only ~50% similar in embedding space. The
-architectural drift is not just "more code" — it's a fundamentally different *vocabulary of
-concerns*.
-
-v1 thinks in: `check`, `error`, `warn`, `info` — basic operational primitives.
-v2 thinks in: `gate`, `verdict`, `cadence`, `coverage`, `arm`, `ledger` — a self-monitoring
-ontology where every tool has a measurement story, every measurement has a coverage bound,
-and every verdict cites its evidence.
-
-The drift is not linear. The conceptual vocabulary (`cadence` 94x, `coverage` 231x) grew
-much faster than the code itself (22x). The system didn't just get bigger — it developed
-a *theory of itself*.
-
-## How to Reproduce
+The measurement was prepared and source-bound to code revision
+`96246410981ab9c0424ebcce4538fce52800564e`; the base model revision is
+`a10cc1512eabd3dde888204e902eca88bddb4951`. Reproduction is limited to the
+preserved internal worktree: the frozen input root is
+`.mishe-tauftauf/research/terminology-drift-candidate/` (as bound by
+`input_root` in the protocol). That ignored tree is not in a fresh clone, and
+the commands below do not acquire or restore it; the protocol's `files` map
+binds the six source archives and other inputs. Copy the preserved tree to an
+unused location before running; do not overwrite it. With that input tree
+available, install the recorded CPU dependencies and run in fresh directories:
 
 ```bash
-# On a node with ollama + GPU:
-mesh-tiny-fleet extract     # pull snapshots + build training data
-mesh-tiny-fleet train       # create ollama models
-mesh-tiny-fleet compare     # run comparison prompts
-mesh-tiny-fleet drift       # full analysis
-
-# Or just the structural analysis (no GPU needed):
-./scripts/mesh-tiny-fleet drift
+python3 -m venv .venv
+.venv/bin/python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.14.0
+.venv/bin/python -m pip install -r requirements-model-drift.txt
+# If absent, cache the exact pinned base without runner-side downloading:
+.venv/bin/python - <<'PY'
+from huggingface_hub import snapshot_download
+snapshot_download(
+    repo_id="HuggingFaceTB/SmolLM2-360M-Instruct",
+    revision="a10cc1512eabd3dde888204e902eca88bddb4951",
+    allow_patterns=["*.json", "*.safetensors", "*.model"],
+)
+PY
+# Use unused output directories; prepare/run refuse changed inputs or source.
+.venv/bin/python scripts/model_terminology_drift.py --prepare --run-dir /tmp/model-drift-study
+.venv/bin/python scripts/model_terminology_drift.py --run --run-dir /tmp/model-drift-study
+.venv/bin/python scripts/analyze_model_terminology_drift.py --run-dir /tmp/model-drift-study --output /tmp/model-drift-analysis.json
 ```
 
-## Model Capacity Effect
+The runner is CPU/fp32, cache-only, sequential and no-overwrite; it binds
+inputs and implementing-source hashes and enforces a six-hour model-execution
+cap. The exact completed run remains local under
+`.mishe-tauftauf/research/terminology-drift-20260930/`, not Git. The SHA-256
+values for its protocol, receipt, analysis and three measured tapes match
+`.mishe-tauftauf/artifacts/model-drift-measured-results-20260930.json`.
+Independent read-only review of those bindings judged the result safe to report
+cautiously; see `.mishe-tauftauf/artifacts/model-drift-results-independent-review-20260930.json`.
+These internal hashes establish consistency, not authenticated execution
+provenance. Later source revisions are not retroactively treated as the
+measured implementation.
 
-The drift measurement is **sensitive to model capacity**:
+## Scope and historical correction
 
-| Base Model | Avg Similarity | Drift Score | Verdict |
-|------------|---------------|-------------|----------|
-| smollm2:135m | 0.4946 | 0.5054 | HIGH |
-| qwen2.5:3b | 0.8005 | 0.1995 | MODERATE |
+This result concerns a small-model terminology-drift instrument, not the separate registered four-estimand architectural study. The latter compares six immutable Flask, Requests, and Pydantic snapshots and remains incomplete; see the [architectural execution plan](architectural-drift-execution.md) and [cross-repository protocol](cross-repository-drift-protocol.md).
 
-The 135m model amplifies vocabulary differences because its limited capacity makes it
-more dependent on the system prompt. The 3b model draws on pre-trained knowledge to
-produce more similar outputs regardless of the prompt. **Both measurements are valid** —
-they measure different things:
-
-- 135m measures **vocabulary drift** (what words the codebase uses)
-- 3b measures **conceptual drift** (what ideas the codebase expresses)
-
-## Weekly Tracking
-
-`mesh-tiny-fleet-snapshot` captures structural metrics every Sunday at 03:00 UTC and
-appends to `~/.mesh/tiny-fleet/drift-series.jsonl`. It tracks:
-- File count, total size, average file size
-- Vocabulary size, mesh-* reference count
-- 23 key concept frequencies (gate, verdict, cadence, coverage, etc.)
-- File extension distribution
-
-The ollama-based generative comparison (`mesh-tiny-fleet compare`) is run manually
-when a deeper drift measurement is needed.
-
-## Limitations
-
-1. **Modelfile ≠ fine-tune.** The system prompt changes behavior but not weights. True
-   fine-tuning (LoRA on the actual code) would show even more divergence because the model
-   would internalize the *patterns*, not just the *vocabulary*.
-
-2. **Snapshot selection matters.** We used June 15 vs Sep 3 — a 3-month gap with 3,469
-   commits. Shorter intervals would show finer-grained drift.
-
-## Next Steps
-
-- **True LoRA fine-tuning** on each snapshot (needs torch + transformers, not available on
-  every node)
-- **Prompt-specific drift** — measure which types of code drift fastest (senses vs reflexes
-  vs substrate)
-- **Cross-node comparison** — same prompt, different nodes' local models, compare dialects
-- **Drift score over time** — once weekly snapshots accumulate, plot the concept frequencies
-  as a time series to see which concepts are accelerating
+This page replaces the preliminary 2026-09-03 report formerly stored here. That report used a mutable `HEAD` snapshot, retained no raw generation tape or scorer metadata, and made unsupported semantic interpretations; its numerical claims are not current findings. The historical audit remains at `docs/architectural-drift-baseline-audit-2026-09-06.md`.
