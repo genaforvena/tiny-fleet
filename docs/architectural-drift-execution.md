@@ -1,6 +1,11 @@
 # Architectural drift: execution and completion plan
 
-Status, 2026-09-30: **in progress; full four-estimand study not complete**.
+Status, 2026-10-04: **in progress; full four-estimand study not complete**. The
+latest Docs dashboard reports all nine full-bundle requirements incomplete and
+research status UNKNOWN; execution inputs READY is availability only. This does
+not negate the separately accepted, bounded LTE pilot controls criterion. See
+the [evidence ledger](evidence-status.tsv) for the sample-specific distinction
+and requirement-level records.
 Completion owner: **genome**. Independent acceptance: **witness**, not the author.
 Durable resident task: `tiny-fleet-architectural-drift-completion-20260930`.
 This is an execution roadmap for the existing [protocol](cross-repository-drift-protocol.md),

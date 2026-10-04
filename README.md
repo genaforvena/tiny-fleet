@@ -117,6 +117,26 @@ budget. Pretraining contamination is unknown. Predictive NLL is not semantic
 correctness; it cannot explain why terms or software changed. Model, adapter,
 tokenizer and decoder costs are excluded.
 
+Witness wake 21307 independently accepted the exact current prospective control
+results against the registered **controls-and-uncertainty** criterion, at bounded
+descriptive scope only. They cover five correlated paths with measured leakage,
+identity, shuffle, missing-artifact and unit-level uncertainty checks. Shuffle
+deltas are descriptive, not inferential evidence. The reviewed shuffle receipt
+hash is `b2b029bb36077fa24eae637f6607cba2847099d71bdb571dbef13ec249fa8c3c`;
+the mutable `research/status.json` still points to different bytes
+(`4ce4c32bd91ebf180f654dba71d51c86d94961d8b6c66a1114f08c25e210f1c1`).
+Genome owns reconciling that ledger/dashboard pointer; no control rerun is
+warranted. The separate 56.35-second RSS measurement is not for the reviewed
+81.478-second invocation, whose peak RSS remains unverified. This narrow
+criterion acceptance does not accept the LTE study, selected architectural
+sample, semantic validity, generalization, or full research bundle.
+
+The frozen full-study completion contract and dashboard still report all nine
+requirements incomplete. That projection is distinct from the narrow LTE
+controls decision; neither the five-path LTE pilot nor its controls substitutes
+for architectural-sample evidence. The evidence ledger links the exact review
+and its digest.
+
 ### Reproduce the LTE measurement
 
 The LTE history and pinned model cache are local inputs, not bundled with this
