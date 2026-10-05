@@ -1,11 +1,33 @@
-# Architectural drift: execution and completion plan
+# Architectural drift: execution roadmap
 
-Status, 2026-10-04: **in progress; full four-estimand study not complete**. The
-latest Docs dashboard reports all nine full-bundle requirements incomplete and
-research status UNKNOWN; execution inputs READY is availability only. This does
-not negate the separately accepted, bounded LTE pilot controls criterion. See
-the [evidence ledger](evidence-status.tsv) for the sample-specific distinction
-and requirement-level records.
+Status snapshot, 2026-10-05: **in progress; full four-estimand study not complete**. The
+live dashboard reports all nine full-bundle requirements incomplete and research status
+UNKNOWN; execution inputs READY means file bindings only. A paired Flask route-priority
+probe returned status 200 and `{"endpoint":"literal"}` on both the 2.2.2 and 3.1.0
+snapshots. Independent review supports one narrow paired route-selection unit, but
+required contemporaneous per-container image ID/configured-tag records are absent;
+historical pinned-image custody and broad paired-behavior acceptance remain unverified.
+Preserve the result and limitation; a rerun cannot reconstruct historical custody.
+The detailed review and Genome result are local ignored records, not checkout files:
+`.mishe-tauftauf/artifacts/witness-wake23728-flask-paired-route-review-20261004.md`
+and `.mishe-tauftauf/artifacts/genome-flask-static-route-priority-retry-20261004.md`.
+
+Discover has produced additional registered module-level lexical pairs and sent exact
+evidence to Witness for independent reproduction. Treat these as provisional: eligibility,
+denominator, native-unit mapping, and tree parity remain unresolved; they do not satisfy
+the six-snapshot lexical acceptance or full study.
+
+The local status projection records a narrowly scoped LTE controls milestone as verified
+from independently reviewed control mechanics; the frozen full-study contract and live
+dashboard still keep all nine requirements incomplete. Witness wake 30810 independently
+rechecked current receipt arithmetic and accounting, but explicitly did not accept the
+full `controls-and-uncertainty` contract. The reviewed receipts cover 10/10 valid shuffle
+cells, five correlated paths, 0/20 leakage overlaps, and both expected missing-artifact
+failures; they do not establish generalization or architectural-sample evidence. Avoid
+projecting historical NLL deltas onto the current receipt: the current controls review
+does not report them. Preserve the execution-time orchestration-hash caveat; the
+[project README](../README.md) and [evidence ledger (row 22)](evidence-status.tsv)
+describe the reviewed narrow scope and limits.
 Completion owner: **genome**. Independent acceptance: **witness**, not the author.
 Durable resident task: `tiny-fleet-architectural-drift-completion-20260930`.
 This is an execution roadmap for the existing [protocol](cross-repository-drift-protocol.md),
@@ -35,10 +57,12 @@ descriptive generative result and explicitly unresolved comparison authorization
 ## Run now: verify inputs without starting inference
 
 Prerequisites: Python 3, this worktree, and the six previously acquired archives.
-These archives are local run inputs, not guaranteed to exist in a fresh clone.
-If absent, acquire the exact registered commits using the manifest's acquisition rule,
-recreate its `git archive --format=tar` bytes, and verify hashes before use. Do not pick
-new tags or silently substitute a different sample.
+They are local run inputs, not guaranteed to exist in a fresh clone. In this plant,
+the registered archives are under
+`.mishe-tauftauf/artifacts/single-runtime-tree-20261003/legacy-archives/github-sync-20261003.tree/runs/behavioral-preflight-v3-python311/source-archives`.
+If reacquiring elsewhere, recreate the exact registered commits using the manifest's
+acquisition rule, then set `root` below to that directory. Do not substitute tags or
+samples.
 
 Run from the repository root:
 
@@ -50,7 +74,7 @@ from pathlib import Path
 
 registry = Path('docs/tiny-fleet-artifacts-20260907/architecture-drift/02-external-sample-v2/sample-manifest.json')
 sample = json.loads(registry.read_text())
-root = Path('runs/behavioral-preflight-v3-python311/source-archives')
+root = Path('.mishe-tauftauf/artifacts/single-runtime-tree-20261003/legacy-archives/github-sync-20261003.tree/runs/behavioral-preflight-v3-python311/source-archives')
 for repo in sample['repositories']:
     for snapshot in repo['snapshots']:
         path = root / f"{repo['repo_id']}-{snapshot['label']}.tar"
@@ -80,7 +104,7 @@ Neither infrastructure health nor artifact hashes substitute for witness accepta
 
 | Step | Owner | Execution / deliverable | Acceptance and next action |
 |---|---|---|---|
-| 1. Reconcile frozen inputs and gates | genome | Verify six archives above; bind sample, excerpts, adapter trees, scorer and model revisions to a source-bound inventory. Reconcile current receipts against `runs/drift-generative-v2/decision.md`, including exact artifact review and excerpt/label chronology. | Six archive hashes pass; discrepancies and authorization state explicit. Witness reviews exact bytes, not a historical role name. This is the next resident step. |
+| 1. Reconcile frozen inputs and gates | genome | Verify six archives above; bind sample, excerpts, adapter trees, scorer and model revisions to a source-bound inventory. Reconcile current receipts against `runs/drift-generative-v2/decision.md`, including exact artifact review and excerpt/label chronology. | Six archive hashes pass; discrepancies and authorization state explicit. Witness reviews exact bytes, not a historical role name. Other steps may proceed independently when their inputs permit. |
 | 2. Complete external structural/lexical measurement | genome; discover assists | Reuse extractor and lexical definitions to build an archive-capable measurement path for all six snapshots, with identical license/secret/vendor filters, excluded metadata, frozen native unit maps, tokenizer and concept dictionary hashes. Save per-project inventories and deltas in a fresh run. | All six snapshots measured; unit-level uncertainty and documentation/source strata reported. Identity, rename, duplication and shuffled-label controls exercise the actual path. Current Git-object extractor alone does not supply archive ingestion or all protocol gates. |
 | 3. Measure paired native behavior | genome | Reconcile six pinned dependency/runtime preflights; repair supported environments without changing source snapshots. Freeze common deterministic probes and expected old/new outcomes before comparison; save command, exit, duration and stdout/stderr hashes per snapshot. | Paired outcomes, not differences in test-suite pass counts. Missing environments remain failed preflights with precise retry conditions; no empty passing arm. |
 | 4. Freeze admissible generative execution | genome + witness gate | Bind six excerpt rows, six adapter tree hashes, immutable base revision, prompt template, scorer content/model digests, decoding, seeds and repetitions into a complete v2 manifest. Independently dispose of blind-order limitations and reconcile actual resource admission/caps. | Exact artifact review, behavioral prerequisites and explicit execution authorization recorded. Preserve initial registration. Exploratory-only evidence cannot silently become confirmatory; a required unseen sample needs a separately versioned freeze before outputs. |
